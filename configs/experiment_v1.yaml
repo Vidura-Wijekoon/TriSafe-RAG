@@ -1,0 +1,36 @@
+# TriSafe-RAG — Experiment Configuration v1
+# Day 1 baseline placeholder. Fill in as components are built.
+
+experiment:
+  name: "trisaferag_baseline_v1"
+  date: "2026-03-07"
+  description: "Day 1 scaffold — to be populated as modules are implemented"
+
+languages:
+  - si   # Sinhala
+  - ta   # Tamil
+  - en   # English
+
+data:
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+
+retrieval:
+  model: null          # TBD
+  top_k: 5
+
+generation:
+  model: null          # TBD
+  max_new_tokens: 512
+
+trust:
+  fairness_threshold: null   # TBD
+  abstention_threshold: null # TBD
+
+eval:
+  metrics:
+    - factual_grounding
+    - cross_lingual_consistency
+    - calibration_quality
+    - abstention_effectiveness
+  output_dir: "logs/"
