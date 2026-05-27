@@ -1,10 +1,9 @@
 # TriSafe-RAG — Experiment Configuration v1
-# Day 1 baseline placeholder. Fill in as components are built.
+# Builds an end-to-end pipeline from scratch with offline-safe defaults.
 
 experiment:
   name: "trisaferag_baseline_v1"
-  date: "2026-03-07"
-  description: "Day 1 scaffold — to be populated as modules are implemented"
+  description: "Hybrid retrieval + lexical grounding + uncertainty-aware abstention"
 
 languages:
   - si   # Sinhala
@@ -14,23 +13,56 @@ languages:
 data:
   raw_dir: "data/raw"
   processed_dir: "data/processed"
+  evaluation_dir: "data/evaluation"
+
+# Embedding model. Use "hash" for offline / CI; switch to sentence-transformers
+# for production runs.
+embedder:
+  name: "hash"          # one of: hash | st
+  dim: 256              # only used by hash embedder
+
+chunker:
+  chunk_size: 320
+  overlap: 64
 
 retrieval:
-  model: null          # TBD
+  alpha: 0.5            # dense vs sparse weight in RRF fusion
   top_k: 5
 
+llm:
+  name: "echo"          # one of: echo | openai
+  # model: "gpt-4o-mini"
+
 generation:
-  model: null          # TBD
   max_new_tokens: 512
 
-trust:
-  fairness_threshold: null   # TBD
-  abstention_threshold: null # TBD
+grounding:
+  backend: "lexical"    # one of: lexical | nli
+  support_threshold: 0.25
+
+confidence:
+  w_retrieval: 0.20
+  w_margin: 0.20
+  w_grounding: 0.40
+  w_citation: 0.10
+  w_language: 0.10
+
+abstention:
+  answer_threshold: 0.55
+  refuse_threshold: 0.30
+  min_support: 0.20
+  min_citation_coverage: 0.40
+
+audit:
+  path: "logs/audit.jsonl"
 
 eval:
+  output_dir: "logs/eval"
   metrics:
+    - retrieval_precision_at_k
+    - mean_reciprocal_rank
     - factual_grounding
-    - cross_lingual_consistency
     - calibration_quality
-    - abstention_effectiveness
-  output_dir: "logs/"
+    - abstention_precision_recall
+    - cross_lingual_consistency
+    - equalized_odds_gap

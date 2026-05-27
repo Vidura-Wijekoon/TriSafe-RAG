@@ -1,214 +1,202 @@
-# TriSafe-RAG 🛡️
-### Trustworthy Multilingual Public-Service AI for Emerging Regions
+# TriSafe-RAG
 
-[![Conference](https://img.shields.io/badge/Target-ICTer%202026-blueviolet)](https://icter.lk)
-[![Publisher](https://img.shields.io/badge/Publisher-Springer%20CCIS-orange)](https://springer.com)
-[![Track](https://img.shields.io/badge/Track-Responsible%20%26%20Trustworthy%20AI-green)]()
-[![License](https://img.shields.io/badge/License-MIT-blue)]()
-[![Status](https://img.shields.io/badge/Status-Active%20Development-yellow)]()
-[![Python](https://img.shields.io/badge/Python-3.10%2B-blue)]()
+**A trustworthy multilingual retrieval-augmented generation framework that jointly enforces evidence grounding, cross-lingual fairness, and selective abstention.**
 
----
-
-## 📌 Overview
-
-**TriSafe-RAG** is an end-to-end multilingual Retrieval-Augmented Generation (RAG) framework that jointly enforces:
-
-| Safety Pillar | Description |
-|---|---|
-| 🔍 **Evidence Grounding** | Answers are linked to verified source passages from trusted public-service documents |
-| ⚖️ **Cross-Lingual Fairness** | Performance disparities across Sinhala, Tamil, and English are measured and audited |
-| 🚫 **Selective Abstention** | The system defers or refuses responses when retrieved evidence is weak or inconsistent |
-
-> _Trustworthiness in multilingual low-resource AI should be optimized jointly as groundedness + fairness + selective abstention — not as accuracy alone._
+[![Python](https://img.shields.io/badge/python-3.10%2B-blue)]()
+[![License: MIT](https://img.shields.io/badge/license-MIT-green)]()
+[![Tests](https://img.shields.io/badge/tests-passing-brightgreen)]()
+[![Status](https://img.shields.io/badge/status-research--preview-orange)]()
 
 ---
 
-## 🎯 Research Objectives
+## Why TriSafe-RAG
 
-1. Build a multilingual public-service knowledge pipeline (Sinhala, Tamil, English)
-2. Develop a retrieval-augmented generation architecture with evidence-grounded responses
-3. Design a cross-lingual fairness evaluation layer across language groups and code-switched inputs
-4. Introduce an uncertainty-aware abstention mechanism for weak or conflicting evidence
-5. Create an auditable trust layer with full traceability per query
-6. Benchmark TriSafe-RAG against baseline multilingual RAG systems
-7. Propose a composite trustworthiness evaluation framework for multilingual public-service RAG
+Most production RAG systems treat factuality, fairness, and abstention as separate after-thoughts. That is fine for English-only search assistants. It breaks for public-service queries in low-resource languages, where a confident but unsupported answer in Sinhala or Tamil can cause real harm.
+
+TriSafe-RAG is a single end-to-end pipeline that:
+
+- grounds every generated sentence in retrieved evidence, with per-sentence support scores,
+- estimates a calibrated confidence from retrieval, grounding, and language-match signals,
+- decides whether to **answer**, **defer**, or **refuse** based on an explicit policy,
+- audits each decision so cross-lingual disparities can be measured and reported.
+
+The codebase is intentionally backend-agnostic: a deterministic hash embedder and an `EchoLLM` ship by default so the pipeline runs offline in CI; swap in `sentence-transformers` and OpenAI (or any other LLM) when you have GPU and API access.
 
 ---
 
-## 🗂️ Repository Structure
+## Architecture
+
+```
+Query
+  │
+  ▼  src/ingestion/      normalize + language detect
+  ▼  src/retrieval/      dense (FAISS-like) + BM25 + RRF fusion
+  ▼  src/generation/     grounded prompt + citation rendering
+  ▼  src/trust/grounding lexical or NLI per-sentence support
+  ▼  src/trust/calibration  confidence = f(retrieval, grounding, language)
+  ▼  src/trust/abstention  answer | defer | refuse
+  ▼  src/trust/fairness  per-language metric audit
+  └─▶ src/audit/         append-only JSONL log per query
+```
+
+Every stage is injected through `TriRAGPipeline`, so ablations live in `src/eval/runner.py` rather than in the pipeline itself.
+
+---
+
+## Repository layout
 
 ```
 TriSafe-RAG/
-├── .github/
-│   ├── ISSUE_TEMPLATE/         # Bug report, feature request templates
-│   └── workflows/              # CI/CD pipeline (lint, test, experiment)
-├── paper/                      # Research writing assets
-│   ├── abstract_v1.md
-│   ├── objectives.md
-│   ├── gap_statement.md
-│   └── references.bib
-├── data/
-│   ├── raw/                    # Original public-service documents (Sinhala, Tamil, English)
-│   ├── interim/                # Cleaned, normalized documents
-│   ├── processed/              # Chunked, embedded, indexed corpus
-│   └── evaluation/             # Gold test sets, fairness slices, adversarial queries
 ├── src/
-│   ├── ingestion/              # Document loaders, cleaners, chunkers
-│   ├── retrieval/              # Embeddings, vector store, hybrid retrieval, reranking
-│   ├── generation/             # Prompts, grounded answer generation
-│   ├── trust/                  # Confidence scoring, abstention, refusal logic
-│   ├── eval/                   # Metrics, fairness analysis, ablations
-│   └── audit/                  # Query logs, evidence traces, decision records
+│   ├── ingestion/      # loaders, NFC normalize, script-based lang detect, sentence-aware chunker
+│   ├── retrieval/      # HashEmbedding | SentenceTransformer, in-memory store, BM25, hybrid RRF
+│   ├── generation/     # prompt templates, EchoLLM / OpenAI wrapper, grounded generator
+│   ├── trust/          # grounding (lexical & NLI), calibration + ECE, abstention policy, fairness auditor
+│   ├── eval/           # IR + abstention metrics, eval runner with ablation hooks
+│   ├── audit/          # AuditRecord + JSONL logger
+│   ├── pipeline.py     # end-to-end orchestrator
+│   ├── build.py        # YAML config → pipeline factory
+│   └── cli.py          # `trirag query` and `trirag eval`
+├── app/
+│   ├── api.py          # FastAPI service
+│   └── streamlit_app.py
 ├── configs/
-│   └── experiment_v1.yaml      # Reproducible experiment configuration
-├── logs/                       # Run outputs and audit traces
-├── app/                        # Streamlit/FastAPI demo interface
-├── notebooks/                  # Exploratory Jupyter notebooks
-├── tests/                      # Unit and integration tests
-├── docs/                       # Architecture diagrams, paper figures
-├── requirements.txt
-├── .env.example
-├── .gitignore
-└── README.md
+│   ├── experiment_v1.yaml
+│   └── ablations.yaml
+├── data/
+│   ├── raw/            # source documents (seed files included)
+│   ├── interim/
+│   ├── processed/
+│   └── evaluation/     # seed_eval.json gold set
+├── tests/              # unit + integration tests
+├── paper/              # Springer LNCS LaTeX source for the accompanying paper
+└── logs/               # per-query audit and eval outputs
 ```
 
 ---
 
-## 🏗️ System Architecture
-
-```
-User Query (Sinhala / Tamil / English / Code-switched)
-        │
-        ▼
-┌─────────────────────┐
-│   Query Normalizer  │  ← Language detection, script normalization
-└────────┬────────────┘
-         │
-         ▼
-┌─────────────────────┐
-│  Multilingual       │  ← Embedding + hybrid retrieval + reranking
-│  Retriever          │
-└────────┬────────────┘
-         │
-         ▼
-┌─────────────────────┐
-│  Evidence Grounding │  ← Context consistency check, support scoring
-│  Checker            │
-└────────┬────────────┘
-         │
-         ▼
-┌─────────────────────┐
-│  Confidence &       │  ← Calibration, uncertainty estimation
-│  Abstention Layer   │  ← Refuse / Defer / Escalate if needed
-└────────┬────────────┘
-         │
-         ▼
-┌─────────────────────┐
-│  Grounded Answer    │  ← Citation-linked response generation
-│  Generator          │
-└────────┬────────────┘
-         │
-         ▼
-┌─────────────────────┐
-│  Fairness Auditor   │  ← Cross-lingual performance comparison
-└────────┬────────────┘
-         │
-         ▼
-┌─────────────────────┐
-│  Audit Logger       │  ← Query, evidence, confidence, fairness, decision
-└─────────────────────┘
-```
-
----
-
-## 📅 5-Week Development Timeline
-
-| Week | Focus | Milestone |
-|---|---|---|
-| Week 1 | Scope, data, paper skeleton | M1: Scope frozen, corpus plan ready |
-| Week 2 | Baseline multilingual RAG | M2: End-to-end retrieval + generation working |
-| Week 3 | Trust layer | M3: Confidence scoring + abstention active |
-| Week 4 | Fairness + evaluation | M4: Cross-lingual evaluation pipeline ready |
-| Week 5 | Experiments + Draft V1 | M5: 70% complete, paper Draft V1 frozen |
-
----
-
-## 📊 Evaluation Metrics
-
-| Metric | Layer |
-|---|---|
-| Retrieval Precision@k, MRR | Retrieval |
-| Answer faithfulness, factual grounding score | Generation |
-| Expected Calibration Error (ECE) | Calibration |
-| Abstention Precision/Recall | Trust layer |
-| Equalized Odds Gap | Fairness |
-| Cross-Lingual Consistency Score | Fairness |
-| Human Trust Rating | End-to-end |
-
----
-
-## 🔬 Baselines
-
-- **B1:** Standard multilingual RAG (no grounding check, no fairness audit, no abstention)
-- **B2:** RAG + grounding only
-- **B3:** RAG + abstention only
-- **Proposed:** TriSafe-RAG (joint: grounding + fairness + abstention)
-
----
-
-## 📄 Target Publication
-
-- **Conference:** ICTer 2026 — 26th International Conference on Advances in ICT for Emerging Regions
-- **Track:** Responsible, Ethical, and Trustworthy AI
-- **Publisher:** Springer CCIS
-- **Submission Deadline:** 31 May 2026
-- **Conference Dates:** 04–05 November 2026
-
----
-
-## 📚 Key References
-
-1. Investigating Language Preference of Multilingual RAG Systems — arXiv 2502.11175
-2. Does RAG Introduce Unfairness in LLMs? — arXiv 2409.19804
-3. Language Bias in Multilingual IR — ACL MRL 2024
-4. Language Fairness in Multilingual IR — SIGIR 2024
-5. RAGTruth: A Hallucination Corpus for Trustworthy RAG — ACL 2024
-6. Know Your Limits: A Survey of Abstention in LLMs — arXiv 2407.18418
-7. The Art of Abstention — ACL 2021
-8. XTRUST: Multilingual Trustworthiness of LLMs — arXiv 2409.15762
-9. Bias and Fairness in LLMs: A Survey — Computational Linguistics, 2024
-10. A Comprehensive Survey on Trustworthiness of LLMs — arXiv 2502.15871
-
----
-
-## ⚙️ Setup
+## Quickstart
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/TriSafe-RAG.git
+git clone https://github.com/Vidura-Wijekoon/TriSafe-RAG
 cd TriSafe-RAG
-pip install -r requirements.txt
-cp .env.example .env
-# Add your API keys and config paths
+pip install -e ".[loaders,app]"      # core + loaders + demo app
+# optional: pip install -e ".[neural]"  # for sentence-transformers + transformers
+
+# offline smoke test (no API keys, no models)
+python -m src.cli query --data data/raw "What is the passport renewal fee?"
+```
+
+Expected output is a JSON record with `decision`, `confidence`, `grounding_support`, the answer, and ranked citations.
+
+### Run the demo UI
+
+```bash
+streamlit run app/streamlit_app.py
+# or the FastAPI service:
+uvicorn app.api:app --reload
+```
+
+### Run the evaluation harness
+
+```bash
+python -m src.cli eval \
+  --data data/raw \
+  --dataset data/evaluation/seed_eval.json \
+  --id baseline_v1
+```
+
+This writes `logs/eval/baseline_v1_summary.json` and a `logs/eval/baseline_v1_per_query.jsonl` trace.
+
+---
+
+## Configuration
+
+`configs/experiment_v1.yaml` covers every knob:
+
+```yaml
+embedder:   { name: "hash", dim: 256 }     # or {name: "st", model_name: "intfloat/multilingual-e5-base"}
+chunker:    { chunk_size: 320, overlap: 64 }
+retrieval:  { alpha: 0.5, top_k: 5 }       # alpha = dense vs sparse weight in RRF
+llm:        { name: "echo" }                # or {name: "openai", model: "gpt-4o-mini"}
+grounding:  { backend: "lexical", support_threshold: 0.25 }   # or {backend: "nli"}
+confidence: { w_retrieval: 0.20, w_margin: 0.20, w_grounding: 0.40,
+              w_citation: 0.10, w_language: 0.10 }
+abstention: { answer_threshold: 0.55, refuse_threshold: 0.30,
+              min_support: 0.20, min_citation_coverage: 0.40 }
+```
+
+`configs/ablations.yaml` lists the four canonical configurations used in the paper: `B1_vanilla`, `B2_grounding_only`, `B3_abstention_only`, `TriSafe_full`.
+
+---
+
+## Evaluation metrics
+
+| Layer       | Metric                                                            |
+| ----------- | ----------------------------------------------------------------- |
+| Retrieval   | Precision@k, Mean Reciprocal Rank                                 |
+| Generation  | Per-sentence grounding support, citation coverage                 |
+| Calibration | Expected Calibration Error (ECE), Brier score                     |
+| Abstention  | Abstention precision / recall / F1, answer rate                   |
+| Fairness    | Per-language accuracy, max gap, Equalized Odds gap, CL Consistency |
+
+All implementations live in `src/eval/metrics.py` and `src/trust/`.
+
+---
+
+## Programmatic use
+
+```python
+from src.build import build_pipeline, load_config
+
+cfg = load_config("configs/experiment_v1.yaml")
+pipeline = build_pipeline(cfg, source_dir="data/raw")
+
+resp = pipeline.query("Where do I apply to renew my NIC?")
+print(resp.decision.decision)      # 'answer' | 'defer' | 'refuse'
+print(resp.confidence)             # 0..1
+print(resp.grounding.overall_support)
+print(resp.answer.text)
+for h in resp.hits:
+    print(h.rank, h.chunk.chunk_id, round(h.score, 3), h.chunk.text[:80])
 ```
 
 ---
 
-## 🤝 Contributing
+## Tests
 
-This is an active research project. Contributions, suggestions, and peer feedback are welcome.  
-Please open an issue or submit a pull request.
+```bash
+PYTHONPATH=. python -m pytest tests/
+```
 
----
-
-## 📜 License
-
-MIT License — See [LICENSE](LICENSE) for details.
+The default suite uses the offline backends and runs in seconds.
 
 ---
 
-## ✉️ Contact
+## Project status
 
-For research collaboration or paper correspondence:  
-📧 publicationchair.icter@ucsc.cmb.ac.lk (conference)  
-🌐 [www.icter.lk](https://www.icter.lk)
+This is a research preview. The trust layer (grounding, calibration, abstention, fairness) is the focus; the retrieval and generation backends are deliberately interchangeable.
+
+The accompanying paper, *TriSafe-RAG: Joint Grounding, Fairness, and Abstention for Multilingual Public-Service RAG*, ships under `paper/lncs/`.
+
+---
+
+## Citation
+
+If you use this work, please cite:
+
+```bibtex
+@inproceedings{wijekoon2026trisafe,
+  title   = {TriSafe-RAG: Joint Grounding, Fairness, and Abstention for
+             Trustworthy Multilingual Public-Service RAG},
+  author  = {Wijekoon, Vidura},
+  year    = {2026},
+  booktitle = {Preprint}
+}
+```
+
+---
+
+## License
+
+Released under the [MIT License](LICENSE).

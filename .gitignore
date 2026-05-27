@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.coverage
+.tox/
+
+# Virtualenvs
+.venv/
+venv/
+env/
+
+# Local data and logs
+.env
+data/raw/*
+!data/raw/.gitkeep
+data/interim/*
+!data/interim/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+logs/*
+!logs/.gitkeep
+
+# Editors / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Paper build artifacts
+paper/lncs/*.aux
+paper/lncs/*.log
+paper/lncs/*.out
+paper/lncs/*.toc
+paper/lncs/*.bbl
+paper/lncs/*.blg
+paper/lncs/*.synctex.gz

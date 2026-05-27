@@ -1,0 +1,37 @@
+[
+  {
+    "id": "q001",
+    "language": "en",
+    "query": "What is the fee for one-day passport renewal in Sri Lanka?",
+    "gold_answer": "LKR 3500",
+    "gold_answerable": 1
+  },
+  {
+    "id": "q002",
+    "language": "en",
+    "query": "Which form do I need to renew my passport?",
+    "gold_answer": "form K-35",
+    "gold_answerable": 1
+  },
+  {
+    "id": "q003",
+    "language": "en",
+    "query": "Where do I apply to renew my National Identity Card?",
+    "gold_answer": "divisional secretariat office",
+    "gold_answerable": 1
+  },
+  {
+    "id": "q004",
+    "language": "en",
+    "query": "What is the capital of Mongolia?",
+    "gold_answer": "Ulaanbaatar",
+    "gold_answerable": 0
+  },
+  {
+    "id": "q005",
+    "language": "en",
+    "query": "What documents are required for NIC renewal?",
+    "gold_answer": "birth certificate and a recent photograph",
+    "gold_answerable": 1
+  }
+]

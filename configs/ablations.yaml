@@ -1,0 +1,31 @@
+# Ablation matrix referenced from src/eval/runner.py.
+# Each entry overrides a subset of the base experiment_v1.yaml.
+
+ablations:
+  B1_vanilla:
+    description: "Vanilla RAG (no grounding check, no abstention, no fairness audit)"
+    grounding:
+      backend: "lexical"
+      support_threshold: 0.0
+    abstention:
+      answer_threshold: 0.0
+      refuse_threshold: 0.0
+      min_support: 0.0
+      min_citation_coverage: 0.0
+
+  B2_grounding_only:
+    description: "Adds grounding check, no abstention"
+    abstention:
+      answer_threshold: 0.0
+      refuse_threshold: 0.0
+      min_support: 0.0
+      min_citation_coverage: 0.0
+
+  B3_abstention_only:
+    description: "Abstention without grounding-aware confidence"
+    confidence:
+      w_grounding: 0.0
+      w_citation: 0.0
+
+  TriSafe_full:
+    description: "Full TriSafe-RAG (grounding + fairness audit + abstention)"

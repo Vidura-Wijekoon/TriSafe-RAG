@@ -1,37 +1,42 @@
-# Core RAG
-langchain>=0.1.0
-langchain-community>=0.0.20
-openai>=1.0.0
-sentence-transformers>=2.7.0
-faiss-cpu>=1.7.4
-chromadb>=0.4.0
-
-# Multilingual NLP
-transformers>=4.40.0
-tokenizers>=0.19.0
-datasets>=2.18.0
-sentencepiece>=0.2.0
-
-# Trust & Evaluation
+# --- Core (always required) ---------------------------------------------------
 numpy>=1.26.0
-scipy>=1.13.0
-scikit-learn>=1.4.0
-evaluate>=0.4.0
-bert-score>=0.3.13
-
-# Data Processing
-pandas>=2.2.0
+pyyaml>=6.0
 pydantic>=2.5.0
 tqdm>=4.66.0
 
-# App & API
+# --- Optional: loaders --------------------------------------------------------
+beautifulsoup4>=4.12.0
+pypdf>=4.0.0
+
+# --- Optional: neural backends (embedding + grounding) -----------------------
+sentence-transformers>=2.7.0
+transformers>=4.40.0
+tokenizers>=0.19.0
+torch>=2.2.0
+sentencepiece>=0.2.0
+
+# --- Optional: classical retrieval helpers -----------------------------------
+faiss-cpu>=1.7.4
+scikit-learn>=1.4.0
+scipy>=1.13.0
+
+# --- Optional: evaluation -----------------------------------------------------
+evaluate>=0.4.0
+bert-score>=0.3.13
+pandas>=2.2.0
+
+# --- Optional: LLM providers --------------------------------------------------
+openai>=1.0.0
+
+# --- Optional: app / API ------------------------------------------------------
 fastapi>=0.110.0
 streamlit>=1.32.0
 uvicorn>=0.29.0
 
-# Experiment Tracking
+# --- Optional: experiment tracking & utilities -------------------------------
 mlflow>=2.12.0
 python-dotenv>=1.0.0
 
-# Testing
+# --- Dev ----------------------------------------------------------------------
 pytest>=8.0.0
+pytest-cov>=4.0.0
