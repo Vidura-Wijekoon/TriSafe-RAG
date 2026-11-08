@@ -3,6 +3,23 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{iftex}
+
+%% Sinhala and Tamil script.  Build with XeLaTeX (Overleaf: Menu -> Compiler ->
+%% XeLaTeX) to typeset the benchmark queries in their original script from the
+%% bundled Noto Sans fonts (fonts/, SIL Open Font License).  Under pdfLaTeX the
+%% same macros print a bracketed marker instead, so the project still compiles.
+\ifPDFTeX
+  \newcommand{\textsi}[1]{[Sinhala text]}
+  \newcommand{\textta}[1]{[Tamil text]}
+\else
+  \newfontfamily\sinhalafont[Path=fonts/, Extension=.ttf, UprightFont=*-Regular, BoldFont=*-Bold,
+    Script=Sinhala, Scale=MatchLowercase]{NotoSansSinhala}
+  \newfontfamily\tamilfont[Path=fonts/, Extension=.ttf, UprightFont=*-Regular, BoldFont=*-Bold,
+    Script=Tamil, Scale=MatchLowercase]{NotoSansTamil}
+  \newcommand{\textsi}[1]{{\sinhalafont #1}}
+  \newcommand{\textta}[1]{{\tamilfont #1}}
+\fi
 
 %% Every number quoted in the text comes from results/*/results.json via
 %% scripts/make_tables.py -> generated/macros.tex.  Do not type numbers by hand.

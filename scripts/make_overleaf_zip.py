@@ -48,15 +48,16 @@ def main() -> None:
     with zipfile.ZipFile(ZIP, "w", zipfile.ZIP_DEFLATED) as z:
         for f in files:
             z.write(PAPER / f, f)
-        for sub in ("generated", "figures"):
+        for sub in ("generated", "figures", "fonts"):
             for p in sorted((PAPER / sub).iterdir()):
-                if p.suffix in {".tex", ".pdf", ".png"}:
+                if p.suffix in {".tex", ".pdf", ".png", ".ttf"}:
                     z.write(p, f"{sub}/{p.name}")
         z.writestr(
             "README_OVERLEAF.txt",
             "Upload this zip as a new Overleaf project.\n"
-            "Menu -> Compiler: pdfLaTeX; Main document: main.tex (anonymous review build)\n"
-            "or main_named.tex (camera-ready with author block).\n"
+            "Menu -> Compiler: XeLaTeX (required to typeset the Sinhala and Tamil queries from fonts/;\n"
+            "pdfLaTeX also compiles but prints [Sinhala text]/[Tamil text] markers instead).\n"
+            "Main document: main.tex (anonymous review build) or main_named.tex (camera-ready with author block).\n"
             "Tables and numbers are generated from results/*/results.json by scripts/make_tables.py;\n"
             "do not edit generated/*.tex by hand.\n"
             + ("\nPENDING (placeholders rendered as ?? until the neural run finishes):\n  " + "\n  ".join(pending) + "\n" if pending else "\nAll generated inputs present.\n"),

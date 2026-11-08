@@ -37,7 +37,7 @@ def main() -> int:
             print("Missing figure:", fig)
     for gen in (PAPER / "generated").glob("*.tex"):
         txt = gen.read_text(encoding="utf-8")
-        bad = sorted({c for c in txt if ord(c) > 127})
+        bad = sorted({c for c in txt if ord(c) > 127 and not (0x0D80 <= ord(c) <= 0x0DFF or 0x0B80 <= ord(c) <= 0x0BFF or ord(c) == 0x200D)})  # Sinhala/Tamil script is typeset via \textsi/\textta
         if bad:
             problems += 1
             print(f"Non-ASCII in {gen.name}: {''.join(bad)[:40]}")

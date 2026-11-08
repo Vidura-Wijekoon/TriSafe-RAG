@@ -370,6 +370,19 @@ def macros(RN, RO):
             for l in LANGS:
                 m(f"{tag}Caught{l}", caught[l]); m(f"{tag}Lost{l}", lost[l])
             m(f"{tag}CaughtAll", sum(caught.values())); m(f"{tag}LostAll", sum(lost.values()))
+            # per-language anatomy of the answerable test queries: how many the generator
+            # answered at all, how many of those drafts were right, and how often the gold
+            # answer was in the retrieved passages when the generator abstained anyway
+            drafts = _load_drafts(backend)
+            if drafts:
+                for l in LANGS:
+                    ids = [q for q, r in ra.items() if q in test_ids and r["gold_answerable"] and r["language"] == l and q in drafts]
+                    n_draft = sum(1 for q in ids if not drafts[q]["model_abstained"])
+                    n_ok = sum(1 for q in ids if not drafts[q]["model_abstained"] and ra[q]["draft_correct"])
+                    abst = [q for q in ids if drafts[q]["model_abstained"]]
+                    gold_in = sum(1 for q in abst if any(a and a in (h.get("text") or "") for h in drafts[q].get("hits", []) for a in (drafts[q].get("gold_answers") or [])))
+                    m(f"{tag}AnsN{l}", len(ids)); m(f"{tag}DraftsN{l}", n_draft); m(f"{tag}DraftsOk{l}", n_ok)
+                    m(f"{tag}GenAbstN{l}", len(abst)); m(f"{tag}GenAbstGoldIn{l}", gold_in)
     return "\n".join(out) + "\n"
 
 
@@ -474,18 +487,69 @@ _SI_RUN = re.compile("[\u0d80-\u0dff][\u0d80-\u0dff\\s\u200d.,;:0-9]*")
 _TA_RUN = re.compile("[\u0b80-\u0bff][\u0b80-\u0bff\\s\u200d.,;:0-9]*")
 
 
+def _tex_text(t: str) -> str:
+    return tex_escape(t).replace("#", "\\#").replace("$", "\\$").replace("{", "\\{").replace("}", "\\}")
+
+
+def script_wrap(text: str) -> str:
+    """Wrap Sinhala and Tamil runs in \\textsi{...} / \\textta{...} (defined in
+    preamble.tex: Noto Sans fonts under XeLaTeX, a bracketed marker under
+    pdfLaTeX).  Other non-ASCII characters are dropped so that the file is safe
+    for both engines."""
+    out, i = [], 0
+    for m in re.finditer("%s|%s" % (_SI_RUN.pattern, _TA_RUN.pattern), text):
+        out.append(_tex_text(text[i:m.start()].encode("ascii", "ignore").decode("ascii")))
+        run = _tex_text(m.group(0).strip())
+        cmd = "textsi" if _SI_RUN.match(m.group(0)) else "textta"
+        out.append(f"\\{cmd}{{{run}}}" + (" " if m.group(0).endswith(" ") else ""))
+        i = m.end()
+    out.append(_tex_text(text[i:].encode("ascii", "ignore").decode("ascii")))
+    return " ".join("".join(out).split())
+
+
 def _short(text: str, n: int = 110) -> str:
-    """ASCII-safe excerpt for pdflatex: Sinhala/Tamil runs are replaced by a
-    marker and any other non-ASCII character is dropped."""
+    """Excerpt of at most n characters with Sinhala/Tamil script kept and
+    font-wrapped (see script_wrap)."""
     t = " ".join((text or "").split())
-    t = _SI_RUN.sub(" [Sinhala text] ", t)
-    t = _TA_RUN.sub(" [Tamil text] ", t)
-    t = t.encode("ascii", "ignore").decode("ascii")
-    t = " ".join(t.split())
     truncated = len(t) > n
     t = t[: n - 1] if truncated else t
-    t = tex_escape(t).replace("#", "\\#").replace("$", "\\$").replace("{", "\\{").replace("}", "\\}")
-    return t + ("\\ldots{}" if truncated else "")
+    return script_wrap(t) + ("\\ldots{}" if truncated else "")
+
+
+def example_items() -> str:
+    """One answerable and one unanswerable benchmark item in all four query forms."""
+    items = {it["group"]: it for it in json.loads((ROOT / "data" / "benchmark" / "items.json").read_text(encoding="utf-8"))["items"]}
+    rows = []
+    for gid, note in (("cd001", "answerable (civil documents)"), ("ph027", "false premise, answerable with a refusal of the premise (public health)"), ("dr018", "unanswerable: only support is the stale bulletin (disaster response)")):
+        it = items.get(gid)
+        if not it:
+            continue
+        gold = it.get("gold", {})
+        gold_all = gold.get("all") or []
+        rows.append(rf"\multicolumn{{2}}{{l}}{{\textbf{{{gid}}}: {note}}} \\")
+        for lang in ("en", "si", "ta", "mixed"):
+            q = it["queries"].get(lang)
+            if not q:
+                continue
+            g = gold.get(lang) or gold_all
+            gtxt = "; ".join(script_wrap(a) for a in g[:4]) if g else "(no gold answer: any answer is a failure)"
+            rows.append(rf"\quad {LANG_LABEL.get(lang, lang)} & {script_wrap(q)} \\")
+            if lang == "en" or gold.get(lang):
+                rows.append(rf"\quad \emph{{gold}} & {gtxt} \\")
+        rows.append(r"\addlinespace")
+    body = "\n    ".join(rows)
+    return rf"""\begin{{table}}[t]
+  \caption{{Three SL-PubServ-QA items in all query forms. Gold aliases are shared across languages unless a language-specific alias list is given; numeric aliases are matched as whole numbers. Sinhala and Tamil are typeset from the benchmark file; the code-switched form is romanised Sinhala with English terms.}}
+  \label{{tab:examples}}
+  \footnotesize
+  \setlength{{\tabcolsep}}{{3pt}}
+  \begin{{tabular}}{{lp{{0.78\columnwidth}}}}
+    \toprule
+    {body}
+    \bottomrule
+  \end{{tabular}}
+\end{{table}}
+"""
 
 
 def case_probes(backend: str):
@@ -547,41 +611,64 @@ def qualitative(backend: str):
     if not b1 or not ts or not drafts:
         return "% no records yet\n"
 
-    def pick(cond):
-        for qid in sorted(ts):
-            r, d = ts[qid], drafts.get(qid)
-            if d and cond(r, b1[qid], d):
-                return qid, r, d
+    test_ids = set(json.loads((ROOT / "data" / "benchmark" / "split.json").read_text(encoding="utf-8"))["test"])
+
+    def pick(cond, prefer=("si", "ta", "mixed", "en")):
+        """First matching test record, trying the preferred languages in order."""
+        for lang in prefer:
+            for qid in sorted(ts):
+                r, d = ts[qid], drafts.get(qid)
+                if qid in test_ids and d and r["language"] == lang and cond(r, b1[qid], d):
+                    return qid, r, d
         return None
 
+    def has_gold_in_hits(d):
+        gold = d.get("gold_answers") or []
+        return any(a and a in (h.get("text") or "") for h in d.get("hits", []) for a in gold)
+
+    # (title, condition, language preference).  Sinhala first wherever Sinhala records exist,
+    # so that the examples cover the script the generator serves worst.
     cases = [
-        ("Correct draft delivered", lambda r, b, d: r["gold_answerable"] and r["decision"] == "answer" and r["correct"] and r["language"] != "en"),
-        ("Wrong draft caught", lambda r, b, d: r["gold_answerable"] and r["decision"] != "answer" and not d["model_abstained"] and not r["draft_correct"] and b["decision"] == "answer"),
-        ("Unanswerable query refused", lambda r, b, d: not r["gold_answerable"] and r["decision"] != "answer" and b["decision"] == "answer"),
-        ("Correct draft lost", lambda r, b, d: r["gold_answerable"] and r["decision"] != "answer" and r["draft_correct"] and b["correct"]),
+        ("Generator abstention although the evidence was retrieved",
+         lambda r, b, d: r["gold_answerable"] and d["model_abstained"] and has_gold_in_hits(d), ("si", "ta", "mixed")),
+        ("Correct draft delivered",
+         lambda r, b, d: r["gold_answerable"] and r["decision"] == "answer" and r["correct"], ("si", "ta", "mixed", "en")),
+        ("Wrong draft caught",
+         lambda r, b, d: r["gold_answerable"] and r["decision"] != "answer" and not d["model_abstained"] and not r["draft_correct"] and b["decision"] == "answer", ("si", "ta", "mixed", "en")),
+        ("Wrong draft caught (draft written in the query language)",
+         lambda r, b, d: r["gold_answerable"] and r["decision"] != "answer" and not d["model_abstained"] and not r["draft_correct"] and b["decision"] == "answer" and _SI_RUN.search(d["draft_text"] or "") is not None, ("si",)),
+        ("Unanswerable query refused by the policy",
+         lambda r, b, d: not r["gold_answerable"] and r["decision"] != "answer" and b["decision"] == "answer", ("si", "ta", "mixed", "en")),
+        ("Correct draft lost",
+         lambda r, b, d: r["gold_answerable"] and r["decision"] != "answer" and r["draft_correct"] and b["correct"], ("si", "ta", "mixed", "en")),
     ]
-    items = []
-    for title, cond in cases:
-        got = pick(cond)
+    items, used = [], set()
+    for title, cond, prefer in cases:
+        got = pick(lambda r, b, d, c=cond: c(r, b, d) and d["id"] not in used, prefer)
         if not got:
             continue
         qid, r, d = got
+        used.add(qid)
         sig = r["signals"]
+        evid = " Gold answer present in the retrieved passages: " + ("yes" if has_gold_in_hits(d) else "no") + "."
         items.append(
-            rf"\item \textbf{{{title}}} ({qid}, {d['language']}). Query: \emph{{{_short(d['query'], 90)}}} "
-            f"Draft: ``{_short(d['draft_text'])}'' "
+            rf"\item \textbf{{{title}}} ({qid}, {LANG_LABEL.get(d['language'], d['language'])}). Query: \emph{{{_short(d['query'], 120)}}} "
+            f"Draft: ``{_short(d['draft_text'])}''{evid} "
             f"Signals: retrieval {sig[0]:.2f}, margin {sig[1]:.2f}, grounding {sig[2]:.2f}, citation {sig[3]:.2f}, language match {int(sig[4])}; "
             rf"confidence {r['confidence']:.2f}; decision \textsc{{{r['decision']}}} ({tex_escape(r['reason'])}); B1 decision \textsc{{{b1[qid]['decision']}}}."
         )
     if not items:
         return "% no qualitative items\n"
-    return "The following records are taken verbatim from the test-split audit log of the dev-tuned system (" + backend + " backend).\n\\begin{itemize}\n" + "\n".join(items) + "\n\\end{itemize}\n"
+    return ("The following records are taken verbatim from the test-split audit log of the dev-tuned system (" + backend +
+            " backend); queries and drafts are shown in their original script, Sinhala records first wherever one exists.\n\\begin{itemize}\n"
+            + "\n".join(items) + "\n\\end{itemize}\n")
 
 
 def write_qualitative():
     backend = "neural" if (ROOT / "results" / "neural" / "records").exists() else "offline"
     (OUT / "qualitative.tex").write_text(qualitative(backend), encoding="utf-8")
     (OUT / "case_probes.tex").write_text(case_probes(backend), encoding="utf-8")
+    (OUT / "table_examples.tex").write_text(example_items(), encoding="utf-8")
 
 
 if __name__ == "__main__":
