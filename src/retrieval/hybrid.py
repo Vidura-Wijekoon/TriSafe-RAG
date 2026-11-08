@@ -42,20 +42,45 @@ class HybridRetriever:
         # Reciprocal rank fusion across the two ranked lists.
         fused: dict[str, float] = {}
         sources: dict[str, RetrievalHit] = {}
+        dense_by_id: dict[str, float] = {}
+        sparse_by_id: dict[str, float] = {}
         for h in dense_hits:
             fused[h.chunk.chunk_id] = fused.get(h.chunk.chunk_id, 0.0) + self.alpha / (
                 self.rrf_k + h.rank + 1
             )
             sources[h.chunk.chunk_id] = h
+            dense_by_id[h.chunk.chunk_id] = float(h.score)
         for h in sparse_hits:
             fused[h.chunk.chunk_id] = fused.get(h.chunk.chunk_id, 0.0) + (1 - self.alpha) / (
                 self.rrf_k + h.rank + 1
             )
             sources.setdefault(h.chunk.chunk_id, h)
+            sparse_by_id[h.chunk.chunk_id] = float(h.score)
 
         ordered = sorted(fused.items(), key=lambda kv: -kv[1])[:top_k]
         out: List[RetrievalHit] = []
         for rank, (cid, score) in enumerate(ordered):
             base = sources[cid]
-            out.append(RetrievalHit(chunk=base.chunk, score=float(score), rank=rank))
+            dense = dense_by_id.get(cid)
+            if dense is None:
+                # Chunk surfaced only through BM25: compute its cosine directly so
+                # the dense signal is defined for every returned hit.
+                idx = self._chunk_index(cid)
+                dense = (
+                    float(self.vector_store.matrix[idx] @ q_vec) if idx is not None else 0.0
+                )
+            out.append(
+                RetrievalHit(
+                    chunk=base.chunk,
+                    score=float(score),
+                    rank=rank,
+                    dense_score=dense,
+                    sparse_score=sparse_by_id.get(cid, 0.0),
+                )
+            )
         return out
+
+    def _chunk_index(self, chunk_id: str) -> Optional[int]:
+        if not hasattr(self, "_id_to_idx") or len(self._id_to_idx) != len(self.vector_store.chunks):
+            self._id_to_idx = {c.chunk_id: i for i, c in enumerate(self.vector_store.chunks)}
+        return self._id_to_idx.get(chunk_id)

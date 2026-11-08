@@ -1,0 +1,18 @@
+\begin{table*}[t]
+  \caption{External baselines on the test split (offline backend). All gates and thresholds were tuned on the development split with the same objective (decision accuracy, ties broken toward higher answer rate). Decision acc.: answerable queries answered correctly plus unanswerable queries abstained on, over all queries. AURC: area under the risk--coverage curve of the confidence score (lower is better). E1--E5 are two-way gates (answer/refuse); E6 uses the TriSafe policy on drafts produced after translating non-English queries with the same LLM.}
+  \label{tab:external-offline}
+  \footnotesize
+  \setlength{\tabcolsep}{4pt}
+  \begin{tabular}{lccccccc}
+    \toprule
+    System & Ans.\ rate & Acc.\ $\uparrow$ & Sel.\ acc.\ $\uparrow$ & Unans.\ abst.\ $\uparrow$ & Decision acc.\ $\uparrow$ [95\% CI] & ECE $\downarrow$ & AURC $\downarrow$ \\
+    \midrule
+    TriSafe-RAG (default thresholds) & 0.08 & 0.077 & 0.786 & 1.00 & 0.219 [0.16, 0.28] & 0.114 & 0.414 \\
+    TriSafe-RAG (thresholds tuned on dev) & 0.41 & 0.294 & 0.656 & 0.81 & 0.373 [0.30, 0.45] & 0.114 & 0.414 \\
+    E2 retrieval-similarity gate (CRAG-style evaluator proxy) & 0.92 & 0.517 & 0.556 & 0.15 & 0.462 [0.39, 0.54] & 0.184 & 0.428 \\
+    E3 Platt (logistic) on the five signals & 0.88 & 0.476 & 0.540 & 0.15 & 0.426 [0.36, 0.50] & 0.080 & 0.451 \\
+    E4 isotonic on the TriSafe sum & 0.88 & 0.503 & 0.567 & 0.15 & 0.450 [0.38, 0.53] & 0.077 & 0.435 \\
+    E5 temperature scaling on the TriSafe sum & 0.92 & 0.517 & 0.556 & 0.15 & 0.462 [0.39, 0.54] & 0.064 & 0.414 \\
+    \bottomrule
+  \end{tabular}
+\end{table*}

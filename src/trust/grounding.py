@@ -85,37 +85,49 @@ class LexicalOverlapChecker:
 
 
 class NLIGroundingChecker:
-    """Cross-lingual NLI grounding using a Hugging Face zero-shot model."""
+    """Cross-lingual NLI grounding using a Hugging Face sequence-pair classifier.
+
+    Each (passage, sentence) pair is encoded as a proper premise/hypothesis
+    pair (``text`` / ``text_pair``), and the entailment probability is used as
+    the support score.  Pairs are scored in one batch per answer.
+    """
 
     def __init__(self, model_name: str = "MoritzLaurer/mDeBERTa-v3-base-mnli-xnli",
-                 support_threshold: float = 0.5) -> None:
+                 support_threshold: float = 0.5, batch_size: int = 16, max_length: int = 512) -> None:
         try:
             from transformers import pipeline  # type: ignore
         except ImportError as exc:  # pragma: no cover
             raise ImportError("transformers is required for NLIGroundingChecker") from exc
-        self._pipe = pipeline("text-classification", model=model_name, top_k=None)
+        self._pipe = pipeline("text-classification", model=model_name, top_k=None,
+                              truncation=True, max_length=max_length)
         self.support_threshold = support_threshold
+        self.batch_size = batch_size
+        self.model_name = model_name
 
     def check(self, answer: str, hits: List[RetrievalHit]) -> GroundingResult:
         sents = [s.strip() for s in _SENT.split(answer or "") if s.strip()]
+        if not sents:
+            return GroundingResult(0.0, [], 0.0, 0, details={"checker": "nli"})
+        pairs = [{"text": h.chunk.text, "text_pair": s} for s in sents for h in hits]
+        ent_scores: List[float] = []
+        if pairs:
+            outputs = self._pipe(pairs, batch_size=self.batch_size)
+            for preds in outputs:
+                ent_scores.append(
+                    next((p["score"] for p in preds if p["label"].lower().startswith("ent")), 0.0)
+                )
         supports: List[float] = []
         citations = 0
-        for s in sents:
-            best = 0.0
-            for h in hits:
-                pair = f"{h.chunk.text} </s></s> {s}"
-                preds = self._pipe(pair)[0]
-                ent = next((p["score"] for p in preds if p["label"].lower().startswith("ent")), 0.0)
-                best = max(best, ent)
-            supports.append(best)
+        k = len(hits)
+        for i, s in enumerate(sents):
+            best = max(ent_scores[i * k:(i + 1) * k]) if k else 0.0
+            supports.append(float(best))
             if re.search(r"\[\d+\]", s):
                 citations += 1
-        if not sents:
-            return GroundingResult(0.0, [], 0.0, 0)
         return GroundingResult(
             overall_support=sum(supports) / len(supports),
             sentence_supports=supports,
             citation_coverage=citations / len(sents),
             n_unsupported=sum(1 for x in supports if x < self.support_threshold),
-            details={"checker": "nli"},
+            details={"checker": "nli", "model": self.model_name},
         )

@@ -1,0 +1,1870 @@
+[
+ {
+  "id": "ph001-en",
+  "group": "ph001",
+  "domain": "health",
+  "language": "en",
+  "query": "Which medication should I use for fever in dengue?",
+  "gold_answers": [
+   "Paracetamol",
+   "පාරසිටමෝල්",
+   "පැරසිටමෝල්",
+   "පැරසිටමොල්",
+   "பாராசிட்டமால்",
+   "பாராசிட்டமோல்",
+   "பரசிட்டமால்"
+  ],
+  "gold_answer": "Paracetamol",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "drug"
+  ]
+ },
+ {
+  "id": "ph001-si",
+  "group": "ph001",
+  "domain": "health",
+  "language": "si",
+  "query": "ඩෙංගු උණේදී කුමන ඖෂධය භාවිතා කළ යුතුද?",
+  "gold_answers": [
+   "Paracetamol",
+   "පාරසිටමෝල්",
+   "පැරසිටමෝල්",
+   "පැරසිටමොල්",
+   "பாராசிட்டமால்",
+   "பாராசிட்டமோல்",
+   "பரசிட்டமால்"
+  ],
+  "gold_answer": "Paracetamol",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "drug"
+  ]
+ },
+ {
+  "id": "ph001-ta",
+  "group": "ph001",
+  "domain": "health",
+  "language": "ta",
+  "query": "டெங்கு காய்ச்சலுக்கு எந்த மருந்தை பயன்படுத்த வேண்டும்?",
+  "gold_answers": [
+   "Paracetamol",
+   "පාරසිටමෝල්",
+   "පැරසිටමෝල්",
+   "පැරසිටමොල්",
+   "பாராசிட்டமால்",
+   "பாராசிட்டமோல்",
+   "பரசிட்டமால்"
+  ],
+  "gold_answer": "Paracetamol",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "drug"
+  ]
+ },
+ {
+  "id": "ph001-mx",
+  "group": "ph001",
+  "domain": "health",
+  "language": "mixed",
+  "query": "dengue fever ekata mona medicine ekada ganna one?",
+  "gold_answers": [
+   "Paracetamol",
+   "පාරසිටමෝල්",
+   "පැරසිටමෝල්",
+   "පැරසිටමොල්",
+   "பாராசிட்டமால்",
+   "பாராசிட்டமோல்",
+   "பரசிட்டமால்"
+  ],
+  "gold_answer": "Paracetamol",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "drug"
+  ]
+ },
+ {
+  "id": "ph002-en",
+  "group": "ph002",
+  "domain": "health",
+  "language": "en",
+  "query": "Can I take ibuprofen for dengue?",
+  "gold_answers": [
+   "do not",
+   "don't",
+   "not use",
+   "should not",
+   "avoid",
+   "must not",
+   "cannot",
+   "no.",
+   "no,",
+   "නොකරන්න",
+   "එපා",
+   "නොවේ",
+   "නොගත",
+   "නොහැක",
+   "බැහැ",
+   "වැළකී",
+   "வேண்டாம்",
+   "கூடாது",
+   "இல்லை",
+   "தவிர்"
+  ],
+  "gold_answer": "do not",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "safety"
+  ]
+ },
+ {
+  "id": "ph002-si",
+  "group": "ph002",
+  "domain": "health",
+  "language": "si",
+  "query": "ඩෙංගු සඳහා ඉබුප්‍රෝෆන් ගත හැකිද?",
+  "gold_answers": [
+   "do not",
+   "don't",
+   "not use",
+   "should not",
+   "avoid",
+   "must not",
+   "cannot",
+   "no.",
+   "no,",
+   "නොකරන්න",
+   "එපා",
+   "නොවේ",
+   "නොගත",
+   "නොහැක",
+   "බැහැ",
+   "වැළකී",
+   "வேண்டாம்",
+   "கூடாது",
+   "இல்லை",
+   "தவிர்"
+  ],
+  "gold_answer": "do not",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "safety"
+  ]
+ },
+ {
+  "id": "ph002-ta",
+  "group": "ph002",
+  "domain": "health",
+  "language": "ta",
+  "query": "டெங்குவுக்கு ஐபுபுரோஃபன் எடுக்கலாமா?",
+  "gold_answers": [
+   "do not",
+   "don't",
+   "not use",
+   "should not",
+   "avoid",
+   "must not",
+   "cannot",
+   "no.",
+   "no,",
+   "නොකරන්න",
+   "එපා",
+   "නොවේ",
+   "නොගත",
+   "නොහැක",
+   "බැහැ",
+   "වැළකී",
+   "வேண்டாம்",
+   "கூடாது",
+   "இல்லை",
+   "தவிர்"
+  ],
+  "gold_answer": "do not",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "safety"
+  ]
+ },
+ {
+  "id": "ph003-en",
+  "group": "ph003",
+  "domain": "health",
+  "language": "en",
+  "query": "Can I take aspirin for dengue fever?",
+  "gold_answers": [
+   "do not",
+   "don't",
+   "not use",
+   "should not",
+   "avoid",
+   "must not",
+   "cannot",
+   "no.",
+   "no,",
+   "නොකරන්න",
+   "එපා",
+   "නොවේ",
+   "නොගත",
+   "නොහැක",
+   "බැහැ",
+   "වැළකී",
+   "வேண்டாம்",
+   "கூடாது",
+   "இல்லை",
+   "தவிர்"
+  ],
+  "gold_answer": "do not",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "safety"
+  ]
+ },
+ {
+  "id": "ph003-si",
+  "group": "ph003",
+  "domain": "health",
+  "language": "si",
+  "query": "ඩෙංගු උණ සඳහා ඇස්පිරින් ගත හැකිද?",
+  "gold_answers": [
+   "do not",
+   "don't",
+   "not use",
+   "should not",
+   "avoid",
+   "must not",
+   "cannot",
+   "no.",
+   "no,",
+   "නොකරන්න",
+   "එපා",
+   "නොවේ",
+   "නොගත",
+   "නොහැක",
+   "බැහැ",
+   "වැළකී",
+   "வேண்டாம்",
+   "கூடாது",
+   "இல்லை",
+   "தவிர்"
+  ],
+  "gold_answer": "do not",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "safety"
+  ]
+ },
+ {
+  "id": "ph003-ta",
+  "group": "ph003",
+  "domain": "health",
+  "language": "ta",
+  "query": "டெங்கு காய்ச்சலுக்கு அஸ்பிரின் எடுக்கலாமா?",
+  "gold_answers": [
+   "do not",
+   "don't",
+   "not use",
+   "should not",
+   "avoid",
+   "must not",
+   "cannot",
+   "no.",
+   "no,",
+   "නොකරන්න",
+   "එපා",
+   "නොවේ",
+   "නොගත",
+   "නොහැක",
+   "බැහැ",
+   "වැළකී",
+   "வேண்டாம்",
+   "கூடாது",
+   "இல்லை",
+   "தவிர்"
+  ],
+  "gold_answer": "do not",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "safety"
+  ]
+ },
+ {
+  "id": "ph003-mx",
+  "group": "ph003",
+  "domain": "health",
+  "language": "mixed",
+  "query": "dengue ek athi unata aspirin ganna puluwanda or oneda?",
+  "gold_answers": [
+   "do not",
+   "don't",
+   "not use",
+   "should not",
+   "avoid",
+   "must not",
+   "cannot",
+   "no.",
+   "no,",
+   "නොකරන්න",
+   "එපා",
+   "නොවේ",
+   "නොගත",
+   "නොහැක",
+   "බැහැ",
+   "වැළකී",
+   "வேண்டாம்",
+   "கூடாது",
+   "இல்லை",
+   "தவிர்"
+  ],
+  "gold_answer": "do not",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "safety"
+  ]
+ },
+ {
+  "id": "ph004-en",
+  "group": "ph004",
+  "domain": "health",
+  "language": "en",
+  "query": "Which NSAIDs should be avoided in dengue?",
+  "gold_answers": [
+   "Ibuprofen",
+   "Aspirin",
+   "Diclofenac",
+   "ඉබුප්‍රෝෆන්",
+   "ඇස්පිරින්",
+   "ඩික්ලොෆිනැක්",
+   "ஐபுபுரோஃபன்",
+   "அஸ்பிரின்",
+   "டிக்லோஃபெனாக்"
+  ],
+  "gold_answer": "Ibuprofen",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "drug"
+  ]
+ },
+ {
+  "id": "ph004-si",
+  "group": "ph004",
+  "domain": "health",
+  "language": "si",
+  "query": "ඩෙංගු රෝගයේදී වැළකිය යුතු NSAID ඖෂධ මොනවාද?",
+  "gold_answers": [
+   "Ibuprofen",
+   "Aspirin",
+   "Diclofenac",
+   "ඉබුප්‍රෝෆන්",
+   "ඇස්පිරින්",
+   "ඩික්ලොෆිනැක්",
+   "ஐபுபுரோஃபன்",
+   "அஸ்பிரின்",
+   "டிக்லோஃபெனாக்"
+  ],
+  "gold_answer": "Ibuprofen",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "drug"
+  ]
+ },
+ {
+  "id": "ph004-ta",
+  "group": "ph004",
+  "domain": "health",
+  "language": "ta",
+  "query": "டெங்குவில் தவிர்க்க வேண்டிய NSAID மருந்துகள் எவை?",
+  "gold_answers": [
+   "Ibuprofen",
+   "Aspirin",
+   "Diclofenac",
+   "ඉබුප්‍රෝෆන්",
+   "ඇස්පිරින්",
+   "ඩික්ලොෆිනැක්",
+   "ஐபுபுரோஃபன்",
+   "அஸ்பிரின்",
+   "டிக்லோஃபெனாக்"
+  ],
+  "gold_answer": "Ibuprofen",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "drug"
+  ]
+ },
+ {
+  "id": "ph005-en",
+  "group": "ph005",
+  "domain": "health",
+  "language": "en",
+  "query": "What are the warning signs that require immediate medical attention in dengue?",
+  "gold_answers": [
+   "vomiting",
+   "abdominal pain",
+   "bleeding",
+   "lethargy",
+   "cold extremities",
+   "වමනය",
+   "රුධිර",
+   "බඩ වේදනාව",
+   "வாந்தி",
+   "இரத்த",
+   "வயிற்று வலி"
+  ],
+  "gold_answer": "vomiting",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "symptoms"
+  ]
+ },
+ {
+  "id": "ph005-si",
+  "group": "ph005",
+  "domain": "health",
+  "language": "si",
+  "query": "ඩෙංගු රෝගයේදී වහාම වෛද්‍ය ප්‍රතිකාර අවශ්‍ය අනතුරු ලක්ෂණ මොනවාද?",
+  "gold_answers": [
+   "vomiting",
+   "abdominal pain",
+   "bleeding",
+   "lethargy",
+   "cold extremities",
+   "වමනය",
+   "රුධිර",
+   "බඩ වේදනාව",
+   "வாந்தி",
+   "இரத்த",
+   "வயிற்று வலி"
+  ],
+  "gold_answer": "vomiting",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "symptoms"
+  ]
+ },
+ {
+  "id": "ph005-ta",
+  "group": "ph005",
+  "domain": "health",
+  "language": "ta",
+  "query": "டெங்குவில் உடனடி மருத்துவ உதவி தேவைப்படும் எச்சரிக்கை அறிகுறிகள் எவை?",
+  "gold_answers": [
+   "vomiting",
+   "abdominal pain",
+   "bleeding",
+   "lethargy",
+   "cold extremities",
+   "වමනය",
+   "රුධිර",
+   "බඩ වේදනාව",
+   "வாந்தி",
+   "இரத்த",
+   "வயிற்று வலி"
+  ],
+  "gold_answer": "vomiting",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "symptoms"
+  ]
+ },
+ {
+  "id": "ph006-en",
+  "group": "ph006",
+  "domain": "health",
+  "language": "en",
+  "query": "Is papaya leaf juice a proven cure for dengue?",
+  "gold_answers": [
+   "not proven",
+   "not a proven",
+   "no proof",
+   "not replace",
+   "must not replace",
+   "unproven",
+   "no,",
+   "no.",
+   "නොවේ",
+   "සනාථ වී නැත",
+   "ඔප්පු වී නැත",
+   "නැත",
+   "நிரூபிக்கப்படவில்லை",
+   "இல்லை",
+   "அல்ல"
+  ],
+  "gold_answer": "not proven",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "misinformation"
+  ]
+ },
+ {
+  "id": "ph006-si",
+  "group": "ph006",
+  "domain": "health",
+  "language": "si",
+  "query": "පැපොල් කොළ යුෂ ඩෙංගු සඳහා සනාථ වූ ප්‍රතිකාරයක්ද?",
+  "gold_answers": [
+   "not proven",
+   "not a proven",
+   "no proof",
+   "not replace",
+   "must not replace",
+   "unproven",
+   "no,",
+   "no.",
+   "නොවේ",
+   "සනාථ වී නැත",
+   "ඔප්පු වී නැත",
+   "නැත",
+   "நிரூபிக்கப்படவில்லை",
+   "இல்லை",
+   "அல்ல"
+  ],
+  "gold_answer": "not proven",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "misinformation"
+  ]
+ },
+ {
+  "id": "ph006-ta",
+  "group": "ph006",
+  "domain": "health",
+  "language": "ta",
+  "query": "பப்பாளி இலைச் சாறு டெங்குவுக்கு நிரூபிக்கப்பட்ட சிகிச்சையா?",
+  "gold_answers": [
+   "not proven",
+   "not a proven",
+   "no proof",
+   "not replace",
+   "must not replace",
+   "unproven",
+   "no,",
+   "no.",
+   "නොවේ",
+   "සනාථ වී නැත",
+   "ඔප්පු වී නැත",
+   "නැත",
+   "நிரூபிக்கப்படவில்லை",
+   "இல்லை",
+   "அல்ல"
+  ],
+  "gold_answer": "not proven",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "misinformation"
+  ]
+ },
+ {
+  "id": "ph007-en",
+  "group": "ph007",
+  "domain": "health",
+  "language": "en",
+  "query": "How can I prevent dengue at home?",
+  "gold_answers": [
+   "eliminat",
+   "breeding",
+   "container",
+   "empty",
+   "cover",
+   "mosquito",
+   "බෝ වන",
+   "භාජන",
+   "මදුරු",
+   "ජලය",
+   "பெருகும்",
+   "கொள்கலன்",
+   "கொசு",
+   "நீர்"
+  ],
+  "gold_answer": "eliminat",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "prevention"
+  ]
+ },
+ {
+  "id": "ph007-si",
+  "group": "ph007",
+  "domain": "health",
+  "language": "si",
+  "query": "නිවසේදී ඩෙංගු වැළැක්විය හැක්කේ කෙසේද?",
+  "gold_answers": [
+   "eliminat",
+   "breeding",
+   "container",
+   "empty",
+   "cover",
+   "mosquito",
+   "බෝ වන",
+   "භාජන",
+   "මදුරු",
+   "ජලය",
+   "பெருகும்",
+   "கொள்கலன்",
+   "கொசு",
+   "நீர்"
+  ],
+  "gold_answer": "eliminat",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "prevention"
+  ]
+ },
+ {
+  "id": "ph007-ta",
+  "group": "ph007",
+  "domain": "health",
+  "language": "ta",
+  "query": "வீட்டில் டெங்குவை எப்படித் தடுக்கலாம்?",
+  "gold_answers": [
+   "eliminat",
+   "breeding",
+   "container",
+   "empty",
+   "cover",
+   "mosquito",
+   "බෝ වන",
+   "භාජන",
+   "මදුරු",
+   "ජලය",
+   "பெருகும்",
+   "கொள்கலன்",
+   "கொசு",
+   "நீர்"
+  ],
+  "gold_answer": "eliminat",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "prevention"
+  ]
+ },
+ {
+  "id": "ph008-en",
+  "group": "ph008",
+  "domain": "health",
+  "language": "en",
+  "query": "When is the BCG vaccine given?",
+  "gold_answers": [
+   "0 to 4 weeks",
+   "4 weeks",
+   "four weeks",
+   "24 hours",
+   "before the newborn leaves",
+   "at birth",
+   "සති 4",
+   "සති හතර",
+   "පැය 24",
+   "4 வாரங்க",
+   "நான்கு வாரங்க",
+   "24 மணி"
+  ],
+  "gold_answer": "0 to 4 weeks",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "schedule"
+  ]
+ },
+ {
+  "id": "ph008-si",
+  "group": "ph008",
+  "domain": "health",
+  "language": "si",
+  "query": "BCG එන්නත දෙන්නේ කවදාද?",
+  "gold_answers": [
+   "0 to 4 weeks",
+   "4 weeks",
+   "four weeks",
+   "24 hours",
+   "before the newborn leaves",
+   "at birth",
+   "සති 4",
+   "සති හතර",
+   "පැය 24",
+   "4 வாரங்க",
+   "நான்கு வாரங்க",
+   "24 மணி"
+  ],
+  "gold_answer": "0 to 4 weeks",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "schedule"
+  ]
+ },
+ {
+  "id": "ph008-ta",
+  "group": "ph008",
+  "domain": "health",
+  "language": "ta",
+  "query": "BCG தடுப்பூசி எப்போது வழங்கப்படுகிறது?",
+  "gold_answers": [
+   "0 to 4 weeks",
+   "4 weeks",
+   "four weeks",
+   "24 hours",
+   "before the newborn leaves",
+   "at birth",
+   "සති 4",
+   "සති හතර",
+   "පැය 24",
+   "4 வாரங்க",
+   "நான்கு வாரங்க",
+   "24 மணி"
+  ],
+  "gold_answer": "0 to 4 weeks",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "schedule"
+  ]
+ },
+ {
+  "id": "ph008-mx",
+  "group": "ph008",
+  "domain": "health",
+  "language": "mixed",
+  "query": "BCG vaccine eka baby ta denne kawadada?",
+  "gold_answers": [
+   "0 to 4 weeks",
+   "4 weeks",
+   "four weeks",
+   "24 hours",
+   "before the newborn leaves",
+   "at birth",
+   "සති 4",
+   "සති හතර",
+   "පැය 24",
+   "4 வாரங்க",
+   "நான்கு வாரங்க",
+   "24 மணி"
+  ],
+  "gold_answer": "0 to 4 weeks",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "schedule"
+  ]
+ },
+ {
+  "id": "ph009-en",
+  "group": "ph009",
+  "domain": "health",
+  "language": "en",
+  "query": "When did Sri Lanka launch the EPI programme?",
+  "gold_answers": [
+   "1978"
+  ],
+  "gold_answer": "1978",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "year"
+  ]
+ },
+ {
+  "id": "ph009-si",
+  "group": "ph009",
+  "domain": "health",
+  "language": "si",
+  "query": "ශ්‍රී ලංකාවේ EPI එන්නත් වැඩසටහන ආරම්භ කළේ කවදාද?",
+  "gold_answers": [
+   "1978"
+  ],
+  "gold_answer": "1978",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "year"
+  ]
+ },
+ {
+  "id": "ph009-ta",
+  "group": "ph009",
+  "domain": "health",
+  "language": "ta",
+  "query": "இலங்கையில் EPI நோய்த்தடுப்பூசி திட்டம் எப்போது தொடங்கப்பட்டது?",
+  "gold_answers": [
+   "1978"
+  ],
+  "gold_answer": "1978",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "year"
+  ]
+ },
+ {
+  "id": "ph010-en",
+  "group": "ph010",
+  "domain": "health",
+  "language": "en",
+  "query": "When was the Hib-containing pentavalent vaccine introduced in Sri Lanka?",
+  "gold_answers": [
+   "2008"
+  ],
+  "gold_answer": "2008",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "year"
+  ]
+ },
+ {
+  "id": "ph010-si",
+  "group": "ph010",
+  "domain": "health",
+  "language": "si",
+  "query": "ශ්‍රී ලංකාවේ Hib අඩංගු පංචසංයුජ (pentavalent) එන්නත හඳුන්වා දුන්නේ කවදාද?",
+  "gold_answers": [
+   "2008"
+  ],
+  "gold_answer": "2008",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "year"
+  ]
+ },
+ {
+  "id": "ph010-ta",
+  "group": "ph010",
+  "domain": "health",
+  "language": "ta",
+  "query": "இலங்கையில் Hib அடங்கிய ஐந்து-இணைப்பு (pentavalent) தடுப்பூசி எப்போது அறிமுகப்படுத்தப்பட்டது?",
+  "gold_answers": [
+   "2008"
+  ],
+  "gold_answer": "2008",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "year"
+  ]
+ },
+ {
+  "id": "ph011-en",
+  "group": "ph011",
+  "domain": "health",
+  "language": "en",
+  "query": "When did the MMR catch-up programme start?",
+  "gold_answers": [
+   "6 January 2024",
+   "January 6, 2024",
+   "January 2024",
+   "2024-01-06",
+   "06/01/2024",
+   "ජනවාරි 6",
+   "6 ජනවාරි",
+   "2024 ජනවාරි",
+   "ஜனவரி 6",
+   "6 ஜனவரி",
+   "2024 ஜனவரி"
+  ],
+  "gold_answer": "6 January 2024",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "date"
+  ]
+ },
+ {
+  "id": "ph011-si",
+  "group": "ph011",
+  "domain": "health",
+  "language": "si",
+  "query": "MMR Catch-up එන්නත් වැඩසටහන ආරම්භ වූයේ කවදාද?",
+  "gold_answers": [
+   "6 January 2024",
+   "January 6, 2024",
+   "January 2024",
+   "2024-01-06",
+   "06/01/2024",
+   "ජනවාරි 6",
+   "6 ජනවාරි",
+   "2024 ජනවාරි",
+   "ஜனவரி 6",
+   "6 ஜனவரி",
+   "2024 ஜனவரி"
+  ],
+  "gold_answer": "6 January 2024",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "date"
+  ]
+ },
+ {
+  "id": "ph011-ta",
+  "group": "ph011",
+  "domain": "health",
+  "language": "ta",
+  "query": "MMR Catch-up திட்டம் எப்போது தொடங்கப்பட்டது?",
+  "gold_answers": [
+   "6 January 2024",
+   "January 6, 2024",
+   "January 2024",
+   "2024-01-06",
+   "06/01/2024",
+   "ජනවාරි 6",
+   "6 ජනවාරි",
+   "2024 ජනවාරි",
+   "ஜனவரி 6",
+   "6 ஜனவரி",
+   "2024 ஜனவரி"
+  ],
+  "gold_answer": "6 January 2024",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "date"
+  ]
+ },
+ {
+  "id": "ph011-mx",
+  "group": "ph011",
+  "domain": "health",
+  "language": "mixed",
+  "query": "MMR catch-up programme eka start une kawadada?",
+  "gold_answers": [
+   "6 January 2024",
+   "January 6, 2024",
+   "January 2024",
+   "2024-01-06",
+   "06/01/2024",
+   "ජනවාරි 6",
+   "6 ජනවාරි",
+   "2024 ජනවාරි",
+   "ஜனவரி 6",
+   "6 ஜனவரி",
+   "2024 ஜனவரி"
+  ],
+  "gold_answer": "6 January 2024",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "date"
+  ]
+ },
+ {
+  "id": "ph012-en",
+  "group": "ph012",
+  "domain": "health",
+  "language": "en",
+  "query": "Which age group does the MMR catch-up programme target?",
+  "gold_answers": [
+   "9 months to 15 years",
+   "9 months",
+   "15 years",
+   "මාස 9",
+   "අවුරුදු 15",
+   "9 மாத",
+   "15 வயது",
+   "15 ஆண்டு"
+  ],
+  "gold_answer": "9 months to 15 years",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "age"
+  ]
+ },
+ {
+  "id": "ph012-si",
+  "group": "ph012",
+  "domain": "health",
+  "language": "si",
+  "query": "MMR Catch-up වැඩසටහන ඉලක්ක කරන්නේ කුමන වයස් කාණ්ඩයද?",
+  "gold_answers": [
+   "9 months to 15 years",
+   "9 months",
+   "15 years",
+   "මාස 9",
+   "අවුරුදු 15",
+   "9 மாத",
+   "15 வயது",
+   "15 ஆண்டு"
+  ],
+  "gold_answer": "9 months to 15 years",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "age"
+  ]
+ },
+ {
+  "id": "ph012-ta",
+  "group": "ph012",
+  "domain": "health",
+  "language": "ta",
+  "query": "MMR Catch-up திட்டம் எந்த வயதுப் பிரிவை இலக்காகக் கொண்டுள்ளது?",
+  "gold_answers": [
+   "9 months to 15 years",
+   "9 months",
+   "15 years",
+   "මාස 9",
+   "අවුරුදු 15",
+   "9 மாத",
+   "15 வயது",
+   "15 ஆண்டு"
+  ],
+  "gold_answer": "9 months to 15 years",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "age"
+  ]
+ },
+ {
+  "id": "ph013-en",
+  "group": "ph013",
+  "domain": "health",
+  "language": "en",
+  "query": "Should a child be vaccinated if they have a fever above 38 degrees on the day?",
+  "gold_answers": [
+   "should not",
+   "not be vaccinated",
+   "do not",
+   "reschedul",
+   "postpone",
+   "no,",
+   "no.",
+   "නොකරන්න",
+   "නොකළ යුතු",
+   "එපා",
+   "කල් දමන්න",
+   "නොදිය",
+   "கூடாது",
+   "வேண்டாம்",
+   "ஒத்திவை",
+   "தள்ளிவை"
+  ],
+  "gold_answer": "should not",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "safety"
+  ]
+ },
+ {
+  "id": "ph013-si",
+  "group": "ph013",
+  "domain": "health",
+  "language": "si",
+  "query": "එන්නත දෙන දිනයේ දරුවාට සෙල්සියස් අංශක 38 ට වැඩි උණක් ඇත්නම් එන්නත දිය යුතුද?",
+  "gold_answers": [
+   "should not",
+   "not be vaccinated",
+   "do not",
+   "reschedul",
+   "postpone",
+   "no,",
+   "no.",
+   "නොකරන්න",
+   "නොකළ යුතු",
+   "එපා",
+   "කල් දමන්න",
+   "නොදිය",
+   "கூடாது",
+   "வேண்டாம்",
+   "ஒத்திவை",
+   "தள்ளிவை"
+  ],
+  "gold_answer": "should not",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "safety"
+  ]
+ },
+ {
+  "id": "ph013-ta",
+  "group": "ph013",
+  "domain": "health",
+  "language": "ta",
+  "query": "தடுப்பூசி நாளில் குழந்தைக்கு 38 டிகிரி செல்சியஸுக்கு மேல் காய்ச்சல் இருந்தால் தடுப்பூசி போடலாமா?",
+  "gold_answers": [
+   "should not",
+   "not be vaccinated",
+   "do not",
+   "reschedul",
+   "postpone",
+   "no,",
+   "no.",
+   "නොකරන්න",
+   "නොකළ යුතු",
+   "එපා",
+   "කල් දමන්න",
+   "නොදිය",
+   "கூடாது",
+   "வேண்டாம்",
+   "ஒத்திவை",
+   "தள்ளிவை"
+  ],
+  "gold_answer": "should not",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "safety"
+  ]
+ },
+ {
+  "id": "ph014-en",
+  "group": "ph014",
+  "domain": "health",
+  "language": "en",
+  "query": "When should antenatal care begin in pregnancy?",
+  "gold_answers": [
+   "12 weeks",
+   "before 12",
+   "twelve weeks",
+   "සති 12",
+   "12 වාරங்க",
+   "12 வாரங்க",
+   "12"
+  ],
+  "gold_answer": "12 weeks",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "schedule"
+  ]
+ },
+ {
+  "id": "ph014-si",
+  "group": "ph014",
+  "domain": "health",
+  "language": "si",
+  "query": "පූර්ව ප්‍රසව සත්කාර ආරම්භ කළ යුත්තේ සති කීයකට පෙරද?",
+  "gold_answers": [
+   "12 weeks",
+   "before 12",
+   "twelve weeks",
+   "සති 12",
+   "12 වාරங்க",
+   "12 வாரங்க",
+   "12"
+  ],
+  "gold_answer": "12 weeks",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "schedule"
+  ]
+ },
+ {
+  "id": "ph014-ta",
+  "group": "ph014",
+  "domain": "health",
+  "language": "ta",
+  "query": "கர்ப்பக் கால பராமரிப்பு எத்தனை வாரங்களுக்கு முன் தொடங்க வேண்டும்?",
+  "gold_answers": [
+   "12 weeks",
+   "before 12",
+   "twelve weeks",
+   "සති 12",
+   "12 වාරங்க",
+   "12 வாரங்க",
+   "12"
+  ],
+  "gold_answer": "12 weeks",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "schedule"
+  ]
+ },
+ {
+  "id": "ph014-mx",
+  "group": "ph014",
+  "domain": "health",
+  "language": "mixed",
+  "query": "PHM register karanna first visit ek kohomada 12 weeks?",
+  "gold_answers": [
+   "12 weeks",
+   "before 12",
+   "twelve weeks",
+   "සති 12",
+   "12 වාරங்க",
+   "12 வாரங்க",
+   "12"
+  ],
+  "gold_answer": "12 weeks",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "schedule"
+  ]
+ },
+ {
+  "id": "ph015-en",
+  "group": "ph015",
+  "domain": "health",
+  "language": "en",
+  "query": "How many antenatal clinic visits are recommended in Sri Lanka?",
+  "gold_answers": [
+   "8",
+   "eight",
+   "අට",
+   "எட்டு"
+  ],
+  "gold_answer": "8",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "count"
+  ]
+ },
+ {
+  "id": "ph015-si",
+  "group": "ph015",
+  "domain": "health",
+  "language": "si",
+  "query": "ශ්‍රී ලංකාවේ නිර්දේශිත පූර්ව ප්‍රසව සායන පැමිණීම් ගණන කීයද?",
+  "gold_answers": [
+   "8",
+   "eight",
+   "අට",
+   "எட்டு"
+  ],
+  "gold_answer": "8",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "count"
+  ]
+ },
+ {
+  "id": "ph015-ta",
+  "group": "ph015",
+  "domain": "health",
+  "language": "ta",
+  "query": "இலங்கையில் பரிந்துரைக்கப்படும் கர்ப்பக் கால கிளினிக் சந்திப்புகள் எத்தனை?",
+  "gold_answers": [
+   "8",
+   "eight",
+   "අට",
+   "எட்டு"
+  ],
+  "gold_answer": "8",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "count"
+  ]
+ },
+ {
+  "id": "ph016-en",
+  "group": "ph016",
+  "domain": "health",
+  "language": "en",
+  "query": "Who provides home antenatal care in Sri Lanka?",
+  "gold_answers": [
+   "PHM",
+   "Public Health Midwife",
+   "midwife",
+   "සෞඛ්‍ය මාතාව",
+   "පවුල් සෞඛ්‍ය",
+   "මාතාව",
+   "மருத்துவச்சி",
+   "சுகாதார மருத்துவச்சி"
+  ],
+  "gold_answer": "PHM",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "role"
+  ]
+ },
+ {
+  "id": "ph016-si",
+  "group": "ph016",
+  "domain": "health",
+  "language": "si",
+  "query": "ශ්‍රී ලංකාවේ නිවසේදී පූර්ව ප්‍රසව සත්කාර ලබා දෙන්නේ කවුද?",
+  "gold_answers": [
+   "PHM",
+   "Public Health Midwife",
+   "midwife",
+   "සෞඛ්‍ය මාතාව",
+   "පවුල් සෞඛ්‍ය",
+   "මාතාව",
+   "மருத்துவச்சி",
+   "சுகாதார மருத்துவச்சி"
+  ],
+  "gold_answer": "PHM",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "role"
+  ]
+ },
+ {
+  "id": "ph016-ta",
+  "group": "ph016",
+  "domain": "health",
+  "language": "ta",
+  "query": "இலங்கையில் வீட்டில் கர்ப்பக் கால பராமரிப்பை வழங்குவது யார்?",
+  "gold_answers": [
+   "PHM",
+   "Public Health Midwife",
+   "midwife",
+   "සෞඛ්‍ය මාතාව",
+   "පවුල් සෞඛ්‍ය",
+   "මාතාව",
+   "மருத்துவச்சி",
+   "சுகாதார மருத்துவச்சி"
+  ],
+  "gold_answer": "PHM",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "role"
+  ]
+ },
+ {
+  "id": "ph017-en",
+  "group": "ph017",
+  "domain": "health",
+  "language": "en",
+  "query": "Do antibiotics treat the flu?",
+  "gold_answers": [
+   "do not",
+   "don't",
+   "not treat",
+   "does not",
+   "cannot",
+   "no,",
+   "no.",
+   "නොවේ",
+   "නැත",
+   "නොකරයි",
+   "එපා",
+   "නොහැක",
+   "බැහැ",
+   "இல்லை",
+   "அளிக்காது",
+   "மாட்டாது",
+   "வேண்டாம்",
+   "முடியாது"
+  ],
+  "gold_answer": "do not",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "misinformation"
+  ]
+ },
+ {
+  "id": "ph017-si",
+  "group": "ph017",
+  "domain": "health",
+  "language": "si",
+  "query": "ප්‍රතිජීවක ඖෂධ ඉන්ෆ්ලුවෙන්සා (උණ) සුව කරයිද?",
+  "gold_answers": [
+   "do not",
+   "don't",
+   "not treat",
+   "does not",
+   "cannot",
+   "no,",
+   "no.",
+   "නොවේ",
+   "නැත",
+   "නොකරයි",
+   "එපා",
+   "නොහැක",
+   "බැහැ",
+   "இல்லை",
+   "அளிக்காது",
+   "மாட்டாது",
+   "வேண்டாம்",
+   "முடியாது"
+  ],
+  "gold_answer": "do not",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "misinformation"
+  ]
+ },
+ {
+  "id": "ph017-ta",
+  "group": "ph017",
+  "domain": "health",
+  "language": "ta",
+  "query": "நுண்ணுயிர் எதிர்ப்பிகள் இன்ஃப்ளுயன்சாவை குணப்படுத்துமா?",
+  "gold_answers": [
+   "do not",
+   "don't",
+   "not treat",
+   "does not",
+   "cannot",
+   "no,",
+   "no.",
+   "නොවේ",
+   "නැත",
+   "නොකරයි",
+   "එපා",
+   "නොහැක",
+   "බැහැ",
+   "இல்லை",
+   "அளிக்காது",
+   "மாட்டாது",
+   "வேண்டாம்",
+   "முடியாது"
+  ],
+  "gold_answer": "do not",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "misinformation"
+  ]
+ },
+ {
+  "id": "ph017-mx",
+  "group": "ph017",
+  "domain": "health",
+  "language": "mixed",
+  "query": "flu ekata antibiotics ganna one da?",
+  "gold_answers": [
+   "do not",
+   "don't",
+   "not treat",
+   "does not",
+   "cannot",
+   "no,",
+   "no.",
+   "නොවේ",
+   "නැත",
+   "නොකරයි",
+   "එපා",
+   "නොහැක",
+   "බැහැ",
+   "இல்லை",
+   "அளிக்காது",
+   "மாட்டாது",
+   "வேண்டாம்",
+   "முடியாது"
+  ],
+  "gold_answer": "do not",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "misinformation"
+  ]
+ },
+ {
+  "id": "ph018-en",
+  "group": "ph018",
+  "domain": "health",
+  "language": "en",
+  "query": "When should I seek medical attention for flu symptoms?",
+  "gold_answers": [
+   "7 days",
+   "seven days",
+   "3 days",
+   "three days",
+   "breathing",
+   "difficult",
+   "දින 7",
+   "දින 3",
+   "හුස්ම",
+   "7 நாட்க",
+   "3 நாட்க",
+   "சுவாச",
+   "மூச்சு"
+  ],
+  "gold_answer": "7 days",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "duration"
+  ]
+ },
+ {
+  "id": "ph018-si",
+  "group": "ph018",
+  "domain": "health",
+  "language": "si",
+  "query": "ඉන්ෆ්ලුවෙන්සා රෝග ලක්ෂණ සඳහා වෛද්‍ය උපදෙස් ලබාගත යුත්තේ කවදාද?",
+  "gold_answers": [
+   "7 days",
+   "seven days",
+   "3 days",
+   "three days",
+   "breathing",
+   "difficult",
+   "දින 7",
+   "දින 3",
+   "හුස්ම",
+   "7 நாட்க",
+   "3 நாட்க",
+   "சுவாச",
+   "மூச்சு"
+  ],
+  "gold_answer": "7 days",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "duration"
+  ]
+ },
+ {
+  "id": "ph018-ta",
+  "group": "ph018",
+  "domain": "health",
+  "language": "ta",
+  "query": "இன்ஃப்ளுயன்சா அறிகுறிகளுக்கு எப்போது மருத்துவ உதவியை நாட வேண்டும்?",
+  "gold_answers": [
+   "7 days",
+   "seven days",
+   "3 days",
+   "three days",
+   "breathing",
+   "difficult",
+   "දින 7",
+   "දින 3",
+   "හුස්ම",
+   "7 நாட்க",
+   "3 நாட்க",
+   "சுவாச",
+   "மூச்சு"
+  ],
+  "gold_answer": "7 days",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "duration"
+  ]
+ },
+ {
+  "id": "ph027-en",
+  "group": "ph027",
+  "domain": "health",
+  "language": "en",
+  "query": "Does drinking lime juice cure dengue?",
+  "gold_answers": [
+   "not proven",
+   "not a proven",
+   "no proof",
+   "not replace",
+   "must not replace",
+   "unproven",
+   "does not cure",
+   "no,",
+   "no.",
+   "නොවේ",
+   "සනාථ වී නැත",
+   "ඔප්පු වී නැත",
+   "නැත",
+   "සුව නොවේ",
+   "நிரூபிக்கப்படவில்லை",
+   "இல்லை",
+   "அல்ல",
+   "குணமாக்காது"
+  ],
+  "gold_answer": "not proven",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "misinformation",
+   "false_premise"
+  ]
+ },
+ {
+  "id": "ph027-si",
+  "group": "ph027",
+  "domain": "health",
+  "language": "si",
+  "query": "දෙහි යුෂ පානය කිරීමෙන් ඩෙංගු සුව වේද?",
+  "gold_answers": [
+   "not proven",
+   "not a proven",
+   "no proof",
+   "not replace",
+   "must not replace",
+   "unproven",
+   "does not cure",
+   "no,",
+   "no.",
+   "නොවේ",
+   "සනාථ වී නැත",
+   "ඔප්පු වී නැත",
+   "නැත",
+   "සුව නොවේ",
+   "நிரூபிக்கப்படவில்லை",
+   "இல்லை",
+   "அல்ல",
+   "குணமாக்காது"
+  ],
+  "gold_answer": "not proven",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "misinformation",
+   "false_premise"
+  ]
+ },
+ {
+  "id": "ph027-ta",
+  "group": "ph027",
+  "domain": "health",
+  "language": "ta",
+  "query": "எலுமிச்சை சாறு குடிப்பதால் டெங்கு குணமாகுமா?",
+  "gold_answers": [
+   "not proven",
+   "not a proven",
+   "no proof",
+   "not replace",
+   "must not replace",
+   "unproven",
+   "does not cure",
+   "no,",
+   "no.",
+   "නොවේ",
+   "සනාථ වී නැත",
+   "ඔප්පු වී නැත",
+   "නැත",
+   "සුව නොවේ",
+   "நிரூபிக்கப்படவில்லை",
+   "இல்லை",
+   "அல்ல",
+   "குணமாக்காது"
+  ],
+  "gold_answer": "not proven",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "misinformation",
+   "false_premise"
+  ]
+ },
+ {
+  "id": "ph028-en",
+  "group": "ph028",
+  "domain": "health",
+  "language": "en",
+  "query": "Can I treat my child's flu with antibiotics?",
+  "gold_answers": [
+   "do not",
+   "don't",
+   "not treat",
+   "does not",
+   "should not",
+   "cannot",
+   "no,",
+   "no.",
+   "නොවේ",
+   "නැත",
+   "නොකරයි",
+   "එපා",
+   "නොහැක",
+   "බැහැ",
+   "இல்லை",
+   "அளிக்காது",
+   "மாட்டாது",
+   "வேண்டாம்",
+   "கூடாது",
+   "முடியாது"
+  ],
+  "gold_answer": "do not",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "misinformation",
+   "false_premise"
+  ]
+ },
+ {
+  "id": "ph028-si",
+  "group": "ph028",
+  "domain": "health",
+  "language": "si",
+  "query": "මගේ දරුවාගේ උණට ප්‍රතිජීවක ඖෂධ දී ප්‍රතිකාර කළ හැකිද?",
+  "gold_answers": [
+   "do not",
+   "don't",
+   "not treat",
+   "does not",
+   "should not",
+   "cannot",
+   "no,",
+   "no.",
+   "නොවේ",
+   "නැත",
+   "නොකරයි",
+   "එපා",
+   "නොහැක",
+   "බැහැ",
+   "இல்லை",
+   "அளிக்காது",
+   "மாட்டாது",
+   "வேண்டாம்",
+   "கூடாது",
+   "முடியாது"
+  ],
+  "gold_answer": "do not",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "misinformation",
+   "false_premise"
+  ]
+ },
+ {
+  "id": "ph028-ta",
+  "group": "ph028",
+  "domain": "health",
+  "language": "ta",
+  "query": "என் குழந்தையின் காய்ச்சலுக்கு நுண்ணுயிர் எதிர்ப்பிகளால் சிகிச்சை அளிக்கலாமா?",
+  "gold_answers": [
+   "do not",
+   "don't",
+   "not treat",
+   "does not",
+   "should not",
+   "cannot",
+   "no,",
+   "no.",
+   "නොවේ",
+   "නැත",
+   "නොකරයි",
+   "එපා",
+   "නොහැක",
+   "බැහැ",
+   "இல்லை",
+   "அளிக்காது",
+   "மாட்டாது",
+   "வேண்டாம்",
+   "கூடாது",
+   "முடியாது"
+  ],
+  "gold_answer": "do not",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "misinformation",
+   "false_premise"
+  ]
+ },
+ {
+  "id": "ph029-en",
+  "group": "ph029",
+  "domain": "health",
+  "language": "en",
+  "query": "What is the recommended insulin dosage for an adult diabetic?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "ph029-si",
+  "group": "ph029",
+  "domain": "health",
+  "language": "si",
+  "query": "වැඩිහිටි දියවැඩියා රෝගියෙකුට නිර්දේශිත ඉන්සියුලින් මාත්‍රාව කොපමණද?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "ph029-ta",
+  "group": "ph029",
+  "domain": "health",
+  "language": "ta",
+  "query": "ஒரு பெரியவர் நீரிழிவு நோயாளிக்கு பரிந்துரைக்கப்படும் இன்சுலின் அளவு என்ன?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "ph029-mx",
+  "group": "ph029",
+  "domain": "health",
+  "language": "mixed",
+  "query": "adult diabetic kenekta insulin dose eka kiyada?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "ph030-en",
+  "group": "ph030",
+  "domain": "health",
+  "language": "en",
+  "query": "What is the cure for type 2 diabetes?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "ph030-si",
+  "group": "ph030",
+  "domain": "health",
+  "language": "si",
+  "query": "දෙවන වර්ගයේ දියවැඩියාව සඳහා ප්‍රතිකාරය කුමක්ද?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "ph030-ta",
+  "group": "ph030",
+  "domain": "health",
+  "language": "ta",
+  "query": "வகை 2 நீரிழிவுக்கு என்ன மருந்து குணப்படுத்தும்?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ }
+]

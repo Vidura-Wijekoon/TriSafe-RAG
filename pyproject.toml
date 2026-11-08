@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "trisafe-rag"
-version = "0.2.0"
+version = "0.3.0"
 description = "Trustworthy multilingual retrieval-augmented generation for public-service AI"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -21,7 +21,8 @@ classifiers = [
 dependencies = ["numpy>=1.26", "pyyaml>=6.0", "pydantic>=2.5"]
 
 [project.optional-dependencies]
-neural = ["sentence-transformers>=2.7", "transformers>=4.40", "torch>=2.2"]
+neural = ["sentence-transformers>=2.7", "transformers>=4.40", "torch>=2.2", "accelerate>=0.30"]
+eval = ["matplotlib>=3.8"]
 app = ["fastapi>=0.110", "uvicorn>=0.29", "streamlit>=1.32"]
 dev = ["pytest>=8.0", "pytest-cov>=4.0", "black>=24.0", "ruff>=0.4"]
 loaders = ["beautifulsoup4>=4.12", "pypdf>=4.0"]
@@ -35,7 +36,7 @@ trirag = "src.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["src*", "app*"]
+include = ["src*", "app*", "casestudies*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

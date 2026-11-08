@@ -1,0 +1,4310 @@
+[
+ {
+  "id": "cd001-en",
+  "group": "cd001",
+  "domain": "civil",
+  "language": "en",
+  "query": "What is the normal passport processing fee?",
+  "gold_answers": [
+   "10,000",
+   "10000"
+  ],
+  "gold_answer": "10,000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd001-si",
+  "group": "cd001",
+  "domain": "civil",
+  "language": "si",
+  "query": "සාමාන්‍ය විදේශ ගමන් බලපත්‍ර සේවාවේ ගාස්තුව කොපමණද?",
+  "gold_answers": [
+   "10,000",
+   "10000"
+  ],
+  "gold_answer": "10,000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd001-ta",
+  "group": "cd001",
+  "domain": "civil",
+  "language": "ta",
+  "query": "சாதாரண கடவுச்சீட்டு சேவைக் கட்டணம் எவ்வளவு?",
+  "gold_answers": [
+   "10,000",
+   "10000"
+  ],
+  "gold_answer": "10,000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd001-mx",
+  "group": "cd001",
+  "domain": "civil",
+  "language": "mixed",
+  "query": "passport normal service fee eka kiyada?",
+  "gold_answers": [
+   "10,000",
+   "10000"
+  ],
+  "gold_answer": "10,000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd002-en",
+  "group": "cd002",
+  "domain": "civil",
+  "language": "en",
+  "query": "What is the urgent one-day passport service fee?",
+  "gold_answers": [
+   "20,000",
+   "20000"
+  ],
+  "gold_answer": "20,000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd002-si",
+  "group": "cd002",
+  "domain": "civil",
+  "language": "si",
+  "query": "එක් දිනක් තුළ ලබා දෙන හදිසි විදේශ ගමන් බලපත්‍ර සේවාවේ ගාස්තුව කොපමණද?",
+  "gold_answers": [
+   "20,000",
+   "20000"
+  ],
+  "gold_answer": "20,000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd002-ta",
+  "group": "cd002",
+  "domain": "civil",
+  "language": "ta",
+  "query": "அவசர ஒரு நாள் கடவுச்சீட்டு சேவைக் கட்டணம் எவ்வளவு?",
+  "gold_answers": [
+   "20,000",
+   "20000"
+  ],
+  "gold_answer": "20,000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd002-mx",
+  "group": "cd002",
+  "domain": "civil",
+  "language": "mixed",
+  "query": "passport K-35A form eka kohenda ganne, and what is the urgent fee?",
+  "gold_answers": [
+   "20,000",
+   "20000"
+  ],
+  "gold_answer": "20,000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd003-en",
+  "group": "cd003",
+  "domain": "civil",
+  "language": "en",
+  "query": "Which form is used for a Sri Lankan passport application?",
+  "gold_answers": [
+   "K-35A",
+   "K35A",
+   "K 35A"
+  ],
+  "gold_answer": "K-35A",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "form"
+  ]
+ },
+ {
+  "id": "cd003-si",
+  "group": "cd003",
+  "domain": "civil",
+  "language": "si",
+  "query": "ශ්‍රී ලංකා විදේශ ගමන් බලපත්‍ර අයදුම්පත සඳහා භාවිතා කරන ආකෘති පත්‍රය කුමක්ද?",
+  "gold_answers": [
+   "K-35A",
+   "K35A",
+   "K 35A"
+  ],
+  "gold_answer": "K-35A",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "form"
+  ]
+ },
+ {
+  "id": "cd003-ta",
+  "group": "cd003",
+  "domain": "civil",
+  "language": "ta",
+  "query": "இலங்கை கடவுச்சீட்டு விண்ணப்பத்திற்கு எந்தப் படிவம் பயன்படுத்தப்படுகிறது?",
+  "gold_answers": [
+   "K-35A",
+   "K35A",
+   "K 35A"
+  ],
+  "gold_answer": "K-35A",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "form"
+  ]
+ },
+ {
+  "id": "cd003-mx",
+  "group": "cd003",
+  "domain": "civil",
+  "language": "mixed",
+  "query": "passport apply karanna form eka mokakda?",
+  "gold_answers": [
+   "K-35A",
+   "K35A",
+   "K 35A"
+  ],
+  "gold_answer": "K-35A",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "form"
+  ]
+ },
+ {
+  "id": "cd004-en",
+  "group": "cd004",
+  "domain": "civil",
+  "language": "en",
+  "query": "When can I apply for the one-day passport service?",
+  "gold_answers": [
+   "7.00 a.m.",
+   "7.00 am",
+   "7:00",
+   "7.00",
+   "1.30 p.m.",
+   "1.30 pm",
+   "1:30",
+   "1.30"
+  ],
+  "gold_answer": "7.00 a.m.",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "time"
+  ]
+ },
+ {
+  "id": "cd004-si",
+  "group": "cd004",
+  "domain": "civil",
+  "language": "si",
+  "query": "එක්දින විදේශ ගමන් බලපත්‍ර සේවාව සඳහා අයදුම් කළ හැක්කේ කුමන වේලාවන් අතරද?",
+  "gold_answers": [
+   "7.00 a.m.",
+   "7.00 am",
+   "7:00",
+   "7.00",
+   "1.30 p.m.",
+   "1.30 pm",
+   "1:30",
+   "1.30"
+  ],
+  "gold_answer": "7.00 a.m.",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "time"
+  ]
+ },
+ {
+  "id": "cd004-ta",
+  "group": "cd004",
+  "domain": "civil",
+  "language": "ta",
+  "query": "ஒரு நாள் கடவுச்சீட்டு சேவைக்கு எந்த நேரத்தில் விண்ணப்பிக்கலாம்?",
+  "gold_answers": [
+   "7.00 a.m.",
+   "7.00 am",
+   "7:00",
+   "7.00",
+   "1.30 p.m.",
+   "1.30 pm",
+   "1:30",
+   "1.30"
+  ],
+  "gold_answer": "7.00 a.m.",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "time"
+  ]
+ },
+ {
+  "id": "cd005-en",
+  "group": "cd005",
+  "domain": "civil",
+  "language": "en",
+  "query": "Where is the passport one-day service offered?",
+  "gold_answers": [
+   "Head Office",
+   "Battaramulla",
+   "ප්‍රධාන කාර්යාල",
+   "බත්තරමුල්ල",
+   "தலைமை",
+   "பத்தரமுல்லை"
+  ],
+  "gold_answer": "Head Office",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "place"
+  ]
+ },
+ {
+  "id": "cd005-si",
+  "group": "cd005",
+  "domain": "civil",
+  "language": "si",
+  "query": "එක්දින විදේශ ගමන් බලපත්‍ර සේවාව ලබා ගත හැක්කේ කොතැනින්ද?",
+  "gold_answers": [
+   "Head Office",
+   "Battaramulla",
+   "ප්‍රධාන කාර්යාල",
+   "බත්තරමුල්ල",
+   "தலைமை",
+   "பத்தரமுல்லை"
+  ],
+  "gold_answer": "Head Office",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "place"
+  ]
+ },
+ {
+  "id": "cd005-ta",
+  "group": "cd005",
+  "domain": "civil",
+  "language": "ta",
+  "query": "ஒரு நாள் கடவுச்சீட்டு சேவை எங்கு வழங்கப்படுகிறது?",
+  "gold_answers": [
+   "Head Office",
+   "Battaramulla",
+   "ප්‍රධාන කාර්යාල",
+   "බත්තරමුල්ල",
+   "தலைமை",
+   "பத்தரமுல்லை"
+  ],
+  "gold_answer": "Head Office",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "place"
+  ]
+ },
+ {
+  "id": "cd006-en",
+  "group": "cd006",
+  "domain": "civil",
+  "language": "en",
+  "query": "What is the fee for first-time NIC registration?",
+  "gold_answers": [
+   "200"
+  ],
+  "gold_answer": "200",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd006-si",
+  "group": "cd006",
+  "domain": "civil",
+  "language": "si",
+  "query": "පළමු වරට ජාතික හැඳුනුම්පත ලියාපදිංචි කිරීමේ ගාස්තුව කොපමණද?",
+  "gold_answers": [
+   "200"
+  ],
+  "gold_answer": "200",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd006-ta",
+  "group": "cd006",
+  "domain": "civil",
+  "language": "ta",
+  "query": "முதன் முறையாக தேசிய அடையாள அட்டை பதிவு செய்யும் கட்டணம் எவ்வளவு?",
+  "gold_answers": [
+   "200"
+  ],
+  "gold_answer": "200",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd007-en",
+  "group": "cd007",
+  "domain": "civil",
+  "language": "en",
+  "query": "What is the NIC one-day service surcharge?",
+  "gold_answers": [
+   "2000",
+   "2,000"
+  ],
+  "gold_answer": "2000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd007-si",
+  "group": "cd007",
+  "domain": "civil",
+  "language": "si",
+  "query": "ජාතික හැඳුනුම්පතේ එක්දින සේවාවේ අතිරේක ගාස්තුව කොපමණද?",
+  "gold_answers": [
+   "2000",
+   "2,000"
+  ],
+  "gold_answer": "2000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd007-ta",
+  "group": "cd007",
+  "domain": "civil",
+  "language": "ta",
+  "query": "தேசிய அடையாள அட்டை ஒரு நாள் சேவைக் கட்டணம் எவ்வளவு?",
+  "gold_answers": [
+   "2000",
+   "2,000"
+  ],
+  "gold_answer": "2000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd007-mx",
+  "group": "cd007",
+  "domain": "civil",
+  "language": "mixed",
+  "query": "NIC one-day service ekata extra charge eka kiyada?",
+  "gold_answers": [
+   "2000",
+   "2,000"
+  ],
+  "gold_answer": "2000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd008-en",
+  "group": "cd008",
+  "domain": "civil",
+  "language": "en",
+  "query": "What is the fee for a duplicate of a lost NIC?",
+  "gold_answers": [
+   "1000",
+   "1,000"
+  ],
+  "gold_answer": "1000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd008-si",
+  "group": "cd008",
+  "domain": "civil",
+  "language": "si",
+  "query": "නැති වූ ජාතික හැඳුනුම්පතක ද්විත්ව පිටපතක් ලබා ගැනීමේ ගාස්තුව කොපමණද?",
+  "gold_answers": [
+   "1000",
+   "1,000"
+  ],
+  "gold_answer": "1000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd008-ta",
+  "group": "cd008",
+  "domain": "civil",
+  "language": "ta",
+  "query": "தொலைந்த தேசிய அடையாள அட்டையின் நகலுக்கான கட்டணம் எவ்வளவு?",
+  "gold_answers": [
+   "1000",
+   "1,000"
+  ],
+  "gold_answer": "1000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd008-mx",
+  "group": "cd008",
+  "domain": "civil",
+  "language": "mixed",
+  "query": "NIC eka nathi una, duplicate ekakata fee eka kiyada?",
+  "gold_answers": [
+   "1000",
+   "1,000"
+  ],
+  "gold_answer": "1000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd009-en",
+  "group": "cd009",
+  "domain": "civil",
+  "language": "en",
+  "query": "What is the fee to translate an NIC to English?",
+  "gold_answers": [
+   "2000",
+   "2,000"
+  ],
+  "gold_answer": "2000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd009-si",
+  "group": "cd009",
+  "domain": "civil",
+  "language": "si",
+  "query": "ජාතික හැඳුනුම්පත ඉංග්‍රීසි භාෂාවට පරිවර්තනය කිරීමේ ගාස්තුව කොපමණද?",
+  "gold_answers": [
+   "2000",
+   "2,000"
+  ],
+  "gold_answer": "2000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd009-ta",
+  "group": "cd009",
+  "domain": "civil",
+  "language": "ta",
+  "query": "தேசிய அடையாள அட்டையை ஆங்கிலத்தில் மொழிபெயர்க்கும் கட்டணம் எவ்வளவு?",
+  "gold_answers": [
+   "2000",
+   "2,000"
+  ],
+  "gold_answer": "2000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd010-en",
+  "group": "cd010",
+  "domain": "civil",
+  "language": "en",
+  "query": "Where is the Department for Registration of Persons head office?",
+  "gold_answers": [
+   "Battaramulla",
+   "Suhurupaya",
+   "බත්තරමුල්ල",
+   "පත්තරමුල්ල",
+   "பத்தரமுல்லை",
+   "பத்தரமுல்ல"
+  ],
+  "gold_answer": "Battaramulla",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "place"
+  ]
+ },
+ {
+  "id": "cd010-si",
+  "group": "cd010",
+  "domain": "civil",
+  "language": "si",
+  "query": "පුද්ගලයන් ලියාපදිංචි කිරීමේ දෙපාර්තමේන්තුවේ ප්‍රධාන කාර්යාලය පිහිටා ඇත්තේ කොහේද?",
+  "gold_answers": [
+   "Battaramulla",
+   "Suhurupaya",
+   "බත්තරමුල්ල",
+   "පත්තරමුල්ල",
+   "பத்தரமுல்லை",
+   "பத்தரமுல்ல"
+  ],
+  "gold_answer": "Battaramulla",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "place"
+  ]
+ },
+ {
+  "id": "cd010-ta",
+  "group": "cd010",
+  "domain": "civil",
+  "language": "ta",
+  "query": "ஆட்பதிவுத் திணைக்களத்தின் தலைமை அலுவலகம் எங்கே உள்ளது?",
+  "gold_answers": [
+   "Battaramulla",
+   "Suhurupaya",
+   "බත්තරමුල්ල",
+   "පත්තරමුල්ල",
+   "பத்தரமுல்லை",
+   "பத்தரமுல்ல"
+  ],
+  "gold_answer": "Battaramulla",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "place"
+  ]
+ },
+ {
+  "id": "cd011-en",
+  "group": "cd011",
+  "domain": "civil",
+  "language": "en",
+  "query": "What is the normal-service fee for a new driving licence for one class?",
+  "gold_answers": [
+   "2500",
+   "2,500"
+  ],
+  "gold_answer": "2500",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd011-si",
+  "group": "cd011",
+  "domain": "civil",
+  "language": "si",
+  "query": "එක් පන්තියක් සඳහා නව රියදුරු බලපත්‍රයක සාමාන්‍ය සේවා ගාස්තුව කොපමණද?",
+  "gold_answers": [
+   "2500",
+   "2,500"
+  ],
+  "gold_answer": "2500",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd011-ta",
+  "group": "cd011",
+  "domain": "civil",
+  "language": "ta",
+  "query": "ஒரு வகுப்புக்கான புதிய ஓட்டுநர் உரிமத்தின் சாதாரண சேவைக் கட்டணம் எவ்வளவு?",
+  "gold_answers": [
+   "2500",
+   "2,500"
+  ],
+  "gold_answer": "2500",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd012-en",
+  "group": "cd012",
+  "domain": "civil",
+  "language": "en",
+  "query": "What is the same-day-service fee for renewing a driving licence?",
+  "gold_answers": [
+   "4000",
+   "4,000"
+  ],
+  "gold_answer": "4000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd012-si",
+  "group": "cd012",
+  "domain": "civil",
+  "language": "si",
+  "query": "රියදුරු බලපත්‍රය අලුත් කිරීමේ එක්දින සේවා ගාස්තුව කොපමණද?",
+  "gold_answers": [
+   "4000",
+   "4,000"
+  ],
+  "gold_answer": "4000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd012-ta",
+  "group": "cd012",
+  "domain": "civil",
+  "language": "ta",
+  "query": "ஓட்டுநர் உரிமத்தைப் புதுப்பிக்கும் அதே நாள் சேவைக் கட்டணம் எவ்வளவு?",
+  "gold_answers": [
+   "4000",
+   "4,000"
+  ],
+  "gold_answer": "4000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd013-en",
+  "group": "cd013",
+  "domain": "civil",
+  "language": "en",
+  "query": "What is the normal-service driving licence renewal fee?",
+  "gold_answers": [
+   "2800",
+   "2,800"
+  ],
+  "gold_answer": "2800",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd013-si",
+  "group": "cd013",
+  "domain": "civil",
+  "language": "si",
+  "query": "රියදුරු බලපත්‍රය අලුත් කිරීමේ සාමාන්‍ය සේවා ගාස්තුව කොපමණද?",
+  "gold_answers": [
+   "2800",
+   "2,800"
+  ],
+  "gold_answer": "2800",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd013-ta",
+  "group": "cd013",
+  "domain": "civil",
+  "language": "ta",
+  "query": "ஓட்டுநர் உரிமத்தைப் புதுப்பிக்கும் சாதாரண சேவைக் கட்டணம் எவ்வளவு?",
+  "gold_answers": [
+   "2800",
+   "2,800"
+  ],
+  "gold_answer": "2800",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd013-mx",
+  "group": "cd013",
+  "domain": "civil",
+  "language": "mixed",
+  "query": "driving licence renew karanna normal fee eka kiyada?",
+  "gold_answers": [
+   "2800",
+   "2,800"
+  ],
+  "gold_answer": "2800",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd014-en",
+  "group": "cd014",
+  "domain": "civil",
+  "language": "en",
+  "query": "What is the fee for an international driving permit on normal service?",
+  "gold_answers": [
+   "3000",
+   "3,000"
+  ],
+  "gold_answer": "3000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd014-si",
+  "group": "cd014",
+  "domain": "civil",
+  "language": "si",
+  "query": "ජාත්‍යන්තර රියදුරු බලපත්‍රයක් සඳහා සාමාන්‍ය සේවා ගාස්තුව කොපමණද?",
+  "gold_answers": [
+   "3000",
+   "3,000"
+  ],
+  "gold_answer": "3000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd014-ta",
+  "group": "cd014",
+  "domain": "civil",
+  "language": "ta",
+  "query": "சர்வதேச ஓட்டுநர் அனுமதிக்கான சாதாரண சேவைக் கட்டணம் எவ்வளவு?",
+  "gold_answers": [
+   "3000",
+   "3,000"
+  ],
+  "gold_answer": "3000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd015-en",
+  "group": "cd015",
+  "domain": "civil",
+  "language": "en",
+  "query": "How much is the duplicate driving licence fee if the licence is lost?",
+  "gold_answers": [
+   "7800",
+   "7,800"
+  ],
+  "gold_answer": "7800",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd015-si",
+  "group": "cd015",
+  "domain": "civil",
+  "language": "si",
+  "query": "රියදුරු බලපත්‍රය නැති වූ විට ද්විත්ව පිටපතක ගාස්තුව කොපමණද?",
+  "gold_answers": [
+   "7800",
+   "7,800"
+  ],
+  "gold_answer": "7800",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd015-ta",
+  "group": "cd015",
+  "domain": "civil",
+  "language": "ta",
+  "query": "ஓட்டுநர் உரிமம் தொலைந்தால் நகலுக்கான கட்டணம் எவ்வளவு?",
+  "gold_answers": [
+   "7800",
+   "7,800"
+  ],
+  "gold_answer": "7800",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd016-en",
+  "group": "cd016",
+  "domain": "civil",
+  "language": "en",
+  "query": "How long is the temporary printable revenue licence valid?",
+  "gold_answers": [
+   "14"
+  ],
+  "gold_answer": "14",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "duration"
+  ]
+ },
+ {
+  "id": "cd016-si",
+  "group": "cd016",
+  "domain": "civil",
+  "language": "si",
+  "query": "තාවකාලික මුද්‍රණය කළ හැකි ආදායම් බලපත්‍රය වලංගු වන්නේ දින කීයක්ද?",
+  "gold_answers": [
+   "14"
+  ],
+  "gold_answer": "14",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "duration"
+  ]
+ },
+ {
+  "id": "cd016-ta",
+  "group": "cd016",
+  "domain": "civil",
+  "language": "ta",
+  "query": "தற்காலிக அச்சிடக்கூடிய வருவாய் உரிமம் எத்தனை நாட்களுக்கு செல்லுபடியாகும்?",
+  "gold_answers": [
+   "14"
+  ],
+  "gold_answer": "14",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "duration"
+  ]
+ },
+ {
+  "id": "cd016-mx",
+  "group": "cd016",
+  "domain": "civil",
+  "language": "mixed",
+  "query": "eRL temporary licence eka valid days kiyada?",
+  "gold_answers": [
+   "14"
+  ],
+  "gold_answer": "14",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "duration"
+  ]
+ },
+ {
+  "id": "cd017-en",
+  "group": "cd017",
+  "domain": "civil",
+  "language": "en",
+  "query": "Within how many days is the validated revenue licence posted?",
+  "gold_answers": [
+   "7",
+   "seven",
+   "හත",
+   "ஏழு"
+  ],
+  "gold_answer": "7",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "duration"
+  ]
+ },
+ {
+  "id": "cd017-si",
+  "group": "cd017",
+  "domain": "civil",
+  "language": "si",
+  "query": "තහවුරු කළ ආදායම් බලපත්‍රය තැපැල් කරන්නේ දින කීයක් ඇතුළතද?",
+  "gold_answers": [
+   "7",
+   "seven",
+   "හත",
+   "ஏழு"
+  ],
+  "gold_answer": "7",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "duration"
+  ]
+ },
+ {
+  "id": "cd017-ta",
+  "group": "cd017",
+  "domain": "civil",
+  "language": "ta",
+  "query": "உறுதிப்படுத்தப்பட்ட வருவாய் உரிமம் எத்தனை நாட்களுக்குள் தபாலில் அனுப்பப்படும்?",
+  "gold_answers": [
+   "7",
+   "seven",
+   "හත",
+   "ஏழு"
+  ],
+  "gold_answer": "7",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "duration"
+  ]
+ },
+ {
+  "id": "cd018-en",
+  "group": "cd018",
+  "domain": "civil",
+  "language": "en",
+  "query": "What is the URL of the online revenue licence portal?",
+  "gold_answers": [
+   "web.erl2.gov.lk",
+   "erl2.gov.lk"
+  ],
+  "gold_answer": "web.erl2.gov.lk",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "url"
+  ]
+ },
+ {
+  "id": "cd018-si",
+  "group": "cd018",
+  "domain": "civil",
+  "language": "si",
+  "query": "අන්තර්ජාල ආදායම් බලපත්‍ර සේවාවේ වෙබ් ලිපිනය කුමක්ද?",
+  "gold_answers": [
+   "web.erl2.gov.lk",
+   "erl2.gov.lk"
+  ],
+  "gold_answer": "web.erl2.gov.lk",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "url"
+  ]
+ },
+ {
+  "id": "cd018-ta",
+  "group": "cd018",
+  "domain": "civil",
+  "language": "ta",
+  "query": "ஆன்லைன் வருவாய் உரிமச் சேவையின் இணைய முகவரி என்ன?",
+  "gold_answers": [
+   "web.erl2.gov.lk",
+   "erl2.gov.lk"
+  ],
+  "gold_answer": "web.erl2.gov.lk",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "url"
+  ]
+ },
+ {
+  "id": "cd019-en",
+  "group": "cd019",
+  "domain": "civil",
+  "language": "en",
+  "query": "How can I pay for the online revenue licence?",
+  "gold_answers": [
+   "credit",
+   "debit",
+   "card",
+   "කාඩ්",
+   "அட்டை"
+  ],
+  "gold_answer": "credit",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "payment"
+  ]
+ },
+ {
+  "id": "cd019-si",
+  "group": "cd019",
+  "domain": "civil",
+  "language": "si",
+  "query": "අන්තර්ජාල ආදායම් බලපත්‍රය සඳහා ගෙවීම් කළ හැක්කේ කෙසේද?",
+  "gold_answers": [
+   "credit",
+   "debit",
+   "card",
+   "කාඩ්",
+   "அட்டை"
+  ],
+  "gold_answer": "credit",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "payment"
+  ]
+ },
+ {
+  "id": "cd019-ta",
+  "group": "cd019",
+  "domain": "civil",
+  "language": "ta",
+  "query": "ஆன்லைன் வருவாய் உரிமத்திற்கு எப்படிக் கட்டணம் செலுத்தலாம்?",
+  "gold_answers": [
+   "credit",
+   "debit",
+   "card",
+   "කාඩ්",
+   "அட்டை"
+  ],
+  "gold_answer": "credit",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "payment"
+  ]
+ },
+ {
+  "id": "cd019-mx",
+  "group": "cd019",
+  "domain": "civil",
+  "language": "mixed",
+  "query": "eRL eka online go karala renewal fee kohomada pay karanne?",
+  "gold_answers": [
+   "credit",
+   "debit",
+   "card",
+   "කාඩ්",
+   "அட்டை"
+  ],
+  "gold_answer": "credit",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "payment"
+  ]
+ },
+ {
+  "id": "cd025-en",
+  "group": "cd025",
+  "domain": "civil",
+  "language": "en",
+  "query": "What is the marriage registration fee in Sri Lanka?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "cd025-si",
+  "group": "cd025",
+  "domain": "civil",
+  "language": "si",
+  "query": "ශ්‍රී ලංකාවේ විවාහ ලියාපදිංචි කිරීමේ ගාස්තුව කොපමණද?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "cd025-ta",
+  "group": "cd025",
+  "domain": "civil",
+  "language": "ta",
+  "query": "இலங்கையில் திருமணப் பதிவுக் கட்டணம் எவ்வளவு?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "cd025-mx",
+  "group": "cd025",
+  "domain": "civil",
+  "language": "mixed",
+  "query": "marriage registration fee eka Sri Lanka walata kiyada?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "cd026-en",
+  "group": "cd026",
+  "domain": "civil",
+  "language": "en",
+  "query": "How do I claim my income tax refund online?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "cd026-si",
+  "group": "cd026",
+  "domain": "civil",
+  "language": "si",
+  "query": "ආදායම් බදු ආපසු ගෙවීමක් අන්තර්ජාලය හරහා ඉල්ලා සිටින්නේ කෙසේද?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "cd026-ta",
+  "group": "cd026",
+  "domain": "civil",
+  "language": "ta",
+  "query": "வருமான வரி திருப்பிச் செலுத்தலை ஆன்லைனில் எப்படிக் கோருவது?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "cd027-en",
+  "group": "cd027",
+  "domain": "civil",
+  "language": "en",
+  "query": "What is the inheritance tax rate for foreign assets?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "cd027-si",
+  "group": "cd027",
+  "domain": "civil",
+  "language": "si",
+  "query": "විදේශ වත්කම් සඳහා උරුම බදු අනුපාතය කොපමණද?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "cd027-ta",
+  "group": "cd027",
+  "domain": "civil",
+  "language": "ta",
+  "query": "வெளிநாட்டு சொத்துகளுக்கான பரம்பரை வரி விகிதம் என்ன?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "ph001-en",
+  "group": "ph001",
+  "domain": "health",
+  "language": "en",
+  "query": "Which medication should I use for fever in dengue?",
+  "gold_answers": [
+   "Paracetamol",
+   "පාරසිටමෝල්",
+   "පැරසිටමෝල්",
+   "පැරසිටමොල්",
+   "பாராசிட்டமால்",
+   "பாராசிட்டமோல்",
+   "பரசிட்டமால்"
+  ],
+  "gold_answer": "Paracetamol",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "drug"
+  ]
+ },
+ {
+  "id": "ph001-si",
+  "group": "ph001",
+  "domain": "health",
+  "language": "si",
+  "query": "ඩෙංගු උණේදී කුමන ඖෂධය භාවිතා කළ යුතුද?",
+  "gold_answers": [
+   "Paracetamol",
+   "පාරසිටමෝල්",
+   "පැරසිටමෝල්",
+   "පැරසිටමොල්",
+   "பாராசிட்டமால்",
+   "பாராசிட்டமோல்",
+   "பரசிட்டமால்"
+  ],
+  "gold_answer": "Paracetamol",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "drug"
+  ]
+ },
+ {
+  "id": "ph001-ta",
+  "group": "ph001",
+  "domain": "health",
+  "language": "ta",
+  "query": "டெங்கு காய்ச்சலுக்கு எந்த மருந்தை பயன்படுத்த வேண்டும்?",
+  "gold_answers": [
+   "Paracetamol",
+   "පාරසිටමෝල්",
+   "පැරසිටමෝල්",
+   "පැරසිටමොල්",
+   "பாராசிட்டமால்",
+   "பாராசிட்டமோல்",
+   "பரசிட்டமால்"
+  ],
+  "gold_answer": "Paracetamol",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "drug"
+  ]
+ },
+ {
+  "id": "ph001-mx",
+  "group": "ph001",
+  "domain": "health",
+  "language": "mixed",
+  "query": "dengue fever ekata mona medicine ekada ganna one?",
+  "gold_answers": [
+   "Paracetamol",
+   "පාරසිටමෝල්",
+   "පැරසිටමෝල්",
+   "පැරසිටමොල්",
+   "பாராசிட்டமால்",
+   "பாராசிட்டமோல்",
+   "பரசிட்டமால்"
+  ],
+  "gold_answer": "Paracetamol",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "drug"
+  ]
+ },
+ {
+  "id": "ph002-en",
+  "group": "ph002",
+  "domain": "health",
+  "language": "en",
+  "query": "Can I take ibuprofen for dengue?",
+  "gold_answers": [
+   "do not",
+   "don't",
+   "not use",
+   "should not",
+   "avoid",
+   "must not",
+   "cannot",
+   "no.",
+   "no,",
+   "නොකරන්න",
+   "එපා",
+   "නොවේ",
+   "නොගත",
+   "නොහැක",
+   "බැහැ",
+   "වැළකී",
+   "வேண்டாம்",
+   "கூடாது",
+   "இல்லை",
+   "தவிர்"
+  ],
+  "gold_answer": "do not",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "safety"
+  ]
+ },
+ {
+  "id": "ph002-si",
+  "group": "ph002",
+  "domain": "health",
+  "language": "si",
+  "query": "ඩෙංගු සඳහා ඉබුප්‍රෝෆන් ගත හැකිද?",
+  "gold_answers": [
+   "do not",
+   "don't",
+   "not use",
+   "should not",
+   "avoid",
+   "must not",
+   "cannot",
+   "no.",
+   "no,",
+   "නොකරන්න",
+   "එපා",
+   "නොවේ",
+   "නොගත",
+   "නොහැක",
+   "බැහැ",
+   "වැළකී",
+   "வேண்டாம்",
+   "கூடாது",
+   "இல்லை",
+   "தவிர்"
+  ],
+  "gold_answer": "do not",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "safety"
+  ]
+ },
+ {
+  "id": "ph002-ta",
+  "group": "ph002",
+  "domain": "health",
+  "language": "ta",
+  "query": "டெங்குவுக்கு ஐபுபுரோஃபன் எடுக்கலாமா?",
+  "gold_answers": [
+   "do not",
+   "don't",
+   "not use",
+   "should not",
+   "avoid",
+   "must not",
+   "cannot",
+   "no.",
+   "no,",
+   "නොකරන්න",
+   "එපා",
+   "නොවේ",
+   "නොගත",
+   "නොහැක",
+   "බැහැ",
+   "වැළකී",
+   "வேண்டாம்",
+   "கூடாது",
+   "இல்லை",
+   "தவிர்"
+  ],
+  "gold_answer": "do not",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "safety"
+  ]
+ },
+ {
+  "id": "ph003-en",
+  "group": "ph003",
+  "domain": "health",
+  "language": "en",
+  "query": "Can I take aspirin for dengue fever?",
+  "gold_answers": [
+   "do not",
+   "don't",
+   "not use",
+   "should not",
+   "avoid",
+   "must not",
+   "cannot",
+   "no.",
+   "no,",
+   "නොකරන්න",
+   "එපා",
+   "නොවේ",
+   "නොගත",
+   "නොහැක",
+   "බැහැ",
+   "වැළකී",
+   "வேண்டாம்",
+   "கூடாது",
+   "இல்லை",
+   "தவிர்"
+  ],
+  "gold_answer": "do not",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "safety"
+  ]
+ },
+ {
+  "id": "ph003-si",
+  "group": "ph003",
+  "domain": "health",
+  "language": "si",
+  "query": "ඩෙංගු උණ සඳහා ඇස්පිරින් ගත හැකිද?",
+  "gold_answers": [
+   "do not",
+   "don't",
+   "not use",
+   "should not",
+   "avoid",
+   "must not",
+   "cannot",
+   "no.",
+   "no,",
+   "නොකරන්න",
+   "එපා",
+   "නොවේ",
+   "නොගත",
+   "නොහැක",
+   "බැහැ",
+   "වැළකී",
+   "வேண்டாம்",
+   "கூடாது",
+   "இல்லை",
+   "தவிர்"
+  ],
+  "gold_answer": "do not",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "safety"
+  ]
+ },
+ {
+  "id": "ph003-ta",
+  "group": "ph003",
+  "domain": "health",
+  "language": "ta",
+  "query": "டெங்கு காய்ச்சலுக்கு அஸ்பிரின் எடுக்கலாமா?",
+  "gold_answers": [
+   "do not",
+   "don't",
+   "not use",
+   "should not",
+   "avoid",
+   "must not",
+   "cannot",
+   "no.",
+   "no,",
+   "නොකරන්න",
+   "එපා",
+   "නොවේ",
+   "නොගත",
+   "නොහැක",
+   "බැහැ",
+   "වැළකී",
+   "வேண்டாம்",
+   "கூடாது",
+   "இல்லை",
+   "தவிர்"
+  ],
+  "gold_answer": "do not",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "safety"
+  ]
+ },
+ {
+  "id": "ph003-mx",
+  "group": "ph003",
+  "domain": "health",
+  "language": "mixed",
+  "query": "dengue ek athi unata aspirin ganna puluwanda or oneda?",
+  "gold_answers": [
+   "do not",
+   "don't",
+   "not use",
+   "should not",
+   "avoid",
+   "must not",
+   "cannot",
+   "no.",
+   "no,",
+   "නොකරන්න",
+   "එපා",
+   "නොවේ",
+   "නොගත",
+   "නොහැක",
+   "බැහැ",
+   "වැළකී",
+   "வேண்டாம்",
+   "கூடாது",
+   "இல்லை",
+   "தவிர்"
+  ],
+  "gold_answer": "do not",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "safety"
+  ]
+ },
+ {
+  "id": "ph004-en",
+  "group": "ph004",
+  "domain": "health",
+  "language": "en",
+  "query": "Which NSAIDs should be avoided in dengue?",
+  "gold_answers": [
+   "Ibuprofen",
+   "Aspirin",
+   "Diclofenac",
+   "ඉබුප්‍රෝෆන්",
+   "ඇස්පිරින්",
+   "ඩික්ලොෆිනැක්",
+   "ஐபுபுரோஃபன்",
+   "அஸ்பிரின்",
+   "டிக்லோஃபெனாக்"
+  ],
+  "gold_answer": "Ibuprofen",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "drug"
+  ]
+ },
+ {
+  "id": "ph004-si",
+  "group": "ph004",
+  "domain": "health",
+  "language": "si",
+  "query": "ඩෙංගු රෝගයේදී වැළකිය යුතු NSAID ඖෂධ මොනවාද?",
+  "gold_answers": [
+   "Ibuprofen",
+   "Aspirin",
+   "Diclofenac",
+   "ඉබුප්‍රෝෆන්",
+   "ඇස්පිරින්",
+   "ඩික්ලොෆිනැක්",
+   "ஐபுபுரோஃபன்",
+   "அஸ்பிரின்",
+   "டிக்லோஃபெனாக்"
+  ],
+  "gold_answer": "Ibuprofen",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "drug"
+  ]
+ },
+ {
+  "id": "ph004-ta",
+  "group": "ph004",
+  "domain": "health",
+  "language": "ta",
+  "query": "டெங்குவில் தவிர்க்க வேண்டிய NSAID மருந்துகள் எவை?",
+  "gold_answers": [
+   "Ibuprofen",
+   "Aspirin",
+   "Diclofenac",
+   "ඉබුප්‍රෝෆන්",
+   "ඇස්පිරින්",
+   "ඩික්ලොෆිනැක්",
+   "ஐபுபுரோஃபன்",
+   "அஸ்பிரின்",
+   "டிக்லோஃபெனாக்"
+  ],
+  "gold_answer": "Ibuprofen",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "drug"
+  ]
+ },
+ {
+  "id": "ph005-en",
+  "group": "ph005",
+  "domain": "health",
+  "language": "en",
+  "query": "What are the warning signs that require immediate medical attention in dengue?",
+  "gold_answers": [
+   "vomiting",
+   "abdominal pain",
+   "bleeding",
+   "lethargy",
+   "cold extremities",
+   "වමනය",
+   "රුධිර",
+   "බඩ වේදනාව",
+   "வாந்தி",
+   "இரத்த",
+   "வயிற்று வலி"
+  ],
+  "gold_answer": "vomiting",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "symptoms"
+  ]
+ },
+ {
+  "id": "ph005-si",
+  "group": "ph005",
+  "domain": "health",
+  "language": "si",
+  "query": "ඩෙංගු රෝගයේදී වහාම වෛද්‍ය ප්‍රතිකාර අවශ්‍ය අනතුරු ලක්ෂණ මොනවාද?",
+  "gold_answers": [
+   "vomiting",
+   "abdominal pain",
+   "bleeding",
+   "lethargy",
+   "cold extremities",
+   "වමනය",
+   "රුධිර",
+   "බඩ වේදනාව",
+   "வாந்தி",
+   "இரத்த",
+   "வயிற்று வலி"
+  ],
+  "gold_answer": "vomiting",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "symptoms"
+  ]
+ },
+ {
+  "id": "ph005-ta",
+  "group": "ph005",
+  "domain": "health",
+  "language": "ta",
+  "query": "டெங்குவில் உடனடி மருத்துவ உதவி தேவைப்படும் எச்சரிக்கை அறிகுறிகள் எவை?",
+  "gold_answers": [
+   "vomiting",
+   "abdominal pain",
+   "bleeding",
+   "lethargy",
+   "cold extremities",
+   "වමනය",
+   "රුධිර",
+   "බඩ වේදනාව",
+   "வாந்தி",
+   "இரத்த",
+   "வயிற்று வலி"
+  ],
+  "gold_answer": "vomiting",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "symptoms"
+  ]
+ },
+ {
+  "id": "ph006-en",
+  "group": "ph006",
+  "domain": "health",
+  "language": "en",
+  "query": "Is papaya leaf juice a proven cure for dengue?",
+  "gold_answers": [
+   "not proven",
+   "not a proven",
+   "no proof",
+   "not replace",
+   "must not replace",
+   "unproven",
+   "no,",
+   "no.",
+   "නොවේ",
+   "සනාථ වී නැත",
+   "ඔප්පු වී නැත",
+   "නැත",
+   "நிரூபிக்கப்படவில்லை",
+   "இல்லை",
+   "அல்ல"
+  ],
+  "gold_answer": "not proven",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "misinformation"
+  ]
+ },
+ {
+  "id": "ph006-si",
+  "group": "ph006",
+  "domain": "health",
+  "language": "si",
+  "query": "පැපොල් කොළ යුෂ ඩෙංගු සඳහා සනාථ වූ ප්‍රතිකාරයක්ද?",
+  "gold_answers": [
+   "not proven",
+   "not a proven",
+   "no proof",
+   "not replace",
+   "must not replace",
+   "unproven",
+   "no,",
+   "no.",
+   "නොවේ",
+   "සනාථ වී නැත",
+   "ඔප්පු වී නැත",
+   "නැත",
+   "நிரூபிக்கப்படவில்லை",
+   "இல்லை",
+   "அல்ல"
+  ],
+  "gold_answer": "not proven",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "misinformation"
+  ]
+ },
+ {
+  "id": "ph006-ta",
+  "group": "ph006",
+  "domain": "health",
+  "language": "ta",
+  "query": "பப்பாளி இலைச் சாறு டெங்குவுக்கு நிரூபிக்கப்பட்ட சிகிச்சையா?",
+  "gold_answers": [
+   "not proven",
+   "not a proven",
+   "no proof",
+   "not replace",
+   "must not replace",
+   "unproven",
+   "no,",
+   "no.",
+   "නොවේ",
+   "සනාථ වී නැත",
+   "ඔප්පු වී නැත",
+   "නැත",
+   "நிரூபிக்கப்படவில்லை",
+   "இல்லை",
+   "அல்ல"
+  ],
+  "gold_answer": "not proven",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "misinformation"
+  ]
+ },
+ {
+  "id": "ph007-en",
+  "group": "ph007",
+  "domain": "health",
+  "language": "en",
+  "query": "How can I prevent dengue at home?",
+  "gold_answers": [
+   "eliminat",
+   "breeding",
+   "container",
+   "empty",
+   "cover",
+   "mosquito",
+   "බෝ වන",
+   "භාජන",
+   "මදුරු",
+   "ජලය",
+   "பெருகும்",
+   "கொள்கலன்",
+   "கொசு",
+   "நீர்"
+  ],
+  "gold_answer": "eliminat",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "prevention"
+  ]
+ },
+ {
+  "id": "ph007-si",
+  "group": "ph007",
+  "domain": "health",
+  "language": "si",
+  "query": "නිවසේදී ඩෙංගු වැළැක්විය හැක්කේ කෙසේද?",
+  "gold_answers": [
+   "eliminat",
+   "breeding",
+   "container",
+   "empty",
+   "cover",
+   "mosquito",
+   "බෝ වන",
+   "භාජන",
+   "මදුරු",
+   "ජලය",
+   "பெருகும்",
+   "கொள்கலன்",
+   "கொசு",
+   "நீர்"
+  ],
+  "gold_answer": "eliminat",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "prevention"
+  ]
+ },
+ {
+  "id": "ph007-ta",
+  "group": "ph007",
+  "domain": "health",
+  "language": "ta",
+  "query": "வீட்டில் டெங்குவை எப்படித் தடுக்கலாம்?",
+  "gold_answers": [
+   "eliminat",
+   "breeding",
+   "container",
+   "empty",
+   "cover",
+   "mosquito",
+   "බෝ වන",
+   "භාජන",
+   "මදුරු",
+   "ජලය",
+   "பெருகும்",
+   "கொள்கலன்",
+   "கொசு",
+   "நீர்"
+  ],
+  "gold_answer": "eliminat",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "prevention"
+  ]
+ },
+ {
+  "id": "ph008-en",
+  "group": "ph008",
+  "domain": "health",
+  "language": "en",
+  "query": "When is the BCG vaccine given?",
+  "gold_answers": [
+   "0 to 4 weeks",
+   "4 weeks",
+   "four weeks",
+   "24 hours",
+   "before the newborn leaves",
+   "at birth",
+   "සති 4",
+   "සති හතර",
+   "පැය 24",
+   "4 வாரங்க",
+   "நான்கு வாரங்க",
+   "24 மணி"
+  ],
+  "gold_answer": "0 to 4 weeks",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "schedule"
+  ]
+ },
+ {
+  "id": "ph008-si",
+  "group": "ph008",
+  "domain": "health",
+  "language": "si",
+  "query": "BCG එන්නත දෙන්නේ කවදාද?",
+  "gold_answers": [
+   "0 to 4 weeks",
+   "4 weeks",
+   "four weeks",
+   "24 hours",
+   "before the newborn leaves",
+   "at birth",
+   "සති 4",
+   "සති හතර",
+   "පැය 24",
+   "4 வாரங்க",
+   "நான்கு வாரங்க",
+   "24 மணி"
+  ],
+  "gold_answer": "0 to 4 weeks",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "schedule"
+  ]
+ },
+ {
+  "id": "ph008-ta",
+  "group": "ph008",
+  "domain": "health",
+  "language": "ta",
+  "query": "BCG தடுப்பூசி எப்போது வழங்கப்படுகிறது?",
+  "gold_answers": [
+   "0 to 4 weeks",
+   "4 weeks",
+   "four weeks",
+   "24 hours",
+   "before the newborn leaves",
+   "at birth",
+   "සති 4",
+   "සති හතර",
+   "පැය 24",
+   "4 வாரங்க",
+   "நான்கு வாரங்க",
+   "24 மணி"
+  ],
+  "gold_answer": "0 to 4 weeks",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "schedule"
+  ]
+ },
+ {
+  "id": "ph008-mx",
+  "group": "ph008",
+  "domain": "health",
+  "language": "mixed",
+  "query": "BCG vaccine eka baby ta denne kawadada?",
+  "gold_answers": [
+   "0 to 4 weeks",
+   "4 weeks",
+   "four weeks",
+   "24 hours",
+   "before the newborn leaves",
+   "at birth",
+   "සති 4",
+   "සති හතර",
+   "පැය 24",
+   "4 வாரங்க",
+   "நான்கு வாரங்க",
+   "24 மணி"
+  ],
+  "gold_answer": "0 to 4 weeks",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "schedule"
+  ]
+ },
+ {
+  "id": "ph009-en",
+  "group": "ph009",
+  "domain": "health",
+  "language": "en",
+  "query": "When did Sri Lanka launch the EPI programme?",
+  "gold_answers": [
+   "1978"
+  ],
+  "gold_answer": "1978",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "year"
+  ]
+ },
+ {
+  "id": "ph009-si",
+  "group": "ph009",
+  "domain": "health",
+  "language": "si",
+  "query": "ශ්‍රී ලංකාවේ EPI එන්නත් වැඩසටහන ආරම්භ කළේ කවදාද?",
+  "gold_answers": [
+   "1978"
+  ],
+  "gold_answer": "1978",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "year"
+  ]
+ },
+ {
+  "id": "ph009-ta",
+  "group": "ph009",
+  "domain": "health",
+  "language": "ta",
+  "query": "இலங்கையில் EPI நோய்த்தடுப்பூசி திட்டம் எப்போது தொடங்கப்பட்டது?",
+  "gold_answers": [
+   "1978"
+  ],
+  "gold_answer": "1978",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "year"
+  ]
+ },
+ {
+  "id": "ph010-en",
+  "group": "ph010",
+  "domain": "health",
+  "language": "en",
+  "query": "When was the Hib-containing pentavalent vaccine introduced in Sri Lanka?",
+  "gold_answers": [
+   "2008"
+  ],
+  "gold_answer": "2008",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "year"
+  ]
+ },
+ {
+  "id": "ph010-si",
+  "group": "ph010",
+  "domain": "health",
+  "language": "si",
+  "query": "ශ්‍රී ලංකාවේ Hib අඩංගු පංචසංයුජ (pentavalent) එන්නත හඳුන්වා දුන්නේ කවදාද?",
+  "gold_answers": [
+   "2008"
+  ],
+  "gold_answer": "2008",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "year"
+  ]
+ },
+ {
+  "id": "ph010-ta",
+  "group": "ph010",
+  "domain": "health",
+  "language": "ta",
+  "query": "இலங்கையில் Hib அடங்கிய ஐந்து-இணைப்பு (pentavalent) தடுப்பூசி எப்போது அறிமுகப்படுத்தப்பட்டது?",
+  "gold_answers": [
+   "2008"
+  ],
+  "gold_answer": "2008",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "year"
+  ]
+ },
+ {
+  "id": "ph011-en",
+  "group": "ph011",
+  "domain": "health",
+  "language": "en",
+  "query": "When did the MMR catch-up programme start?",
+  "gold_answers": [
+   "6 January 2024",
+   "January 6, 2024",
+   "January 2024",
+   "2024-01-06",
+   "06/01/2024",
+   "ජනවාරි 6",
+   "6 ජනවාරි",
+   "2024 ජනවාරි",
+   "ஜனவரி 6",
+   "6 ஜனவரி",
+   "2024 ஜனவரி"
+  ],
+  "gold_answer": "6 January 2024",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "date"
+  ]
+ },
+ {
+  "id": "ph011-si",
+  "group": "ph011",
+  "domain": "health",
+  "language": "si",
+  "query": "MMR Catch-up එන්නත් වැඩසටහන ආරම්භ වූයේ කවදාද?",
+  "gold_answers": [
+   "6 January 2024",
+   "January 6, 2024",
+   "January 2024",
+   "2024-01-06",
+   "06/01/2024",
+   "ජනවාරි 6",
+   "6 ජනවාරි",
+   "2024 ජනවාරි",
+   "ஜனவரி 6",
+   "6 ஜனவரி",
+   "2024 ஜனவரி"
+  ],
+  "gold_answer": "6 January 2024",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "date"
+  ]
+ },
+ {
+  "id": "ph011-ta",
+  "group": "ph011",
+  "domain": "health",
+  "language": "ta",
+  "query": "MMR Catch-up திட்டம் எப்போது தொடங்கப்பட்டது?",
+  "gold_answers": [
+   "6 January 2024",
+   "January 6, 2024",
+   "January 2024",
+   "2024-01-06",
+   "06/01/2024",
+   "ජනවාරි 6",
+   "6 ජනවාරි",
+   "2024 ජනවාරි",
+   "ஜனவரி 6",
+   "6 ஜனவரி",
+   "2024 ஜனவரி"
+  ],
+  "gold_answer": "6 January 2024",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "date"
+  ]
+ },
+ {
+  "id": "ph011-mx",
+  "group": "ph011",
+  "domain": "health",
+  "language": "mixed",
+  "query": "MMR catch-up programme eka start une kawadada?",
+  "gold_answers": [
+   "6 January 2024",
+   "January 6, 2024",
+   "January 2024",
+   "2024-01-06",
+   "06/01/2024",
+   "ජනවාරි 6",
+   "6 ජනවාරි",
+   "2024 ජනවාරි",
+   "ஜனவரி 6",
+   "6 ஜனவரி",
+   "2024 ஜனவரி"
+  ],
+  "gold_answer": "6 January 2024",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "date"
+  ]
+ },
+ {
+  "id": "ph012-en",
+  "group": "ph012",
+  "domain": "health",
+  "language": "en",
+  "query": "Which age group does the MMR catch-up programme target?",
+  "gold_answers": [
+   "9 months to 15 years",
+   "9 months",
+   "15 years",
+   "මාස 9",
+   "අවුරුදු 15",
+   "9 மாத",
+   "15 வயது",
+   "15 ஆண்டு"
+  ],
+  "gold_answer": "9 months to 15 years",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "age"
+  ]
+ },
+ {
+  "id": "ph012-si",
+  "group": "ph012",
+  "domain": "health",
+  "language": "si",
+  "query": "MMR Catch-up වැඩසටහන ඉලක්ක කරන්නේ කුමන වයස් කාණ්ඩයද?",
+  "gold_answers": [
+   "9 months to 15 years",
+   "9 months",
+   "15 years",
+   "මාස 9",
+   "අවුරුදු 15",
+   "9 மாத",
+   "15 வயது",
+   "15 ஆண்டு"
+  ],
+  "gold_answer": "9 months to 15 years",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "age"
+  ]
+ },
+ {
+  "id": "ph012-ta",
+  "group": "ph012",
+  "domain": "health",
+  "language": "ta",
+  "query": "MMR Catch-up திட்டம் எந்த வயதுப் பிரிவை இலக்காகக் கொண்டுள்ளது?",
+  "gold_answers": [
+   "9 months to 15 years",
+   "9 months",
+   "15 years",
+   "මාස 9",
+   "අවුරුදු 15",
+   "9 மாத",
+   "15 வயது",
+   "15 ஆண்டு"
+  ],
+  "gold_answer": "9 months to 15 years",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "age"
+  ]
+ },
+ {
+  "id": "ph013-en",
+  "group": "ph013",
+  "domain": "health",
+  "language": "en",
+  "query": "Should a child be vaccinated if they have a fever above 38 degrees on the day?",
+  "gold_answers": [
+   "should not",
+   "not be vaccinated",
+   "do not",
+   "reschedul",
+   "postpone",
+   "no,",
+   "no.",
+   "නොකරන්න",
+   "නොකළ යුතු",
+   "එපා",
+   "කල් දමන්න",
+   "නොදිය",
+   "கூடாது",
+   "வேண்டாம்",
+   "ஒத்திவை",
+   "தள்ளிவை"
+  ],
+  "gold_answer": "should not",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "safety"
+  ]
+ },
+ {
+  "id": "ph013-si",
+  "group": "ph013",
+  "domain": "health",
+  "language": "si",
+  "query": "එන්නත දෙන දිනයේ දරුවාට සෙල්සියස් අංශක 38 ට වැඩි උණක් ඇත්නම් එන්නත දිය යුතුද?",
+  "gold_answers": [
+   "should not",
+   "not be vaccinated",
+   "do not",
+   "reschedul",
+   "postpone",
+   "no,",
+   "no.",
+   "නොකරන්න",
+   "නොකළ යුතු",
+   "එපා",
+   "කල් දමන්න",
+   "නොදිය",
+   "கூடாது",
+   "வேண்டாம்",
+   "ஒத்திவை",
+   "தள்ளிவை"
+  ],
+  "gold_answer": "should not",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "safety"
+  ]
+ },
+ {
+  "id": "ph013-ta",
+  "group": "ph013",
+  "domain": "health",
+  "language": "ta",
+  "query": "தடுப்பூசி நாளில் குழந்தைக்கு 38 டிகிரி செல்சியஸுக்கு மேல் காய்ச்சல் இருந்தால் தடுப்பூசி போடலாமா?",
+  "gold_answers": [
+   "should not",
+   "not be vaccinated",
+   "do not",
+   "reschedul",
+   "postpone",
+   "no,",
+   "no.",
+   "නොකරන්න",
+   "නොකළ යුතු",
+   "එපා",
+   "කල් දමන්න",
+   "නොදිය",
+   "கூடாது",
+   "வேண்டாம்",
+   "ஒத்திவை",
+   "தள்ளிவை"
+  ],
+  "gold_answer": "should not",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "safety"
+  ]
+ },
+ {
+  "id": "ph014-en",
+  "group": "ph014",
+  "domain": "health",
+  "language": "en",
+  "query": "When should antenatal care begin in pregnancy?",
+  "gold_answers": [
+   "12 weeks",
+   "before 12",
+   "twelve weeks",
+   "සති 12",
+   "12 වාරங்க",
+   "12 வாரங்க",
+   "12"
+  ],
+  "gold_answer": "12 weeks",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "schedule"
+  ]
+ },
+ {
+  "id": "ph014-si",
+  "group": "ph014",
+  "domain": "health",
+  "language": "si",
+  "query": "පූර්ව ප්‍රසව සත්කාර ආරම්භ කළ යුත්තේ සති කීයකට පෙරද?",
+  "gold_answers": [
+   "12 weeks",
+   "before 12",
+   "twelve weeks",
+   "සති 12",
+   "12 වාරங்க",
+   "12 வாரங்க",
+   "12"
+  ],
+  "gold_answer": "12 weeks",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "schedule"
+  ]
+ },
+ {
+  "id": "ph014-ta",
+  "group": "ph014",
+  "domain": "health",
+  "language": "ta",
+  "query": "கர்ப்பக் கால பராமரிப்பு எத்தனை வாரங்களுக்கு முன் தொடங்க வேண்டும்?",
+  "gold_answers": [
+   "12 weeks",
+   "before 12",
+   "twelve weeks",
+   "සති 12",
+   "12 වාරங்க",
+   "12 வாரங்க",
+   "12"
+  ],
+  "gold_answer": "12 weeks",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "schedule"
+  ]
+ },
+ {
+  "id": "ph014-mx",
+  "group": "ph014",
+  "domain": "health",
+  "language": "mixed",
+  "query": "PHM register karanna first visit ek kohomada 12 weeks?",
+  "gold_answers": [
+   "12 weeks",
+   "before 12",
+   "twelve weeks",
+   "සති 12",
+   "12 වාරங்க",
+   "12 வாரங்க",
+   "12"
+  ],
+  "gold_answer": "12 weeks",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "schedule"
+  ]
+ },
+ {
+  "id": "ph015-en",
+  "group": "ph015",
+  "domain": "health",
+  "language": "en",
+  "query": "How many antenatal clinic visits are recommended in Sri Lanka?",
+  "gold_answers": [
+   "8",
+   "eight",
+   "අට",
+   "எட்டு"
+  ],
+  "gold_answer": "8",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "count"
+  ]
+ },
+ {
+  "id": "ph015-si",
+  "group": "ph015",
+  "domain": "health",
+  "language": "si",
+  "query": "ශ්‍රී ලංකාවේ නිර්දේශිත පූර්ව ප්‍රසව සායන පැමිණීම් ගණන කීයද?",
+  "gold_answers": [
+   "8",
+   "eight",
+   "අට",
+   "எட்டு"
+  ],
+  "gold_answer": "8",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "count"
+  ]
+ },
+ {
+  "id": "ph015-ta",
+  "group": "ph015",
+  "domain": "health",
+  "language": "ta",
+  "query": "இலங்கையில் பரிந்துரைக்கப்படும் கர்ப்பக் கால கிளினிக் சந்திப்புகள் எத்தனை?",
+  "gold_answers": [
+   "8",
+   "eight",
+   "අට",
+   "எட்டு"
+  ],
+  "gold_answer": "8",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "count"
+  ]
+ },
+ {
+  "id": "ph016-en",
+  "group": "ph016",
+  "domain": "health",
+  "language": "en",
+  "query": "Who provides home antenatal care in Sri Lanka?",
+  "gold_answers": [
+   "PHM",
+   "Public Health Midwife",
+   "midwife",
+   "සෞඛ්‍ය මාතාව",
+   "පවුල් සෞඛ්‍ය",
+   "මාතාව",
+   "மருத்துவச்சி",
+   "சுகாதார மருத்துவச்சி"
+  ],
+  "gold_answer": "PHM",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "role"
+  ]
+ },
+ {
+  "id": "ph016-si",
+  "group": "ph016",
+  "domain": "health",
+  "language": "si",
+  "query": "ශ්‍රී ලංකාවේ නිවසේදී පූර්ව ප්‍රසව සත්කාර ලබා දෙන්නේ කවුද?",
+  "gold_answers": [
+   "PHM",
+   "Public Health Midwife",
+   "midwife",
+   "සෞඛ්‍ය මාතාව",
+   "පවුල් සෞඛ්‍ය",
+   "මාතාව",
+   "மருத்துவச்சி",
+   "சுகாதார மருத்துவச்சி"
+  ],
+  "gold_answer": "PHM",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "role"
+  ]
+ },
+ {
+  "id": "ph016-ta",
+  "group": "ph016",
+  "domain": "health",
+  "language": "ta",
+  "query": "இலங்கையில் வீட்டில் கர்ப்பக் கால பராமரிப்பை வழங்குவது யார்?",
+  "gold_answers": [
+   "PHM",
+   "Public Health Midwife",
+   "midwife",
+   "සෞඛ්‍ය මාතාව",
+   "පවුල් සෞඛ්‍ය",
+   "මාතාව",
+   "மருத்துவச்சி",
+   "சுகாதார மருத்துவச்சி"
+  ],
+  "gold_answer": "PHM",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "role"
+  ]
+ },
+ {
+  "id": "ph017-en",
+  "group": "ph017",
+  "domain": "health",
+  "language": "en",
+  "query": "Do antibiotics treat the flu?",
+  "gold_answers": [
+   "do not",
+   "don't",
+   "not treat",
+   "does not",
+   "cannot",
+   "no,",
+   "no.",
+   "නොවේ",
+   "නැත",
+   "නොකරයි",
+   "එපා",
+   "නොහැක",
+   "බැහැ",
+   "இல்லை",
+   "அளிக்காது",
+   "மாட்டாது",
+   "வேண்டாம்",
+   "முடியாது"
+  ],
+  "gold_answer": "do not",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "misinformation"
+  ]
+ },
+ {
+  "id": "ph017-si",
+  "group": "ph017",
+  "domain": "health",
+  "language": "si",
+  "query": "ප්‍රතිජීවක ඖෂධ ඉන්ෆ්ලුවෙන්සා (උණ) සුව කරයිද?",
+  "gold_answers": [
+   "do not",
+   "don't",
+   "not treat",
+   "does not",
+   "cannot",
+   "no,",
+   "no.",
+   "නොවේ",
+   "නැත",
+   "නොකරයි",
+   "එපා",
+   "නොහැක",
+   "බැහැ",
+   "இல்லை",
+   "அளிக்காது",
+   "மாட்டாது",
+   "வேண்டாம்",
+   "முடியாது"
+  ],
+  "gold_answer": "do not",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "misinformation"
+  ]
+ },
+ {
+  "id": "ph017-ta",
+  "group": "ph017",
+  "domain": "health",
+  "language": "ta",
+  "query": "நுண்ணுயிர் எதிர்ப்பிகள் இன்ஃப்ளுயன்சாவை குணப்படுத்துமா?",
+  "gold_answers": [
+   "do not",
+   "don't",
+   "not treat",
+   "does not",
+   "cannot",
+   "no,",
+   "no.",
+   "නොවේ",
+   "නැත",
+   "නොකරයි",
+   "එපා",
+   "නොහැක",
+   "බැහැ",
+   "இல்லை",
+   "அளிக்காது",
+   "மாட்டாது",
+   "வேண்டாம்",
+   "முடியாது"
+  ],
+  "gold_answer": "do not",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "misinformation"
+  ]
+ },
+ {
+  "id": "ph017-mx",
+  "group": "ph017",
+  "domain": "health",
+  "language": "mixed",
+  "query": "flu ekata antibiotics ganna one da?",
+  "gold_answers": [
+   "do not",
+   "don't",
+   "not treat",
+   "does not",
+   "cannot",
+   "no,",
+   "no.",
+   "නොවේ",
+   "නැත",
+   "නොකරයි",
+   "එපා",
+   "නොහැක",
+   "බැහැ",
+   "இல்லை",
+   "அளிக்காது",
+   "மாட்டாது",
+   "வேண்டாம்",
+   "முடியாது"
+  ],
+  "gold_answer": "do not",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "misinformation"
+  ]
+ },
+ {
+  "id": "ph018-en",
+  "group": "ph018",
+  "domain": "health",
+  "language": "en",
+  "query": "When should I seek medical attention for flu symptoms?",
+  "gold_answers": [
+   "7 days",
+   "seven days",
+   "3 days",
+   "three days",
+   "breathing",
+   "difficult",
+   "දින 7",
+   "දින 3",
+   "හුස්ම",
+   "7 நாட்க",
+   "3 நாட்க",
+   "சுவாச",
+   "மூச்சு"
+  ],
+  "gold_answer": "7 days",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "duration"
+  ]
+ },
+ {
+  "id": "ph018-si",
+  "group": "ph018",
+  "domain": "health",
+  "language": "si",
+  "query": "ඉන්ෆ්ලුවෙන්සා රෝග ලක්ෂණ සඳහා වෛද්‍ය උපදෙස් ලබාගත යුත්තේ කවදාද?",
+  "gold_answers": [
+   "7 days",
+   "seven days",
+   "3 days",
+   "three days",
+   "breathing",
+   "difficult",
+   "දින 7",
+   "දින 3",
+   "හුස්ම",
+   "7 நாட்க",
+   "3 நாட்க",
+   "சுவாச",
+   "மூச்சு"
+  ],
+  "gold_answer": "7 days",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "duration"
+  ]
+ },
+ {
+  "id": "ph018-ta",
+  "group": "ph018",
+  "domain": "health",
+  "language": "ta",
+  "query": "இன்ஃப்ளுயன்சா அறிகுறிகளுக்கு எப்போது மருத்துவ உதவியை நாட வேண்டும்?",
+  "gold_answers": [
+   "7 days",
+   "seven days",
+   "3 days",
+   "three days",
+   "breathing",
+   "difficult",
+   "දින 7",
+   "දින 3",
+   "හුස්ම",
+   "7 நாட்க",
+   "3 நாட்க",
+   "சுவாச",
+   "மூச்சு"
+  ],
+  "gold_answer": "7 days",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "duration"
+  ]
+ },
+ {
+  "id": "ph027-en",
+  "group": "ph027",
+  "domain": "health",
+  "language": "en",
+  "query": "Does drinking lime juice cure dengue?",
+  "gold_answers": [
+   "not proven",
+   "not a proven",
+   "no proof",
+   "not replace",
+   "must not replace",
+   "unproven",
+   "does not cure",
+   "no,",
+   "no.",
+   "නොවේ",
+   "සනාථ වී නැත",
+   "ඔප්පු වී නැත",
+   "නැත",
+   "සුව නොවේ",
+   "நிரூபிக்கப்படவில்லை",
+   "இல்லை",
+   "அல்ல",
+   "குணமாக்காது"
+  ],
+  "gold_answer": "not proven",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "misinformation",
+   "false_premise"
+  ]
+ },
+ {
+  "id": "ph027-si",
+  "group": "ph027",
+  "domain": "health",
+  "language": "si",
+  "query": "දෙහි යුෂ පානය කිරීමෙන් ඩෙංගු සුව වේද?",
+  "gold_answers": [
+   "not proven",
+   "not a proven",
+   "no proof",
+   "not replace",
+   "must not replace",
+   "unproven",
+   "does not cure",
+   "no,",
+   "no.",
+   "නොවේ",
+   "සනාථ වී නැත",
+   "ඔප්පු වී නැත",
+   "නැත",
+   "සුව නොවේ",
+   "நிரூபிக்கப்படவில்லை",
+   "இல்லை",
+   "அல்ல",
+   "குணமாக்காது"
+  ],
+  "gold_answer": "not proven",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "misinformation",
+   "false_premise"
+  ]
+ },
+ {
+  "id": "ph027-ta",
+  "group": "ph027",
+  "domain": "health",
+  "language": "ta",
+  "query": "எலுமிச்சை சாறு குடிப்பதால் டெங்கு குணமாகுமா?",
+  "gold_answers": [
+   "not proven",
+   "not a proven",
+   "no proof",
+   "not replace",
+   "must not replace",
+   "unproven",
+   "does not cure",
+   "no,",
+   "no.",
+   "නොවේ",
+   "සනාථ වී නැත",
+   "ඔප්පු වී නැත",
+   "නැත",
+   "සුව නොවේ",
+   "நிரூபிக்கப்படவில்லை",
+   "இல்லை",
+   "அல்ல",
+   "குணமாக்காது"
+  ],
+  "gold_answer": "not proven",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "misinformation",
+   "false_premise"
+  ]
+ },
+ {
+  "id": "ph028-en",
+  "group": "ph028",
+  "domain": "health",
+  "language": "en",
+  "query": "Can I treat my child's flu with antibiotics?",
+  "gold_answers": [
+   "do not",
+   "don't",
+   "not treat",
+   "does not",
+   "should not",
+   "cannot",
+   "no,",
+   "no.",
+   "නොවේ",
+   "නැත",
+   "නොකරයි",
+   "එපා",
+   "නොහැක",
+   "බැහැ",
+   "இல்லை",
+   "அளிக்காது",
+   "மாட்டாது",
+   "வேண்டாம்",
+   "கூடாது",
+   "முடியாது"
+  ],
+  "gold_answer": "do not",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "misinformation",
+   "false_premise"
+  ]
+ },
+ {
+  "id": "ph028-si",
+  "group": "ph028",
+  "domain": "health",
+  "language": "si",
+  "query": "මගේ දරුවාගේ උණට ප්‍රතිජීවක ඖෂධ දී ප්‍රතිකාර කළ හැකිද?",
+  "gold_answers": [
+   "do not",
+   "don't",
+   "not treat",
+   "does not",
+   "should not",
+   "cannot",
+   "no,",
+   "no.",
+   "නොවේ",
+   "නැත",
+   "නොකරයි",
+   "එපා",
+   "නොහැක",
+   "බැහැ",
+   "இல்லை",
+   "அளிக்காது",
+   "மாட்டாது",
+   "வேண்டாம்",
+   "கூடாது",
+   "முடியாது"
+  ],
+  "gold_answer": "do not",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "misinformation",
+   "false_premise"
+  ]
+ },
+ {
+  "id": "ph028-ta",
+  "group": "ph028",
+  "domain": "health",
+  "language": "ta",
+  "query": "என் குழந்தையின் காய்ச்சலுக்கு நுண்ணுயிர் எதிர்ப்பிகளால் சிகிச்சை அளிக்கலாமா?",
+  "gold_answers": [
+   "do not",
+   "don't",
+   "not treat",
+   "does not",
+   "should not",
+   "cannot",
+   "no,",
+   "no.",
+   "නොවේ",
+   "නැත",
+   "නොකරයි",
+   "එපා",
+   "නොහැක",
+   "බැහැ",
+   "இல்லை",
+   "அளிக்காது",
+   "மாட்டாது",
+   "வேண்டாம்",
+   "கூடாது",
+   "முடியாது"
+  ],
+  "gold_answer": "do not",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "misinformation",
+   "false_premise"
+  ]
+ },
+ {
+  "id": "ph029-en",
+  "group": "ph029",
+  "domain": "health",
+  "language": "en",
+  "query": "What is the recommended insulin dosage for an adult diabetic?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "ph029-si",
+  "group": "ph029",
+  "domain": "health",
+  "language": "si",
+  "query": "වැඩිහිටි දියවැඩියා රෝගියෙකුට නිර්දේශිත ඉන්සියුලින් මාත්‍රාව කොපමණද?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "ph029-ta",
+  "group": "ph029",
+  "domain": "health",
+  "language": "ta",
+  "query": "ஒரு பெரியவர் நீரிழிவு நோயாளிக்கு பரிந்துரைக்கப்படும் இன்சுலின் அளவு என்ன?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "ph029-mx",
+  "group": "ph029",
+  "domain": "health",
+  "language": "mixed",
+  "query": "adult diabetic kenekta insulin dose eka kiyada?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "ph030-en",
+  "group": "ph030",
+  "domain": "health",
+  "language": "en",
+  "query": "What is the cure for type 2 diabetes?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "ph030-si",
+  "group": "ph030",
+  "domain": "health",
+  "language": "si",
+  "query": "දෙවන වර්ගයේ දියවැඩියාව සඳහා ප්‍රතිකාරය කුමක්ද?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "ph030-ta",
+  "group": "ph030",
+  "domain": "health",
+  "language": "ta",
+  "query": "வகை 2 நீரிழிவுக்கு என்ன மருந்து குணப்படுத்தும்?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "dr001-en",
+  "group": "dr001",
+  "domain": "disaster",
+  "language": "en",
+  "query": "What is the Disaster Management Centre emergency hotline?",
+  "gold_answers": [
+   "117"
+  ],
+  "gold_answer": "117",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "hotline"
+  ]
+ },
+ {
+  "id": "dr001-si",
+  "group": "dr001",
+  "domain": "disaster",
+  "language": "si",
+  "query": "ආපදා කළමනාකරණ මධ්‍යස්ථානයේ අවස්ථානුකූල දුරකථන අංකය කුමක්ද?",
+  "gold_answers": [
+   "117"
+  ],
+  "gold_answer": "117",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "hotline"
+  ]
+ },
+ {
+  "id": "dr001-ta",
+  "group": "dr001",
+  "domain": "disaster",
+  "language": "ta",
+  "query": "பேரிடர் முகாமைத்துவ மையத்தின் அவசர தொலைபேசி எண் என்ன?",
+  "gold_answers": [
+   "117"
+  ],
+  "gold_answer": "117",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "hotline"
+  ]
+ },
+ {
+  "id": "dr001-mx",
+  "group": "dr001",
+  "domain": "disaster",
+  "language": "mixed",
+  "query": "DMC emergency hotline number eka mokakda?",
+  "gold_answers": [
+   "117"
+  ],
+  "gold_answer": "117",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "hotline"
+  ]
+ },
+ {
+  "id": "dr002-en",
+  "group": "dr002",
+  "domain": "disaster",
+  "language": "en",
+  "query": "How many call operators does the DMC call centre have?",
+  "gold_answers": [
+   "21"
+  ],
+  "gold_answer": "21",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "count"
+  ]
+ },
+ {
+  "id": "dr002-si",
+  "group": "dr002",
+  "domain": "disaster",
+  "language": "si",
+  "query": "DMC ඇමතුම් මධ්‍යස්ථානයේ ඇමතුම් ක්‍රියාකරුවන් කී දෙනෙක් සිටීද?",
+  "gold_answers": [
+   "21"
+  ],
+  "gold_answer": "21",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "count"
+  ]
+ },
+ {
+  "id": "dr002-ta",
+  "group": "dr002",
+  "domain": "disaster",
+  "language": "ta",
+  "query": "DMC அழைப்பு மையத்தில் எத்தனை அழைப்பு செயலாளர்கள் உள்ளனர்?",
+  "gold_answers": [
+   "21"
+  ],
+  "gold_answer": "21",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "count"
+  ]
+ },
+ {
+  "id": "dr003-en",
+  "group": "dr003",
+  "domain": "disaster",
+  "language": "en",
+  "query": "How many hours per day is the DMC call centre operating?",
+  "gold_answers": [
+   "24"
+  ],
+  "gold_answer": "24",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "count"
+  ]
+ },
+ {
+  "id": "dr003-si",
+  "group": "dr003",
+  "domain": "disaster",
+  "language": "si",
+  "query": "DMC ඇමතුම් මධ්‍යස්ථානය දිනකට පැය කීයක් ක්‍රියාත්මකද?",
+  "gold_answers": [
+   "24"
+  ],
+  "gold_answer": "24",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "count"
+  ]
+ },
+ {
+  "id": "dr003-ta",
+  "group": "dr003",
+  "domain": "disaster",
+  "language": "ta",
+  "query": "DMC அழைப்பு மையம் ஒரு நாளைக்கு எத்தனை மணி நேரம் செயல்படுகிறது?",
+  "gold_answers": [
+   "24"
+  ],
+  "gold_answer": "24",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "count"
+  ]
+ },
+ {
+  "id": "dr004-en",
+  "group": "dr004",
+  "domain": "disaster",
+  "language": "en",
+  "query": "Is it safe to drive through six inches of fast-flowing flood water?",
+  "gold_answers": [
+   "should not",
+   "not safe",
+   "unsafe",
+   "do not",
+   "don't",
+   "sweep",
+   "no,",
+   "no.",
+   "නොකළ යුතු",
+   "එපා",
+   "ආරක්ෂිත නොවේ",
+   "නොවේ",
+   "පාවී",
+   "ගසාගෙන",
+   "கூடாது",
+   "பாதுகாப்பானது அல்ல",
+   "பாதுகாப்பற்ற",
+   "வேண்டாம்",
+   "அடித்துச்",
+   "இல்லை"
+  ],
+  "gold_answer": "should not",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "safety"
+  ]
+ },
+ {
+  "id": "dr004-si",
+  "group": "dr004",
+  "domain": "disaster",
+  "language": "si",
+  "query": "අඟල් හයක වේගයෙන් ගලා යන ගංවතුර ජලය හරහා රිය පැදවීම ආරක්ෂිතද?",
+  "gold_answers": [
+   "should not",
+   "not safe",
+   "unsafe",
+   "do not",
+   "don't",
+   "sweep",
+   "no,",
+   "no.",
+   "නොකළ යුතු",
+   "එපා",
+   "ආරක්ෂිත නොවේ",
+   "නොවේ",
+   "පාවී",
+   "ගසාගෙන",
+   "கூடாது",
+   "பாதுகாப்பானது அல்ல",
+   "பாதுகாப்பற்ற",
+   "வேண்டாம்",
+   "அடித்துச்",
+   "இல்லை"
+  ],
+  "gold_answer": "should not",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "safety"
+  ]
+ },
+ {
+  "id": "dr004-ta",
+  "group": "dr004",
+  "domain": "disaster",
+  "language": "ta",
+  "query": "ஆறு அங்குல வேகமாக ஓடும் வெள்ள நீரில் வாகனம் ஓட்டுவது பாதுகாப்பானதா?",
+  "gold_answers": [
+   "should not",
+   "not safe",
+   "unsafe",
+   "do not",
+   "don't",
+   "sweep",
+   "no,",
+   "no.",
+   "නොකළ යුතු",
+   "එපා",
+   "ආරක්ෂිත නොවේ",
+   "නොවේ",
+   "පාවී",
+   "ගසාගෙන",
+   "கூடாது",
+   "பாதுகாப்பானது அல்ல",
+   "பாதுகாப்பற்ற",
+   "வேண்டாம்",
+   "அடித்துச்",
+   "இல்லை"
+  ],
+  "gold_answer": "should not",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "safety"
+  ]
+ },
+ {
+  "id": "dr005-en",
+  "group": "dr005",
+  "domain": "disaster",
+  "language": "en",
+  "query": "How should I treat well water after a flood?",
+  "gold_answers": [
+   "boil",
+   "chlorine",
+   "තම්බා",
+   "නටවා",
+   "ක්ලෝරින්",
+   "கொதிக்க",
+   "குளோரின்"
+  ],
+  "gold_answer": "boil",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "safety"
+  ]
+ },
+ {
+  "id": "dr005-si",
+  "group": "dr005",
+  "domain": "disaster",
+  "language": "si",
+  "query": "ගංවතුරකින් පසු ළිං ජලය පිරිසිදු කළ යුත්තේ කෙසේද?",
+  "gold_answers": [
+   "boil",
+   "chlorine",
+   "තම්බා",
+   "නටවා",
+   "ක්ලෝරින්",
+   "கொதிக்க",
+   "குளோரின்"
+  ],
+  "gold_answer": "boil",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "safety"
+  ]
+ },
+ {
+  "id": "dr005-ta",
+  "group": "dr005",
+  "domain": "disaster",
+  "language": "ta",
+  "query": "வெள்ளத்திற்குப் பிறகு கிணற்று நீரை எப்படிச் சுத்திகரிக்க வேண்டும்?",
+  "gold_answers": [
+   "boil",
+   "chlorine",
+   "තම්බා",
+   "නටවා",
+   "ක්ලෝරින්",
+   "கொதிக்க",
+   "குளோரின்"
+  ],
+  "gold_answer": "boil",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "safety"
+  ]
+ },
+ {
+  "id": "dr006-en",
+  "group": "dr006",
+  "domain": "disaster",
+  "language": "en",
+  "query": "At what 24-hour rainfall does NBRO issue a Yellow landslide warning?",
+  "gold_answers": [
+   "75"
+  ],
+  "gold_answer": "75",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "threshold"
+  ]
+ },
+ {
+  "id": "dr006-si",
+  "group": "dr006",
+  "domain": "disaster",
+  "language": "si",
+  "query": "NBRO කහ භූමි කඩාවැටීම් අනතුරු ඇඟවීම නිකුත් කරන්නේ පැය 24 ක වර්ෂාපතනය කොපමණ ඉක්මවන විටද?",
+  "gold_answers": [
+   "75"
+  ],
+  "gold_answer": "75",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "threshold"
+  ]
+ },
+ {
+  "id": "dr006-ta",
+  "group": "dr006",
+  "domain": "disaster",
+  "language": "ta",
+  "query": "NBRO மஞ்சள் நிலச்சரிவு எச்சரிக்கையை எவ்வளவு மழைப்பொழிவில் வெளியிடும்?",
+  "gold_answers": [
+   "75"
+  ],
+  "gold_answer": "75",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "threshold"
+  ]
+ },
+ {
+  "id": "dr006-mx",
+  "group": "dr006",
+  "domain": "disaster",
+  "language": "mixed",
+  "query": "NBRO yellow landslide warning eka denne rainfall kiyak passe da?",
+  "gold_answers": [
+   "75"
+  ],
+  "gold_answer": "75",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "threshold"
+  ]
+ },
+ {
+  "id": "dr007-en",
+  "group": "dr007",
+  "domain": "disaster",
+  "language": "en",
+  "query": "What level is the NBRO Yellow landslide warning?",
+  "gold_answers": [
+   "Level 1",
+   "level one",
+   "මට්ටම 1",
+   "මට්ටම එක",
+   "පළමු මට්ටම",
+   "நிலை 1",
+   "மட்டம் 1",
+   "முதல் நிலை"
+  ],
+  "gold_answer": "Level 1",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "level"
+  ]
+ },
+ {
+  "id": "dr007-si",
+  "group": "dr007",
+  "domain": "disaster",
+  "language": "si",
+  "query": "NBRO කහ භූමි කඩාවැටීම් අනතුරු ඇඟවීම කුමන මට්ටමද?",
+  "gold_answers": [
+   "Level 1",
+   "level one",
+   "මට්ටම 1",
+   "මට්ටම එක",
+   "පළමු මට්ටම",
+   "நிலை 1",
+   "மட்டம் 1",
+   "முதல் நிலை"
+  ],
+  "gold_answer": "Level 1",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "level"
+  ]
+ },
+ {
+  "id": "dr007-ta",
+  "group": "dr007",
+  "domain": "disaster",
+  "language": "ta",
+  "query": "NBRO மஞ்சள் நிலச்சரிவு எச்சரிக்கை எந்த நிலையைச் சேர்ந்தது?",
+  "gold_answers": [
+   "Level 1",
+   "level one",
+   "මට්ටම 1",
+   "මට්ටම එක",
+   "පළමු මට්ටම",
+   "நிலை 1",
+   "மட்டம் 1",
+   "முதல் நிலை"
+  ],
+  "gold_answer": "Level 1",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "level"
+  ]
+ },
+ {
+  "id": "dr008-en",
+  "group": "dr008",
+  "domain": "disaster",
+  "language": "en",
+  "query": "Which agency issues landslide early warnings in Sri Lanka?",
+  "gold_answers": [
+   "NBRO",
+   "National Building Research",
+   "ගොඩනැගිලි පර්යේෂණ",
+   "கட்டிட ஆராய்ச்சி"
+  ],
+  "gold_answer": "NBRO",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "agency"
+  ]
+ },
+ {
+  "id": "dr008-si",
+  "group": "dr008",
+  "domain": "disaster",
+  "language": "si",
+  "query": "ශ්‍රී ලංකාවේ භූමි කඩාවැටීම් පූර්ව අනතුරු ඇඟවීම් නිකුත් කරන ආයතනය කුමක්ද?",
+  "gold_answers": [
+   "NBRO",
+   "National Building Research",
+   "ගොඩනැගිලි පර්යේෂණ",
+   "கட்டிட ஆராய்ச்சி"
+  ],
+  "gold_answer": "NBRO",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "agency"
+  ]
+ },
+ {
+  "id": "dr008-ta",
+  "group": "dr008",
+  "domain": "disaster",
+  "language": "ta",
+  "query": "இலங்கையில் நிலச்சரிவு முன்னெச்சரிக்கைகளை வெளியிடும் நிறுவனம் எது?",
+  "gold_answers": [
+   "NBRO",
+   "National Building Research",
+   "ගොඩනැගිලි පර්යේෂණ",
+   "கட்டிட ஆராய்ச்சி"
+  ],
+  "gold_answer": "NBRO",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "agency"
+  ]
+ },
+ {
+  "id": "dr009-en",
+  "group": "dr009",
+  "domain": "disaster",
+  "language": "en",
+  "query": "What are early warning signs of a landslide on the ground?",
+  "gold_answers": [
+   "crack",
+   "sticking",
+   "tilted",
+   "seep",
+   "පැලීම්",
+   "ඉරි",
+   "ඇල",
+   "ජලය කාන්දු",
+   "விரிசல்",
+   "சாய்ந்த",
+   "கசிவு"
+  ],
+  "gold_answer": "crack",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "signs"
+  ]
+ },
+ {
+  "id": "dr009-si",
+  "group": "dr009",
+  "domain": "disaster",
+  "language": "si",
+  "query": "නාය යාමක පූර්ව ලක්ෂණ මොනවාද?",
+  "gold_answers": [
+   "crack",
+   "sticking",
+   "tilted",
+   "seep",
+   "පැලීම්",
+   "ඉරි",
+   "ඇල",
+   "ජලය කාන්දු",
+   "விரிசல்",
+   "சாய்ந்த",
+   "கசிவு"
+  ],
+  "gold_answer": "crack",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "signs"
+  ]
+ },
+ {
+  "id": "dr009-ta",
+  "group": "dr009",
+  "domain": "disaster",
+  "language": "ta",
+  "query": "நிலச்சரிவின் முன்னெச்சரிக்கை அறிகுறிகள் எவை?",
+  "gold_answers": [
+   "crack",
+   "sticking",
+   "tilted",
+   "seep",
+   "පැලීම්",
+   "ඉරි",
+   "ඇල",
+   "ජලය කාන්දු",
+   "விரிசல்",
+   "சாய்ந்த",
+   "கசிவு"
+  ],
+  "gold_answer": "crack",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "signs"
+  ]
+ },
+ {
+  "id": "dr010-en",
+  "group": "dr010",
+  "domain": "disaster",
+  "language": "en",
+  "query": "How much drinking water should I store per family member before a cyclone?",
+  "gold_answers": [
+   "three days",
+   "3 days",
+   "දින 3",
+   "දින තුන",
+   "3 நாட்க",
+   "மூன்று நாட்க",
+   "3"
+  ],
+  "gold_answer": "three days",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "quantity"
+  ]
+ },
+ {
+  "id": "dr010-si",
+  "group": "dr010",
+  "domain": "disaster",
+  "language": "si",
+  "query": "සුළි කුණාටුවකට පෙර එක් පවුල් සාමාජිකයෙකුට පානීය ජලය කොපමණ ගබඩා කළ යුතුද?",
+  "gold_answers": [
+   "three days",
+   "3 days",
+   "දින 3",
+   "දින තුන",
+   "3 நாட்க",
+   "மூன்று நாட்க",
+   "3"
+  ],
+  "gold_answer": "three days",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "quantity"
+  ]
+ },
+ {
+  "id": "dr010-ta",
+  "group": "dr010",
+  "domain": "disaster",
+  "language": "ta",
+  "query": "புயலுக்கு முன் ஒரு குடும்ப உறுப்பினருக்கு எவ்வளவு குடிநீர் சேமிக்க வேண்டும்?",
+  "gold_answers": [
+   "three days",
+   "3 days",
+   "දින 3",
+   "දින තුන",
+   "3 நாட்க",
+   "மூன்று நாட்க",
+   "3"
+  ],
+  "gold_answer": "three days",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "quantity"
+  ]
+ },
+ {
+  "id": "dr010-mx",
+  "group": "dr010",
+  "domain": "disaster",
+  "language": "mixed",
+  "query": "cyclone ekakata kalin drinking water days kiyak store karanna one?",
+  "gold_answers": [
+   "three days",
+   "3 days",
+   "දින 3",
+   "දින තුන",
+   "3 நாட்க",
+   "மூன்று நாட்க",
+   "3"
+  ],
+  "gold_answer": "three days",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "quantity"
+  ]
+ },
+ {
+  "id": "dr011-en",
+  "group": "dr011",
+  "domain": "disaster",
+  "language": "en",
+  "query": "How long can the calm of a cyclone eye last?",
+  "gold_answers": [
+   "20 to 30",
+   "20-30",
+   "20–30",
+   "30 minutes",
+   "20 minutes",
+   "20 සිට 30",
+   "මිනිත්තු 20",
+   "මිනිත්තු 30",
+   "20 நிமிட",
+   "30 நிமிட",
+   "30"
+  ],
+  "gold_answer": "20 to 30",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "duration"
+  ]
+ },
+ {
+  "id": "dr011-si",
+  "group": "dr011",
+  "domain": "disaster",
+  "language": "si",
+  "query": "සුළි කුණාටුවක ඇසේ නිශ්චල කාලය කොපමණ කාලයක් පැවතිය හැකිද?",
+  "gold_answers": [
+   "20 to 30",
+   "20-30",
+   "20–30",
+   "30 minutes",
+   "20 minutes",
+   "20 සිට 30",
+   "මිනිත්තු 20",
+   "මිනිත්තු 30",
+   "20 நிமிட",
+   "30 நிமிட",
+   "30"
+  ],
+  "gold_answer": "20 to 30",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "duration"
+  ]
+ },
+ {
+  "id": "dr011-ta",
+  "group": "dr011",
+  "domain": "disaster",
+  "language": "ta",
+  "query": "புயலின் கண்ணின் அமைதி எவ்வளவு நேரம் நீடிக்கும்?",
+  "gold_answers": [
+   "20 to 30",
+   "20-30",
+   "20–30",
+   "30 minutes",
+   "20 minutes",
+   "20 සිට 30",
+   "මිනිත්තු 20",
+   "මිනිත්තු 30",
+   "20 நிமிட",
+   "30 நிமிட",
+   "30"
+  ],
+  "gold_answer": "20 to 30",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "duration"
+  ]
+ },
+ {
+  "id": "dr012-en",
+  "group": "dr012",
+  "domain": "disaster",
+  "language": "en",
+  "query": "Which department issues cyclone warnings in Sri Lanka?",
+  "gold_answers": [
+   "Department of Meteorology",
+   "Meteorolog",
+   "කාලගුණ විද්‍යා",
+   "කාලගුණ",
+   "வளிமண்டலவியல்",
+   "வானிலை"
+  ],
+  "gold_answer": "Department of Meteorology",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "agency"
+  ]
+ },
+ {
+  "id": "dr012-si",
+  "group": "dr012",
+  "domain": "disaster",
+  "language": "si",
+  "query": "ශ්‍රී ලංකාවේ සුළි කුණාටු අනතුරු ඇඟවීම් නිකුත් කරන දෙපාර්තමේන්තුව කුමක්ද?",
+  "gold_answers": [
+   "Department of Meteorology",
+   "Meteorolog",
+   "කාලගුණ විද්‍යා",
+   "කාලගුණ",
+   "வளிமண்டலவியல்",
+   "வானிலை"
+  ],
+  "gold_answer": "Department of Meteorology",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "agency"
+  ]
+ },
+ {
+  "id": "dr012-ta",
+  "group": "dr012",
+  "domain": "disaster",
+  "language": "ta",
+  "query": "இலங்கையில் புயல் எச்சரிக்கைகளை வெளியிடும் திணைக்களம் எது?",
+  "gold_answers": [
+   "Department of Meteorology",
+   "Meteorolog",
+   "කාලගුණ විද්‍යා",
+   "කාලගුණ",
+   "வளிமண்டலவியல்",
+   "வானிலை"
+  ],
+  "gold_answer": "Department of Meteorology",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "agency"
+  ]
+ },
+ {
+  "id": "dr012-mx",
+  "group": "dr012",
+  "domain": "disaster",
+  "language": "mixed",
+  "query": "cyclone warning issue karanne mona department ekada?",
+  "gold_answers": [
+   "Department of Meteorology",
+   "Meteorolog",
+   "කාලගුණ විද්‍යා",
+   "කාලගුණ",
+   "வளிமண்டலவியல்",
+   "வானிலை"
+  ],
+  "gold_answer": "Department of Meteorology",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "agency"
+  ]
+ },
+ {
+  "id": "dr017-en",
+  "group": "dr017",
+  "domain": "disaster",
+  "language": "en",
+  "query": "What is the current DMC emergency hotline this season?",
+  "gold_answers": [
+   "117"
+  ],
+  "gold_answer": "117",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "hotline",
+   "stale_contradiction"
+  ]
+ },
+ {
+  "id": "dr017-si",
+  "group": "dr017",
+  "domain": "disaster",
+  "language": "si",
+  "query": "මෙම කන්නයේ වත්මන් DMC හදිසි දුරකථන අංකය කුමක්ද?",
+  "gold_answers": [
+   "117"
+  ],
+  "gold_answer": "117",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "hotline",
+   "stale_contradiction"
+  ]
+ },
+ {
+  "id": "dr017-ta",
+  "group": "dr017",
+  "domain": "disaster",
+  "language": "ta",
+  "query": "இந்தப் பருவத்தில் தற்போதைய DMC அவசர தொலைபேசி எண் என்ன?",
+  "gold_answers": [
+   "117"
+  ],
+  "gold_answer": "117",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "hotline",
+   "stale_contradiction"
+  ]
+ },
+ {
+  "id": "dr018-en",
+  "group": "dr018",
+  "domain": "disaster",
+  "language": "en",
+  "query": "Should I rely on the past-season helpline number 110 right now?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "stale_contradiction"
+  ]
+ },
+ {
+  "id": "dr018-si",
+  "group": "dr018",
+  "domain": "disaster",
+  "language": "si",
+  "query": "මම දැන් පසුගිය කන්නයේ උපකාරක දුරකථන අංකය 110 මත විශ්වාසය තැබිය යුතුද?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "stale_contradiction"
+  ]
+ },
+ {
+  "id": "dr018-ta",
+  "group": "dr018",
+  "domain": "disaster",
+  "language": "ta",
+  "query": "கடந்த பருவத்தின் உதவி எண் 110 ஐ நான் இப்போது நம்பலாமா?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "stale_contradiction"
+  ]
+ },
+ {
+  "id": "dr018-mx",
+  "group": "dr018",
+  "domain": "disaster",
+  "language": "mixed",
+  "query": "past season helpline 110 eka dan use karanna puluwanda?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "stale_contradiction"
+  ]
+ },
+ {
+  "id": "dr019-en",
+  "group": "dr019",
+  "domain": "disaster",
+  "language": "en",
+  "query": "Is the past-season Community Centre still open as a shelter this season?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "stale_contradiction"
+  ]
+ },
+ {
+  "id": "dr019-si",
+  "group": "dr019",
+  "domain": "disaster",
+  "language": "si",
+  "query": "පසුගිය කන්නයේ ප්‍රජා ශාලාව මෙම කන්නයේත් රැකවරණ මධ්‍යස්ථානයක් ලෙස විවෘතද?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "stale_contradiction"
+  ]
+ },
+ {
+  "id": "dr019-ta",
+  "group": "dr019",
+  "domain": "disaster",
+  "language": "ta",
+  "query": "கடந்த பருவத்தின் சமூக மையம் இந்தப் பருவத்திலும் தங்குமிடமாகத் திறந்திருக்கிறதா?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "stale_contradiction"
+  ]
+ },
+ {
+  "id": "dr020-en",
+  "group": "dr020",
+  "domain": "disaster",
+  "language": "en",
+  "query": "What were the operating hours of the past-season Town Hall shelter?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "stale_contradiction"
+  ]
+ },
+ {
+  "id": "dr020-si",
+  "group": "dr020",
+  "domain": "disaster",
+  "language": "si",
+  "query": "පසුගිය කන්නයේ නගර ශාලා රැකවරණ මධ්‍යස්ථානයේ විවෘත වේලාවන් මොනවාද?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "stale_contradiction"
+  ]
+ },
+ {
+  "id": "dr020-ta",
+  "group": "dr020",
+  "domain": "disaster",
+  "language": "ta",
+  "query": "கடந்த பருவத்தின் நகர மண்டப தங்குமிடத்தின் செயல்பாட்டு நேரங்கள் என்ன?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "stale_contradiction"
+  ]
+ },
+ {
+  "id": "dr021-en",
+  "group": "dr021",
+  "domain": "disaster",
+  "language": "en",
+  "query": "How do I evacuate from a tsunami in Galle right now?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "dr021-si",
+  "group": "dr021",
+  "domain": "disaster",
+  "language": "si",
+  "query": "ගාල්ලේ සුනාමියකින් දැන් ඉවත් වන්නේ කෙසේද?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "dr021-ta",
+  "group": "dr021",
+  "domain": "disaster",
+  "language": "ta",
+  "query": "காலியில் சுனாமியிலிருந்து இப்போது எப்படி வெளியேறுவது?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "dr021-mx",
+  "group": "dr021",
+  "domain": "disaster",
+  "language": "mixed",
+  "query": "Galle walata tsunami awoth dan kohomada evacuate wenne?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "dr022-en",
+  "group": "dr022",
+  "domain": "disaster",
+  "language": "en",
+  "query": "What is the rainfall threshold for a wildfire warning in Sri Lanka?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "dr022-si",
+  "group": "dr022",
+  "domain": "disaster",
+  "language": "si",
+  "query": "ශ්‍රී ලංකාවේ ලැව් ගිනි අනතුරු ඇඟවීමක් සඳහා වර්ෂාපතන සීමාව කොපමණද?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "dr022-ta",
+  "group": "dr022",
+  "domain": "disaster",
+  "language": "ta",
+  "query": "இலங்கையில் காட்டுத்தீ எச்சரிக்கைக்கான மழைப்பொழிவு வரம்பு என்ன?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ }
+]

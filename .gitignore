@@ -32,11 +32,21 @@ logs/*
 .DS_Store
 Thumbs.db
 
-# Paper build artifacts
-paper/lncs/*.aux
-paper/lncs/*.log
-paper/lncs/*.out
-paper/lncs/*.toc
-paper/lncs/*.bbl
-paper/lncs/*.blg
-paper/lncs/*.synctex.gz
+# Paper build artifacts and vendored template archives
+paper/**/*.aux
+paper/**/*.log
+paper/**/*.out
+paper/**/*.toc
+paper/**/*.bbl
+paper/**/*.blg
+paper/**/*.synctex.gz
+paper/**/*.fls
+paper/**/*.fdb_latexmk
+paper/*.zip
+paper/LaTexPackage/
+paper/lncs/
+
+# Benchmark run logs and HF/pytest caches
+results/**/*.log
+pytest-cache-files-*/
+casestudies/**/results/drafts_offline.jsonl

@@ -1,0 +1,1140 @@
+[
+ {
+  "id": "dr001-en",
+  "group": "dr001",
+  "domain": "disaster",
+  "language": "en",
+  "query": "What is the Disaster Management Centre emergency hotline?",
+  "gold_answers": [
+   "117"
+  ],
+  "gold_answer": "117",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "hotline"
+  ]
+ },
+ {
+  "id": "dr001-si",
+  "group": "dr001",
+  "domain": "disaster",
+  "language": "si",
+  "query": "ආපදා කළමනාකරණ මධ්‍යස්ථානයේ අවස්ථානුකූල දුරකථන අංකය කුමක්ද?",
+  "gold_answers": [
+   "117"
+  ],
+  "gold_answer": "117",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "hotline"
+  ]
+ },
+ {
+  "id": "dr001-ta",
+  "group": "dr001",
+  "domain": "disaster",
+  "language": "ta",
+  "query": "பேரிடர் முகாமைத்துவ மையத்தின் அவசர தொலைபேசி எண் என்ன?",
+  "gold_answers": [
+   "117"
+  ],
+  "gold_answer": "117",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "hotline"
+  ]
+ },
+ {
+  "id": "dr001-mx",
+  "group": "dr001",
+  "domain": "disaster",
+  "language": "mixed",
+  "query": "DMC emergency hotline number eka mokakda?",
+  "gold_answers": [
+   "117"
+  ],
+  "gold_answer": "117",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "hotline"
+  ]
+ },
+ {
+  "id": "dr002-en",
+  "group": "dr002",
+  "domain": "disaster",
+  "language": "en",
+  "query": "How many call operators does the DMC call centre have?",
+  "gold_answers": [
+   "21"
+  ],
+  "gold_answer": "21",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "count"
+  ]
+ },
+ {
+  "id": "dr002-si",
+  "group": "dr002",
+  "domain": "disaster",
+  "language": "si",
+  "query": "DMC ඇමතුම් මධ්‍යස්ථානයේ ඇමතුම් ක්‍රියාකරුවන් කී දෙනෙක් සිටීද?",
+  "gold_answers": [
+   "21"
+  ],
+  "gold_answer": "21",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "count"
+  ]
+ },
+ {
+  "id": "dr002-ta",
+  "group": "dr002",
+  "domain": "disaster",
+  "language": "ta",
+  "query": "DMC அழைப்பு மையத்தில் எத்தனை அழைப்பு செயலாளர்கள் உள்ளனர்?",
+  "gold_answers": [
+   "21"
+  ],
+  "gold_answer": "21",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "count"
+  ]
+ },
+ {
+  "id": "dr003-en",
+  "group": "dr003",
+  "domain": "disaster",
+  "language": "en",
+  "query": "How many hours per day is the DMC call centre operating?",
+  "gold_answers": [
+   "24"
+  ],
+  "gold_answer": "24",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "count"
+  ]
+ },
+ {
+  "id": "dr003-si",
+  "group": "dr003",
+  "domain": "disaster",
+  "language": "si",
+  "query": "DMC ඇමතුම් මධ්‍යස්ථානය දිනකට පැය කීයක් ක්‍රියාත්මකද?",
+  "gold_answers": [
+   "24"
+  ],
+  "gold_answer": "24",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "count"
+  ]
+ },
+ {
+  "id": "dr003-ta",
+  "group": "dr003",
+  "domain": "disaster",
+  "language": "ta",
+  "query": "DMC அழைப்பு மையம் ஒரு நாளைக்கு எத்தனை மணி நேரம் செயல்படுகிறது?",
+  "gold_answers": [
+   "24"
+  ],
+  "gold_answer": "24",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "count"
+  ]
+ },
+ {
+  "id": "dr004-en",
+  "group": "dr004",
+  "domain": "disaster",
+  "language": "en",
+  "query": "Is it safe to drive through six inches of fast-flowing flood water?",
+  "gold_answers": [
+   "should not",
+   "not safe",
+   "unsafe",
+   "do not",
+   "don't",
+   "sweep",
+   "no,",
+   "no.",
+   "නොකළ යුතු",
+   "එපා",
+   "ආරක්ෂිත නොවේ",
+   "නොවේ",
+   "පාවී",
+   "ගසාගෙන",
+   "கூடாது",
+   "பாதுகாப்பானது அல்ல",
+   "பாதுகாப்பற்ற",
+   "வேண்டாம்",
+   "அடித்துச்",
+   "இல்லை"
+  ],
+  "gold_answer": "should not",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "safety"
+  ]
+ },
+ {
+  "id": "dr004-si",
+  "group": "dr004",
+  "domain": "disaster",
+  "language": "si",
+  "query": "අඟල් හයක වේගයෙන් ගලා යන ගංවතුර ජලය හරහා රිය පැදවීම ආරක්ෂිතද?",
+  "gold_answers": [
+   "should not",
+   "not safe",
+   "unsafe",
+   "do not",
+   "don't",
+   "sweep",
+   "no,",
+   "no.",
+   "නොකළ යුතු",
+   "එපා",
+   "ආරක්ෂිත නොවේ",
+   "නොවේ",
+   "පාවී",
+   "ගසාගෙන",
+   "கூடாது",
+   "பாதுகாப்பானது அல்ல",
+   "பாதுகாப்பற்ற",
+   "வேண்டாம்",
+   "அடித்துச்",
+   "இல்லை"
+  ],
+  "gold_answer": "should not",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "safety"
+  ]
+ },
+ {
+  "id": "dr004-ta",
+  "group": "dr004",
+  "domain": "disaster",
+  "language": "ta",
+  "query": "ஆறு அங்குல வேகமாக ஓடும் வெள்ள நீரில் வாகனம் ஓட்டுவது பாதுகாப்பானதா?",
+  "gold_answers": [
+   "should not",
+   "not safe",
+   "unsafe",
+   "do not",
+   "don't",
+   "sweep",
+   "no,",
+   "no.",
+   "නොකළ යුතු",
+   "එපා",
+   "ආරක්ෂිත නොවේ",
+   "නොවේ",
+   "පාවී",
+   "ගසාගෙන",
+   "கூடாது",
+   "பாதுகாப்பானது அல்ல",
+   "பாதுகாப்பற்ற",
+   "வேண்டாம்",
+   "அடித்துச்",
+   "இல்லை"
+  ],
+  "gold_answer": "should not",
+  "gold_answerable": 1,
+  "tags": [
+   "judgement",
+   "safety"
+  ]
+ },
+ {
+  "id": "dr005-en",
+  "group": "dr005",
+  "domain": "disaster",
+  "language": "en",
+  "query": "How should I treat well water after a flood?",
+  "gold_answers": [
+   "boil",
+   "chlorine",
+   "තම්බා",
+   "නටවා",
+   "ක්ලෝරින්",
+   "கொதிக்க",
+   "குளோரின்"
+  ],
+  "gold_answer": "boil",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "safety"
+  ]
+ },
+ {
+  "id": "dr005-si",
+  "group": "dr005",
+  "domain": "disaster",
+  "language": "si",
+  "query": "ගංවතුරකින් පසු ළිං ජලය පිරිසිදු කළ යුත්තේ කෙසේද?",
+  "gold_answers": [
+   "boil",
+   "chlorine",
+   "තම්බා",
+   "නටවා",
+   "ක්ලෝරින්",
+   "கொதிக்க",
+   "குளோரின்"
+  ],
+  "gold_answer": "boil",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "safety"
+  ]
+ },
+ {
+  "id": "dr005-ta",
+  "group": "dr005",
+  "domain": "disaster",
+  "language": "ta",
+  "query": "வெள்ளத்திற்குப் பிறகு கிணற்று நீரை எப்படிச் சுத்திகரிக்க வேண்டும்?",
+  "gold_answers": [
+   "boil",
+   "chlorine",
+   "තම්බා",
+   "නටවා",
+   "ක්ලෝරින්",
+   "கொதிக்க",
+   "குளோரின்"
+  ],
+  "gold_answer": "boil",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "safety"
+  ]
+ },
+ {
+  "id": "dr006-en",
+  "group": "dr006",
+  "domain": "disaster",
+  "language": "en",
+  "query": "At what 24-hour rainfall does NBRO issue a Yellow landslide warning?",
+  "gold_answers": [
+   "75"
+  ],
+  "gold_answer": "75",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "threshold"
+  ]
+ },
+ {
+  "id": "dr006-si",
+  "group": "dr006",
+  "domain": "disaster",
+  "language": "si",
+  "query": "NBRO කහ භූමි කඩාවැටීම් අනතුරු ඇඟවීම නිකුත් කරන්නේ පැය 24 ක වර්ෂාපතනය කොපමණ ඉක්මවන විටද?",
+  "gold_answers": [
+   "75"
+  ],
+  "gold_answer": "75",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "threshold"
+  ]
+ },
+ {
+  "id": "dr006-ta",
+  "group": "dr006",
+  "domain": "disaster",
+  "language": "ta",
+  "query": "NBRO மஞ்சள் நிலச்சரிவு எச்சரிக்கையை எவ்வளவு மழைப்பொழிவில் வெளியிடும்?",
+  "gold_answers": [
+   "75"
+  ],
+  "gold_answer": "75",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "threshold"
+  ]
+ },
+ {
+  "id": "dr006-mx",
+  "group": "dr006",
+  "domain": "disaster",
+  "language": "mixed",
+  "query": "NBRO yellow landslide warning eka denne rainfall kiyak passe da?",
+  "gold_answers": [
+   "75"
+  ],
+  "gold_answer": "75",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "threshold"
+  ]
+ },
+ {
+  "id": "dr007-en",
+  "group": "dr007",
+  "domain": "disaster",
+  "language": "en",
+  "query": "What level is the NBRO Yellow landslide warning?",
+  "gold_answers": [
+   "Level 1",
+   "level one",
+   "මට්ටම 1",
+   "මට්ටම එක",
+   "පළමු මට්ටම",
+   "நிலை 1",
+   "மட்டம் 1",
+   "முதல் நிலை"
+  ],
+  "gold_answer": "Level 1",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "level"
+  ]
+ },
+ {
+  "id": "dr007-si",
+  "group": "dr007",
+  "domain": "disaster",
+  "language": "si",
+  "query": "NBRO කහ භූමි කඩාවැටීම් අනතුරු ඇඟවීම කුමන මට්ටමද?",
+  "gold_answers": [
+   "Level 1",
+   "level one",
+   "මට්ටම 1",
+   "මට්ටම එක",
+   "පළමු මට්ටම",
+   "நிலை 1",
+   "மட்டம் 1",
+   "முதல் நிலை"
+  ],
+  "gold_answer": "Level 1",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "level"
+  ]
+ },
+ {
+  "id": "dr007-ta",
+  "group": "dr007",
+  "domain": "disaster",
+  "language": "ta",
+  "query": "NBRO மஞ்சள் நிலச்சரிவு எச்சரிக்கை எந்த நிலையைச் சேர்ந்தது?",
+  "gold_answers": [
+   "Level 1",
+   "level one",
+   "මට්ටම 1",
+   "මට්ටම එක",
+   "පළමු මට්ටම",
+   "நிலை 1",
+   "மட்டம் 1",
+   "முதல் நிலை"
+  ],
+  "gold_answer": "Level 1",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "level"
+  ]
+ },
+ {
+  "id": "dr008-en",
+  "group": "dr008",
+  "domain": "disaster",
+  "language": "en",
+  "query": "Which agency issues landslide early warnings in Sri Lanka?",
+  "gold_answers": [
+   "NBRO",
+   "National Building Research",
+   "ගොඩනැගිලි පර්යේෂණ",
+   "கட்டிட ஆராய்ச்சி"
+  ],
+  "gold_answer": "NBRO",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "agency"
+  ]
+ },
+ {
+  "id": "dr008-si",
+  "group": "dr008",
+  "domain": "disaster",
+  "language": "si",
+  "query": "ශ්‍රී ලංකාවේ භූමි කඩාවැටීම් පූර්ව අනතුරු ඇඟවීම් නිකුත් කරන ආයතනය කුමක්ද?",
+  "gold_answers": [
+   "NBRO",
+   "National Building Research",
+   "ගොඩනැගිලි පර්යේෂණ",
+   "கட்டிட ஆராய்ச்சி"
+  ],
+  "gold_answer": "NBRO",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "agency"
+  ]
+ },
+ {
+  "id": "dr008-ta",
+  "group": "dr008",
+  "domain": "disaster",
+  "language": "ta",
+  "query": "இலங்கையில் நிலச்சரிவு முன்னெச்சரிக்கைகளை வெளியிடும் நிறுவனம் எது?",
+  "gold_answers": [
+   "NBRO",
+   "National Building Research",
+   "ගොඩනැගිලි පර්යේෂණ",
+   "கட்டிட ஆராய்ச்சி"
+  ],
+  "gold_answer": "NBRO",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "agency"
+  ]
+ },
+ {
+  "id": "dr009-en",
+  "group": "dr009",
+  "domain": "disaster",
+  "language": "en",
+  "query": "What are early warning signs of a landslide on the ground?",
+  "gold_answers": [
+   "crack",
+   "sticking",
+   "tilted",
+   "seep",
+   "පැලීම්",
+   "ඉරි",
+   "ඇල",
+   "ජලය කාන්දු",
+   "விரிசல்",
+   "சாய்ந்த",
+   "கசிவு"
+  ],
+  "gold_answer": "crack",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "signs"
+  ]
+ },
+ {
+  "id": "dr009-si",
+  "group": "dr009",
+  "domain": "disaster",
+  "language": "si",
+  "query": "නාය යාමක පූර්ව ලක්ෂණ මොනවාද?",
+  "gold_answers": [
+   "crack",
+   "sticking",
+   "tilted",
+   "seep",
+   "පැලීම්",
+   "ඉරි",
+   "ඇල",
+   "ජලය කාන්දු",
+   "விரிசல்",
+   "சாய்ந்த",
+   "கசிவு"
+  ],
+  "gold_answer": "crack",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "signs"
+  ]
+ },
+ {
+  "id": "dr009-ta",
+  "group": "dr009",
+  "domain": "disaster",
+  "language": "ta",
+  "query": "நிலச்சரிவின் முன்னெச்சரிக்கை அறிகுறிகள் எவை?",
+  "gold_answers": [
+   "crack",
+   "sticking",
+   "tilted",
+   "seep",
+   "පැලීම්",
+   "ඉරි",
+   "ඇල",
+   "ජලය කාන්දු",
+   "விரிசல்",
+   "சாய்ந்த",
+   "கசிவு"
+  ],
+  "gold_answer": "crack",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "signs"
+  ]
+ },
+ {
+  "id": "dr010-en",
+  "group": "dr010",
+  "domain": "disaster",
+  "language": "en",
+  "query": "How much drinking water should I store per family member before a cyclone?",
+  "gold_answers": [
+   "three days",
+   "3 days",
+   "දින 3",
+   "දින තුන",
+   "3 நாட்க",
+   "மூன்று நாட்க",
+   "3"
+  ],
+  "gold_answer": "three days",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "quantity"
+  ]
+ },
+ {
+  "id": "dr010-si",
+  "group": "dr010",
+  "domain": "disaster",
+  "language": "si",
+  "query": "සුළි කුණාටුවකට පෙර එක් පවුල් සාමාජිකයෙකුට පානීය ජලය කොපමණ ගබඩා කළ යුතුද?",
+  "gold_answers": [
+   "three days",
+   "3 days",
+   "දින 3",
+   "දින තුන",
+   "3 நாட்க",
+   "மூன்று நாட்க",
+   "3"
+  ],
+  "gold_answer": "three days",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "quantity"
+  ]
+ },
+ {
+  "id": "dr010-ta",
+  "group": "dr010",
+  "domain": "disaster",
+  "language": "ta",
+  "query": "புயலுக்கு முன் ஒரு குடும்ப உறுப்பினருக்கு எவ்வளவு குடிநீர் சேமிக்க வேண்டும்?",
+  "gold_answers": [
+   "three days",
+   "3 days",
+   "දින 3",
+   "දින තුන",
+   "3 நாட்க",
+   "மூன்று நாட்க",
+   "3"
+  ],
+  "gold_answer": "three days",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "quantity"
+  ]
+ },
+ {
+  "id": "dr010-mx",
+  "group": "dr010",
+  "domain": "disaster",
+  "language": "mixed",
+  "query": "cyclone ekakata kalin drinking water days kiyak store karanna one?",
+  "gold_answers": [
+   "three days",
+   "3 days",
+   "දින 3",
+   "දින තුන",
+   "3 நாட்க",
+   "மூன்று நாட்க",
+   "3"
+  ],
+  "gold_answer": "three days",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "quantity"
+  ]
+ },
+ {
+  "id": "dr011-en",
+  "group": "dr011",
+  "domain": "disaster",
+  "language": "en",
+  "query": "How long can the calm of a cyclone eye last?",
+  "gold_answers": [
+   "20 to 30",
+   "20-30",
+   "20–30",
+   "30 minutes",
+   "20 minutes",
+   "20 සිට 30",
+   "මිනිත්තු 20",
+   "මිනිත්තු 30",
+   "20 நிமிட",
+   "30 நிமிட",
+   "30"
+  ],
+  "gold_answer": "20 to 30",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "duration"
+  ]
+ },
+ {
+  "id": "dr011-si",
+  "group": "dr011",
+  "domain": "disaster",
+  "language": "si",
+  "query": "සුළි කුණාටුවක ඇසේ නිශ්චල කාලය කොපමණ කාලයක් පැවතිය හැකිද?",
+  "gold_answers": [
+   "20 to 30",
+   "20-30",
+   "20–30",
+   "30 minutes",
+   "20 minutes",
+   "20 සිට 30",
+   "මිනිත්තු 20",
+   "මිනිත්තු 30",
+   "20 நிமிட",
+   "30 நிமிட",
+   "30"
+  ],
+  "gold_answer": "20 to 30",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "duration"
+  ]
+ },
+ {
+  "id": "dr011-ta",
+  "group": "dr011",
+  "domain": "disaster",
+  "language": "ta",
+  "query": "புயலின் கண்ணின் அமைதி எவ்வளவு நேரம் நீடிக்கும்?",
+  "gold_answers": [
+   "20 to 30",
+   "20-30",
+   "20–30",
+   "30 minutes",
+   "20 minutes",
+   "20 සිට 30",
+   "මිනිත්තු 20",
+   "මිනිත්තු 30",
+   "20 நிமிட",
+   "30 நிமிட",
+   "30"
+  ],
+  "gold_answer": "20 to 30",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "duration"
+  ]
+ },
+ {
+  "id": "dr012-en",
+  "group": "dr012",
+  "domain": "disaster",
+  "language": "en",
+  "query": "Which department issues cyclone warnings in Sri Lanka?",
+  "gold_answers": [
+   "Department of Meteorology",
+   "Meteorolog",
+   "කාලගුණ විද්‍යා",
+   "කාලගුණ",
+   "வளிமண்டலவியல்",
+   "வானிலை"
+  ],
+  "gold_answer": "Department of Meteorology",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "agency"
+  ]
+ },
+ {
+  "id": "dr012-si",
+  "group": "dr012",
+  "domain": "disaster",
+  "language": "si",
+  "query": "ශ්‍රී ලංකාවේ සුළි කුණාටු අනතුරු ඇඟවීම් නිකුත් කරන දෙපාර්තමේන්තුව කුමක්ද?",
+  "gold_answers": [
+   "Department of Meteorology",
+   "Meteorolog",
+   "කාලගුණ විද්‍යා",
+   "කාලගුණ",
+   "வளிமண்டலவியல்",
+   "வானிலை"
+  ],
+  "gold_answer": "Department of Meteorology",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "agency"
+  ]
+ },
+ {
+  "id": "dr012-ta",
+  "group": "dr012",
+  "domain": "disaster",
+  "language": "ta",
+  "query": "இலங்கையில் புயல் எச்சரிக்கைகளை வெளியிடும் திணைக்களம் எது?",
+  "gold_answers": [
+   "Department of Meteorology",
+   "Meteorolog",
+   "කාලගුණ විද්‍යා",
+   "කාලගුණ",
+   "வளிமண்டலவியல்",
+   "வானிலை"
+  ],
+  "gold_answer": "Department of Meteorology",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "agency"
+  ]
+ },
+ {
+  "id": "dr012-mx",
+  "group": "dr012",
+  "domain": "disaster",
+  "language": "mixed",
+  "query": "cyclone warning issue karanne mona department ekada?",
+  "gold_answers": [
+   "Department of Meteorology",
+   "Meteorolog",
+   "කාලගුණ විද්‍යා",
+   "කාලගුණ",
+   "வளிமண்டலவியல்",
+   "வானிலை"
+  ],
+  "gold_answer": "Department of Meteorology",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "agency"
+  ]
+ },
+ {
+  "id": "dr017-en",
+  "group": "dr017",
+  "domain": "disaster",
+  "language": "en",
+  "query": "What is the current DMC emergency hotline this season?",
+  "gold_answers": [
+   "117"
+  ],
+  "gold_answer": "117",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "hotline",
+   "stale_contradiction"
+  ]
+ },
+ {
+  "id": "dr017-si",
+  "group": "dr017",
+  "domain": "disaster",
+  "language": "si",
+  "query": "මෙම කන්නයේ වත්මන් DMC හදිසි දුරකථන අංකය කුමක්ද?",
+  "gold_answers": [
+   "117"
+  ],
+  "gold_answer": "117",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "hotline",
+   "stale_contradiction"
+  ]
+ },
+ {
+  "id": "dr017-ta",
+  "group": "dr017",
+  "domain": "disaster",
+  "language": "ta",
+  "query": "இந்தப் பருவத்தில் தற்போதைய DMC அவசர தொலைபேசி எண் என்ன?",
+  "gold_answers": [
+   "117"
+  ],
+  "gold_answer": "117",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "hotline",
+   "stale_contradiction"
+  ]
+ },
+ {
+  "id": "dr018-en",
+  "group": "dr018",
+  "domain": "disaster",
+  "language": "en",
+  "query": "Should I rely on the past-season helpline number 110 right now?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "stale_contradiction"
+  ]
+ },
+ {
+  "id": "dr018-si",
+  "group": "dr018",
+  "domain": "disaster",
+  "language": "si",
+  "query": "මම දැන් පසුගිය කන්නයේ උපකාරක දුරකථන අංකය 110 මත විශ්වාසය තැබිය යුතුද?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "stale_contradiction"
+  ]
+ },
+ {
+  "id": "dr018-ta",
+  "group": "dr018",
+  "domain": "disaster",
+  "language": "ta",
+  "query": "கடந்த பருவத்தின் உதவி எண் 110 ஐ நான் இப்போது நம்பலாமா?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "stale_contradiction"
+  ]
+ },
+ {
+  "id": "dr018-mx",
+  "group": "dr018",
+  "domain": "disaster",
+  "language": "mixed",
+  "query": "past season helpline 110 eka dan use karanna puluwanda?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "stale_contradiction"
+  ]
+ },
+ {
+  "id": "dr019-en",
+  "group": "dr019",
+  "domain": "disaster",
+  "language": "en",
+  "query": "Is the past-season Community Centre still open as a shelter this season?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "stale_contradiction"
+  ]
+ },
+ {
+  "id": "dr019-si",
+  "group": "dr019",
+  "domain": "disaster",
+  "language": "si",
+  "query": "පසුගිය කන්නයේ ප්‍රජා ශාලාව මෙම කන්නයේත් රැකවරණ මධ්‍යස්ථානයක් ලෙස විවෘතද?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "stale_contradiction"
+  ]
+ },
+ {
+  "id": "dr019-ta",
+  "group": "dr019",
+  "domain": "disaster",
+  "language": "ta",
+  "query": "கடந்த பருவத்தின் சமூக மையம் இந்தப் பருவத்திலும் தங்குமிடமாகத் திறந்திருக்கிறதா?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "stale_contradiction"
+  ]
+ },
+ {
+  "id": "dr020-en",
+  "group": "dr020",
+  "domain": "disaster",
+  "language": "en",
+  "query": "What were the operating hours of the past-season Town Hall shelter?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "stale_contradiction"
+  ]
+ },
+ {
+  "id": "dr020-si",
+  "group": "dr020",
+  "domain": "disaster",
+  "language": "si",
+  "query": "පසුගිය කන්නයේ නගර ශාලා රැකවරණ මධ්‍යස්ථානයේ විවෘත වේලාවන් මොනවාද?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "stale_contradiction"
+  ]
+ },
+ {
+  "id": "dr020-ta",
+  "group": "dr020",
+  "domain": "disaster",
+  "language": "ta",
+  "query": "கடந்த பருவத்தின் நகர மண்டப தங்குமிடத்தின் செயல்பாட்டு நேரங்கள் என்ன?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "stale_contradiction"
+  ]
+ },
+ {
+  "id": "dr021-en",
+  "group": "dr021",
+  "domain": "disaster",
+  "language": "en",
+  "query": "How do I evacuate from a tsunami in Galle right now?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "dr021-si",
+  "group": "dr021",
+  "domain": "disaster",
+  "language": "si",
+  "query": "ගාල්ලේ සුනාමියකින් දැන් ඉවත් වන්නේ කෙසේද?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "dr021-ta",
+  "group": "dr021",
+  "domain": "disaster",
+  "language": "ta",
+  "query": "காலியில் சுனாமியிலிருந்து இப்போது எப்படி வெளியேறுவது?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "dr021-mx",
+  "group": "dr021",
+  "domain": "disaster",
+  "language": "mixed",
+  "query": "Galle walata tsunami awoth dan kohomada evacuate wenne?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "dr022-en",
+  "group": "dr022",
+  "domain": "disaster",
+  "language": "en",
+  "query": "What is the rainfall threshold for a wildfire warning in Sri Lanka?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "dr022-si",
+  "group": "dr022",
+  "domain": "disaster",
+  "language": "si",
+  "query": "ශ්‍රී ලංකාවේ ලැව් ගිනි අනතුරු ඇඟවීමක් සඳහා වර්ෂාපතන සීමාව කොපමණද?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "dr022-ta",
+  "group": "dr022",
+  "domain": "disaster",
+  "language": "ta",
+  "query": "இலங்கையில் காட்டுத்தீ எச்சரிக்கைக்கான மழைப்பொழிவு வரம்பு என்ன?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ }
+]

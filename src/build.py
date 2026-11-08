@@ -37,10 +37,13 @@ def build_index(documents: Iterable[Document], embedder_cfg: dict, chunker_cfg: 
         norm = normalize_text(doc.text)
         if not norm:
             continue
-        lang = doc.language_hint or detect_language(norm)
-        chunks.extend(
-            chunk_text(norm, doc_id=doc.doc_id, language=lang, **chunker_cfg)
-        )
+        doc_lang = doc.language_hint or detect_language(norm)
+        for c in chunk_text(norm, doc_id=doc.doc_id, language=doc_lang, **chunker_cfg):
+            # Documents mix an English section with Sinhala/Tamil summaries, so
+            # the language label must be decided per chunk, not per document.
+            c.language = detect_language(c.text)
+            c.metadata.setdefault("source_path", doc.source_path)
+            chunks.append(c)
     if not chunks:
         return embedder, store, bm25
     vectors = embedder.encode([f"passage: {c.text}" for c in chunks])

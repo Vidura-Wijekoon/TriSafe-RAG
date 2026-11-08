@@ -1,0 +1,21 @@
+\begin{table*}[t]
+  \caption{Case studies as domain slices of the test split, for the offline reproduction backend (hash embedder, extractive EchoLLM, lexical grounding) and the neural backend (multilingual-e5-base, Qwen2.5-1.5B-Instruct, mDeBERTa NLI grounding). $n$ (unans.): test queries in the slice and how many are gold-unanswerable. TriSafe uses the thresholds tuned on the development split.}
+  \label{tab:cases}
+  \footnotesize
+  \setlength{\tabcolsep}{4pt}
+  \begin{tabular}{lllcccccc}
+    \toprule
+    Case & Backend & System & $n$ (unans.) & Ans.\ rate & Acc.\ $\uparrow$ & Sel.\ acc.\ $\uparrow$ & Unans.\ abst.\ $\uparrow$ & Abst.\ F1 $\uparrow$ \\
+    \midrule
+    CS1 Civil documents & offline & B1 & 65 (6) & 0.94 & 0.356 & 0.375 & 0.17 & 0.200 \\
+    CS1 Civil documents & offline & TriSafe & 65 (6) & 0.38 & 0.220 & 0.542 & 0.83 & 0.217 \\
+    \addlinespace
+    CS2 Public health & offline & B1 & 57 (7) & 0.88 & 0.560 & 0.622 & 0.29 & 0.286 \\
+    CS2 Public health & offline & TriSafe & 57 (7) & 0.35 & 0.240 & 0.632 & 0.86 & 0.273 \\
+    \addlinespace
+    CS3 Disaster response & offline & B1 & 47 (13) & 0.94 & 0.735 & 0.781 & 0.08 & 0.125 \\
+    CS3 Disaster response & offline & TriSafe & 47 (13) & 0.51 & 0.500 & 0.810 & 0.77 & 0.556 \\
+    \addlinespace
+    \bottomrule
+  \end{tabular}
+\end{table*}

@@ -1,0 +1,22 @@
+\begin{table}[t]
+  \caption{Paired sign-flip permutation tests against B1 on the test split (offline backend): two-sided $p$-values for the per-query difference in correctness (answerable queries) and in abstention (all queries).}
+  \label{tab:tests-offline}
+  \footnotesize
+  \begin{tabular}{lcc}
+    \toprule
+    System & $p$ (correct) & $p$ (abstained) \\
+    \midrule
+    B2 grounding only (no thresholds) & 1.000 & 1.000 \\
+    B3 abstention only (w\_gr = 0) & 0.000 & 0.000 \\
+    TriSafe-RAG (default thresholds) & 0.000 & 0.000 \\
+    TriSafe-RAG with raw RRF retrieval signal & 0.000 & 0.000 \\
+    TriSafe-RAG (thresholds tuned on dev) & 0.000 & 0.000 \\
+    TriSafe-RAG + per-language thresholds (dev) & 0.000 & 0.000 \\
+    E2 retrieval-similarity gate (CRAG-style evaluator proxy) & 1.000 & 1.000 \\
+    E3 Platt (logistic) on the five signals & 0.032 & 0.013 \\
+    E4 isotonic on the TriSafe sum & 0.493 & 0.033 \\
+    E5 temperature scaling on the TriSafe sum & 1.000 & 1.000 \\
+    TriSafe-RAG with Platt-calibrated confidence & 0.008 & 0.000 \\
+    \bottomrule
+  \end{tabular}
+\end{table}

@@ -1,0 +1,1304 @@
+[
+ {
+  "id": "cd001-en",
+  "group": "cd001",
+  "domain": "civil",
+  "language": "en",
+  "query": "What is the normal passport processing fee?",
+  "gold_answers": [
+   "10,000",
+   "10000"
+  ],
+  "gold_answer": "10,000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd001-si",
+  "group": "cd001",
+  "domain": "civil",
+  "language": "si",
+  "query": "සාමාන්‍ය විදේශ ගමන් බලපත්‍ර සේවාවේ ගාස්තුව කොපමණද?",
+  "gold_answers": [
+   "10,000",
+   "10000"
+  ],
+  "gold_answer": "10,000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd001-ta",
+  "group": "cd001",
+  "domain": "civil",
+  "language": "ta",
+  "query": "சாதாரண கடவுச்சீட்டு சேவைக் கட்டணம் எவ்வளவு?",
+  "gold_answers": [
+   "10,000",
+   "10000"
+  ],
+  "gold_answer": "10,000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd001-mx",
+  "group": "cd001",
+  "domain": "civil",
+  "language": "mixed",
+  "query": "passport normal service fee eka kiyada?",
+  "gold_answers": [
+   "10,000",
+   "10000"
+  ],
+  "gold_answer": "10,000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd002-en",
+  "group": "cd002",
+  "domain": "civil",
+  "language": "en",
+  "query": "What is the urgent one-day passport service fee?",
+  "gold_answers": [
+   "20,000",
+   "20000"
+  ],
+  "gold_answer": "20,000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd002-si",
+  "group": "cd002",
+  "domain": "civil",
+  "language": "si",
+  "query": "එක් දිනක් තුළ ලබා දෙන හදිසි විදේශ ගමන් බලපත්‍ර සේවාවේ ගාස්තුව කොපමණද?",
+  "gold_answers": [
+   "20,000",
+   "20000"
+  ],
+  "gold_answer": "20,000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd002-ta",
+  "group": "cd002",
+  "domain": "civil",
+  "language": "ta",
+  "query": "அவசர ஒரு நாள் கடவுச்சீட்டு சேவைக் கட்டணம் எவ்வளவு?",
+  "gold_answers": [
+   "20,000",
+   "20000"
+  ],
+  "gold_answer": "20,000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd002-mx",
+  "group": "cd002",
+  "domain": "civil",
+  "language": "mixed",
+  "query": "passport K-35A form eka kohenda ganne, and what is the urgent fee?",
+  "gold_answers": [
+   "20,000",
+   "20000"
+  ],
+  "gold_answer": "20,000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd003-en",
+  "group": "cd003",
+  "domain": "civil",
+  "language": "en",
+  "query": "Which form is used for a Sri Lankan passport application?",
+  "gold_answers": [
+   "K-35A",
+   "K35A",
+   "K 35A"
+  ],
+  "gold_answer": "K-35A",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "form"
+  ]
+ },
+ {
+  "id": "cd003-si",
+  "group": "cd003",
+  "domain": "civil",
+  "language": "si",
+  "query": "ශ්‍රී ලංකා විදේශ ගමන් බලපත්‍ර අයදුම්පත සඳහා භාවිතා කරන ආකෘති පත්‍රය කුමක්ද?",
+  "gold_answers": [
+   "K-35A",
+   "K35A",
+   "K 35A"
+  ],
+  "gold_answer": "K-35A",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "form"
+  ]
+ },
+ {
+  "id": "cd003-ta",
+  "group": "cd003",
+  "domain": "civil",
+  "language": "ta",
+  "query": "இலங்கை கடவுச்சீட்டு விண்ணப்பத்திற்கு எந்தப் படிவம் பயன்படுத்தப்படுகிறது?",
+  "gold_answers": [
+   "K-35A",
+   "K35A",
+   "K 35A"
+  ],
+  "gold_answer": "K-35A",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "form"
+  ]
+ },
+ {
+  "id": "cd003-mx",
+  "group": "cd003",
+  "domain": "civil",
+  "language": "mixed",
+  "query": "passport apply karanna form eka mokakda?",
+  "gold_answers": [
+   "K-35A",
+   "K35A",
+   "K 35A"
+  ],
+  "gold_answer": "K-35A",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "form"
+  ]
+ },
+ {
+  "id": "cd004-en",
+  "group": "cd004",
+  "domain": "civil",
+  "language": "en",
+  "query": "When can I apply for the one-day passport service?",
+  "gold_answers": [
+   "7.00 a.m.",
+   "7.00 am",
+   "7:00",
+   "7.00",
+   "1.30 p.m.",
+   "1.30 pm",
+   "1:30",
+   "1.30"
+  ],
+  "gold_answer": "7.00 a.m.",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "time"
+  ]
+ },
+ {
+  "id": "cd004-si",
+  "group": "cd004",
+  "domain": "civil",
+  "language": "si",
+  "query": "එක්දින විදේශ ගමන් බලපත්‍ර සේවාව සඳහා අයදුම් කළ හැක්කේ කුමන වේලාවන් අතරද?",
+  "gold_answers": [
+   "7.00 a.m.",
+   "7.00 am",
+   "7:00",
+   "7.00",
+   "1.30 p.m.",
+   "1.30 pm",
+   "1:30",
+   "1.30"
+  ],
+  "gold_answer": "7.00 a.m.",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "time"
+  ]
+ },
+ {
+  "id": "cd004-ta",
+  "group": "cd004",
+  "domain": "civil",
+  "language": "ta",
+  "query": "ஒரு நாள் கடவுச்சீட்டு சேவைக்கு எந்த நேரத்தில் விண்ணப்பிக்கலாம்?",
+  "gold_answers": [
+   "7.00 a.m.",
+   "7.00 am",
+   "7:00",
+   "7.00",
+   "1.30 p.m.",
+   "1.30 pm",
+   "1:30",
+   "1.30"
+  ],
+  "gold_answer": "7.00 a.m.",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "time"
+  ]
+ },
+ {
+  "id": "cd005-en",
+  "group": "cd005",
+  "domain": "civil",
+  "language": "en",
+  "query": "Where is the passport one-day service offered?",
+  "gold_answers": [
+   "Head Office",
+   "Battaramulla",
+   "ප්‍රධාන කාර්යාල",
+   "බත්තරමුල්ල",
+   "தலைமை",
+   "பத்தரமுல்லை"
+  ],
+  "gold_answer": "Head Office",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "place"
+  ]
+ },
+ {
+  "id": "cd005-si",
+  "group": "cd005",
+  "domain": "civil",
+  "language": "si",
+  "query": "එක්දින විදේශ ගමන් බලපත්‍ර සේවාව ලබා ගත හැක්කේ කොතැනින්ද?",
+  "gold_answers": [
+   "Head Office",
+   "Battaramulla",
+   "ප්‍රධාන කාර්යාල",
+   "බත්තරමුල්ල",
+   "தலைமை",
+   "பத்தரமுல்லை"
+  ],
+  "gold_answer": "Head Office",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "place"
+  ]
+ },
+ {
+  "id": "cd005-ta",
+  "group": "cd005",
+  "domain": "civil",
+  "language": "ta",
+  "query": "ஒரு நாள் கடவுச்சீட்டு சேவை எங்கு வழங்கப்படுகிறது?",
+  "gold_answers": [
+   "Head Office",
+   "Battaramulla",
+   "ප්‍රධාන කාර්යාල",
+   "බත්තරමුල්ල",
+   "தலைமை",
+   "பத்தரமுல்லை"
+  ],
+  "gold_answer": "Head Office",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "place"
+  ]
+ },
+ {
+  "id": "cd006-en",
+  "group": "cd006",
+  "domain": "civil",
+  "language": "en",
+  "query": "What is the fee for first-time NIC registration?",
+  "gold_answers": [
+   "200"
+  ],
+  "gold_answer": "200",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd006-si",
+  "group": "cd006",
+  "domain": "civil",
+  "language": "si",
+  "query": "පළමු වරට ජාතික හැඳුනුම්පත ලියාපදිංචි කිරීමේ ගාස්තුව කොපමණද?",
+  "gold_answers": [
+   "200"
+  ],
+  "gold_answer": "200",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd006-ta",
+  "group": "cd006",
+  "domain": "civil",
+  "language": "ta",
+  "query": "முதன் முறையாக தேசிய அடையாள அட்டை பதிவு செய்யும் கட்டணம் எவ்வளவு?",
+  "gold_answers": [
+   "200"
+  ],
+  "gold_answer": "200",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd007-en",
+  "group": "cd007",
+  "domain": "civil",
+  "language": "en",
+  "query": "What is the NIC one-day service surcharge?",
+  "gold_answers": [
+   "2000",
+   "2,000"
+  ],
+  "gold_answer": "2000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd007-si",
+  "group": "cd007",
+  "domain": "civil",
+  "language": "si",
+  "query": "ජාතික හැඳුනුම්පතේ එක්දින සේවාවේ අතිරේක ගාස්තුව කොපමණද?",
+  "gold_answers": [
+   "2000",
+   "2,000"
+  ],
+  "gold_answer": "2000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd007-ta",
+  "group": "cd007",
+  "domain": "civil",
+  "language": "ta",
+  "query": "தேசிய அடையாள அட்டை ஒரு நாள் சேவைக் கட்டணம் எவ்வளவு?",
+  "gold_answers": [
+   "2000",
+   "2,000"
+  ],
+  "gold_answer": "2000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd007-mx",
+  "group": "cd007",
+  "domain": "civil",
+  "language": "mixed",
+  "query": "NIC one-day service ekata extra charge eka kiyada?",
+  "gold_answers": [
+   "2000",
+   "2,000"
+  ],
+  "gold_answer": "2000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd008-en",
+  "group": "cd008",
+  "domain": "civil",
+  "language": "en",
+  "query": "What is the fee for a duplicate of a lost NIC?",
+  "gold_answers": [
+   "1000",
+   "1,000"
+  ],
+  "gold_answer": "1000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd008-si",
+  "group": "cd008",
+  "domain": "civil",
+  "language": "si",
+  "query": "නැති වූ ජාතික හැඳුනුම්පතක ද්විත්ව පිටපතක් ලබා ගැනීමේ ගාස්තුව කොපමණද?",
+  "gold_answers": [
+   "1000",
+   "1,000"
+  ],
+  "gold_answer": "1000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd008-ta",
+  "group": "cd008",
+  "domain": "civil",
+  "language": "ta",
+  "query": "தொலைந்த தேசிய அடையாள அட்டையின் நகலுக்கான கட்டணம் எவ்வளவு?",
+  "gold_answers": [
+   "1000",
+   "1,000"
+  ],
+  "gold_answer": "1000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd008-mx",
+  "group": "cd008",
+  "domain": "civil",
+  "language": "mixed",
+  "query": "NIC eka nathi una, duplicate ekakata fee eka kiyada?",
+  "gold_answers": [
+   "1000",
+   "1,000"
+  ],
+  "gold_answer": "1000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd009-en",
+  "group": "cd009",
+  "domain": "civil",
+  "language": "en",
+  "query": "What is the fee to translate an NIC to English?",
+  "gold_answers": [
+   "2000",
+   "2,000"
+  ],
+  "gold_answer": "2000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd009-si",
+  "group": "cd009",
+  "domain": "civil",
+  "language": "si",
+  "query": "ජාතික හැඳුනුම්පත ඉංග්‍රීසි භාෂාවට පරිවර්තනය කිරීමේ ගාස්තුව කොපමණද?",
+  "gold_answers": [
+   "2000",
+   "2,000"
+  ],
+  "gold_answer": "2000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd009-ta",
+  "group": "cd009",
+  "domain": "civil",
+  "language": "ta",
+  "query": "தேசிய அடையாள அட்டையை ஆங்கிலத்தில் மொழிபெயர்க்கும் கட்டணம் எவ்வளவு?",
+  "gold_answers": [
+   "2000",
+   "2,000"
+  ],
+  "gold_answer": "2000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd010-en",
+  "group": "cd010",
+  "domain": "civil",
+  "language": "en",
+  "query": "Where is the Department for Registration of Persons head office?",
+  "gold_answers": [
+   "Battaramulla",
+   "Suhurupaya",
+   "බත්තරමුල්ල",
+   "පත්තරමුල්ල",
+   "பத்தரமுல்லை",
+   "பத்தரமுல்ல"
+  ],
+  "gold_answer": "Battaramulla",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "place"
+  ]
+ },
+ {
+  "id": "cd010-si",
+  "group": "cd010",
+  "domain": "civil",
+  "language": "si",
+  "query": "පුද්ගලයන් ලියාපදිංචි කිරීමේ දෙපාර්තමේන්තුවේ ප්‍රධාන කාර්යාලය පිහිටා ඇත්තේ කොහේද?",
+  "gold_answers": [
+   "Battaramulla",
+   "Suhurupaya",
+   "බත්තරමුල්ල",
+   "පත්තරමුල්ල",
+   "பத்தரமுல்லை",
+   "பத்தரமுல்ல"
+  ],
+  "gold_answer": "Battaramulla",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "place"
+  ]
+ },
+ {
+  "id": "cd010-ta",
+  "group": "cd010",
+  "domain": "civil",
+  "language": "ta",
+  "query": "ஆட்பதிவுத் திணைக்களத்தின் தலைமை அலுவலகம் எங்கே உள்ளது?",
+  "gold_answers": [
+   "Battaramulla",
+   "Suhurupaya",
+   "බත්තරමුල්ල",
+   "පත්තරමුල්ල",
+   "பத்தரமுல்லை",
+   "பத்தரமுல்ல"
+  ],
+  "gold_answer": "Battaramulla",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "place"
+  ]
+ },
+ {
+  "id": "cd011-en",
+  "group": "cd011",
+  "domain": "civil",
+  "language": "en",
+  "query": "What is the normal-service fee for a new driving licence for one class?",
+  "gold_answers": [
+   "2500",
+   "2,500"
+  ],
+  "gold_answer": "2500",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd011-si",
+  "group": "cd011",
+  "domain": "civil",
+  "language": "si",
+  "query": "එක් පන්තියක් සඳහා නව රියදුරු බලපත්‍රයක සාමාන්‍ය සේවා ගාස්තුව කොපමණද?",
+  "gold_answers": [
+   "2500",
+   "2,500"
+  ],
+  "gold_answer": "2500",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd011-ta",
+  "group": "cd011",
+  "domain": "civil",
+  "language": "ta",
+  "query": "ஒரு வகுப்புக்கான புதிய ஓட்டுநர் உரிமத்தின் சாதாரண சேவைக் கட்டணம் எவ்வளவு?",
+  "gold_answers": [
+   "2500",
+   "2,500"
+  ],
+  "gold_answer": "2500",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd012-en",
+  "group": "cd012",
+  "domain": "civil",
+  "language": "en",
+  "query": "What is the same-day-service fee for renewing a driving licence?",
+  "gold_answers": [
+   "4000",
+   "4,000"
+  ],
+  "gold_answer": "4000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd012-si",
+  "group": "cd012",
+  "domain": "civil",
+  "language": "si",
+  "query": "රියදුරු බලපත්‍රය අලුත් කිරීමේ එක්දින සේවා ගාස්තුව කොපමණද?",
+  "gold_answers": [
+   "4000",
+   "4,000"
+  ],
+  "gold_answer": "4000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd012-ta",
+  "group": "cd012",
+  "domain": "civil",
+  "language": "ta",
+  "query": "ஓட்டுநர் உரிமத்தைப் புதுப்பிக்கும் அதே நாள் சேவைக் கட்டணம் எவ்வளவு?",
+  "gold_answers": [
+   "4000",
+   "4,000"
+  ],
+  "gold_answer": "4000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd013-en",
+  "group": "cd013",
+  "domain": "civil",
+  "language": "en",
+  "query": "What is the normal-service driving licence renewal fee?",
+  "gold_answers": [
+   "2800",
+   "2,800"
+  ],
+  "gold_answer": "2800",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd013-si",
+  "group": "cd013",
+  "domain": "civil",
+  "language": "si",
+  "query": "රියදුරු බලපත්‍රය අලුත් කිරීමේ සාමාන්‍ය සේවා ගාස්තුව කොපමණද?",
+  "gold_answers": [
+   "2800",
+   "2,800"
+  ],
+  "gold_answer": "2800",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd013-ta",
+  "group": "cd013",
+  "domain": "civil",
+  "language": "ta",
+  "query": "ஓட்டுநர் உரிமத்தைப் புதுப்பிக்கும் சாதாரண சேவைக் கட்டணம் எவ்வளவு?",
+  "gold_answers": [
+   "2800",
+   "2,800"
+  ],
+  "gold_answer": "2800",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd013-mx",
+  "group": "cd013",
+  "domain": "civil",
+  "language": "mixed",
+  "query": "driving licence renew karanna normal fee eka kiyada?",
+  "gold_answers": [
+   "2800",
+   "2,800"
+  ],
+  "gold_answer": "2800",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd014-en",
+  "group": "cd014",
+  "domain": "civil",
+  "language": "en",
+  "query": "What is the fee for an international driving permit on normal service?",
+  "gold_answers": [
+   "3000",
+   "3,000"
+  ],
+  "gold_answer": "3000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd014-si",
+  "group": "cd014",
+  "domain": "civil",
+  "language": "si",
+  "query": "ජාත්‍යන්තර රියදුරු බලපත්‍රයක් සඳහා සාමාන්‍ය සේවා ගාස්තුව කොපමණද?",
+  "gold_answers": [
+   "3000",
+   "3,000"
+  ],
+  "gold_answer": "3000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd014-ta",
+  "group": "cd014",
+  "domain": "civil",
+  "language": "ta",
+  "query": "சர்வதேச ஓட்டுநர் அனுமதிக்கான சாதாரண சேவைக் கட்டணம் எவ்வளவு?",
+  "gold_answers": [
+   "3000",
+   "3,000"
+  ],
+  "gold_answer": "3000",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd015-en",
+  "group": "cd015",
+  "domain": "civil",
+  "language": "en",
+  "query": "How much is the duplicate driving licence fee if the licence is lost?",
+  "gold_answers": [
+   "7800",
+   "7,800"
+  ],
+  "gold_answer": "7800",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd015-si",
+  "group": "cd015",
+  "domain": "civil",
+  "language": "si",
+  "query": "රියදුරු බලපත්‍රය නැති වූ විට ද්විත්ව පිටපතක ගාස්තුව කොපමණද?",
+  "gold_answers": [
+   "7800",
+   "7,800"
+  ],
+  "gold_answer": "7800",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd015-ta",
+  "group": "cd015",
+  "domain": "civil",
+  "language": "ta",
+  "query": "ஓட்டுநர் உரிமம் தொலைந்தால் நகலுக்கான கட்டணம் எவ்வளவு?",
+  "gold_answers": [
+   "7800",
+   "7,800"
+  ],
+  "gold_answer": "7800",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "fee"
+  ]
+ },
+ {
+  "id": "cd016-en",
+  "group": "cd016",
+  "domain": "civil",
+  "language": "en",
+  "query": "How long is the temporary printable revenue licence valid?",
+  "gold_answers": [
+   "14"
+  ],
+  "gold_answer": "14",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "duration"
+  ]
+ },
+ {
+  "id": "cd016-si",
+  "group": "cd016",
+  "domain": "civil",
+  "language": "si",
+  "query": "තාවකාලික මුද්‍රණය කළ හැකි ආදායම් බලපත්‍රය වලංගු වන්නේ දින කීයක්ද?",
+  "gold_answers": [
+   "14"
+  ],
+  "gold_answer": "14",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "duration"
+  ]
+ },
+ {
+  "id": "cd016-ta",
+  "group": "cd016",
+  "domain": "civil",
+  "language": "ta",
+  "query": "தற்காலிக அச்சிடக்கூடிய வருவாய் உரிமம் எத்தனை நாட்களுக்கு செல்லுபடியாகும்?",
+  "gold_answers": [
+   "14"
+  ],
+  "gold_answer": "14",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "duration"
+  ]
+ },
+ {
+  "id": "cd016-mx",
+  "group": "cd016",
+  "domain": "civil",
+  "language": "mixed",
+  "query": "eRL temporary licence eka valid days kiyada?",
+  "gold_answers": [
+   "14"
+  ],
+  "gold_answer": "14",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "duration"
+  ]
+ },
+ {
+  "id": "cd017-en",
+  "group": "cd017",
+  "domain": "civil",
+  "language": "en",
+  "query": "Within how many days is the validated revenue licence posted?",
+  "gold_answers": [
+   "7",
+   "seven",
+   "හත",
+   "ஏழு"
+  ],
+  "gold_answer": "7",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "duration"
+  ]
+ },
+ {
+  "id": "cd017-si",
+  "group": "cd017",
+  "domain": "civil",
+  "language": "si",
+  "query": "තහවුරු කළ ආදායම් බලපත්‍රය තැපැල් කරන්නේ දින කීයක් ඇතුළතද?",
+  "gold_answers": [
+   "7",
+   "seven",
+   "හත",
+   "ஏழு"
+  ],
+  "gold_answer": "7",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "duration"
+  ]
+ },
+ {
+  "id": "cd017-ta",
+  "group": "cd017",
+  "domain": "civil",
+  "language": "ta",
+  "query": "உறுதிப்படுத்தப்பட்ட வருவாய் உரிமம் எத்தனை நாட்களுக்குள் தபாலில் அனுப்பப்படும்?",
+  "gold_answers": [
+   "7",
+   "seven",
+   "හත",
+   "ஏழு"
+  ],
+  "gold_answer": "7",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "duration"
+  ]
+ },
+ {
+  "id": "cd018-en",
+  "group": "cd018",
+  "domain": "civil",
+  "language": "en",
+  "query": "What is the URL of the online revenue licence portal?",
+  "gold_answers": [
+   "web.erl2.gov.lk",
+   "erl2.gov.lk"
+  ],
+  "gold_answer": "web.erl2.gov.lk",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "url"
+  ]
+ },
+ {
+  "id": "cd018-si",
+  "group": "cd018",
+  "domain": "civil",
+  "language": "si",
+  "query": "අන්තර්ජාල ආදායම් බලපත්‍ර සේවාවේ වෙබ් ලිපිනය කුමක්ද?",
+  "gold_answers": [
+   "web.erl2.gov.lk",
+   "erl2.gov.lk"
+  ],
+  "gold_answer": "web.erl2.gov.lk",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "url"
+  ]
+ },
+ {
+  "id": "cd018-ta",
+  "group": "cd018",
+  "domain": "civil",
+  "language": "ta",
+  "query": "ஆன்லைன் வருவாய் உரிமச் சேவையின் இணைய முகவரி என்ன?",
+  "gold_answers": [
+   "web.erl2.gov.lk",
+   "erl2.gov.lk"
+  ],
+  "gold_answer": "web.erl2.gov.lk",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "url"
+  ]
+ },
+ {
+  "id": "cd019-en",
+  "group": "cd019",
+  "domain": "civil",
+  "language": "en",
+  "query": "How can I pay for the online revenue licence?",
+  "gold_answers": [
+   "credit",
+   "debit",
+   "card",
+   "කාඩ්",
+   "அட்டை"
+  ],
+  "gold_answer": "credit",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "payment"
+  ]
+ },
+ {
+  "id": "cd019-si",
+  "group": "cd019",
+  "domain": "civil",
+  "language": "si",
+  "query": "අන්තර්ජාල ආදායම් බලපත්‍රය සඳහා ගෙවීම් කළ හැක්කේ කෙසේද?",
+  "gold_answers": [
+   "credit",
+   "debit",
+   "card",
+   "කාඩ්",
+   "அட்டை"
+  ],
+  "gold_answer": "credit",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "payment"
+  ]
+ },
+ {
+  "id": "cd019-ta",
+  "group": "cd019",
+  "domain": "civil",
+  "language": "ta",
+  "query": "ஆன்லைன் வருவாய் உரிமத்திற்கு எப்படிக் கட்டணம் செலுத்தலாம்?",
+  "gold_answers": [
+   "credit",
+   "debit",
+   "card",
+   "කාඩ්",
+   "அட்டை"
+  ],
+  "gold_answer": "credit",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "payment"
+  ]
+ },
+ {
+  "id": "cd019-mx",
+  "group": "cd019",
+  "domain": "civil",
+  "language": "mixed",
+  "query": "eRL eka online go karala renewal fee kohomada pay karanne?",
+  "gold_answers": [
+   "credit",
+   "debit",
+   "card",
+   "කාඩ්",
+   "அட்டை"
+  ],
+  "gold_answer": "credit",
+  "gold_answerable": 1,
+  "tags": [
+   "span",
+   "payment"
+  ]
+ },
+ {
+  "id": "cd025-en",
+  "group": "cd025",
+  "domain": "civil",
+  "language": "en",
+  "query": "What is the marriage registration fee in Sri Lanka?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "cd025-si",
+  "group": "cd025",
+  "domain": "civil",
+  "language": "si",
+  "query": "ශ්‍රී ලංකාවේ විවාහ ලියාපදිංචි කිරීමේ ගාස්තුව කොපමණද?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "cd025-ta",
+  "group": "cd025",
+  "domain": "civil",
+  "language": "ta",
+  "query": "இலங்கையில் திருமணப் பதிவுக் கட்டணம் எவ்வளவு?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "cd025-mx",
+  "group": "cd025",
+  "domain": "civil",
+  "language": "mixed",
+  "query": "marriage registration fee eka Sri Lanka walata kiyada?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "cd026-en",
+  "group": "cd026",
+  "domain": "civil",
+  "language": "en",
+  "query": "How do I claim my income tax refund online?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "cd026-si",
+  "group": "cd026",
+  "domain": "civil",
+  "language": "si",
+  "query": "ආදායම් බදු ආපසු ගෙවීමක් අන්තර්ජාලය හරහා ඉල්ලා සිටින්නේ කෙසේද?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "cd026-ta",
+  "group": "cd026",
+  "domain": "civil",
+  "language": "ta",
+  "query": "வருமான வரி திருப்பிச் செலுத்தலை ஆன்லைனில் எப்படிக் கோருவது?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "cd027-en",
+  "group": "cd027",
+  "domain": "civil",
+  "language": "en",
+  "query": "What is the inheritance tax rate for foreign assets?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "cd027-si",
+  "group": "cd027",
+  "domain": "civil",
+  "language": "si",
+  "query": "විදේශ වත්කම් සඳහා උරුම බදු අනුපාතය කොපමණද?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ },
+ {
+  "id": "cd027-ta",
+  "group": "cd027",
+  "domain": "civil",
+  "language": "ta",
+  "query": "வெளிநாட்டு சொத்துகளுக்கான பரம்பரை வரி விகிதம் என்ன?",
+  "gold_answers": [],
+  "gold_answer": "",
+  "gold_answerable": 0,
+  "tags": [
+   "unanswerable",
+   "out_of_scope"
+  ]
+ }
+]

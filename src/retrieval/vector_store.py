@@ -22,6 +22,10 @@ class RetrievalHit:
     chunk: Chunk
     score: float
     rank: int
+    # Component scores carried through fusion so the trust layer can use a
+    # normalised retrieval signal (dense cosine) instead of the RRF value.
+    dense_score: float = 0.0
+    sparse_score: float = 0.0
 
 
 @dataclass
