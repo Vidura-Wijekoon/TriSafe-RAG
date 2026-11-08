@@ -206,7 +206,7 @@ On calibration, the isotonic gate gives the lowest ECE (\NEfourEce), as expected
 \input{generated/table_fairness_neural}
 \begin{figure}[t]
   \centering
-  \IfFileExists{figures/lang_tradeoff_neural.pdf}{\includegraphics[width=\columnwidth]{figures/lang_tradeoff_neural.pdf}}{\fbox{\parbox{0.9\columnwidth}{\centering figure pending: neural run}}}
+  \includegraphics[width=\columnwidth]{figures/lang_tradeoff_neural.pdf}
   \caption{Per-language accuracy on answerable queries against answer rate on the test split (neural backend). Each marker is one system (shape) in one language (colour). Points on the diagonal answer only correct drafts; moving a system down and left along the diagonal narrows the cross-language gap without serving any language better.}
   \Description{Scatter plot of accuracy against answer rate, one marker per system and language.}
   \label{fig:tradeoff}
@@ -216,7 +216,7 @@ Table~\ref{tab:fair-neural} and Fig.~\ref{fig:tradeoff} report accuracy and answ
 \subsection{Calibration}
 \begin{figure}[t]
   \centering
-  \IfFileExists{figures/reliability_neural.pdf}{\includegraphics[width=\columnwidth]{figures/reliability_neural.pdf}}{\fbox{\parbox{0.9\columnwidth}{\centering figure pending: neural run}}}
+  \includegraphics[width=\columnwidth]{figures/reliability_neural.pdf}
   \caption{Reliability diagrams on the test split (neural backend): B1's retrieval-similarity confidence, the five-signal TriSafe confidence, and the Platt-calibrated TriSafe confidence, each against draft correctness. Bar labels are bin counts; the dashed diagonal is perfect calibration.}
   \Description{Three bar charts of empirical accuracy against predicted confidence with bin counts.}
   \label{fig:reliability}
