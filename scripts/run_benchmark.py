@@ -25,6 +25,7 @@ sys.path.insert(0, str(ROOT))
 import numpy as np  # noqa: E402
 
 from src.eval.benchmark import (  # noqa: E402
+    BACKENDS,
     NEURAL_BACKEND,
     OFFLINE_BACKEND,
     DraftStore,
@@ -116,6 +117,14 @@ def build_systems(checker: str, scale: dict, dev_drafts, has_verbalized: bool, h
     e2.abstention["answer_threshold"] = tune_two_way_threshold(dev_drafts, e2)
     e2.tuned_on = "dev"
     systems.append(e2)
+    # E7: self-consistency gate -- agreement of the draft with k re-samples at a higher
+    # temperature (Wang et al. 2023; Manakul et al. 2023 SelfCheckGPT), tuned on dev.
+    if any(d.get("self_consistency") is not None for d in dev_drafts):
+        e7 = SystemSpec("E7_self_consistency", "E7 self-consistency gate (agreement of k = 3 re-samples)", checker=checker,
+                        mode="score", score_field="consistency", confidence=conf_cos, abstention=dict(NO_THRESHOLDS), two_way=True)
+        e7.abstention["answer_threshold"] = tune_two_way_threshold(dev_drafts, e7)
+        e7.tuned_on = "dev"
+        systems.append(e7)
     for method, name, label, inp in (
         ("platt", "E3_platt", "E3 Platt (logistic) on the five signals", "signals"),
         ("isotonic", "E4_isotonic", "E4 isotonic on the TriSafe sum", "sum"),
@@ -170,14 +179,14 @@ def retrieval_stats(drafts):
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--backend", choices=["offline", "neural"], default="offline")
+    ap.add_argument("--backend", choices=sorted(BACKENDS), default="offline")
     ap.add_argument("--seeds", type=int, nargs="+", default=[0])
     ap.add_argument("--out", default=None)
     ap.add_argument("--n-boot", type=int, default=2000)
     ap.add_argument("--skip-translate", action="store_true")
     args = ap.parse_args()
 
-    spec = OFFLINE_BACKEND if args.backend == "offline" else NEURAL_BACKEND
+    spec = BACKENDS[args.backend]
     try:  # hybrid CPUs: fewer, faster threads beat oversubscription for decode
         import os
         import torch
@@ -221,8 +230,11 @@ def main() -> None:
         backend_info = {"embedder": spec.embedder, "llm": spec.llm, "checkers": list(spec.checkers),
                         "chunker": spec.chunker, "retrieval": spec.retrieval}
 
-    # back-fill chunk text on cached hits (needed by the evidence-availability statistic)
+    # back-fill chunk text on cached hits (needed by the evidence-availability statistic) and
+    # recompute the self-consistency score from the cached samples, so that the agreement
+    # definition in src.eval.metrics is the one in force when the tables are made
     from src.eval.benchmark import chunk_text_lookup
+    from src.eval.metrics import self_consistency_score
     _lookup = chunk_text_lookup(SOURCE_DIRS, spec.chunker)
     for seed in seeds:
         for coll in (drafts_by_seed.get(seed, []), trans_by_seed.get(seed, [])):
@@ -230,6 +242,8 @@ def main() -> None:
                 for h in d["hits"]:
                     if not h.get("text"):
                         h["text"] = _lookup.get(h["chunk_id"], "")
+                if d.get("sc_samples"):
+                    d["self_consistency"] = self_consistency_score(d["draft_text"], d["sc_samples"])
 
     all_drafts = [d for s in seeds for d in drafts_by_seed[s]]
     dev_drafts = [d for d in all_drafts if d["id"] in dev_ids]

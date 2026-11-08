@@ -65,7 +65,9 @@ def read_json_len(p: Path) -> int:
 def progress(backend: str, seed: int, n_queries: int, n_trans: int) -> dict:
     out_dir = ROOT / "results" / backend
     sdir = out_dir / f"stages_seed{seed}"
-    log_path = out_dir / f"run_seed{seed}.log"
+    # newest run log for this backend (run_seed<k>.log from single runs, run_seeds_<k..>.log from the driver)
+    logs = sorted(out_dir.glob("run_seed*.log"), key=lambda p: p.stat().st_mtime)
+    log_path = logs[-1] if logs else out_dir / f"run_seed{seed}.log"
     lines = []
     if log_path.exists():
         raw = log_path.read_text(encoding="utf-8", errors="replace").replace("\r", "\n").splitlines()

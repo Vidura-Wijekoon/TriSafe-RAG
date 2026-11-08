@@ -64,6 +64,9 @@ class BackendSpec:
     verbalized_confidence: bool = False
     translate_queries: bool = False
     max_new_tokens: int = 128
+    # extra drafts sampled at ``sc_temperature`` for the self-consistency gate (E7); 0 disables
+    self_consistency: int = 0
+    sc_temperature: float = 0.7
 
 
 OFFLINE_BACKEND = BackendSpec(
@@ -73,14 +76,43 @@ OFFLINE_BACKEND = BackendSpec(
     checkers=("lexical",),
 )
 
+# Open-weight generators served locally by Ollama (llama.cpp).  The 1.5B model is
+# run at fp16, i.e. without weight quantisation; the 7B model at Q4_K_M so that
+# it fits an 8 GB GPU.  Retrieval (multilingual-e5-base) and the NLI grounding
+# checker run on the CPU through sentence-transformers / transformers.
 NEURAL_BACKEND = BackendSpec(
     name="neural",
+    embedder={"name": "st", "model_name": "intfloat/multilingual-e5-base"},
+    llm={"name": "ollama", "model": "qwen2.5:1.5b-instruct-fp16", "temperature": 0.2},
+    checkers=("lexical", "nli"),
+    verbalized_confidence=True,
+    translate_queries=True,
+    self_consistency=3,
+)
+
+NEURAL7B_BACKEND = BackendSpec(
+    name="neural7b",
+    embedder={"name": "st", "model_name": "intfloat/multilingual-e5-base"},
+    llm={"name": "ollama", "model": "qwen2.5:7b-instruct", "temperature": 0.2},
+    checkers=("lexical", "nli"),
+    verbalized_confidence=True,
+    translate_queries=True,
+    self_consistency=3,
+)
+
+# The seed-0 CPU run reported in the first draft of the paper: the same 1.5B
+# model through HuggingFace transformers at fp32.  Kept so that results/neural_hf_fp32
+# can be regenerated; not used for the paper's tables.
+NEURAL_HF_FP32_BACKEND = BackendSpec(
+    name="neural_hf_fp32",
     embedder={"name": "st", "model_name": "intfloat/multilingual-e5-base"},
     llm={"name": "hf", "model": "Qwen/Qwen2.5-1.5B-Instruct", "temperature": 0.2, "dtype": "float32"},
     checkers=("lexical", "nli"),
     verbalized_confidence=True,
     translate_queries=True,
 )
+
+BACKENDS = {b.name: b for b in (OFFLINE_BACKEND, NEURAL_BACKEND, NEURAL7B_BACKEND, NEURAL_HF_FP32_BACKEND)}
 
 
 class DraftStore:
@@ -313,6 +345,9 @@ def replay(drafts: Sequence[dict], spec: SystemSpec) -> List[dict]:
                 conf = sig.retrieval_score
             elif spec.score_field == "verbalized":
                 v = d.get("verbalized_confidence")
+                conf = float(v) if v is not None else 0.0
+            elif spec.score_field == "consistency":
+                v = d.get("self_consistency")
                 conf = float(v) if v is not None else 0.0
             else:
                 raise ValueError(spec.score_field)

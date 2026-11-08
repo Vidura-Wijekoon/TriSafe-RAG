@@ -1,0 +1,16 @@
+\begin{table*}[t]
+  \caption{Per-seed test results (offline backend). Each seed is an independent generation pass (sampling seed of the generator); retrieval and the grounding checker are deterministic. The main tables pool all seeds and resample queries, so this table shows how much of the variation is seed noise.}
+  \label{tab:seeds-offline}
+  \footnotesize
+  \setlength{\tabcolsep}{4pt}
+  \begin{tabular}{llccccccc}
+    \toprule
+    System & Seed & Ans.\ rate & Acc.\ $\uparrow$ & Sel.\ acc.\ $\uparrow$ & Unans.\ abst.\ $\uparrow$ & Decision acc.\ $\uparrow$ & ECE $\downarrow$ & AUROC $\uparrow$ \\
+    \midrule
+    B1 vanilla (LLM self-abstention only) & 0 & 0.92 & 0.517 & 0.556 & 0.15 & 0.462 & 0.184 & 0.632 \\
+    \addlinespace
+    TriSafe-RAG (thresholds tuned on dev) & 0 & 0.41 & 0.294 & 0.656 & 0.81 & 0.373 & 0.114 & 0.636 \\
+    \addlinespace
+    \bottomrule
+  \end{tabular}
+\end{table*}

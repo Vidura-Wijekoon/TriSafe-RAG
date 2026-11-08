@@ -91,7 +91,7 @@ def table_main(R, name, caption_extra=""):
 
 def table_external(R, name):
     order = ["TriSafe_default", "TriSafe_devtuned", "E1_verbalized", "E2_retrieval_gate", "E3_platt", "E4_isotonic",
-             "E5_temperature", "E6_translate_retrieve"]
+             "E5_temperature", "E6_translate_retrieve", "E7_self_consistency"]
     boot = R["bootstrap_test"]
     rows = []
     for k in order:
@@ -189,12 +189,12 @@ def table_sweep(R, name):
 """
 
 
-def table_cases(RN, RO):
+def table_cases(RN, RO, RL=None):
     """Three domain slices, both backends, B1 vs TriSafe (dev-tuned)."""
     dom_label = {"civil": "CS1 Civil documents", "health": "CS2 Public health", "disaster": "CS3 Disaster response"}
     rows = []
     for dom in ("civil", "health", "disaster"):
-        for bname, R in (("offline", RO), ("neural", RN)):
+        for bname, R in (("offline", RO), ("neural", RN), ("neural7b", RL)):
             if R is None:
                 continue
             for k, lab in (("B1_vanilla", "B1"), ("TriSafe_devtuned", "TriSafe")):
@@ -247,16 +247,21 @@ def table_tests(R, name):
 """
 
 
-def macros(RN, RO):
-    """Numbers quoted in the running text, as LaTeX macros."""
+def macros(RN, RO, RL=None):
+    """Numbers quoted in the running text, as LaTeX macros.
+
+    Prefixes: N = neural (1.5B generator), L = neural7b (7B generator), O = offline.
+    """
     out = []
 
     def m(name, val):
         out.append(f"\\newcommand{{\\{name}}}{{{val}}}")
 
-    for tag, R in (("N", RN), ("O", RO)):
+    for tag, R in (("N", RN), ("O", RO), ("L", RL)):
         if R is None:
             continue
+        for name, val in seed_macros(R).items():
+            m(f"{tag}{name}", val)
         b1 = R["systems"]["B1_vanilla"]["test"]
         td = R["systems"]["TriSafe_default"]["test"]
         tt = R["systems"]["TriSafe_devtuned"]["test"]
@@ -302,9 +307,9 @@ def macros(RN, RO):
         rrf = R["systems"].get("TriSafe_rrf", {}).get("test", {}).get("overall", {})
         if rrf:
             m(f"{tag}RrfAns", f(rrf.get("answer_rate"), 2))
-        words = {"E1": "Eone", "E2": "Etwo", "E3": "Ethree", "E4": "Efour", "E5": "Efive", "E6": "Esix"}
+        words = {"E1": "Eone", "E2": "Etwo", "E3": "Ethree", "E4": "Efour", "E5": "Efive", "E6": "Esix", "E7": "Eseven"}
         for k in ("E1_verbalized", "E2_retrieval_gate", "E3_platt", "E4_isotonic", "E5_temperature", "E6_translate_retrieve",
-                  "TriSafe_platt", "TriSafe_lexical", "TriSafe_rrf", "B3_abstention_only", "B2_grounding_only"):
+                  "E7_self_consistency", "TriSafe_platt", "TriSafe_lexical", "TriSafe_rrf", "B3_abstention_only", "B2_grounding_only"):
             if k in R["systems"]:
                 o = R["systems"][k]["test"]["overall"]
                 key = words.get(k.split("_")[0], {"TriSafe_platt": "TPlatt", "TriSafe_lexical": "Lex", "TriSafe_rrf": "Rrf",
@@ -444,8 +449,8 @@ def figures(R, name):
 
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
-    RN, RO = load("neural"), load("offline")
-    for name, R in (("neural", RN), ("offline", RO)):
+    RN, RO, RL = load("neural"), load("offline"), load("neural7b")
+    for name, R in (("neural", RN), ("neural7b", RL), ("offline", RO)):
         if R is None:
             continue
         (OUT / f"table_main_{name}.tex").write_text(table_main(R, name), encoding="utf-8")
@@ -453,9 +458,11 @@ def main():
         (OUT / f"table_fairness_{name}.tex").write_text(table_fairness(R, name), encoding="utf-8")
         (OUT / f"table_sweep_{name}.tex").write_text(table_sweep(R, name), encoding="utf-8")
         (OUT / f"table_tests_{name}.tex").write_text(table_tests(R, name), encoding="utf-8")
+        (OUT / f"table_seeds_{name}.tex").write_text(table_seeds(R, name), encoding="utf-8")
         figures(R, name)
-    (OUT / "table_cases.tex").write_text(table_cases(RN, RO), encoding="utf-8")
-    (OUT / "macros.tex").write_text(macros(RN, RO), encoding="utf-8")
+    (OUT / "table_cases.tex").write_text(table_cases(RN, RO, RL), encoding="utf-8")
+    (OUT / "table_scaling.tex").write_text(table_scaling(RN, RL), encoding="utf-8")
+    (OUT / "macros.tex").write_text(macros(RN, RO, RL), encoding="utf-8")
     print("wrote", sorted(p.name for p in OUT.iterdir()))
 
 
@@ -669,6 +676,162 @@ def write_qualitative():
     (OUT / "qualitative.tex").write_text(qualitative(backend), encoding="utf-8")
     (OUT / "case_probes.tex").write_text(case_probes(backend), encoding="utf-8")
     (OUT / "table_examples.tex").write_text(example_items(), encoding="utf-8")
+
+
+
+# --------------------------------------------------------------------------- #
+# Seeds: per-seed test metrics from the per-query records, and the 1.5B vs 7B
+# scaling comparison
+# --------------------------------------------------------------------------- #
+
+SEED_KEYS = ("B1_vanilla", "TriSafe_default", "TriSafe_devtuned", "E1_verbalized", "E3_platt", "E4_isotonic", "E7_self_consistency")
+SEED_METRICS = (("answer_rate", "Ans", 2), ("acc_answerable", "Acc", 3), ("selective_accuracy", "Sel", 3),
+                ("unanswerable_abstention", "Unans", 2), ("decision_accuracy", "Dec", 3), ("ece_draft", "Ece", 3),
+                ("auroc_draft", "Auroc", 3), ("auroc_answered", "AurocAns", 3))
+SHORT_KEY = {"B1_vanilla": "Bone", "TriSafe_default": "Def", "TriSafe_devtuned": "Tun", "E1_verbalized": "Eone",
+             "E3_platt": "Ethree", "E4_isotonic": "Efour", "E7_self_consistency": "Eseven"}
+
+
+def _per_seed(R, system):
+    """{seed: summarise(test records of that seed)} for one system of one backend."""
+    import sys
+    sys.path.insert(0, str(ROOT))
+    from src.eval.metrics import summarise
+    p = ROOT / "results" / R["backend"] / "records" / f"{system}.jsonl"
+    if not p.exists():
+        return {}
+    test_ids = set(json.loads((ROOT / "data" / "benchmark" / "split.json").read_text(encoding="utf-8"))["test"])
+    by_seed = {}
+    for line in p.read_text(encoding="utf-8").splitlines():
+        r = json.loads(line)
+        if r["id"] in test_ids:
+            by_seed.setdefault(r.get("seed", 0), []).append(r)
+    return {s: summarise(recs) for s, recs in sorted(by_seed.items())}
+
+
+def _mean_sd(vals):
+    vals = [v for v in vals if v is not None]
+    if not vals:
+        return None, None
+    import statistics
+    return (float(statistics.mean(vals)), float(statistics.stdev(vals)) if len(vals) > 1 else 0.0)
+
+
+def seed_macros(R):
+    """Mean and standard deviation over seeds of the headline test metrics (macros ...Mean / ...Sd)."""
+    out = {"nseeds": len(R["seeds"])}
+    for sysname in SEED_KEYS:
+        if sysname not in R["systems"]:
+            continue
+        ps = _per_seed(R, sysname)
+        if not ps:
+            continue
+        for key, short, nd in SEED_METRICS:
+            mean, sd = _mean_sd([v.get(key) for v in ps.values()])
+            if mean is not None:
+                out[f"{SHORT_KEY[sysname]}{short}Mean"] = f(mean, nd)
+                out[f"{SHORT_KEY[sysname]}{short}Sd"] = f(sd, nd)
+    for sysname in ("B1_vanilla", "TriSafe_devtuned"):
+        o = R["systems"].get(sysname, {}).get("test", {}).get("overall", {})
+        if o.get("auroc_answered") is not None:
+            out[f"{SHORT_KEY[sysname]}AurocAns"] = f(o["auroc_answered"], 3)
+    return out
+
+
+def table_seeds(R, name):
+    """Per-seed test metrics for the headline systems: how much of the picture is seed noise."""
+    rows = []
+    for sysname in ("B1_vanilla", "TriSafe_devtuned", "E1_verbalized", "E7_self_consistency"):
+        if sysname not in R["systems"]:
+            continue
+        ps = _per_seed(R, sysname)
+        if not ps:
+            continue
+        label = tex_escape(R["systems"][sysname]["label"])
+        for s, v in ps.items():
+            rows.append(f"{label if s == min(ps) else ''} & {s} & {f(v['answer_rate'],2)} & {f(v['acc_answerable'],3)} & "
+                        f"{f(v['selective_accuracy'],3)} & {f(v['unanswerable_abstention'],2)} & {f(v['decision_accuracy'],3)} & "
+                        f"{f(v['ece_draft'],3)} & {f(v['auroc_draft'],3)} \\\\")
+        if len(ps) > 1:
+            cells = []
+            for key, nd in (("answer_rate", 2), ("acc_answerable", 3), ("selective_accuracy", 3),
+                            ("unanswerable_abstention", 2), ("decision_accuracy", 3), ("ece_draft", 3), ("auroc_draft", 3)):
+                mean, sd = _mean_sd([v.get(key) for v in ps.values()])
+                cells.append(f"{f(mean, nd)}$\\pm${f(sd, nd)}")
+            rows.append(r"\quad \emph{mean $\pm$ sd} & & " + " & ".join(cells) + r" \\")
+        rows.append(r"\addlinespace")
+    body = "\n    ".join(rows)
+    return rf"""\begin{{table*}}[t]
+  \caption{{Per-seed test results ({name} backend). Each seed is an independent generation pass (sampling seed of the generator); retrieval and the grounding checker are deterministic. The main tables pool all seeds and resample queries, so this table shows how much of the variation is seed noise.}}
+  \label{{tab:seeds-{name}}}
+  \footnotesize
+  \setlength{{\tabcolsep}}{{4pt}}
+  \begin{{tabular}}{{llccccccc}}
+    \toprule
+    System & Seed & Ans.\ rate & Acc.\ $\uparrow$ & Sel.\ acc.\ $\uparrow$ & Unans.\ abst.\ $\uparrow$ & Decision acc.\ $\uparrow$ & ECE $\downarrow$ & AUROC $\uparrow$ \\
+    \midrule
+    {body}
+    \bottomrule
+  \end{{tabular}}
+\end{{table*}}
+"""
+
+
+def table_scaling(RN, RL):
+    """1.5B vs 7B generator, same pipeline, same queries: mean over seeds (sd in small type)."""
+    if RN is None and RL is None:
+        return "% no neural results\n"
+    systems = [("B1_vanilla", "B1 vanilla"), ("TriSafe_devtuned", "TriSafe-RAG (dev-tuned)"),
+               ("E1_verbalized", "E1 verbalized confidence"), ("E3_platt", "E3 Platt gate"),
+               ("E7_self_consistency", "E7 self-consistency gate")]
+    metrics = [("answer_rate", "Ans.\\ rate", 2), ("acc_answerable", "Acc.", 3), ("selective_accuracy", "Sel.\\ acc.", 3),
+               ("unanswerable_abstention", "Unans.\\ abst.", 2), ("decision_accuracy", "Decision acc.", 3),
+               ("ece_draft", "ECE", 3), ("auroc_draft", "AUROC", 3)]
+    rows = []
+    for sysname, label in systems:
+        first = True
+        for gen, R in (("1.5B", RN), ("7B", RL)):
+            if R is None or sysname not in R["systems"]:
+                continue
+            ps = _per_seed(R, sysname)
+            cells = []
+            for key, _, nd in metrics:
+                if ps:
+                    mean, sd = _mean_sd([v.get(key) for v in ps.values()])
+                    cells.append(f"{f(mean, nd)}{{\\scriptsize$\\pm${f(sd, nd)}}}" if len(ps) > 1 else f(mean, nd))
+                else:
+                    cells.append(f(R["systems"][sysname]["test"]["overall"].get(key), nd))
+            rows.append(f"{label if first else ''} & {gen} & " + " & ".join(cells) + r" \\")
+            first = False
+        rows.append(r"\addlinespace")
+    lang_rows = []
+    for gen, R in (("1.5B", RN), ("7B", RL)):
+        if R is None:
+            continue
+        ma, da = R.get("model_abstention_rate", {}), R.get("draft_accuracy_test", {})
+        lang_rows.append(f"Generator abstention rate & {gen} & " + " & ".join(f(ma.get(l), 2) for l in LANGS) + r" & & & \\")
+        lang_rows.append(f"Draft accuracy (answerable) & {gen} & " + " & ".join(f(da.get(l), 2) for l in LANGS) + r" & & & \\")
+    head = " & ".join(m[1] for m in metrics)
+    body = "\n    ".join(rows)
+    lbody = "\n    ".join(lang_rows)
+    return rf"""\begin{{table*}}[t]
+  \caption{{Generator scale: Qwen2.5-1.5B-Instruct (fp16) against Qwen2.5-7B-Instruct (Q4\_K\_M) with the same retriever, grounding checker, prompts, tuning protocol, and queries. Test split, mean over seeds with the standard deviation across seeds in small type. The lower block gives, per language, how often the generator itself abstained before any policy and how often its draft was correct on answerable queries.}}
+  \label{{tab:scaling}}
+  \footnotesize
+  \setlength{{\tabcolsep}}{{3.5pt}}
+  \begin{{tabular}}{{llccccccc}}
+    \toprule
+    System & Gen. & {head} \\
+    \midrule
+    {body}
+    \midrule
+     & & en & si & ta & mixed & & & \\
+    \midrule
+    {lbody}
+    \bottomrule
+  \end{{tabular}}
+\end{{table*}}
+"""
 
 
 if __name__ == "__main__":

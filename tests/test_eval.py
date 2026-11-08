@@ -187,3 +187,31 @@ def test_staged_runner_matches_draft_format(tmp_path):
     before = dict(store.records)
     run_staged(OFFLINE_BACKEND, dirs, 0, queries, store, tstore, [], tmp_path)
     assert store.records == before
+
+
+def test_draft_agreement_numbers_and_abstention():
+    from src.eval.metrics import draft_agreement, self_consistency_score
+
+    assert draft_agreement("The fee is Rs. 10,000.", "It costs 10000 rupees") == 1.0
+    assert draft_agreement("The fee is Rs. 10,000.", "The fee is Rs. 3,500.") < 0.5
+    assert draft_agreement("INSUFFICIENT_EVIDENCE", "INSUFFICIENT_EVIDENCE") == 1.0
+    assert draft_agreement("INSUFFICIENT_EVIDENCE", "The fee is Rs. 10,000.") == 0.0
+    assert self_consistency_score("a", []) is None
+    s = self_consistency_score("Dial 117 for the DMC hotline.", ["Call 117.", "The hotline is 117", "It is 110"])
+    assert 0.6 < s < 0.7
+
+
+def test_replay_consistency_score_field():
+    from src.eval.benchmark import SystemSpec, replay
+
+    d = {"id": "q1", "group": "g", "domain": "civil", "language": "en", "tags": [], "gold_answerable": 1,
+         "gold_answers": ["10000"], "draft_text": "10000", "model_abstained": False, "seed": 0,
+         "hits": [{"chunk_id": "c", "score": 0.5, "dense_score": 0.9, "sparse_score": 0.0, "rank": 1, "language": "en", "text": "10000"}],
+         "grounding": {"lexical": {"overall_support": 1.0, "citation_coverage": 1.0, "per_sentence": []}},
+         "self_consistency": 0.75}
+    spec = SystemSpec("E7", "E7", checker="lexical", mode="score", score_field="consistency",
+                      confidence={"retrieval_signal": "cosine", "ret_lo": 0.0, "ret_hi": 1.0, "margin_scale": 1.0},
+                      abstention={"answer_threshold": 0.5, "refuse_threshold": 0.0, "min_support": 0.0, "min_citation_coverage": 0.0},
+                      two_way=True)
+    recs = replay([d], spec)
+    assert recs[0]["confidence"] == 0.75 and recs[0]["decision"] == "answer"

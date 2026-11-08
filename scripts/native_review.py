@@ -1,0 +1,249 @@
+"""Native-speaker review of the Sinhala, Tamil and code-switched benchmark queries.
+
+    python scripts/native_review.py make      # write data/benchmark/native_review_sheet.csv
+    python scripts/native_review.py stats     # summarise verdicts -> paper/trust2027/generated/provenance.tex
+    python scripts/native_review.py apply     # write corrections into items.json, rebuild queries,
+                                              # and purge cached drafts of the changed queries
+
+Sheet columns (fill in ``verdict``, optionally ``corrected_query``,
+``gold_verdict``, ``corrected_gold`` and ``notes``):
+
+    id, group, language, english_source, query, gold_aliases,
+    verdict          ok | minor | major | wrong
+                     ok     faithful and natural
+                     minor  understandable, wording improved (give corrected_query)
+                     major  meaning drifted or ungrammatical, rewritten (give corrected_query)
+                     wrong  asks something else; rewritten (give corrected_query)
+    corrected_query  the query as it should read (leave empty when verdict = ok)
+    gold_verdict     ok | add | wrong  -- do the gold aliases cover the natural answer in this language?
+    corrected_gold   extra or replacement aliases, separated by " | "
+    reviewer         initials
+    notes            free text
+
+A second reviewer can fill a copy of the sheet; ``stats`` then reports Cohen's
+kappa on the four-way verdict between the two sheets
+(``--second path/to/other_sheet.csv``).
+"""
+
+from __future__ import annotations
+
+import argparse
+import csv
+import json
+import shutil
+import sys
+import time
+from collections import Counter
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+
+ITEMS = ROOT / "data" / "benchmark" / "items.json"
+SHEET = ROOT / "data" / "benchmark" / "native_review_sheet.csv"
+LOG = ROOT / "data" / "benchmark" / "native_review_log.json"
+PROVENANCE = ROOT / "paper" / "trust2027" / "generated" / "provenance.tex"
+LANG_SUFFIX = {"en": "en", "si": "si", "ta": "ta", "mixed": "mx"}
+LANG_NAME = {"si": "Sinhala", "ta": "Tamil", "mixed": "code-switched"}
+VERDICTS = ("ok", "minor", "major", "wrong")
+FIELDS = ["id", "group", "language", "english_source", "query", "gold_aliases", "verdict", "corrected_query",
+          "gold_verdict", "corrected_gold", "reviewer", "notes"]
+
+
+def load_items() -> dict:
+    return json.loads(ITEMS.read_text(encoding="utf-8"))
+
+
+def make(args) -> None:
+    spec = load_items()
+    rows = []
+    for it in spec["items"]:
+        gold_all = list(it["gold"].get("all", []))
+        for lang in ("si", "ta", "mixed"):
+            q = it["queries"].get(lang)
+            if not q:
+                continue
+            gold = gold_all + list(it["gold"].get(lang, []))
+            rows.append({
+                "id": f"{it['group']}-{LANG_SUFFIX[lang]}", "group": it["group"], "language": lang,
+                "english_source": it["queries"]["en"], "query": q, "gold_aliases": " | ".join(gold),
+                "verdict": "", "corrected_query": "", "gold_verdict": "", "corrected_gold": "", "reviewer": "", "notes": "",
+            })
+    if SHEET.exists() and not args.force:
+        # keep verdicts already entered
+        old = {r["id"]: r for r in csv.DictReader(SHEET.open(encoding="utf-8-sig", newline=""))}
+        for r in rows:
+            if r["id"] in old:
+                for k in ("verdict", "corrected_query", "gold_verdict", "corrected_gold", "reviewer", "notes"):
+                    r[k] = old[r["id"]].get(k, "")
+    with SHEET.open("w", encoding="utf-8-sig", newline="") as f:  # BOM so Excel opens Sinhala/Tamil correctly
+        w = csv.DictWriter(f, fieldnames=FIELDS)
+        w.writeheader()
+        w.writerows(rows)
+    print(f"wrote {SHEET.relative_to(ROOT)} with {len(rows)} queries "
+          f"({Counter(r['language'] for r in rows)}); fill in 'verdict' (ok|minor|major|wrong) and corrections.")
+
+
+def read_sheet(path: Path) -> list[dict]:
+    rows = list(csv.DictReader(path.open(encoding="utf-8-sig", newline="")))
+    for r in rows:
+        r["verdict"] = (r.get("verdict") or "").strip().lower()
+        if r["verdict"] and r["verdict"] not in VERDICTS:
+            raise SystemExit(f"{r['id']}: verdict must be one of {VERDICTS}, got {r['verdict']!r}")
+        if r["verdict"] in ("minor", "major", "wrong") and not (r.get("corrected_query") or "").strip():
+            raise SystemExit(f"{r['id']}: verdict {r['verdict']} needs a corrected_query")
+    return rows
+
+
+def cohens_kappa(a: list[str], b: list[str]) -> float:
+    n = len(a)
+    po = sum(1 for x, y in zip(a, b) if x == y) / n
+    ca, cb = Counter(a), Counter(b)
+    pe = sum(ca[k] * cb[k] for k in set(ca) | set(cb)) / (n * n)
+    return (po - pe) / (1 - pe) if pe < 1 else 1.0
+
+
+def stats(args) -> str:
+    rows = read_sheet(SHEET) if SHEET.exists() else []
+    done = [r for r in rows if r["verdict"]]
+    lines = ["%% auto-generated by scripts/native_review.py stats; do not edit"]
+    if not done:
+        lines.append(r"\newcommand{\ReviewStatus}{pending}")
+        lines.append(
+            r"\paragraph{Provenance and limits} The English questions and gold aliases were written against the "
+            r"source text; the Sinhala and Tamil questions were produced by translating them and have not yet been "
+            r"independently verified by native speakers, which we flag as a limitation (Sec.~\ref{sec:discussion}). "
+            r"The corpus is small by design, so that every fact is traceable to a government URL; it does not measure "
+            r"retrieval at scale.")
+        PROVENANCE.write_text("\n".join(lines) + "\n", encoding="utf-8")
+        print("no verdicts yet; provenance paragraph says 'pending'")
+        return "pending"
+    by_lang = {}
+    for lang in ("si", "ta", "mixed"):
+        rs = [r for r in done if r["language"] == lang]
+        if rs:
+            by_lang[lang] = Counter(r["verdict"] for r in rs)
+            by_lang[lang]["n"] = len(rs)
+            by_lang[lang]["gold_changed"] = sum(1 for r in rs if (r.get("gold_verdict") or "").strip().lower() in ("add", "wrong"))
+    total = Counter(r["verdict"] for r in done)
+    n_total = len(rows)
+    lines.append(r"\newcommand{\ReviewStatus}{done}")
+    for lang, c in by_lang.items():
+        tag = {"si": "Si", "ta": "Ta", "mixed": "Mx"}[lang]
+        for v in VERDICTS:
+            lines.append(rf"\newcommand{{\Rev{tag}{v.capitalize()}}}{{{c[v]}}}")
+        lines.append(rf"\newcommand{{\Rev{tag}N}}{{{c['n']}}}")
+        lines.append(rf"\newcommand{{\Rev{tag}GoldChanged}}{{{c['gold_changed']}}}")
+    kappa_txt = ""
+    if args.second:
+        other = {r["id"]: r for r in read_sheet(Path(args.second))}
+        pairs = [(r["verdict"], other[r["id"]]["verdict"]) for r in done if r["id"] in other and other[r["id"]]["verdict"]]
+        if pairs:
+            k = cohens_kappa([p[0] for p in pairs], [p[1] for p in pairs])
+            lines.append(rf"\newcommand{{\RevKappa}}{{{k:.2f}}}")
+            lines.append(rf"\newcommand{{\RevKappaN}}{{{len(pairs)}}}")
+            kappa_txt = r" A second reviewer rated \RevKappaN{} of the queries independently; Cohen's $\kappa$ on the four-way verdict is \RevKappa."
+
+    def frac(c, keys):
+        return sum(c[k] for k in keys)
+
+    parts = []
+    for lang, c in by_lang.items():
+        parts.append(f"{LANG_NAME[lang]}: {c['ok']} of {c['n']} accepted unchanged, {c['minor']} reworded, "
+                     f"{c['major'] + c['wrong']} rewritten because the meaning had drifted"
+                     + (f", {c['gold_changed']} alias lists extended" if c['gold_changed'] else ""))
+    coverage = f"{len(done)} of {n_total}" if len(done) < n_total else f"all {n_total}"
+    lines.append(
+        r"\paragraph{Provenance and limits} The English questions and gold aliases were written against the source text. "
+        r"The Sinhala, Tamil, and code-switched questions were first drafted by machine translation and then reviewed by a "
+        r"native speaker of Sinhala and Tamil (one of the authors), who rated " + coverage +
+        r" non-English queries as faithful, reworded, or rewritten and corrected the gold aliases where the natural answer "
+        r"in that language was not covered (" + "; ".join(parts) + r")." + kappa_txt +
+        r" Corrected queries replaced the drafts before the final runs; the review sheet and the correction log are released "
+        r"with the benchmark. The corpus is small by design, so that every fact is traceable to a government URL; it does not "
+        r"measure retrieval at scale.")
+    PROVENANCE.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    print(f"verdicts: {dict(total)} over {len(done)}/{n_total} queries; per language: "
+          + "; ".join(f"{l}: {dict(c)}" for l, c in by_lang.items()))
+    return "done"
+
+
+def apply(args) -> None:
+    rows = read_sheet(SHEET)
+    spec = load_items()
+    items = {it["group"]: it for it in spec["items"]}
+    changed_ids, log = [], []
+    for r in rows:
+        it = items[r["group"]]
+        lang = r["language"]
+        new_q = (r.get("corrected_query") or "").strip()
+        if r["verdict"] in ("minor", "major", "wrong") and new_q and new_q != it["queries"].get(lang):
+            log.append({"id": r["id"], "field": "query", "old": it["queries"].get(lang), "new": new_q,
+                        "verdict": r["verdict"], "reviewer": r.get("reviewer", ""), "notes": r.get("notes", "")})
+            it["queries"][lang] = new_q
+            changed_ids.append(r["id"])
+        gv = (r.get("gold_verdict") or "").strip().lower()
+        new_g = [a.strip() for a in (r.get("corrected_gold") or "").split("|") if a.strip()]
+        if gv in ("add", "wrong") and new_g:
+            old = list(it["gold"].get(lang, []))
+            it["gold"][lang] = new_g if gv == "wrong" else sorted(set(old) | set(new_g))
+            log.append({"id": r["id"], "field": f"gold.{lang}", "old": old, "new": it["gold"][lang],
+                        "verdict": gv, "reviewer": r.get("reviewer", ""), "notes": r.get("notes", "")})
+            # gold changes alter correctness only, not the cached drafts: no purge needed
+    if not log:
+        print("nothing to apply")
+        return
+    spec.setdefault("review", {})
+    spec["review"] = {"reviewed_at": time.strftime("%Y-%m-%d"), "n_changes": len(log),
+                      "sheet": str(SHEET.relative_to(ROOT))}
+    ITEMS.write_text(json.dumps(spec, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    prev = json.loads(LOG.read_text(encoding="utf-8")) if LOG.exists() else []
+    LOG.write_text(json.dumps(prev + log, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    print(f"applied {len(log)} changes ({len(changed_ids)} queries changed); rebuilding queries.json and split")
+    import subprocess
+    subprocess.run([sys.executable, str(ROOT / "scripts" / "build_benchmark.py")], check=True)
+    purged = purge_cached(changed_ids)
+    print(f"purged cached drafts for {len(changed_ids)} queries in {purged} files; "
+          f"re-run scripts/run_benchmark.py for each backend to regenerate only those drafts.")
+
+
+def purge_cached(ids: list[str]) -> int:
+    """Remove cached drafts and stage entries of changed queries so they are regenerated."""
+    ids = set(ids)
+    if not ids:
+        return 0
+    n_files = 0
+    for backend_dir in (ROOT / "results").iterdir():
+        if not backend_dir.is_dir():
+            continue
+        for jl in backend_dir.glob("drafts*_seed*.jsonl"):
+            keep = [l for l in jl.read_text(encoding="utf-8").splitlines() if l.strip() and json.loads(l)["id"] not in ids]
+            jl.write_text("\n".join(keep) + ("\n" if keep else ""), encoding="utf-8")
+            n_files += 1
+        for sdir in backend_dir.glob("stages_seed*"):
+            for js in sdir.glob("*.json"):
+                data = json.loads(js.read_text(encoding="utf-8"))
+                if isinstance(data, dict) and any(i in data for i in ids):
+                    for i in ids:
+                        data.pop(i, None)
+                    js.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+                    n_files += 1
+        for stale in ("results.json",):
+            p = backend_dir / stale
+            if p.exists() and backend_dir.name != "offline":
+                shutil.move(str(p), str(p.with_suffix(".json.before_review")))
+    return n_files
+
+
+def main() -> None:
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    sub = ap.add_subparsers(dest="cmd", required=True)
+    m = sub.add_parser("make"); m.add_argument("--force", action="store_true", help="discard verdicts already in the sheet")
+    s = sub.add_parser("stats"); s.add_argument("--second", help="second reviewer's sheet for Cohen's kappa")
+    sub.add_parser("apply")
+    args = ap.parse_args()
+    {"make": make, "stats": stats, "apply": apply}[args.cmd](args)
+
+
+if __name__ == "__main__":
+    main()

@@ -15,6 +15,7 @@ from __future__ import annotations
 import logging
 import os
 import re
+import time
 from dataclasses import dataclass, field
 from typing import List, Optional, Protocol
 
@@ -237,6 +238,71 @@ class OpenAILLM:
         )
 
 
+class OllamaLLM:
+    """Local open-weight models served by Ollama (llama.cpp) over its HTTP API.
+
+    Uses ``POST /api/chat`` with ``stream=False``.  ``seed`` and ``temperature``
+    are passed as sampling options so that runs are reproducible per seed;
+    both are plain attributes and may be changed between calls (the benchmark
+    does this to draw self-consistency samples at a higher temperature).
+    """
+
+    def __init__(
+        self,
+        model: str = "qwen2.5:7b-instruct",
+        temperature: float = 0.2,
+        top_p: float = 0.95,
+        seed: Optional[int] = None,
+        host: Optional[str] = None,
+        num_ctx: int = 4096,
+        timeout: float = 600.0,
+        **_ignored,
+    ) -> None:
+        import json as _json
+        import urllib.request
+
+        self._json = _json
+        self._request = urllib.request
+        self.host = (host or os.getenv("OLLAMA_HOST") or "http://localhost:11434").rstrip("/")
+        self.model = model
+        self.name = f"ollama:{model}"
+        self.temperature = temperature
+        self.top_p = top_p
+        self.seed = seed
+        self.num_ctx = num_ctx
+        self.timeout = timeout
+
+    def generate(self, system: str, user: str, max_new_tokens: int = 512) -> GenerationResult:
+        options = {"temperature": self.temperature, "top_p": self.top_p, "num_predict": max_new_tokens,
+                   "num_ctx": self.num_ctx}
+        if self.seed is not None:
+            options["seed"] = int(self.seed)
+        payload = self._json.dumps({
+            "model": self.model, "stream": False, "options": options,
+            "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}],
+        }).encode("utf-8")
+        req = self._request.Request(f"{self.host}/api/chat", data=payload,
+                                    headers={"Content-Type": "application/json"}, method="POST")
+        last_exc: Optional[Exception] = None
+        for attempt in range(3):
+            try:
+                with self._request.urlopen(req, timeout=self.timeout) as resp:
+                    data = self._json.loads(resp.read().decode("utf-8"))
+                break
+            except Exception as exc:  # pragma: no cover - network
+                last_exc = exc
+                time.sleep(2.0 * (attempt + 1))
+        else:
+            raise RuntimeError(f"Ollama request failed: {last_exc}")
+        return GenerationResult(
+            text=(data.get("message") or {}).get("content", "") or "",
+            tokens_in=int(data.get("prompt_eval_count", 0) or 0),
+            tokens_out=int(data.get("eval_count", 0) or 0),
+            model=self.name,
+            finish_reason=str(data.get("done_reason", "stop")),
+        )
+
+
 def get_llm(name: str = "echo", **kwargs) -> LLM:
     if name == "echo":
         return EchoLLM()
@@ -244,4 +310,6 @@ def get_llm(name: str = "echo", **kwargs) -> LLM:
         return HFLocalLLM(**kwargs)
     if name in {"openai", "gpt"}:
         return OpenAILLM(**kwargs)
+    if name == "ollama":
+        return OllamaLLM(**kwargs)
     raise ValueError(f"Unknown LLM backend: {name}")

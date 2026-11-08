@@ -28,6 +28,7 @@ from typing import Dict, List, Optional, Sequence
 from src.build import build_index
 from src.eval.benchmark import BackendSpec, DraftStore, _grounding_to_json, _hits_to_json
 from src.generation.generator import GroundedGenerator
+from src.eval.metrics import self_consistency_score
 from src.generation.llm import (
     CONFIDENCE_SYSTEM,
     TRANSLATE_SYSTEM,
@@ -164,6 +165,20 @@ def run_staged(
             answer = generator.generate(q["query"], hits)
             rec = {"draft_text": answer.text, "model": answer.raw_generation.model,
                    "model_abstained": bool(answer.is_abstention), "verbalized_confidence": None}
+            if spec.self_consistency and hasattr(llm, "temperature") and hasattr(llm, "seed"):
+                # extra drafts at a higher temperature; agreement with the main draft is the
+                # gold-independent score used by the E7 self-consistency gate
+                base_t, base_s = llm.temperature, llm.seed
+                samples = []
+                try:
+                    llm.temperature = spec.sc_temperature
+                    for j in range(spec.self_consistency):
+                        llm.seed = 1000 * (seed + 1) + j + 1
+                        samples.append(generator.generate(q["query"], hits).text)
+                finally:
+                    llm.temperature, llm.seed = base_t, base_s
+                rec["sc_samples"] = samples
+                rec["self_consistency"] = self_consistency_score(answer.text, samples)
             if spec.verbalized_confidence:
                 if hits and not answer.is_abstention:
                     prompt = build_confidence_prompt(format_evidence(hits), q["query"], answer.text)
@@ -217,6 +232,7 @@ def run_staged(
             "draft_text": gen["draft_text"], "model": gen["model"], "model_abstained": gen["model_abstained"],
             "grounding": g, "verbalized_confidence": gen.get("verbalized_confidence"),
             "verbalized_raw": gen.get("verbalized_raw"), "seed": seed, "backend": spec.name,
+            "self_consistency": gen.get("self_consistency"), "sc_samples": gen.get("sc_samples"),
         }
 
     for q in todo:

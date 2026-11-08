@@ -192,6 +192,8 @@ def summarise(records: List[dict], n_bins: int = 10) -> Dict[str, Optional[float
         "aurc": risk_coverage_aurc(records),
         "ece_answered": expected_calibration_error(answered_conf, answered_ok, n_bins)
         if answered_conf else None,
+        # does the confidence still separate right from wrong among the drafts the policy let through?
+        "auroc_answered": auroc(answered_conf, answered_ok) if len(set(answered_ok)) > 1 else None,
         "mean_confidence": float(np.mean(confs)),
         "mean_grounding": _mean([float(r.get("grounding_support", 0.0)) for r in records]),
         "defer_rate": _mean([int(r.get("decision") == "defer") for r in records]),
@@ -239,3 +241,50 @@ def gaps(per_lang: Dict[str, dict], min_n: int = 5) -> Dict[str, Optional[float]
         "cross_lingual_consistency": (max(0.0, 1.0 - g_acc) if g_acc is not None else None),
         "groups": sorted(eligible),
     }
+
+
+# --------------------------------------------------------------------------- #
+# Self-consistency: agreement between two drafts without reference to gold
+# --------------------------------------------------------------------------- #
+
+_NUM_RE = re.compile(r"\d[\d,]*(?:\.\d+)?")
+_ABSTAIN_MARK = "INSUFFICIENT_EVIDENCE"
+
+
+def _content_tokens(text: str) -> set:
+    return {t for t in re.findall(r"[^\W\d_]+", (text or "").lower()) if len(t) > 2}
+
+
+def draft_agreement(a: str, b: str) -> float:
+    """Gold-independent agreement in [0, 1] between two drafts for the same query.
+
+    * both abstain -> 1; exactly one abstains -> 0;
+    * both mention numbers -> Jaccard overlap of the normalised numbers (most
+      public-service answers are fees, counts, and dates, so the numbers carry
+      the answer and shared filler words must not mask a numeric disagreement);
+    * exactly one mentions a number -> half the content-token Jaccard;
+    * neither -> Jaccard overlap of content tokens (letters only, > 2 chars).
+    """
+    ab_a = _ABSTAIN_MARK in (a or "")
+    ab_b = _ABSTAIN_MARK in (b or "")
+    if ab_a and ab_b:
+        return 1.0
+    if ab_a != ab_b:
+        return 0.0
+    na = {_norm_number(m) for m in _NUM_RE.findall(a or "")}
+    nb = {_norm_number(m) for m in _NUM_RE.findall(b or "")}
+    ta, tb = _content_tokens(a), _content_tokens(b)
+    tok_j = len(ta & tb) / len(ta | tb) if (ta or tb) else 0.0
+    if na and nb:
+        return len(na & nb) / len(na | nb)
+    if na or nb:
+        return 0.5 * tok_j
+    return tok_j
+
+
+def self_consistency_score(main_draft: str, samples) -> Optional[float]:
+    """Mean agreement of the main draft with each sampled draft (None if no samples)."""
+    samples = list(samples or [])
+    if not samples:
+        return None
+    return float(np.mean([draft_agreement(main_draft, s) for s in samples]))
