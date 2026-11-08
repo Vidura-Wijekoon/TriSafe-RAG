@@ -20,7 +20,7 @@ TriSafe-RAG is a single end-to-end pipeline that:
 - decides whether to **answer**, **defer**, or **refuse** based on an explicit policy (global thresholds by default, optional per-language thresholds),
 - writes one audit record per query that a fairness auditor reads to report per-language accuracy, answer rate, TPR/FPR and an Equalized Odds gap.
 
-The codebase is backend-agnostic. A deterministic hash embedder and an extractive `EchoLLM` ship by default so the pipeline runs offline in CI; the neural backend used in the paper is `multilingual-e5-base` + `Qwen2.5-1.5B-Instruct` + `mDeBERTa-v3` NLI, all open weights, and runs on a CPU laptop. An OpenAI backend is included but was not used for any reported number.
+The codebase is backend-agnostic. A deterministic hash embedder and an extractive `EchoLLM` ship by default so the pipeline runs offline in CI. The paper's neural backends use `multilingual-e5-base` retrieval and `mDeBERTa-v3` NLI grounding on the CPU with one of two open-weight generators served locally by [Ollama](https://ollama.com) (llama.cpp): `neural` = Qwen2.5-1.5B-Instruct (fp16) and `neural7b` = Qwen2.5-7B-Instruct (Q4_K_M), both on a single 8 GB laptop GPU, three generation seeds each. `neural_hf_fp32` is the earlier CPU-only run of the 1.5B model through HuggingFace transformers, kept under `results/neural_hf_fp32` for reference. An OpenAI backend is included but was not used for any reported number.
 
 ---
 
@@ -85,12 +85,25 @@ python -m pytest -q
 ```bash
 python scripts/build_benchmark.py                       # 62 items -> 208 queries, dev/test split
 python scripts/run_benchmark.py --backend offline       # seconds; hash embedder + EchoLLM
-python scripts/run_benchmark.py --backend neural --seeds 0   # CPU: ~4.5 h for 208 queries on a 16-thread laptop (e5 + Qwen2.5-1.5B fp32 + NLI), staged one model at a time
-python scripts/make_tables.py                           # paper/trust2027/generated/*.tex + figures
+ollama pull qwen2.5:1.5b-instruct-fp16 && ollama pull qwen2.5:7b-instruct   # generators (3.1 GB + 4.7 GB)
+bash scripts/run_all_seeds.sh neural7b neural           # seeds 0,1,2 per backend; ~1.5 h/seed (7B) and ~1 h/seed (1.5B) on an 8 GB GPU
+python scripts/progress_ui.py --backend neural7b        # live progress at http://localhost:8765 while a run is going
+python scripts/make_tables.py                           # paper/trust2027/generated/*.tex + figures (all backends found)
+python scripts/make_overleaf_zip.py                     # paper/TriSafe-RAG_TRUST2027_overleaf.zip (compile with XeLaTeX)
 PYTHONPATH=. python casestudies/civil_documents/run.py  # offline case-study drivers
 ```
 
-`run_benchmark.py` caches drafts per seed under `results/<backend>/drafts_seed<k>.jsonl`; re-running only replays the trust layer. Add `--seeds 0 1 2` to generate more seeds; existing ones are reused.
+`run_benchmark.py` caches drafts per seed under `results/<backend>/drafts_seed<k>.jsonl` (plus stage caches under `stages_seed<k>/`); re-running only replays the trust layer. Each query is drafted once at temperature 0.2 and re-sampled three times at 0.7 for the E7 self-consistency gate.
+
+### Native-speaker review of the Sinhala and Tamil queries
+
+```bash
+python scripts/native_review.py make    # data/benchmark/native_review_sheet.csv (146 si/ta/mixed queries)
+#   fill in: verdict = ok | minor | major | wrong, corrected_query, gold_verdict (ok|add|wrong), corrected_gold, reviewer
+python scripts/native_review.py stats   # verdict counts -> paper/trust2027/generated/provenance.tex (Cohen's kappa with --second)
+python scripts/native_review.py apply   # write corrections into items.json, rebuild queries/split, purge cached drafts of changed queries
+bash scripts/run_all_seeds.sh neural7b neural   # regenerates only the purged drafts, then re-evaluates everything
+```
 
 ---
 
