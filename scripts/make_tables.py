@@ -329,10 +329,47 @@ def macros(RN, RO):
         m(f"{tag}TunDeltaUnansCI", ci(bt["unanswerable_abstention"]["delta_vs_ref"]))
         m(f"{tag}TunDeltaUnans", f(bt["unanswerable_abstention"]["delta_vs_ref"]["point"], 2))
         m(f"{tag}seeds", len(R["seeds"]))
+        # development-split decision accuracy: what the tuning objective saw
+        for key, k in (("Tun", "TriSafe_devtuned"), ("Def", "TriSafe_default"), ("Bone", "B1_vanilla"), ("Etwo", "E2_retrieval_gate")):
+            dv = R["systems"].get(k, {}).get("dev", {}).get("overall", {})
+            if dv:
+                m(f"{tag}{key}DevDec", f(dv["decision_accuracy"], 3)); m(f"{tag}{key}DevAns", f(dv["answer_rate"], 2))
+        # per-language tuned answer thresholds
+        for l, th_l in (R.get("per_language_thresholds") or {}).items():
+            if "answer_threshold" in th_l:
+                m(f"{tag}PlTau{l}", f(th_l["answer_threshold"], 2))
+        # case-study slice sizes (test split)
+        dom_key = {"civil": "Civil", "health": "Health", "disaster": "Disaster"}
+        for dom, dk in dom_key.items():
+            S = tt.get("test_by_domain", R["systems"]["TriSafe_devtuned"].get("test_by_domain", {})).get(dom)
+            if S:
+                m(f"{tag}Cs{dk}N", S["overall"]["n"]); m(f"{tag}Cs{dk}U", S["overall"]["n_unanswerable"])
+        # abstention reasons of the dev-tuned system on the test split
+        reasons = tt["overall"].get("abstention_reasons") or {}
+        n_abst = sum(reasons.values()) or 1
+        m(f"{tag}TunAbstN", sum(reasons.values()))
+        for rk in ("model_abstained", "weak_grounding", "low_confidence", "borderline_evidence", "no_evidence_retrieved"):
+            m(f"{tag}TunReason{rk.replace('_', '')}", reasons.get(rk, 0))
+            m(f"{tag}TunReasonPct{rk.replace('_', '')}", f(reasons.get(rk, 0) / n_abst, 2))
         for l in LANGS:
             if l in tt["per_language"]:
                 m(f"{tag}TunAcc{l}", f(tt["per_language"][l]["acc_answerable"], 2)); m(f"{tag}TunAns{l}", f(tt["per_language"][l]["answer_rate"], 2))
                 m(f"{tag}BoneAcc{l}", f(b1["per_language"][l]["acc_answerable"], 2)); m(f"{tag}BoneAns{l}", f(b1["per_language"][l]["answer_rate"], 2))
+        # what the policy adds on top of the generator's own abstention (test split, answerable queries):
+        # wrong drafts that B1 delivered and TriSafe withheld ("caught"), correct drafts B1 delivered and TriSafe withheld ("lost")
+        backend = R["backend"]
+        ra = _load_records(backend, "TriSafe_devtuned"); rb = _load_records(backend, "B1_vanilla")
+        if ra and rb:
+            test_ids = set(json.loads((ROOT / "data" / "benchmark" / "split.json").read_text(encoding="utf-8"))["test"])
+            caught = {l: 0 for l in LANGS}; lost = {l: 0 for l in LANGS}
+            for qid, r in ra.items():
+                if qid not in test_ids or not r["gold_answerable"] or qid not in rb:
+                    continue
+                if rb[qid]["decision"] == "answer" and r["decision"] != "answer":
+                    (lost if r["draft_correct"] else caught)[r["language"]] += 1
+            for l in LANGS:
+                m(f"{tag}Caught{l}", caught[l]); m(f"{tag}Lost{l}", lost[l])
+            m(f"{tag}CaughtAll", sum(caught.values())); m(f"{tag}LostAll", sum(lost.values()))
     return "\n".join(out) + "\n"
 
 
@@ -380,7 +417,9 @@ def figures(R, name):
                 ax.scatter(pl[lang]["answer_rate"], pl[lang]["acc_answerable"], marker=mk, color=colors[lang], s=36,
                            edgecolor="black", linewidth=0.5)
     from matplotlib.lines import Line2D
-    h1 = [Line2D([], [], marker=mk, color="grey", linestyle="", label=R["systems"][k]["label"].split(" (")[0]) for k, mk in markers.items() if k in R["systems"]]
+    short = {"B1_vanilla": "B1 vanilla", "TriSafe_default": "TriSafe (default thresholds)",
+             "TriSafe_devtuned": "TriSafe (dev-tuned)", "TriSafe_perlang": "TriSafe (per-language, dev)"}
+    h1 = [Line2D([], [], marker=mk, color="grey", linestyle="", label=short[k]) for k, mk in markers.items() if k in R["systems"]]
     h2 = [Line2D([], [], marker="o", color=c, linestyle="", label=l) for l, c in colors.items()]
     ax.legend(handles=h1 + h2, fontsize=6, loc="upper left", ncol=2, frameon=False)
     ax.set_xlabel("Answer rate", fontsize=8); ax.set_ylabel("Accuracy on answerable queries", fontsize=8)
@@ -407,8 +446,6 @@ def main():
     print("wrote", sorted(p.name for p in OUT.iterdir()))
 
 
-if __name__ == "__main__":
-    main()
 
 
 # --------------------------------------------------------------------------- #
@@ -493,7 +530,7 @@ def case_probes(backend: str):
   \setlength{{\tabcolsep}}{{3pt}}
   \begin{{tabular}}{{lcccc}}
     \toprule
-    Probe & en & si & ta & mixed \
+    Probe & en & si & ta & mixed \\
     \midrule
     {body}
     \bottomrule
@@ -531,14 +568,14 @@ def qualitative(backend: str):
         qid, r, d = got
         sig = r["signals"]
         items.append(
-            f"\item \textbf{{{title}}} ({qid}, {d['language']}). Query: \emph{{{_short(d['query'], 90)}}} "
+            rf"\item \textbf{{{title}}} ({qid}, {d['language']}). Query: \emph{{{_short(d['query'], 90)}}} "
             f"Draft: ``{_short(d['draft_text'])}'' "
             f"Signals: retrieval {sig[0]:.2f}, margin {sig[1]:.2f}, grounding {sig[2]:.2f}, citation {sig[3]:.2f}, language match {int(sig[4])}; "
-            f"confidence {r['confidence']:.2f}; decision \textsc{{{r['decision']}}} ({tex_escape(r['reason'])}); B1 decision \textsc{{{b1[qid]['decision']}}}."
+            rf"confidence {r['confidence']:.2f}; decision \textsc{{{r['decision']}}} ({tex_escape(r['reason'])}); B1 decision \textsc{{{b1[qid]['decision']}}}."
         )
     if not items:
         return "% no qualitative items\n"
-    return "The following records are taken verbatim from the test-split audit log of the dev-tuned system (" + backend + " backend).\n\begin{itemize}\n" + "\n".join(items) + "\n\end{itemize}\n"
+    return "The following records are taken verbatim from the test-split audit log of the dev-tuned system (" + backend + " backend).\n\\begin{itemize}\n" + "\n".join(items) + "\n\\end{itemize}\n"
 
 
 def write_qualitative():
@@ -548,4 +585,5 @@ def write_qualitative():
 
 
 if __name__ == "__main__":
+    main()
     write_qualitative()

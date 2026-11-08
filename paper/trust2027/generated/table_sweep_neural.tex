@@ -1,0 +1,16 @@
+\begin{table}[t]
+  \caption{Sensitivity to the grounding weight $w_{\mathrm{gr}}$ (neural backend), with the remaining weight redistributed in the default proportions. Reported separately on the development split (used to choose defaults) and the test split.}
+  \label{tab:sweep-neural}
+  \footnotesize
+  \setlength{\tabcolsep}{3pt}
+  \begin{tabular}{lccccccc}
+    \toprule
+    $w_{\mathrm{gr}}$ & 0.0 & 0.1 & 0.2 & 0.3 & 0.4 & 0.5 & 0.6 \\
+    \midrule
+    ECE (dev) & 0.218 & 0.277 & 0.183 & 0.215 & 0.220 & 0.255 & 0.249 \\
+    ECE (test) & 0.174 & 0.140 & 0.130 & 0.126 & 0.158 & 0.189 & 0.207 \\
+    AUROC (dev) & 0.489 & 0.505 & 0.524 & 0.556 & 0.570 & 0.567 & 0.567 \\
+    AUROC (test) & 0.540 & 0.572 & 0.598 & 0.616 & 0.621 & 0.620 & 0.622 \\
+    \bottomrule
+  \end{tabular}
+\end{table}

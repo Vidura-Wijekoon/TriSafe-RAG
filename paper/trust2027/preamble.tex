@@ -7,6 +7,9 @@
 %% Every number quoted in the text comes from results/*/results.json via
 %% scripts/make_tables.py -> generated/macros.tex.  Do not type numbers by hand.
 \input{generated/macros}
+%% Written by scripts/make_overleaf_zip.py: \providecommand fallbacks for any
+%% macro whose backend run has not finished yet (renders as "??").
+\InputIfFileExists{generated/fallbacks}{}{}
 
 \settopmatter{printacmref=false}
 \renewcommand\footnotetextcopyrightpermission[1]{}

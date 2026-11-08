@@ -85,7 +85,7 @@ python -m pytest -q
 ```bash
 python scripts/build_benchmark.py                       # 62 items -> 208 queries, dev/test split
 python scripts/run_benchmark.py --backend offline       # seconds; hash embedder + EchoLLM
-python scripts/run_benchmark.py --backend neural --seeds 0   # CPU: ~2 h for 208 queries (e5 + Qwen2.5-1.5B + NLI)
+python scripts/run_benchmark.py --backend neural --seeds 0   # CPU: ~4.5 h for 208 queries on a 16-thread laptop (e5 + Qwen2.5-1.5B fp32 + NLI), staged one model at a time
 python scripts/make_tables.py                           # paper/trust2027/generated/*.tex + figures
 PYTHONPATH=. python casestudies/civil_documents/run.py  # offline case-study drivers
 ```
