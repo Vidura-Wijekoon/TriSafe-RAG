@@ -148,20 +148,28 @@ def stats(args) -> str:
         return sum(c[k] for k in keys)
 
     parts = []
+    n_changed = 0
     for lang, c in by_lang.items():
-        parts.append(f"{LANG_NAME[lang]}: {c['ok']} of {c['n']} accepted unchanged, {c['minor']} reworded, "
-                     f"{c['major'] + c['wrong']} rewritten because the meaning had drifted"
-                     + (f", {c['gold_changed']} alias lists extended" if c['gold_changed'] else ""))
+        changed = c["minor"] + c["major"] + c["wrong"]
+        n_changed += changed + c["gold_changed"]
+        if changed or c["gold_changed"]:
+            parts.append(f"{LANG_NAME[lang]}: {c['ok']} of {c['n']} accepted unchanged, {c['minor']} reworded, "
+                         f"{c['major'] + c['wrong']} rewritten because the meaning had drifted"
+                         + (f", {c['gold_changed']} alias lists extended" if c['gold_changed'] else ""))
+        else:
+            parts.append(f"{LANG_NAME[lang]}: all {c['n']} accepted unchanged")
     coverage = f"{len(done)} of {n_total}" if len(done) < n_total else f"all {n_total}"
+    tail = (r" Corrected queries replaced the drafts before the final runs; the review sheet and the correction log are "
+            r"released with the benchmark." if n_changed else
+            r" No query or alias list was changed; the review sheet is released with the benchmark. The review was done by "
+            r"a single reviewer who is also an author, so it rules out mistranslation but is not an independent inter-annotator study.")
     lines.append(
         r"\paragraph{Provenance and limits} The English questions and gold aliases were written against the source text. "
         r"The Sinhala, Tamil, and code-switched questions were first drafted by machine translation and then reviewed by a "
         r"native speaker of Sinhala and Tamil (one of the authors), who rated " + coverage +
-        r" non-English queries as faithful, reworded, or rewritten and corrected the gold aliases where the natural answer "
-        r"in that language was not covered (" + "; ".join(parts) + r")." + kappa_txt +
-        r" Corrected queries replaced the drafts before the final runs; the review sheet and the correction log are released "
-        r"with the benchmark. The corpus is small by design, so that every fact is traceable to a government URL; it does not "
-        r"measure retrieval at scale.")
+        r" non-English queries as faithful, reworded, or rewritten against the English source and checked that the gold "
+        r"aliases cover the natural answer in that language (" + "; ".join(parts) + r")." + kappa_txt + tail +
+        r" The corpus is small by design, so that every fact is traceable to a government URL; it does not measure retrieval at scale.")
     PROVENANCE.write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(f"verdicts: {dict(total)} over {len(done)}/{n_total} queries; per language: "
           + "; ".join(f"{l}: {dict(c)}" for l, c in by_lang.items()))
