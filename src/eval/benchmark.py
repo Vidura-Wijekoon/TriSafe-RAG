@@ -132,6 +132,25 @@ def _grounding_to_json(g: GroundingResult) -> dict:
     }
 
 
+def chunk_text_lookup(source_dirs: Sequence[Path], chunker_cfg: dict) -> Dict[str, str]:
+    """chunk_id -> text for the corpus, without loading any embedder (used to
+    back-fill ``text`` on cached hits)."""
+    from src.ingestion.chunker import chunk_text
+    from src.ingestion.normalize import detect_language, normalize_text
+    out: Dict[str, str] = {}
+    for d in source_dirs:
+        for doc in load_directory(d):
+            if "status: superseded" in doc.text[:200]:
+                continue
+            norm = normalize_text(doc.text)
+            if not norm:
+                continue
+            lang = doc.language_hint or detect_language(norm)
+            for c in chunk_text(norm, doc_id=doc.doc_id, language=lang, **chunker_cfg):
+                out[c.chunk_id] = c.text
+    return out
+
+
 class Backend:
     """Builds the index once and produces drafts for a list of queries."""
 

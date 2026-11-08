@@ -9,6 +9,7 @@ produced here are \\input into main.tex.
 from __future__ import annotations
 
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -27,6 +28,12 @@ def f(x, nd=3, pct=False):
     if pct:
         return f"{100 * x:.0f}"
     return f"{x:.{nd}f}"
+
+
+def pval(p):
+    if p is None:
+        return "--"
+    return "$<$0.001" if p < 0.001 else f"{p:.3f}"
 
 
 def ci(entry, nd=2):
@@ -223,7 +230,7 @@ def table_tests(R, name):
     for k, v in pt.items():
         if k not in R["systems"]:
             continue
-        rows.append(f"{tex_escape(R['systems'][k]['label'])} & {f(v.get('correct'),3)} & {f(v.get('abstained'),3)} \\\\")
+        rows.append(f"{tex_escape(R['systems'][k]['label'])} & {pval(v.get('correct'))} & {pval(v.get('abstained'))} \\\\")
     body = "\n    ".join(rows)
     return rf"""\begin{{table}}[t]
   \caption{{Paired sign-flip permutation tests against B1 on the test split ({name} backend): two-sided $p$-values for the per-query difference in correctness (answerable queries) and in abstention (all queries).}}
@@ -284,6 +291,14 @@ def macros(RN, RO):
         for l in LANGS:
             if l in da:
                 m(f"{tag}DraftAcc{l}", f(da[l], 2))
+        rs = R.get("retrieval_stats_test", {})
+        for l in LANGS:
+            if l in rs and rs[l].get("gold_in_topk") is not None:
+                m(f"{tag}RetHit{l}", f(rs[l]["gold_in_topk"], 2))
+        trs = R.get("translate_retrieval_stats", {})
+        for l in LANGS:
+            if l in trs and trs[l].get("gold_in_topk") is not None:
+                m(f"{tag}TransRetHit{l}", f(trs[l]["gold_in_topk"], 2))
         rrf = R["systems"].get("TriSafe_rrf", {}).get("test", {}).get("overall", {})
         if rrf:
             m(f"{tag}RrfAns", f(rrf.get("answer_rate"), 2))
@@ -305,7 +320,7 @@ def macros(RN, RO):
         m(f"{tag}DefDec", f(td["overall"]["decision_accuracy"], 3)); m(f"{tag}TunDec", f(tt["overall"]["decision_accuracy"], 3))
         m(f"{tag}BoneDec", f(b1["overall"]["decision_accuracy"], 3))
         pt = R["paired_tests_vs_B1"].get("TriSafe_devtuned", {})
-        m(f"{tag}TunPcorrect", f(pt.get("correct"), 3)); m(f"{tag}TunPabst", f(pt.get("abstained"), 3))
+        m(f"{tag}TunPcorrect", pval(pt.get("correct"))); m(f"{tag}TunPabst", pval(pt.get("abstained")))
         bt = R["bootstrap_test"]["TriSafe_devtuned"]
         m(f"{tag}TunDeltaAccCI", ci(bt["acc_answerable"]["delta_vs_ref"])); m(f"{tag}TunDeltaEceCI", ci(bt["ece_draft"]["delta_vs_ref"], 3))
         m(f"{tag}TunDeltaGapCI", ci(bt["gap_acc_answerable"]["delta_vs_ref"]))
@@ -418,10 +433,22 @@ def _load_drafts(backend: str, seed: int = 0):
     return {json.loads(l)["id"]: json.loads(l) for l in p.read_text(encoding="utf-8").splitlines() if l.strip()}
 
 
+_SI_RUN = re.compile("[\u0d80-\u0dff][\u0d80-\u0dff\\s\u200d.,;:0-9]*")
+_TA_RUN = re.compile("[\u0b80-\u0bff][\u0b80-\u0bff\\s\u200d.,;:0-9]*")
+
+
 def _short(text: str, n: int = 110) -> str:
+    """ASCII-safe excerpt for pdflatex: Sinhala/Tamil runs are replaced by a
+    marker and any other non-ASCII character is dropped."""
     t = " ".join((text or "").split())
-    t = t if len(t) <= n else t[: n - 1] + "\u2026"
-    return tex_escape(t).replace("#", "\#").replace("$", "\$").replace("\u200d", "")
+    t = _SI_RUN.sub(" [Sinhala text] ", t)
+    t = _TA_RUN.sub(" [Tamil text] ", t)
+    t = t.encode("ascii", "ignore").decode("ascii")
+    t = " ".join(t.split())
+    truncated = len(t) > n
+    t = t[: n - 1] if truncated else t
+    t = tex_escape(t).replace("#", "\\#").replace("$", "\\$").replace("{", "\\{").replace("}", "\\}")
+    return t + ("\\ldots{}" if truncated else "")
 
 
 def case_probes(backend: str):

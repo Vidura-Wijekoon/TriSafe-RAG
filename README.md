@@ -4,7 +4,7 @@
 
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue)]()
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)]()
-[![Tests](https://img.shields.io/badge/tests-29%20passing-brightgreen)]()
+[![Tests](https://img.shields.io/badge/tests-30%20passing-brightgreen)]()
 [![Status](https://img.shields.io/badge/status-research--preview-orange)]()
 
 ---
@@ -61,7 +61,7 @@ TriSafe-RAG/
 ├── paper/trust2027/     # ACM sigconf source; tables are \input from generated/
 ├── configs/             # YAML configs (experiment_v1, ablations)
 ├── app/                 # FastAPI service + Streamlit demo
-└── tests/               # 29 unit and integration tests (offline)
+└── tests/               # 30 unit and integration tests (offline)
 ```
 
 ---

@@ -30,8 +30,9 @@ retrieval:
   top_k: 5
 
 llm:
-  name: "echo"          # one of: echo | openai
-  # model: "gpt-4o-mini"
+  name: "echo"          # one of: echo | hf | openai
+  # hf:     model: "Qwen/Qwen2.5-1.5B-Instruct", temperature: 0.2, dtype: "float32"
+  # openai: model: "gpt-4o-mini"
 
 generation:
   max_new_tokens: 512
@@ -46,12 +47,24 @@ confidence:
   w_grounding: 0.40
   w_citation: 0.10
   w_language: 0.10
+  # Retrieval signal normalisation. "rrf" (legacy) squashes the fused RRF
+  # score, which is nearly constant; "cosine" rescales the dense cosine of the
+  # top hit from [ret_lo, ret_hi] and the top-1/top-2 margin by margin_scale.
+  # scripts/run_benchmark.py derives ret_lo/ret_hi/margin_scale from the dev split.
+  retrieval_signal: "cosine"
+  ret_lo: 0.70
+  ret_hi: 0.90
+  margin_scale: 10.0
 
 abstention:
   answer_threshold: 0.55
   refuse_threshold: 0.30
   min_support: 0.20
   min_citation_coverage: 0.40
+  respect_model_abstention: true
+  # Optional per-language overrides turn the fairness audit into enforcement:
+  # per_language: { ta: { answer_threshold: 0.50 } }
+  per_language: {}
 
 audit:
   path: "logs/audit.jsonl"

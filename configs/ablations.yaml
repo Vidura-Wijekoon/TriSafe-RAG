@@ -22,10 +22,25 @@ ablations:
       min_citation_coverage: 0.0
 
   B3_abstention_only:
-    description: "Abstention without grounding-aware confidence"
+    description: "Abstention without grounding-aware confidence (weights renormalised to sum to 1)"
     confidence:
+      w_retrieval: 0.40
+      w_margin: 0.40
       w_grounding: 0.0
       w_citation: 0.0
+      w_language: 0.20
 
   TriSafe_full:
     description: "Full TriSafe-RAG (grounding + fairness audit + abstention)"
+
+  TriSafe_rrf:
+    description: "Full TriSafe-RAG with the legacy (nearly constant) RRF retrieval signal"
+    confidence:
+      retrieval_signal: "rrf"
+
+  TriSafe_perlang:
+    description: "Full TriSafe-RAG with per-language answer thresholds (example values)"
+    abstention:
+      per_language:
+        si: { answer_threshold: 0.50 }
+        ta: { answer_threshold: 0.50 }

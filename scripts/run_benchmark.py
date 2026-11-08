@@ -27,7 +27,6 @@ import numpy as np  # noqa: E402
 from src.eval.benchmark import (  # noqa: E402
     NEURAL_BACKEND,
     OFFLINE_BACKEND,
-    Backend,
     DraftStore,
     SystemSpec,
     by_domain,
@@ -179,6 +178,12 @@ def main() -> None:
     args = ap.parse_args()
 
     spec = OFFLINE_BACKEND if args.backend == "offline" else NEURAL_BACKEND
+    try:  # hybrid CPUs: fewer, faster threads beat oversubscription for decode
+        import os
+        import torch
+        torch.set_num_threads(int(os.environ.get("TRISAFE_TORCH_THREADS", "16")))
+    except Exception:  # pragma: no cover
+        pass
     out_dir = Path(args.out or ROOT / "results" / spec.name)
     (out_dir / "records").mkdir(parents=True, exist_ok=True)
     queries = json.loads(QUERIES.read_text(encoding="utf-8"))
@@ -199,24 +204,13 @@ def main() -> None:
         need_t = spec.translate_queries and not args.skip_translate and any(
             q["id"] not in tstore for q in trans_queries)
         if need or need_t:
-            log.info("building backend %s (seed %d)", spec.name, seed)
-            be = Backend(spec, SOURCE_DIRS, seed=seed)
-            backend_info = {"n_docs": be.n_docs, "n_chunks": be.n_chunks, "llm": be.llm.name,
-                            "embedder": spec.embedder, "checkers": list(spec.checkers), "chunker": spec.chunker,
-                            "retrieval": spec.retrieval}
-            # keep chunk text in drafts for the evidence-availability statistic
-            chunk_text = {c.chunk_id: c.text for c in be.store.chunks}
-            if need:
-                log.info("generating drafts, seed %d", seed)
-                be.fill(queries, store, translate=False, progress=_progress)
-            if need_t:
-                log.info("generating translate-then-retrieve drafts, seed %d", seed)
-                be.fill(trans_queries, tstore, translate=True, progress=_progress)
-            for s in (store, tstore):
-                for r in s.records.values():
-                    for h in r["hits"]:
-                        h.setdefault("text", chunk_text.get(h["chunk_id"], ""))
-            del be
+            log.info("producing drafts for backend %s (seed %d), staged to limit memory", spec.name, seed)
+            from src.eval.staged import run_staged
+            info = run_staged(spec, SOURCE_DIRS, seed, queries, store,
+                              tstore if (spec.translate_queries and not args.skip_translate) else None,
+                              trans_queries if (spec.translate_queries and not args.skip_translate) else [],
+                              out_dir)
+            backend_info = info or backend_info
         drafts_by_seed[seed] = [store.get(q["id"]) for q in queries]
         if spec.translate_queries and not args.skip_translate:
             trans_by_seed[seed] = [
@@ -226,6 +220,16 @@ def main() -> None:
     if not backend_info:
         backend_info = {"embedder": spec.embedder, "llm": spec.llm, "checkers": list(spec.checkers),
                         "chunker": spec.chunker, "retrieval": spec.retrieval}
+
+    # back-fill chunk text on cached hits (needed by the evidence-availability statistic)
+    from src.eval.benchmark import chunk_text_lookup
+    _lookup = chunk_text_lookup(SOURCE_DIRS, spec.chunker)
+    for seed in seeds:
+        for coll in (drafts_by_seed.get(seed, []), trans_by_seed.get(seed, [])):
+            for d in coll:
+                for h in d["hits"]:
+                    if not h.get("text"):
+                        h["text"] = _lookup.get(h["chunk_id"], "")
 
     all_drafts = [d for s in seeds for d in drafts_by_seed[s]]
     dev_drafts = [d for d in all_drafts if d["id"] in dev_ids]

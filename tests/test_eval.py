@@ -168,3 +168,22 @@ def test_offline_backend_replay_roundtrip(tmp_path):
     # a second store load replays identically
     store2 = DraftStore(tmp_path / "drafts.jsonl")
     assert replay([store2.get(q["id"]) for q in queries], spec) == recs
+
+
+def test_staged_runner_matches_draft_format(tmp_path):
+    from src.eval.staged import run_staged
+    queries = json.loads((ROOT / "data" / "benchmark" / "queries.json").read_text(encoding="utf-8"))[:5]
+    store = DraftStore(tmp_path / "drafts.jsonl")
+    tstore = DraftStore(tmp_path / "drafts_t.jsonl")
+    dirs = [ROOT / "casestudies" / c / "data" / "raw" for c in ("civil_documents", "public_health", "disaster_response")]
+    info = run_staged(OFFLINE_BACKEND, dirs, 0, queries, store, tstore, [q for q in queries if q["language"] != "en"][:2], tmp_path)
+    assert info["n_docs"] == 12 and info["n_chunks"] > 0
+    rec = store.get(queries[0]["id"])
+    for key in ("hits", "draft_text", "model_abstained", "grounding", "gold_answers", "gold_answerable"):
+        assert key in rec
+    assert "lexical" in rec["grounding"] and "text" in rec["hits"][0]
+    assert len(tstore.records) == 2
+    # resuming does no new work and leaves the stores unchanged
+    before = dict(store.records)
+    run_staged(OFFLINE_BACKEND, dirs, 0, queries, store, tstore, [], tmp_path)
+    assert store.records == before
