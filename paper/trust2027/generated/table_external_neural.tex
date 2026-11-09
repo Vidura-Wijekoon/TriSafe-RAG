@@ -7,14 +7,15 @@
     \toprule
     System & Ans.\ rate & Acc.\ $\uparrow$ & Sel.\ acc.\ $\uparrow$ & Unans.\ abst.\ $\uparrow$ & Decision acc.\ $\uparrow$ [95\% CI] & ECE $\downarrow$ & AURC $\downarrow$ \\
     \midrule
-    TriSafe-RAG (default thresholds) & 0.15 & 0.147 & 0.840 & 1.00 & 0.278 [0.21, 0.35] & 0.158 & 0.396 \\
-    TriSafe-RAG (thresholds tuned on dev) & 0.20 & 0.210 & 0.882 & 1.00 & 0.331 [0.27, 0.40] & 0.158 & 0.396 \\
-    E1 LLM verbalized confidence & 0.46 & 0.413 & 0.766 & 0.96 & 0.497 [0.43, 0.57] & 0.176 & 0.321 \\
-    E2 retrieval-similarity gate (CRAG-style evaluator proxy) & 0.43 & 0.399 & 0.781 & 1.00 & 0.491 [0.42, 0.57] & 0.323 & 0.500 \\
-    E3 Platt (logistic) on the five signals & 0.46 & 0.413 & 0.766 & 0.96 & 0.497 [0.43, 0.57] & 0.182 & 0.317 \\
-    E4 isotonic on the TriSafe sum & 0.46 & 0.413 & 0.766 & 0.96 & 0.497 [0.43, 0.57] & 0.037 & 0.369 \\
-    E5 temperature scaling on the TriSafe sum & 0.46 & 0.413 & 0.766 & 0.96 & 0.497 [0.43, 0.57] & 0.148 & 0.396 \\
-    E6 translate-then-retrieve + TriSafe policy & 0.08 & 0.098 & 1.000 & 1.00 & 0.237 [0.18, 0.30] & 0.231 & 0.271 \\
+    TriSafe-RAG (default thresholds) & 0.12 & 0.121 & 0.839 & 1.00 & 0.256 [0.18, 0.31] & 0.161 & 0.397 \\
+    TriSafe-RAG (thresholds tuned on dev) & 0.17 & 0.179 & 0.885 & 1.00 & 0.306 [0.24, 0.37] & 0.161 & 0.397 \\
+    E1 LLM verbalized confidence & 0.37 & 0.375 & 0.861 & 0.96 & 0.465 [0.38, 0.53] & 0.191 & 0.265 \\
+    E2 retrieval-similarity gate (CRAG-style evaluator proxy) & 0.44 & 0.410 & 0.786 & 0.99 & 0.499 [0.41, 0.56] & 0.316 & 0.507 \\
+    E3 Platt (logistic) on the five signals & 0.47 & 0.424 & 0.771 & 0.95 & 0.505 [0.42, 0.57] & 0.150 & 0.338 \\
+    E4 isotonic on the TriSafe sum & 0.47 & 0.424 & 0.771 & 0.95 & 0.505 [0.42, 0.57] & 0.030 & 0.360 \\
+    E5 temperature scaling on the TriSafe sum & 0.47 & 0.424 & 0.771 & 0.95 & 0.505 [0.42, 0.57] & 0.129 & 0.397 \\
+    E6 translate-then-retrieve + TriSafe policy & 0.08 & 0.089 & 0.950 & 1.00 & 0.229 [0.15, 0.27] & 0.213 & 0.306 \\
+    E7 self-consistency gate (agreement of k = 3 re-samples) & 0.40 & 0.396 & 0.854 & 0.97 & 0.485 [0.41, 0.56] & 0.388 & 0.554 \\
     \bottomrule
   \end{tabular}
 \end{table*}

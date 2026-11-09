@@ -7,19 +7,26 @@
     \toprule
     System & Gen. & Ans.\ rate & Acc. & Sel.\ acc. & Unans.\ abst. & Decision acc. & ECE & AUROC \\
     \midrule
-    B1 vanilla & 7B & 0.69 & 0.510 & 0.635 & 0.96 & 0.580 & 0.264 & 0.527 \\
+    B1 vanilla & 1.5B & 0.47{\scriptsize$\pm$0.05} & 0.424{\scriptsize$\pm$0.025} & 0.773{\scriptsize$\pm$0.039} & 0.95{\scriptsize$\pm$0.02} & 0.505{\scriptsize$\pm$0.018} & 0.319{\scriptsize$\pm$0.027} & 0.461{\scriptsize$\pm$0.028} \\
+     & 7B & 0.69 & 0.510 & 0.635 & 0.96 & 0.580 & 0.264 & 0.527 \\
     \addlinespace
-    TriSafe-RAG (dev-tuned) & 7B & 0.50 & 0.350 & 0.595 & 1.00 & 0.450 & 0.317 & 0.435 \\
+    TriSafe-RAG (dev-tuned) & 1.5B & 0.17{\scriptsize$\pm$0.02} & 0.179{\scriptsize$\pm$0.025} & 0.883{\scriptsize$\pm$0.047} & 1.00{\scriptsize$\pm$0.00} & 0.306{\scriptsize$\pm$0.021} & 0.176{\scriptsize$\pm$0.004} & 0.615{\scriptsize$\pm$0.029} \\
+     & 7B & 0.50 & 0.350 & 0.595 & 1.00 & 0.450 & 0.317 & 0.435 \\
     \addlinespace
-    E1 verbalized confidence & 7B & 0.69 & 0.510 & 0.635 & 0.96 & 0.580 & 0.311 & 0.685 \\
+    E1 verbalized confidence & 1.5B & 0.37{\scriptsize$\pm$0.04} & 0.375{\scriptsize$\pm$0.033} & 0.863{\scriptsize$\pm$0.043} & 0.96{\scriptsize$\pm$0.00} & 0.465{\scriptsize$\pm$0.028} & 0.203{\scriptsize$\pm$0.011} & 0.789{\scriptsize$\pm$0.008} \\
+     & 7B & 0.69 & 0.510 & 0.635 & 0.96 & 0.580 & 0.311 & 0.685 \\
     \addlinespace
-    E3 Platt gate & 7B & 0.69 & 0.510 & 0.635 & 0.96 & 0.580 & 0.064 & 0.543 \\
+    E3 Platt gate & 1.5B & 0.47{\scriptsize$\pm$0.05} & 0.424{\scriptsize$\pm$0.025} & 0.773{\scriptsize$\pm$0.039} & 0.95{\scriptsize$\pm$0.02} & 0.505{\scriptsize$\pm$0.018} & 0.151{\scriptsize$\pm$0.014} & 0.734{\scriptsize$\pm$0.058} \\
+     & 7B & 0.69 & 0.510 & 0.635 & 0.96 & 0.580 & 0.064 & 0.543 \\
     \addlinespace
-    E7 self-consistency gate & 7B & 0.64 & 0.510 & 0.676 & 0.96 & 0.580 & 0.280 & 0.625 \\
+    E7 self-consistency gate & 1.5B & 0.40{\scriptsize$\pm$0.02} & 0.396{\scriptsize$\pm$0.021} & 0.854{\scriptsize$\pm$0.005} & 0.97{\scriptsize$\pm$0.02} & 0.485{\scriptsize$\pm$0.018} & 0.396{\scriptsize$\pm$0.051} & 0.499{\scriptsize$\pm$0.050} \\
+     & 7B & 0.64 & 0.510 & 0.676 & 0.96 & 0.580 & 0.280 & 0.625 \\
     \addlinespace
     \midrule
      & & en & si & ta & mixed & & & \\
     \midrule
+    Generator abstention rate & 1.5B & 0.23 & 0.91 & 0.47 & 0.46 & & & \\
+    Draft accuracy (answerable) & 1.5B & 0.89 & 0.09 & 0.26 & 0.53 & & & \\
     Generator abstention rate & 7B & 0.16 & 0.44 & 0.36 & 0.26 & & & \\
     Draft accuracy (answerable) & 7B & 0.95 & 0.19 & 0.31 & 0.76 & & & \\
     \bottomrule

@@ -1,0 +1,32 @@
+\begin{table*}[t]
+  \caption{Per-seed test results (neural backend). Each seed is an independent generation pass (sampling seed of the generator); retrieval and the grounding checker are deterministic. The main tables pool all seeds and resample queries, so this table shows how much of the variation is seed noise.}
+  \label{tab:seeds-neural}
+  \footnotesize
+  \setlength{\tabcolsep}{4pt}
+  \begin{tabular}{llccccccc}
+    \toprule
+    System & Seed & Ans.\ rate & Acc.\ $\uparrow$ & Sel.\ acc.\ $\uparrow$ & Unans.\ abst.\ $\uparrow$ & Decision acc.\ $\uparrow$ & ECE $\downarrow$ & AUROC $\uparrow$ \\
+    \midrule
+    B1 vanilla (LLM self-abstention only) & 0 & 0.44 & 0.399 & 0.770 & 0.96 & 0.485 & 0.345 & 0.430 \\
+     & 1 & 0.53 & 0.448 & 0.736 & 0.92 & 0.521 & 0.292 & 0.485 \\
+     & 2 & 0.45 & 0.427 & 0.813 & 0.96 & 0.509 & 0.320 & 0.466 \\
+    \quad \emph{mean $\pm$ sd} & & 0.47$\pm$0.05 & 0.424$\pm$0.025 & 0.773$\pm$0.039 & 0.95$\pm$0.02 & 0.505$\pm$0.018 & 0.319$\pm$0.027 & 0.461$\pm$0.028 \\
+    \addlinespace
+    TriSafe-RAG (thresholds tuned on dev) & 0 & 0.18 & 0.182 & 0.867 & 1.00 & 0.308 & 0.176 & 0.624 \\
+     & 1 & 0.15 & 0.154 & 0.846 & 1.00 & 0.284 & 0.180 & 0.582 \\
+     & 2 & 0.18 & 0.203 & 0.935 & 1.00 & 0.325 & 0.173 & 0.638 \\
+    \quad \emph{mean $\pm$ sd} & & 0.17$\pm$0.02 & 0.179$\pm$0.025 & 0.883$\pm$0.047 & 1.00$\pm$0.00 & 0.306$\pm$0.021 & 0.176$\pm$0.004 & 0.615$\pm$0.029 \\
+    \addlinespace
+    E1 LLM verbalized confidence & 0 & 0.36 & 0.350 & 0.833 & 0.96 & 0.444 & 0.205 & 0.783 \\
+     & 1 & 0.42 & 0.413 & 0.843 & 0.96 & 0.497 & 0.191 & 0.797 \\
+     & 2 & 0.34 & 0.364 & 0.912 & 0.96 & 0.456 & 0.212 & 0.785 \\
+    \quad \emph{mean $\pm$ sd} & & 0.37$\pm$0.04 & 0.375$\pm$0.033 & 0.863$\pm$0.043 & 0.96$\pm$0.00 & 0.465$\pm$0.028 & 0.203$\pm$0.011 & 0.789$\pm$0.008 \\
+    \addlinespace
+    E7 self-consistency gate (agreement of k = 3 re-samples) & 0 & 0.39 & 0.392 & 0.848 & 1.00 & 0.485 & 0.453 & 0.446 \\
+     & 1 & 0.42 & 0.420 & 0.857 & 0.96 & 0.503 & 0.354 & 0.544 \\
+     & 2 & 0.38 & 0.378 & 0.857 & 0.96 & 0.467 & 0.381 & 0.508 \\
+    \quad \emph{mean $\pm$ sd} & & 0.40$\pm$0.02 & 0.396$\pm$0.021 & 0.854$\pm$0.005 & 0.97$\pm$0.02 & 0.485$\pm$0.018 & 0.396$\pm$0.051 & 0.499$\pm$0.050 \\
+    \addlinespace
+    \bottomrule
+  \end{tabular}
+\end{table*}

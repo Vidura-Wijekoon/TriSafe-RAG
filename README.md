@@ -134,10 +134,10 @@ bash scripts/run_all_seeds.sh neural7b neural   # regenerates only the purged dr
 |---|---|
 | Benchmark (62 items, 208 queries, dev/test split) | final; native-speaker review complete |
 | Offline backend (`results/offline`) | final |
-| `neural7b` (Qwen2.5-7B Q4_K_M) | seed 0 done and replayed with every system: **headline backend of the paper**; seeds 1-2 resume after the 1.5B run (`scripts/resume_7b_after_driver.sh`) |
-| `neural` (Qwen2.5-1.5B fp16) | seed 0 generating (started 12:25); fills the scale section and appendix via `make_tables.py` |
+| `neural7b` (Qwen2.5-7B Q4_K_M) | seed 0 done and replayed with every system: **headline backend of the paper**; seeds 1-2 generating (`scripts/resume_7b_after_driver.sh`, ~8 h per seed) |
+| `neural` (Qwen2.5-1.5B fp16) | three seeds done and evaluated (`results/neural`); fills the scale section and appendix |
 | `neural_hf_fp32` (1.5B, CPU, 1 seed) | archived reference run |
-| Paper (`paper/trust2027`) | complete on the 7B results (one seed); the 1.5B numbers in `sec:scale` and the appendix render as `??` until `results/neural/results.json` exists |
+| Paper (`paper/trust2027`) | complete: 7B seed 0 headline, 1.5B three-seed scale comparison; `check_paper.py` reports 0 problems; one-seed sentences to revise when 7B seeds 1-2 land |
 | Adjudication (`data/benchmark/adjudication_B1_delivered.csv`) | 116 delivered 7B seed-0 answers labelled |
 | Corpus-summary review (`data/benchmark/native_review_corpus.csv`) | sheet generated, not yet reviewed |
 
