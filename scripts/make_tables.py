@@ -264,6 +264,8 @@ def macros(RN, RO, RL=None):
             m(f"{tag}{name}", val)
         for name, val in cost_macros(R).items():
             m(f"{tag}{name}", val)
+        for name, val in e7_fixed_macros(R).items():
+            m(f"{tag}{name}", val)
         b1 = R["systems"]["B1_vanilla"]["test"]
         td = R["systems"]["TriSafe_default"]["test"]
         tt = R["systems"]["TriSafe_devtuned"]["test"]
@@ -345,18 +347,19 @@ def macros(RN, RO, RL=None):
         for l, th_l in (R.get("per_language_thresholds") or {}).items():
             if "answer_threshold" in th_l:
                 m(f"{tag}PlTau{l}", f(th_l["answer_threshold"], 2))
-        # case-study slice sizes (test split)
+        # case-study slice sizes (test split).  Record counts sum over seeds; divide back to queries.
+        n_seeds_r = max(1, len(R.get("seeds") or [0]))
         dom_key = {"civil": "Civil", "health": "Health", "disaster": "Disaster"}
         for dom, dk in dom_key.items():
             S = tt.get("test_by_domain", R["systems"]["TriSafe_devtuned"].get("test_by_domain", {})).get(dom)
             if S:
-                m(f"{tag}Cs{dk}N", S["overall"]["n"]); m(f"{tag}Cs{dk}U", S["overall"]["n_unanswerable"])
-        # abstention reasons of the dev-tuned system on the test split
+                m(f"{tag}Cs{dk}N", _cnt(S["overall"]["n"] / n_seeds_r)); m(f"{tag}Cs{dk}U", _cnt(S["overall"]["n_unanswerable"] / n_seeds_r))
+        # abstention reasons of the dev-tuned system on the test split (mean per seed; can be fractional)
         reasons = tt["overall"].get("abstention_reasons") or {}
         n_abst = sum(reasons.values()) or 1
-        m(f"{tag}TunAbstN", sum(reasons.values()))
+        m(f"{tag}TunAbstN", _cnt(sum(reasons.values()) / n_seeds_r))
         for rk in ("model_abstained", "weak_grounding", "low_confidence", "borderline_evidence", "no_evidence_retrieved"):
-            m(f"{tag}TunReason{rk.replace('_', '')}", reasons.get(rk, 0))
+            m(f"{tag}TunReason{rk.replace('_', '')}", _cnt(reasons.get(rk, 0) / n_seeds_r))
             m(f"{tag}TunReasonPct{rk.replace('_', '')}", f(reasons.get(rk, 0) / n_abst, 2))
         for l in LANGS:
             if l in tt["per_language"]:
@@ -991,6 +994,67 @@ COST_KEYS = {"B1_vanilla": "Bone", "B1_empty_filter": "Bempty", "TriSafe_empty":
              "Gate_confidence": "GateConf", "Gate_grounding": "GateGr", "Gate_citation": "GateCit", "TriSafe_nolang": "Nolang",
              "B3_abstention_only": "Bthree", "E1_verbalized": "Eone", "E2_retrieval_gate": "Etwo", "E3_platt": "Ethree",
              "E4_isotonic": "Efour", "E5_temperature": "Efive", "E6_translate_retrieve": "Esix", "E7_self_consistency": "Eseven"}
+
+
+def e7_fixed_macros(R):
+    """The self-consistency gate at a *fixed* threshold: the threshold the protocol selects on the
+    development queries of seed 0 alone, applied to every seed.  Reported next to the pooled-tuned
+    E7 row so that a threshold tuned to zero (no decision changed) can be explained."""
+    backend = R.get("backend")
+    seeds = R.get("seeds") or [0]
+    out = {}
+    recs = []
+    rp = ROOT / "results" / backend / "records" / "B1_vanilla.jsonl"
+    if not rp.exists():
+        return out
+    for line in rp.read_text(encoding="utf-8").splitlines():
+        if line.strip():
+            recs.append(json.loads(line))
+    sc = {}
+    for sd in seeds:
+        dp = ROOT / "results" / backend / f"drafts_seed{sd}.jsonl"
+        if not dp.exists():
+            return out
+        for line in dp.read_text(encoding="utf-8").splitlines():
+            if line.strip():
+                d = json.loads(line)
+                sc[(d["id"], sd)] = d.get("self_consistency")
+    if not any(v is not None for v in sc.values()):
+        return out
+    split = json.loads((ROOT / "data" / "benchmark" / "split.json").read_text(encoding="utf-8"))
+    dev, test = set(split["dev"]), set(split["test"])
+
+    def gated(r, thr):
+        return r["decision"] == "answer" and (sc.get((r["id"], r["seed"])) or 0.0) < thr
+
+    def dec_acc(rs, thr):
+        ok = 0
+        for r in rs:
+            ans = r["decision"] == "answer" and not gated(r, thr)
+            ok += (ans and r["gold_answerable"] and r["correct"]) or ((not ans) and not r["gold_answerable"])
+        return ok / max(1, len(rs))
+
+    grid = [i / 100 for i in range(0, 101, 2)]
+    dev0 = [r for r in recs if r["id"] in dev and r["seed"] == seeds[0]]
+    best = max(dec_acc(dev0, t) for t in grid)
+    thr = min(t for t in grid if dec_acc(dev0, t) == best)
+    dev_all = [r for r in recs if r["id"] in dev]
+    out["EsevenFixThr"] = f"{thr:.2f}"
+    out["EsevenDevDecZero"] = f"{dec_acc(dev_all, 0.0):.3f}"
+    out["EsevenDevDecFix"] = f"{dec_acc(dev_all, thr):.3f}"
+    n_seeds = max(1, len(seeds))
+    test_all = [r for r in recs if r["id"] in test]
+    g = [r for r in test_all if gated(r, thr)]
+    rem = sum(1 for r in g if not r["gold_answerable"] or not r["correct"]) / n_seeds
+    lost = sum(1 for r in g if r["gold_answerable"] and r["correct"]) / n_seeds
+    base_unsafe = sum(1 for r in test_all if r["decision"] == "answer" and (not r["gold_answerable"] or not r["correct"])) / n_seeds
+    out["EsevenFixRemoved"] = _cnt(rem); out["EsevenFixLost"] = _cnt(lost)
+    out["EsevenFixUnsafe"] = _cnt(base_unsafe - rem)
+    out["EsevenFixBreakEven"] = "--" if rem <= 0 else f"{lost / rem:.1f}"
+    g0 = [r for r in test_all if r["seed"] == seeds[0] and gated(r, thr)]
+    out["EsevenFixRemovedSeedZero"] = _cnt(sum(1 for r in g0 if not r["gold_answerable"] or not r["correct"]))
+    out["EsevenFixLostSeedZero"] = _cnt(sum(1 for r in g0 if r["gold_answerable"] and r["correct"]))
+    return out
 
 
 def cost_macros(R):

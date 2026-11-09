@@ -33,6 +33,6 @@ python scripts/check_paper.py                      # 0 problems expected once ev
 
 - Benchmark final; all 146 Sinhala, Tamil and code-switched queries reviewed and accepted by a native-speaker author (`generated/provenance.tex`).
 - Offline backend results final.
-- Neural runs: 7B seed 0 finished (8.4 h) and is the headline (`L` macros); the 1.5B fp16 generator has three seeds finished and evaluated (`N` macros, Sec. Generator scale and the appendix); 7B seeds 1-2 are generating via `scripts/resume_7b_after_driver.sh`. `scripts/check_paper.py` reports 0 problems.
+- Neural runs complete: three seeds per generator (7B = `L` macros, headline; 1.5B = `N` macros, Sec. Generator scale and the appendix). Counts in the cost and gate tables are means per seed. `scripts/check_paper.py` reports 0 problems.
 - Abstention detector fixed (string anywhere in the reply); gate-isolation, empty-reply filter, cost / break-even, 5-fold group cross-fitting, show-the-passage and adjudication (`generated/adjudication.tex`) added on 2026-11-09. The 7B seed-0 results were replayed with the new systems on 2026-11-09.
 - The `%% STATUS` block at the top of `body.tex` lists the remaining steps.

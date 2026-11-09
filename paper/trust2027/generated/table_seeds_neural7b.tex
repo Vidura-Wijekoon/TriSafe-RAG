@@ -7,13 +7,25 @@
     \toprule
     System & Seed & Ans.\ rate & Acc.\ $\uparrow$ & Sel.\ acc.\ $\uparrow$ & Unans.\ abst.\ $\uparrow$ & Decision acc.\ $\uparrow$ & ECE $\downarrow$ & AUROC $\uparrow$ \\
     \midrule
-    B1 vanilla (LLM self-abstention only) & 0 & 0.69 & 0.510 & 0.635 & 0.96 & 0.580 & 0.264 & 0.527 \\
+    B1 vanilla (LLM self-abstention only) & 0 & 0.69 & 0.510 & 0.635 & 0.96 & 0.580 & 0.262 & 0.527 \\
+     & 1 & 0.70 & 0.566 & 0.686 & 0.96 & 0.627 & 0.202 & 0.603 \\
+     & 2 & 0.69 & 0.503 & 0.626 & 0.96 & 0.574 & 0.268 & 0.496 \\
+    \quad \emph{mean $\pm$ sd} & & 0.69$\pm$0.01 & 0.527$\pm$0.034 & 0.649$\pm$0.033 & 0.96$\pm$0.00 & 0.594$\pm$0.029 & 0.244$\pm$0.036 & 0.542$\pm$0.055 \\
     \addlinespace
     TriSafe-RAG (thresholds tuned on dev) & 0 & 0.50 & 0.350 & 0.595 & 1.00 & 0.450 & 0.317 & 0.435 \\
+     & 1 & 0.48 & 0.371 & 0.654 & 1.00 & 0.467 & 0.276 & 0.479 \\
+     & 2 & 0.47 & 0.308 & 0.550 & 1.00 & 0.414 & 0.340 & 0.404 \\
+    \quad \emph{mean $\pm$ sd} & & 0.48$\pm$0.01 & 0.343$\pm$0.032 & 0.600$\pm$0.052 & 1.00$\pm$0.00 & 0.444$\pm$0.027 & 0.311$\pm$0.033 & 0.439$\pm$0.038 \\
     \addlinespace
     E1 LLM verbalized confidence & 0 & 0.69 & 0.510 & 0.635 & 0.96 & 0.580 & 0.311 & 0.685 \\
+     & 1 & 0.70 & 0.566 & 0.686 & 0.96 & 0.627 & 0.263 & 0.738 \\
+     & 2 & 0.69 & 0.503 & 0.626 & 0.96 & 0.574 & 0.329 & 0.679 \\
+    \quad \emph{mean $\pm$ sd} & & 0.69$\pm$0.01 & 0.527$\pm$0.034 & 0.649$\pm$0.033 & 0.96$\pm$0.00 & 0.594$\pm$0.029 & 0.301$\pm$0.034 & 0.701$\pm$0.032 \\
     \addlinespace
-    E7 self-consistency gate (agreement of k = 3 re-samples) & 0 & 0.64 & 0.510 & 0.676 & 0.96 & 0.580 & 0.280 & 0.625 \\
+    E7 self-consistency gate (agreement of k = 3 re-samples) & 0 & 0.69 & 0.510 & 0.635 & 0.96 & 0.580 & 0.280 & 0.625 \\
+     & 1 & 0.70 & 0.566 & 0.686 & 0.96 & 0.627 & 0.240 & 0.601 \\
+     & 2 & 0.69 & 0.503 & 0.626 & 0.96 & 0.574 & 0.262 & 0.614 \\
+    \quad \emph{mean $\pm$ sd} & & 0.69$\pm$0.01 & 0.527$\pm$0.034 & 0.649$\pm$0.033 & 0.96$\pm$0.00 & 0.594$\pm$0.029 & 0.261$\pm$0.020 & 0.613$\pm$0.012 \\
     \addlinespace
     \bottomrule
   \end{tabular}

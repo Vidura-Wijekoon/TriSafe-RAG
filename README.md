@@ -134,10 +134,10 @@ bash scripts/run_all_seeds.sh neural7b neural   # regenerates only the purged dr
 |---|---|
 | Benchmark (62 items, 208 queries, dev/test split) | final; native-speaker review complete |
 | Offline backend (`results/offline`) | final |
-| `neural7b` (Qwen2.5-7B Q4_K_M) | seed 0 done and replayed with every system: **headline backend of the paper**; seeds 1-2 generating (`scripts/resume_7b_after_driver.sh`, ~8 h per seed) |
+| `neural7b` (Qwen2.5-7B Q4_K_M) | three seeds done and evaluated with every system (2,000-resample bootstrap): **headline backend of the paper** |
 | `neural` (Qwen2.5-1.5B fp16) | three seeds done and evaluated (`results/neural`); fills the scale section and appendix |
 | `neural_hf_fp32` (1.5B, CPU, 1 seed) | archived reference run |
-| Paper (`paper/trust2027`) | complete: 7B seed 0 headline, 1.5B three-seed scale comparison; `check_paper.py` reports 0 problems; one-seed sentences to revise when 7B seeds 1-2 land |
+| Paper (`paper/trust2027`) | complete: three seeds per generator, 7B headline, 1.5B scale comparison; `check_paper.py` reports 0 problems |
 | Adjudication (`data/benchmark/adjudication_B1_delivered.csv`) | 116 delivered 7B seed-0 answers labelled |
 | Corpus-summary review (`data/benchmark/native_review_corpus.csv`) | sheet generated, not yet reviewed |
 
