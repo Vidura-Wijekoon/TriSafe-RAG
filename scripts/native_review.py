@@ -162,11 +162,13 @@ def stats(args) -> str:
     tail = (r" Corrected queries replaced the drafts before the final runs; the review sheet and the correction log are "
             r"released with the benchmark." if n_changed else
             r" No query or alias list was changed; the review sheet is released with the benchmark. The review was done by "
-            r"a single reviewer who is also an author, so it rules out mistranslation but is not an independent inter-annotator study.")
+            r"a single reviewer who is also the author, so it rules out mistranslation but is not an independent inter-annotator study.")
+    corpus = corpus_status()
+    tail += corpus
     lines.append(
         r"\paragraph{Provenance and limits} The English questions and gold aliases were written against the source text. "
         r"The Sinhala, Tamil, and code-switched questions were first drafted by machine translation and then reviewed by a "
-        r"native speaker of Sinhala and Tamil (one of the authors), who rated " + coverage +
+        r"native speaker of Sinhala and Tamil (the author), who rated " + coverage +
         r" non-English queries as faithful, reworded, or rewritten against the English source and checked that the gold "
         r"aliases cover the natural answer in that language (" + "; ".join(parts) + r")." + kappa_txt + tail +
         r" The corpus is small by design, so that every fact is traceable to a government URL; it does not measure retrieval at scale.")
@@ -174,6 +176,71 @@ def stats(args) -> str:
     print(f"verdicts: {dict(total)} over {len(done)}/{n_total} queries; per language: "
           + "; ".join(f"{l}: {dict(c)}" for l, c in by_lang.items()))
     return "done"
+
+
+CORPUS_SHEET = ROOT / "data" / "benchmark" / "native_review_corpus.csv"
+CORPUS_DIRS = [ROOT / "casestudies" / c / "data" / "raw" for c in ("civil_documents", "public_health", "disaster_response")]
+
+
+def _sections(text: str) -> dict:
+    """Split a corpus markdown file into its English, Sinhala and Tamil sections."""
+    import re
+    out, cur = {}, None
+    for line in text.splitlines():
+        m = re.match(r"^## (.+)$", line)
+        if m:
+            h = m.group(1)
+            cur = "en" if h.startswith("English") else "si" if "\u0d83" <= h[0] <= "\u0dff" or h.startswith("සිංහල") else \
+                "ta" if h.startswith("தமிழ்") else None
+            continue
+        if cur:
+            out.setdefault(cur, []).append(line)
+    return {k: "\n".join(v).strip() for k, v in out.items()}
+
+
+def make_corpus(args) -> None:
+    """Review sheet for the Sinhala and Tamil *corpus summaries* (one row per document and language).
+    These were never part of the query review; the paper states so until this sheet is filled."""
+    rows = []
+    for d in CORPUS_DIRS:
+        for fp in sorted(d.glob("*.md")):
+            txt = fp.read_text(encoding="utf-8")
+            if "status: superseded" in txt[:200]:
+                continue
+            sec = _sections(txt)
+            for lang in ("si", "ta"):
+                if sec.get(lang):
+                    rows.append({"doc": f"{d.parent.parent.name}/{fp.name}", "language": lang,
+                                 "english_section": sec.get("en", ""), "summary": sec[lang],
+                                 "verdict": "", "corrected_summary": "", "reviewer": "", "notes": ""})
+    if CORPUS_SHEET.exists() and not args.force:
+        old = {(r["doc"], r["language"]): r for r in csv.DictReader(CORPUS_SHEET.open(encoding="utf-8-sig", newline=""))}
+        for r in rows:
+            if (r["doc"], r["language"]) in old:
+                for k in ("verdict", "corrected_summary", "reviewer", "notes"):
+                    r[k] = old[(r["doc"], r["language"])].get(k, "")
+    with CORPUS_SHEET.open("w", encoding="utf-8-sig", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
+        w.writeheader()
+        w.writerows(rows)
+    print(f"wrote {CORPUS_SHEET.relative_to(ROOT)} with {len(rows)} summaries; verdict = ok | minor | major | wrong")
+
+
+def corpus_status() -> str:
+    """Sentence for the provenance paragraph about the corpus summaries."""
+    if not CORPUS_SHEET.exists():
+        return (r" The Sinhala and Tamil summaries inside the corpus documents, which carry the numbers the non-English"
+                r" queries are answered from, have not been reviewed by a native speaker.")
+    rows = list(csv.DictReader(CORPUS_SHEET.open(encoding="utf-8-sig", newline="")))
+    done = [r for r in rows if (r.get("verdict") or "").strip()]
+    if not done:
+        return (r" The Sinhala and Tamil summaries inside the corpus documents, which carry the numbers the non-English"
+                r" queries are answered from, have not been reviewed by a native speaker (a review sheet is provided).")
+    c = Counter((r["verdict"] or "").strip().lower() for r in done)
+    changed = c["minor"] + c["major"] + c["wrong"]
+    return (rf" The {len(done)} Sinhala and Tamil corpus summaries were reviewed in the same way"
+            + (rf" ({changed} corrected)." if changed else r" and accepted unchanged.")
+            + (r" Only part of the corpus has been reviewed." if len(done) < len(rows) else ""))
 
 
 def apply(args) -> None:
@@ -249,8 +316,9 @@ def main() -> None:
     m = sub.add_parser("make"); m.add_argument("--force", action="store_true", help="discard verdicts already in the sheet")
     s = sub.add_parser("stats"); s.add_argument("--second", help="second reviewer's sheet for Cohen's kappa")
     sub.add_parser("apply")
+    mc = sub.add_parser("make-corpus"); mc.add_argument("--force", action="store_true")
     args = ap.parse_args()
-    {"make": make, "stats": stats, "apply": apply}[args.cmd](args)
+    {"make": make, "stats": stats, "apply": apply, "make-corpus": make_corpus}[args.cmd](args)
 
 
 if __name__ == "__main__":

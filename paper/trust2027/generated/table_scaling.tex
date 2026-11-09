@@ -1,1 +1,27 @@
-% no neural results
+\begin{table*}[t]
+  \caption{Generator scale: Qwen2.5-1.5B-Instruct (fp16) against Qwen2.5-7B-Instruct (Q4\_K\_M) with the same retriever, grounding checker, prompts, tuning protocol, and queries. Test split, mean over seeds with the standard deviation across seeds in small type. The lower block gives, per language, how often the generator itself abstained before any policy and how often its draft was correct on answerable queries.}
+  \label{tab:scaling}
+  \footnotesize
+  \setlength{\tabcolsep}{3.5pt}
+  \begin{tabular}{llccccccc}
+    \toprule
+    System & Gen. & Ans.\ rate & Acc. & Sel.\ acc. & Unans.\ abst. & Decision acc. & ECE & AUROC \\
+    \midrule
+    B1 vanilla & 7B & 0.69 & 0.510 & 0.635 & 0.96 & 0.580 & 0.264 & 0.527 \\
+    \addlinespace
+    TriSafe-RAG (dev-tuned) & 7B & 0.50 & 0.350 & 0.595 & 1.00 & 0.450 & 0.317 & 0.435 \\
+    \addlinespace
+    E1 verbalized confidence & 7B & 0.69 & 0.510 & 0.635 & 0.96 & 0.580 & 0.311 & 0.685 \\
+    \addlinespace
+    E3 Platt gate & 7B & 0.69 & 0.510 & 0.635 & 0.96 & 0.580 & 0.064 & 0.543 \\
+    \addlinespace
+    E7 self-consistency gate & 7B & 0.64 & 0.510 & 0.676 & 0.96 & 0.580 & 0.280 & 0.625 \\
+    \addlinespace
+    \midrule
+     & & en & si & ta & mixed & & & \\
+    \midrule
+    Generator abstention rate & 7B & 0.16 & 0.44 & 0.36 & 0.26 & & & \\
+    Draft accuracy (answerable) & 7B & 0.95 & 0.19 & 0.31 & 0.76 & & & \\
+    \bottomrule
+  \end{tabular}
+\end{table*}

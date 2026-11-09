@@ -248,7 +248,7 @@ def gaps(per_lang: Dict[str, dict], min_n: int = 5) -> Dict[str, Optional[float]
 # --------------------------------------------------------------------------- #
 
 _NUM_RE = re.compile(r"\d[\d,]*(?:\.\d+)?")
-_ABSTAIN_MARK = "INSUFFICIENT_EVIDENCE"
+from src.generation.prompts import ABSTAIN_MARK as _ABSTAIN_MARK, is_model_abstention  # noqa: E402
 
 
 def _content_tokens(text: str) -> set:
@@ -265,8 +265,8 @@ def draft_agreement(a: str, b: str) -> float:
     * exactly one mentions a number -> half the content-token Jaccard;
     * neither -> Jaccard overlap of content tokens (letters only, > 2 chars).
     """
-    ab_a = _ABSTAIN_MARK in (a or "")
-    ab_b = _ABSTAIN_MARK in (b or "")
+    ab_a = is_model_abstention(a or "")
+    ab_b = is_model_abstention(b or "")
     if ab_a and ab_b:
         return 1.0
     if ab_a != ab_b:

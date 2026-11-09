@@ -98,7 +98,16 @@ python scripts/make_overleaf_zip.py                     # paper/TriSafe-RAG_TRUS
 PYTHONPATH=. python casestudies/civil_documents/run.py  # offline case-study drivers
 ```
 
-`run_benchmark.py` caches drafts per seed under `results/<backend>/drafts_seed<k>.jsonl` (plus stage caches under `stages_seed<k>/`); re-running only replays the trust layer. Each query is drafted once at temperature 0.2 and re-sampled three times at 0.7 for the E7 self-consistency gate.
+`run_benchmark.py` caches drafts per seed under `results/<backend>/drafts_seed<k>.jsonl` (plus stage caches under `stages_seed<k>/`); re-running only replays the trust layer. Each query is drafted once at temperature 0.2 and re-sampled three times at 0.7 for the E7 self-consistency gate. Every replay also writes the gate-isolation systems, the `B1 + empty-reply filter`, the cost analysis (unsafe / correct deliveries, break-even cost vs. B1), a group 5-fold cross-fitting of the tuned rules, and the show-the-passage reference point. The generator's `INSUFFICIENT_EVIDENCE` abstention is detected anywhere in the reply; cached drafts from the earlier start-of-reply detector are re-detected on load.
+
+### Adjudication of delivered answers
+
+```bash
+python scripts/adjudicate.py make --backend neural7b --seed 0   # data/benchmark/adjudication_B1_delivered.csv
+python scripts/adjudicate.py stats                              # -> paper/trust2027/generated/adjudication.tex
+```
+
+Every answer B1 delivered on the test split is listed with its alias-match label; the `adjudicated` column (correct | partial | wrong) feeds the agreement numbers in the paper. The shipped sheet covers the 7B seed-0 run (116 answers; 30 of them are citation-only replies such as `[1] #1`).
 
 ### Native-speaker review of the Sinhala and Tamil queries
 
@@ -107,6 +116,7 @@ python scripts/native_review.py make    # data/benchmark/native_review_sheet.csv
 #   fill in: verdict = ok | minor | major | wrong, corrected_query, gold_verdict (ok|add|wrong), corrected_gold, reviewer
 python scripts/native_review.py stats   # verdict counts -> paper/trust2027/generated/provenance.tex (Cohen's kappa with --second)
 python scripts/native_review.py apply   # write corrections into items.json, rebuild queries/split, purge cached drafts of changed queries
+python scripts/native_review.py make-corpus   # data/benchmark/native_review_corpus.csv: the 22 Sinhala/Tamil corpus summaries (not yet reviewed)
 bash scripts/run_all_seeds.sh neural7b neural   # regenerates only the purged drafts, then re-evaluates everything
 ```
 
@@ -124,10 +134,12 @@ bash scripts/run_all_seeds.sh neural7b neural   # regenerates only the purged dr
 |---|---|
 | Benchmark (62 items, 208 queries, dev/test split) | final; native-speaker review complete |
 | Offline backend (`results/offline`) | final |
-| `neural7b` (Qwen2.5-7B Q4_K_M, 3 seeds) | seed 0 done (8.4 h); seeds 1-2 running |
-| `neural` (Qwen2.5-1.5B fp16, 3 seeds) | queued after `neural7b` |
+| `neural7b` (Qwen2.5-7B Q4_K_M) | seed 0 done and replayed with every system: **headline backend of the paper**; seeds 1-2 resume after the 1.5B run (`scripts/resume_7b_after_driver.sh`) |
+| `neural` (Qwen2.5-1.5B fp16) | seed 0 generating (started 12:25); fills the scale section and appendix via `make_tables.py` |
 | `neural_hf_fp32` (1.5B, CPU, 1 seed) | archived reference run |
-| Paper (`paper/trust2027`) | text complete except `sec:scale`; `N*` macros fill when `neural` finishes |
+| Paper (`paper/trust2027`) | complete on the 7B results (one seed); the 1.5B numbers in `sec:scale` and the appendix render as `??` until `results/neural/results.json` exists |
+| Adjudication (`data/benchmark/adjudication_B1_delivered.csv`) | 116 delivered 7B seed-0 answers labelled |
+| Corpus-summary review (`data/benchmark/native_review_corpus.csv`) | sheet generated, not yet reviewed |
 
 The evaluation architecture (benchmark artefacts, backends, per-seed draft cache, replay of 16 systems, statistics, paper generation) is drawn in `paper/trust2027/figures/eval_harness.pdf`.
 

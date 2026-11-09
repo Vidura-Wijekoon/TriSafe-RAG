@@ -215,3 +215,95 @@ def test_replay_consistency_score_field():
                       two_way=True)
     recs = replay([d], spec)
     assert recs[0]["confidence"] == 0.75 and recs[0]["decision"] == "answer"
+
+
+# ------------------------------------------------------- abstention detection --
+def test_model_abstention_detected_anywhere_in_reply():
+    from src.generation.prompts import is_model_abstention
+    assert is_model_abstention("INSUFFICIENT_EVIDENCE")
+    assert is_model_abstention("[2] # INSUFFICIENT_EVIDENCE")
+    assert is_model_abstention("The passages do not state the fee. INSUFFICIENT_EVIDENCE")
+    assert is_model_abstention("insufficient_evidence")
+    assert not is_model_abstention("The fee is LKR 10,000 [1]")
+    assert not is_model_abstention("")
+
+
+def test_normalise_draft_redetects_and_zeroes_grounding():
+    from src.eval.benchmark import normalise_draft
+    d = {"draft_text": "Not stated in the evidence. INSUFFICIENT_EVIDENCE", "model_abstained": False,
+         "verbalized_confidence": 80.0,
+         "grounding": {"lexical": {"overall_support": 0.6, "citation_coverage": 1.0, "sentence_supports": [0.6], "n_unsupported": 0}}}
+    assert normalise_draft(d)
+    assert d["model_abstained"] and d["abstention_redetected"]
+    assert d["grounding"]["lexical"]["overall_support"] == 0.0 and d["grounding"]["lexical"]["citation_coverage"] == 0.0
+    assert d["verbalized_confidence"] == 0.0
+    ok = {"draft_text": "The fee is 10,000 [1]", "model_abstained": False, "grounding": {}}
+    assert not normalise_draft(ok) and not ok["model_abstained"]
+
+
+def test_empty_reply_detector():
+    from src.generation.prompts import is_empty_reply
+    assert is_empty_reply("[1] #1")
+    assert is_empty_reply("[2] #")
+    assert is_empty_reply("1 # [#3]")
+    assert not is_empty_reply("The fee is 10,000 [1]")
+    assert not is_empty_reply("රු. 1000 [1]")
+    assert not is_empty_reply("INSUFFICIENT_EVIDENCE")  # an abstention, not an empty reply
+
+
+# ------------------------------------------------------------- cost analysis --
+def test_cost_summary_and_break_even():
+    from src.eval.cost import break_even, cost_analysis, cost_summary
+    # ref answers everything: 2 correct, 2 unsafe (one wrong answer, one answered unanswerable)
+    ref = [
+        _rec("en", 1, 0, 1, 0.9, qid="a"), _rec("en", 1, 0, 1, 0.8, qid="b"),
+        _rec("en", 1, 0, 0, 0.7, qid="c"), _rec("en", 0, 0, 0, 0.6, qid="d"),
+    ]
+    # sys withholds c and d (removes both unsafe) and also withholds b (loses one correct)
+    sys_ = [
+        _rec("en", 1, 0, 1, 0.9, qid="a"), _rec("en", 1, 1, 0, 0.8, draft_ok=1, qid="b"),
+        _rec("en", 1, 1, 0, 0.7, qid="c"), _rec("en", 0, 1, 0, 0.6, qid="d"),
+    ]
+    cr, cs = cost_summary(ref), cost_summary(sys_)
+    assert cr["unsafe"] == 2 and cr["correct"] == 2
+    assert cs["unsafe"] == 0 and cs["correct"] == 1 and cs["lost_correct"] == 1
+    assert break_even(cr, cs) == 0.5          # one lost correct answer per two unsafe removed
+    assert break_even(cs, cr) is None         # ref removes no unsafe deliveries relative to sys
+    out = cost_analysis({"B1_vanilla": ref, "S": sys_}, reference="B1_vanilla", n_boot=200, seed=0)
+    assert out["S"]["break_even_vs_ref"] == 0.5
+    assert out["S"]["unsafe_ci"][0] <= out["S"]["unsafe"] <= out["S"]["unsafe_ci"][1]
+
+
+# --------------------------------------------------------------- gate isolation --
+def test_zero_thresholds_switch_gates_off():
+    p = AbstentionPolicy(answer_threshold=0.0, refuse_threshold=0.0, min_support=0.0, min_citation_coverage=0.4)
+    # only the citation gate can fire
+    assert p.decide(0.01, 0.0, 1.0, has_evidence=True).decision == "answer"
+    assert p.decide(0.99, 0.9, 0.0, has_evidence=True).decision == "defer"
+    q = AbstentionPolicy(answer_threshold=0.0, refuse_threshold=0.0, min_support=0.2, min_citation_coverage=0.0)
+    assert q.decide(0.01, 0.1, 0.0, has_evidence=True).decision == "refuse"
+    assert q.decide(0.01, 0.5, 0.0, has_evidence=True).decision == "answer"
+
+
+# ------------------------------------------------------------ cross-validation --
+def test_cross_validate_gives_one_out_of_fold_decision_per_query():
+    from src.eval.benchmark import cross_validate
+    drafts = []
+    for g in range(6):
+        for lang in ("en", "si"):
+            drafts.append({
+                "id": f"g{g}-{lang}", "group": f"g{g}", "language": lang, "domain": "x", "tags": [],
+                "gold_answers": ["42"], "gold_answerable": 1 if g % 3 else 0, "seed": 0,
+                "hits": [{"chunk_id": "c", "score": 0.016, "dense_score": 0.8 + 0.01 * g, "language": "en", "text": "42"}],
+                "draft_text": "It is 42 [1]" if g % 2 else "INSUFFICIENT_EVIDENCE", "model_abstained": g % 2 == 0,
+                "grounding": {"lexical": {"overall_support": 0.5, "citation_coverage": 1.0, "sentence_supports": [0.5], "n_unsupported": 0}},
+                "verbalized_confidence": 50.0, "self_consistency": 0.5,
+            })
+    weights = {"w_retrieval": 0.2, "w_margin": 0.2, "w_grounding": 0.4, "w_citation": 0.1, "w_language": 0.1}
+    th = {"answer_threshold": 0.55, "refuse_threshold": 0.30, "min_support": 0.20, "min_citation_coverage": 0.40}
+    off = {"answer_threshold": 0.0, "refuse_threshold": 0.0, "min_support": 0.0, "min_citation_coverage": 0.0}
+    cv = cross_validate(drafts, "lexical", {"ret_lo": 0.7, "ret_hi": 0.9, "margin_scale": 10}, weights, th, off,
+                        n_folds=3, quick=True)
+    assert cv["n_folds"] == 3 and len(cv["fold_thresholds"]) == 3
+    for name, recs in cv["records"].items():
+        assert sorted(r["id"] for r in recs) == sorted(d["id"] for d in drafts), name

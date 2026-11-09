@@ -7,7 +7,7 @@ from dataclasses import dataclass, field
 from typing import List
 
 from src.generation.llm import LLM, GenerationResult
-from src.generation.prompts import SYSTEM_PROMPT, build_grounded_prompt
+from src.generation.prompts import SYSTEM_PROMPT, build_grounded_prompt, is_model_abstention
 from src.retrieval.vector_store import RetrievalHit
 
 
@@ -34,7 +34,7 @@ class GroundedGenerator:
         result = self.llm.generate(SYSTEM_PROMPT, prompt, self.max_new_tokens)
         text = (result.text or "").strip()
         cited = [int(m) for m in _CITATION_RE.findall(text)]
-        abstain = text.upper().startswith("INSUFFICIENT_EVIDENCE") or not hits
+        abstain = is_model_abstention(text) or not hits
         return GroundedAnswer(
             text=text,
             cited_passages=cited,

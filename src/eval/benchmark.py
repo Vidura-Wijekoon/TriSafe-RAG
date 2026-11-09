@@ -324,6 +324,25 @@ def signals_for(draft: dict, estimator: ConfidenceEstimator, checker: str) -> Co
     return ConfidenceSignals(s_ret, s_mar, g["overall_support"], g["citation_coverage"], 1.0 if lang_match else 0.0)
 
 
+def normalise_draft(d: dict) -> bool:
+    """Re-detect the generator's own abstention on a cached draft (see
+    ``is_model_abstention``) and zero its grounding signals, as the generation stage
+    does for a detected abstention.  Returns True when the draft was changed."""
+    from src.generation.prompts import is_model_abstention
+    if d.get("model_abstained") or not is_model_abstention(d.get("draft_text") or ""):
+        return False
+    d["model_abstained"] = True
+    d["abstention_redetected"] = True
+    for g in (d.get("grounding") or {}).values():
+        g["overall_support"] = 0.0
+        g["citation_coverage"] = 0.0
+        g["sentence_supports"] = []
+        g["n_unsupported"] = 0
+    if d.get("verbalized_confidence") is not None:
+        d["verbalized_confidence"] = 0.0
+    return True
+
+
 def draft_correct(draft: dict) -> int:
     if int(draft["gold_answerable"]) == 1:
         return int(alias_match(draft["draft_text"], draft["gold_answers"]))
@@ -332,8 +351,10 @@ def draft_correct(draft: dict) -> int:
 
 def replay(drafts: Sequence[dict], spec: SystemSpec) -> List[dict]:
     """Apply one trust-layer configuration to cached drafts -> eval records."""
+    from src.generation.prompts import is_empty_reply
     estimator = ConfidenceEstimator(**spec.confidence)
-    policy = AbstentionPolicy(**spec.abstention)
+    refuse_empty = bool(spec.abstention.get("refuse_empty", False))
+    policy = AbstentionPolicy(**{k: v for k, v in spec.abstention.items() if k != "refuse_empty"})
     records = []
     for d in drafts:
         sig = signals_for(d, estimator, spec.checker)
@@ -366,10 +387,14 @@ def replay(drafts: Sequence[dict], spec: SystemSpec) -> List[dict]:
                 decision, reason = "refuse", "no_evidence_retrieved"
             elif d["model_abstained"] and policy.respect_model_abstention:
                 decision, reason = "refuse", "model_abstained"
+            elif refuse_empty and is_empty_reply(d["draft_text"]):
+                decision, reason = "refuse", "empty_reply"
             elif conf < policy.answer_threshold:
                 decision, reason = "refuse", "low_score"
             else:
                 decision, reason = "answer", "ok"
+        elif refuse_empty and is_empty_reply(d["draft_text"]) and d["hits"] and not d["model_abstained"]:
+            decision, reason = "refuse", "empty_reply"
         else:
             dec = policy.decide(
                 confidence=conf,
@@ -461,6 +486,61 @@ def tune_per_language(drafts_dev: Sequence[dict], spec: SystemSpec, languages: S
                 best, best_t = obj, float(round(t, 2))
         per_lang[lang] = {"answer_threshold": best_t}
     return per_lang
+
+
+def group_folds(drafts: Sequence[dict], n_folds: int = 5, seed: int = 13) -> List[set]:
+    """Item groups shuffled into ``n_folds`` folds (every language version of an item
+    stays in one fold, like the dev/test split)."""
+    groups = sorted({d["group"] for d in drafts})
+    rng = np.random.default_rng(seed)
+    rng.shuffle(groups)
+    return [set(groups[i::n_folds]) for i in range(n_folds)]
+
+
+def cross_validate(drafts: Sequence[dict], checker: str, scale: dict, default_weights: dict,
+                   default_thresholds: dict, no_thresholds: dict, n_folds: int = 5, seed: int = 13,
+                   quick: bool = False) -> Dict[str, object]:
+    """Group k-fold cross-fitting of the tuned decision rules.
+
+    For every fold the TriSafe thresholds and the E1 / E7 gates are tuned on the other
+    folds and applied to the held-out fold, so each query receives exactly one
+    out-of-fold decision.  Returns the out-of-fold records per system (over all
+    queries and seeds) and the thresholds chosen per fold.  B1 has nothing to tune
+    and is included as the reference.  This is a robustness check of the single
+    dev/test split used for the main tables, not a replacement for it.
+    """
+    conf = {**default_weights, "retrieval_signal": "cosine", **scale}
+    folds = group_folds(drafts, n_folds, seed)
+    has_e1 = any(d.get("verbalized_confidence") is not None for d in drafts)
+    has_e7 = any(d.get("self_consistency") is not None for d in drafts)
+    recs: Dict[str, List[dict]] = {"B1_vanilla": [], "TriSafe_devtuned": []}
+    if has_e1:
+        recs["E1_verbalized"] = []
+    if has_e7:
+        recs["E7_self_consistency"] = []
+    fold_th = []
+    for k, held in enumerate(folds):
+        train = [d for d in drafts if d["group"] not in held]
+        test = [d for d in drafts if d["group"] in held]
+        b1 = SystemSpec("B1_vanilla", "B1", checker=checker, mode="score", score_field="retrieval",
+                        confidence=conf, abstention=dict(no_thresholds), two_way=True)
+        recs["B1_vanilla"] += replay(test, b1)
+        base = SystemSpec("TriSafe_devtuned", "TriSafe", checker=checker, mode="weighted", confidence=conf,
+                          abstention=dict(default_thresholds))
+        th = tune_three_way_thresholds(train, base) if not quick else dict(default_thresholds)
+        recs["TriSafe_devtuned"] += replay(test, SystemSpec(**{**base.__dict__, "abstention": th}))
+        entry = {"fold": k, "n_train": len(train), "n_test": len(test), "trisafe": th}
+        for name, field_ in (("E1_verbalized", "verbalized"), ("E7_self_consistency", "consistency")):
+            if name not in recs:
+                continue
+            g = SystemSpec(name, name, checker=checker, mode="score", score_field=field_, confidence=conf,
+                           abstention=dict(no_thresholds), two_way=True)
+            t = tune_two_way_threshold(train, g, grid=[0.0, 0.5, 1.0] if quick else None)
+            g.abstention["answer_threshold"] = t
+            recs[name] += replay(test, g)
+            entry[name] = t
+        fold_th.append(entry)
+    return {"n_folds": n_folds, "seed": seed, "records": recs, "fold_thresholds": fold_th}
 
 
 def fit_calibrator(drafts_dev: Sequence[dict], estimator_cfg: dict, checker: str, method: str) -> PostHocCalibrator:

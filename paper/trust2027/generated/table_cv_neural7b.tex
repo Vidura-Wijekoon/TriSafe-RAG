@@ -1,0 +1,16 @@
+\begin{table*}[t]
+  \caption{Group 5-fold cross-fitting of the tuned decision rules over all 208 queries (neural7b backend). In every fold the TriSafe thresholds and the E1/E7 gates are tuned on the other folds and applied to the held-out fold, so each query receives one out-of-fold decision; intervals are paired bootstraps over queries. Across folds the TriSafe answer threshold was chosen as 0.30. This checks that the development/test result does not depend on the particular split; the main tables use that split.}
+  \label{tab:cv-neural7b}
+  \footnotesize
+  \setlength{\tabcolsep}{4pt}
+  \begin{tabular}{lcccccccc}
+    \toprule
+    System & Ans.\ rate & Sel.\ acc.\ $\uparrow$ & Unans.\ abst.\ $\uparrow$ & Decision acc.\ [95\% CI] & $\Delta$ vs.\ B1 [95\% CI] & Unsafe & Correct & Break-even \\
+    \midrule
+    B1 vanilla & 0.67 & 0.652 & 0.94 & 0.587 [0.52, 0.65] & -- & 50 & 90 & -- \\
+    TriSafe-RAG (dev-tuned) & 0.49 & 0.604 & 0.97 & 0.452 [0.38, 0.52] & -0.135 [-0.187, -0.087] & 41 & 61 & 3.2 [1.6, 8.3] \\
+    E1 verbalized confidence & 0.67 & 0.652 & 0.94 & 0.587 [0.52, 0.65] & +0.000 [+0.000, +0.000] & 50 & 90 & -- \\
+    E7 self-consistency gate & 0.64 & 0.682 & 0.94 & 0.587 [0.52, 0.65] & +0.000 [+0.000, +0.000] & 44 & 90 & 0.0 [0.0, 0.0] \\
+    \bottomrule
+  \end{tabular}
+\end{table*}

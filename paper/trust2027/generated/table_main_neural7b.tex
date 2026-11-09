@@ -1,0 +1,21 @@
+\begin{table*}[t]
+  \caption{Main results on the 169-query test split (neural7b backend). Ans.\ rate: fraction of queries answered. Acc.: accuracy on gold-answerable queries (abstention counts as an error). Sel.\ acc.: accuracy among answered answerable queries. Unans.\ abst.: fraction of unanswerable queries abstained on. Catch/Retain: share of wrong drafts on answerable queries that the policy abstained on, and share of correct drafts it delivered. ECE and AUROC are computed from the confidence score against draft correctness over all test queries (policy-independent). Brackets: 95\% paired bootstrap intervals over queries (2{,}000 resamples).}
+  \label{tab:main-neural7b}
+  \footnotesize
+  \setlength{\tabcolsep}{3.5pt}
+  \begin{tabular}{lcccccccc}
+    \toprule
+    System & Ans.\ rate & Acc.\ $\uparrow$ [95\% CI] & Sel.\ acc.\ $\uparrow$ & Unans.\ abst.\ $\uparrow$ & Catch/Retain & Abst.\ F1 $\uparrow$ & ECE $\downarrow$ [95\% CI] & AUROC $\uparrow$ \\
+    \midrule
+    B1 vanilla (LLM self-abstention only) & 0.69 & 0.510 [0.43, 0.59] & 0.635 & 0.96 & 0.39/0.99 & 0.633 & 0.264 [0.21, 0.35] & 0.527 \\
+    B2 grounding only (no thresholds) & 0.69 & 0.510 [0.43, 0.59] & 0.635 & 0.96 & 0.39/0.99 & 0.633 & 0.317 [0.25, 0.39] & 0.435 \\
+    B3 abstention only (w\_gr = 0) & 0.36 & 0.259 [0.20, 0.33] & 0.607 & 1.00 & 0.65/0.50 & 0.388 & 0.197 [0.15, 0.28] & 0.488 \\
+    TriSafe-RAG (default thresholds) & 0.42 & 0.266 [0.20, 0.34] & 0.535 & 1.00 & 0.52/0.51 & 0.419 & 0.317 [0.25, 0.39] & 0.435 \\
+    TriSafe-RAG with lexical (Jaccard) grounding & 0.01 & 0.014 [0.00, 0.04] & 1.000 & 1.00 & 1.00/0.03 & 0.269 & 0.220 [0.15, 0.29] & 0.525 \\
+    TriSafe-RAG with raw RRF retrieval signal & 0.30 & 0.133 [0.08, 0.19] & 0.380 & 1.00 & 0.55/0.26 & 0.359 & 0.358 [0.30, 0.43] & 0.424 \\
+    TriSafe-RAG (thresholds tuned on dev) & 0.50 & 0.350 [0.28, 0.43] & 0.595 & 1.00 & 0.51/0.68 & 0.468 & 0.317 [0.25, 0.39] & 0.435 \\
+    TriSafe-RAG + per-language thresholds (dev) & 0.50 & 0.350 [0.28, 0.43] & 0.595 & 1.00 & 0.51/0.68 & 0.468 & 0.317 [0.25, 0.39] & 0.435 \\
+    TriSafe-RAG with Platt-calibrated confidence & 0.50 & 0.350 [0.28, 0.43] & 0.595 & 1.00 & 0.51/0.68 & 0.468 & 0.064 [0.02, 0.14] & 0.543 \\
+    \bottomrule
+  \end{tabular}
+\end{table*}

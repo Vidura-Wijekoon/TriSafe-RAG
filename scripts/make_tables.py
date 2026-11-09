@@ -262,6 +262,8 @@ def macros(RN, RO, RL=None):
             continue
         for name, val in seed_macros(R).items():
             m(f"{tag}{name}", val)
+        for name, val in cost_macros(R).items():
+            m(f"{tag}{name}", val)
         b1 = R["systems"]["B1_vanilla"]["test"]
         td = R["systems"]["TriSafe_default"]["test"]
         tt = R["systems"]["TriSafe_devtuned"]["test"]
@@ -459,6 +461,9 @@ def main():
         (OUT / f"table_sweep_{name}.tex").write_text(table_sweep(R, name), encoding="utf-8")
         (OUT / f"table_tests_{name}.tex").write_text(table_tests(R, name), encoding="utf-8")
         (OUT / f"table_seeds_{name}.tex").write_text(table_seeds(R, name), encoding="utf-8")
+        (OUT / f"table_gates_{name}.tex").write_text(table_gates(R, name), encoding="utf-8")
+        (OUT / f"table_cost_{name}.tex").write_text(table_cost(R, name), encoding="utf-8")
+        (OUT / f"table_cv_{name}.tex").write_text(table_cv(R, name), encoding="utf-8")
         figures(R, name)
     (OUT / "table_cases.tex").write_text(table_cases(RN, RO, RL), encoding="utf-8")
     (OUT / "table_scaling.tex").write_text(table_scaling(RN, RL), encoding="utf-8")
@@ -487,7 +492,16 @@ def _load_drafts(backend: str, seed: int = 0):
     p = ROOT / "results" / backend / f"drafts_seed{seed}.jsonl"
     if not p.exists():
         return {}
-    return {json.loads(l)["id"]: json.loads(l) for l in p.read_text(encoding="utf-8").splitlines() if l.strip()}
+    import sys
+    sys.path.insert(0, str(ROOT))
+    from src.eval.benchmark import normalise_draft
+    out = {}
+    for l in p.read_text(encoding="utf-8").splitlines():
+        if l.strip():
+            d = json.loads(l)
+            normalise_draft(d)
+            out[d["id"]] = d
+    return out
 
 
 _SI_RUN = re.compile("[\u0d80-\u0dff][\u0d80-\u0dff\\s\u200d.,;:0-9]*")
@@ -588,7 +602,7 @@ def case_probes(backend: str):
             def mark(r):
                 s = sym[r["decision"]]
                 if r["gold_answerable"]:
-                    s += "\checkmark" if r["correct"] else ("$\times$" if r["decision"] == "answer" else "")
+                    s += r"\checkmark" if r["correct"] else (r"$\times$" if r["decision"] == "answer" else "")
                 return s
             cells.append(f"{mark(r1)}/{mark(r2)}")
         rows.append(f"{tex_escape(label)} & " + " & ".join(cells) + " \\\\")
@@ -672,7 +686,8 @@ def qualitative(backend: str):
 
 
 def write_qualitative():
-    backend = "neural" if (ROOT / "results" / "neural" / "records").exists() else "offline"
+    # qualitative material comes from the headline backend of the paper (the 7B generator)
+    backend = next((b for b in ("neural7b", "neural", "offline") if (ROOT / "results" / b / "records").exists()), "offline")
     (OUT / "qualitative.tex").write_text(qualitative(backend), encoding="utf-8")
     (OUT / "case_probes.tex").write_text(case_probes(backend), encoding="utf-8")
     (OUT / "table_examples.tex").write_text(example_items(), encoding="utf-8")
@@ -832,6 +847,207 @@ def table_scaling(RN, RL):
   \end{{tabular}}
 \end{{table*}}
 """
+
+
+# --------------------------------------------------------------------------- #
+# Gate isolation, cost of a wrong answer, cross-validated tuning
+# --------------------------------------------------------------------------- #
+
+COST_LABEL = {"B1_vanilla": "B1 vanilla", "B1_empty_filter": "B1 + empty-reply filter", "TriSafe_empty": "TriSafe-RAG (dev-tuned) + empty-reply filter", "TriSafe_default": "TriSafe-RAG (default)", "TriSafe_devtuned": "TriSafe-RAG (dev-tuned)",
+              "TriSafe_perlang": "TriSafe-RAG (per-language)", "TriSafe_platt": "TriSafe-RAG (Platt conf.)",
+              "Gate_confidence": "confidence thresholds only", "Gate_grounding": "grounding gate only",
+              "Gate_citation": "citation gate only", "TriSafe_nolang": "TriSafe-RAG, $w_{\\mathrm{lang}}=0$",
+              "B3_abstention_only": "B3 abstention only", "E1_verbalized": "E1 verbalized confidence",
+              "E2_retrieval_gate": "E2 retrieval gate", "E3_platt": "E3 Platt gate", "E4_isotonic": "E4 isotonic gate",
+              "E5_temperature": "E5 temperature gate", "E6_translate_retrieve": "E6 translate-then-retrieve",
+              "E7_self_consistency": "E7 self-consistency gate"}
+
+
+def _cnt(x, nd=1):
+    if x is None:
+        return "--"
+    x = round(float(x), nd)
+    return f"{x:.0f}" if x == int(x) else f"{x:.{nd}f}"
+
+
+def _cnt_ci(c):
+    if not c:
+        return ""
+    return f"[{_cnt(c[0])}, {_cnt(c[1])}]"
+
+
+def _be(v):
+    """Break-even cost with its interval; '--' when the system removes no unsafe deliveries,
+    '0' when it removes some at no cost in correct answers."""
+    if v.get("break_even_vs_ref") is None:
+        return "--"
+    s = f"{v['break_even_vs_ref']:.1f}"
+    ci = v.get("break_even_ci")
+    if ci:
+        s += f" [{ci[0]:.1f}, {ci[1]:.1f}]"
+    return s
+
+
+def table_gates(R, name):
+    """Default policy with all but one gate switched off, next to the full policy."""
+    ct = R.get("cost_test")
+    if not ct or "Gate_citation" not in R["systems"]:
+        return "% gate-isolation systems not in this results.json (re-run scripts/run_benchmark.py to replay)\n"
+    rows = []
+    for k in ("B1_vanilla", "B1_empty_filter", "Gate_confidence", "Gate_grounding", "Gate_citation", "TriSafe_default", "TriSafe_devtuned", "TriSafe_empty", "TriSafe_nolang", "B3_abstention_only"):
+        if k not in R["systems"]:
+            continue
+        o = R["systems"][k]["test"]["overall"]
+        c = ct.get(k, {})
+        rows.append(f"{COST_LABEL.get(k, k)} & {f(o['answer_rate'],2)} & {f(o['acc_answerable'],3)} & {f(o['selective_accuracy'],3)} & "
+                    f"{f(o['unanswerable_abstention'],2)} & {f(o['decision_accuracy'],3)} & {_cnt(c.get('unsafe'))} & "
+                    f"{_cnt(c.get('lost_correct'))} & {_be(c)} \\\\")
+    body = "\n    ".join(rows)
+    return rf"""\begin{{table*}}[t]
+  \caption{{Which gate does the work ({name} backend, test split). ``B1 + empty-reply filter'' refuses replies that contain nothing but citation markers. Each ``only'' row keeps one gate of the policy in Fig.~\ref{{fig:policy}} at its default threshold and switches the other two off (a threshold of 0 never fires); all rows respect the generator's own abstention, as B1 does. Unsafe: delivered answers that were wrong or answered an unanswerable query. Lost: correct drafts the policy withheld. Break-even: the cost of one unsafe delivery, in withheld correct answers, above which the row beats B1 (Sec.~\ref{{sec:cost}}); ``--'' when the row removes no unsafe deliveries.}}
+  \label{{tab:gates-{name}}}
+  \footnotesize
+  \setlength{{\tabcolsep}}{{4pt}}
+  \begin{{tabular}}{{lcccccccc}}
+    \toprule
+    Policy & Ans.\ rate & Acc.\ $\uparrow$ & Sel.\ acc.\ $\uparrow$ & Unans.\ abst.\ $\uparrow$ & Decision acc.\ $\uparrow$ & Unsafe $\downarrow$ & Lost $\downarrow$ & Break-even [95\% CI] \\
+    \midrule
+    {body}
+    \bottomrule
+  \end{{tabular}}
+\end{{table*}}
+"""
+
+
+def table_cost(R, name):
+    ct = R.get("cost_test")
+    if not ct:
+        return "% cost analysis not in this results.json\n"
+    order = ["B1_vanilla", "B1_empty_filter", "TriSafe_default", "TriSafe_devtuned", "TriSafe_empty", "TriSafe_perlang", "TriSafe_platt", "E1_verbalized",
+             "E2_retrieval_gate", "E3_platt", "E4_isotonic", "E5_temperature", "E6_translate_retrieve", "E7_self_consistency"]
+    rows = []
+    for k in order:
+        if k not in ct:
+            continue
+        c = ct[k]
+        pl = c.get("per_language", {})
+        langs = " & ".join(_cnt(pl.get(l, {}).get("unsafe")) for l in LANGS)
+        rows.append(f"{COST_LABEL.get(k, k)} & {_cnt(c['correct'])} {_cnt_ci(c.get('correct_ci'))} & {_cnt(c['unsafe'])} {_cnt_ci(c.get('unsafe_ci'))} & "
+                    f"{langs} & {_cnt(c['lost_correct'])} & {_be(c)} \\\\")
+    body = "\n    ".join(rows)
+    n_test = R["n_test"]
+    return rf"""\begin{{table*}}[t]
+  \caption{{Delivered answers on the {n_test}-query test split ({name} backend), expected counts over seeds with paired bootstrap intervals. Correct: delivered answers matching the gold. Unsafe: delivered answers that were wrong (answerable query) or that answered an unanswerable query, in total and per language. Lost: correct drafts the decision rule withheld. Break-even: the cost of one unsafe delivery, measured in withheld correct answers, at which the system's loss $c\cdot U-K$ equals B1's; the system is the better choice for any cost above it. E6 produces different drafts and is listed for completeness.}}
+  \label{{tab:cost-{name}}}
+  \footnotesize
+  \setlength{{\tabcolsep}}{{3.5pt}}
+  \begin{{tabular}}{{lcccccccc}}
+    \toprule
+    System & Correct $\uparrow$ [95\% CI] & Unsafe $\downarrow$ [95\% CI] & en & si & ta & mixed & Lost $\downarrow$ & Break-even vs.\ B1 [95\% CI] \\
+    \midrule
+    {body}
+    \bottomrule
+  \end{{tabular}}
+\end{{table*}}
+"""
+
+
+def table_cv(R, name):
+    cv = R.get("cv")
+    if not cv:
+        return "% cross-validation not in this results.json\n"
+    boot, cost = cv["bootstrap"], cv["cost"]
+    rows = []
+    for k in ("B1_vanilla", "TriSafe_devtuned", "E1_verbalized", "E7_self_consistency"):
+        if k not in cv["systems"]:
+            continue
+        o = cv["systems"][k]["overall"]
+        b = boot.get(k, {}).get("decision_accuracy", {})
+        d = b.get("delta_vs_ref") if k != "B1_vanilla" else None
+        dtxt = f"{d['point']:+.3f} [{d['ci_lo']:+.3f}, {d['ci_hi']:+.3f}]" if d else "--"
+        c = cost.get(k, {})
+        rows.append(f"{COST_LABEL.get(k, k)} & {f(o['answer_rate'],2)} & {f(o['selective_accuracy'],3)} & {f(o['unanswerable_abstention'],2)} & "
+                    f"{f(o['decision_accuracy'],3)} {ci(b)} & {dtxt} & {_cnt(c.get('unsafe'))} & {_cnt(c.get('correct'))} & {_be(c)} \\\\")
+    body = "\n    ".join(rows)
+    taus = sorted({t["trisafe"]["answer_threshold"] for t in cv["fold_thresholds"]})
+    tau_txt = f"{taus[0]:.2f}" if len(taus) == 1 else f"{taus[0]:.2f}--{taus[-1]:.2f}"
+    return rf"""\begin{{table*}}[t]
+  \caption{{Group {cv['n_folds']}-fold cross-fitting of the tuned decision rules over all {R['n_queries']} queries ({name} backend). In every fold the TriSafe thresholds and the E1/E7 gates are tuned on the other folds and applied to the held-out fold, so each query receives one out-of-fold decision; intervals are paired bootstraps over queries. Across folds the TriSafe answer threshold was chosen as {tau_txt}. This checks that the development/test result does not depend on the particular split; the main tables use that split.}}
+  \label{{tab:cv-{name}}}
+  \footnotesize
+  \setlength{{\tabcolsep}}{{4pt}}
+  \begin{{tabular}}{{lcccccccc}}
+    \toprule
+    System & Ans.\ rate & Sel.\ acc.\ $\uparrow$ & Unans.\ abst.\ $\uparrow$ & Decision acc.\ [95\% CI] & $\Delta$ vs.\ B1 [95\% CI] & Unsafe & Correct & Break-even \\
+    \midrule
+    {body}
+    \bottomrule
+  \end{{tabular}}
+\end{{table*}}
+"""
+
+
+COST_KEYS = {"B1_vanilla": "Bone", "B1_empty_filter": "Bempty", "TriSafe_empty": "Tempty", "TriSafe_default": "Def", "TriSafe_devtuned": "Tun", "TriSafe_perlang": "Pl", "TriSafe_platt": "TPlatt",
+             "Gate_confidence": "GateConf", "Gate_grounding": "GateGr", "Gate_citation": "GateCit", "TriSafe_nolang": "Nolang",
+             "B3_abstention_only": "Bthree", "E1_verbalized": "Eone", "E2_retrieval_gate": "Etwo", "E3_platt": "Ethree",
+             "E4_isotonic": "Efour", "E5_temperature": "Efive", "E6_translate_retrieve": "Esix", "E7_self_consistency": "Eseven"}
+
+
+def cost_macros(R):
+    """Macros for the cost analysis, show-the-passage baseline, gate isolation and cross-validation."""
+    out = {}
+    out["Nsystems"] = len(R["systems"])
+    out["Redetected"] = R.get("n_redetected_abstentions", "--")
+    ct = R.get("cost_test") or {}
+    for k, key in COST_KEYS.items():
+        if k not in ct:
+            continue
+        c = ct[k]
+        out[f"{key}Unsafe"] = _cnt(c["unsafe"]); out[f"{key}Correct"] = _cnt(c["correct"]); out[f"{key}Lost"] = _cnt(c["lost_correct"])
+        out[f"{key}UnsafeCI"] = _cnt_ci(c.get("unsafe_ci")); out[f"{key}CorrectCI"] = _cnt_ci(c.get("correct_ci"))
+        out[f"{key}UnsafeUnans"] = _cnt(c["unsafe_unanswerable"]); out[f"{key}UnsafeWrong"] = _cnt(c["unsafe_wrong_answer"])
+        be = c.get("break_even_vs_ref")
+        out[f"{key}BreakEven"] = "--" if be is None else f"{be:.1f}"
+        bci = c.get("break_even_ci")
+        out[f"{key}BreakEvenCI"] = f"[{bci[0]:.1f}, {bci[1]:.1f}]" if bci else "--"
+        for l in LANGS:
+            if l in c.get("per_language", {}):
+                out[f"{key}Unsafe{l}"] = _cnt(c["per_language"][l]["unsafe"])
+        if "B1_vanilla" in ct:
+            # relative to B1: unsafe deliveries removed, correct answers lost beyond B1's own
+            out[f"{key}Removed"] = _cnt(ct["B1_vanilla"]["unsafe"] - c["unsafe"])
+            out[f"{key}LostVsBone"] = _cnt(max(0.0, c["lost_correct"] - ct["B1_vanilla"]["lost_correct"]))
+    for k, v in (R.get("cost_crossings") or {}).items():
+        a, b = k.split("_vs_")
+        out[f"Cross{COST_KEYS.get(a, a)}{COST_KEYS.get(b, b)}"] = "--" if v is None else f"{v:.1f}"
+    rs = (R.get("retrieval_stats_test") or {}).get("all")
+    if rs:
+        out["ShowN"] = rs["n"]; out["ShowTopk"] = rs["gold_in_topk"]; out["ShowTopone"] = rs["gold_in_top1"]
+        out["ShowTopkPct"] = f"{100 * rs['gold_in_topk'] / max(rs['n'], 1):.0f}"; out["ShowToponePct"] = f"{100 * rs['gold_in_top1'] / max(rs['n'], 1):.0f}"
+    cv = R.get("cv")
+    if cv:
+        out["CvFolds"] = cv["n_folds"]
+        for k, key in COST_KEYS.items():
+            if k not in cv["systems"]:
+                continue
+            o = cv["systems"][k]["overall"]
+            out[f"Cv{key}Dec"] = f(o["decision_accuracy"], 3); out[f"Cv{key}Ans"] = f(o["answer_rate"], 2)
+            out[f"Cv{key}Sel"] = f(o["selective_accuracy"], 3); out[f"Cv{key}Unans"] = f(o["unanswerable_abstention"], 2)
+            b = cv["bootstrap"].get(k, {}).get("decision_accuracy", {})
+            d = b.get("delta_vs_ref")
+            if d:
+                out[f"Cv{key}DeltaDec"] = f"{d['point']:+.3f}"; out[f"Cv{key}DeltaDecCI"] = f"[{d['ci_lo']:+.3f}, {d['ci_hi']:+.3f}]"
+            c = cv["cost"].get(k)
+            if c:
+                out[f"Cv{key}Unsafe"] = _cnt(c["unsafe"]); out[f"Cv{key}Correct"] = _cnt(c["correct"])
+                be = c.get("break_even_vs_ref")
+                out[f"Cv{key}BreakEven"] = "--" if be is None else f"{be:.1f}"
+            p = cv.get("paired_tests_vs_B1", {}).get(k, {})
+            if p:
+                out[f"Cv{key}Pcorrect"] = pval(p.get("correct")); out[f"Cv{key}Pabst"] = pval(p.get("abstained"))
+        taus = sorted({t["trisafe"]["answer_threshold"] for t in cv["fold_thresholds"]})
+        out["CvTauAns"] = f"{taus[0]:.2f}" if len(taus) == 1 else f"{taus[0]:.2f}--{taus[-1]:.2f}"
+    return out
 
 
 if __name__ == "__main__":

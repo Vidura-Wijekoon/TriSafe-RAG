@@ -19,8 +19,11 @@ PAPER = ROOT / "paper" / "trust2027"
 def main() -> int:
     body = (PAPER / "body.tex").read_text(encoding="utf-8")
     macros = (PAPER / "generated" / "macros.tex").read_text(encoding="utf-8")
+    for extra in ("provenance.tex", "adjudication.tex"):
+        if (PAPER / "generated" / extra).exists():
+            macros += (PAPER / "generated" / extra).read_text(encoding="utf-8")
     defined = set(re.findall(r"\\newcommand\{\\([A-Za-z]+)\}", macros))
-    used = sorted(set(re.findall(r"\\([NO][A-Z][A-Za-z]*)", body)))
+    used = sorted(set(re.findall(r"\\([NOL][A-Z][A-Za-z]*)", body)))
     missing = [m for m in used if m not in defined]
     problems = 0
     if missing:

@@ -77,6 +77,11 @@ def build_systems(checker: str, scale: dict, dev_drafts, has_verbalized: bool, h
                               mode="score", score_field="retrieval", confidence=conf_cos,
                               abstention=NO_THRESHOLDS, two_way=True,
                               notes="Answers everything the LLM answers; confidence = normalised top-1 cosine."))
+    # B1 plus a content check: a reply that is only citation markers ("[1] #1") is refused.
+    systems.append(SystemSpec("B1_empty_filter", "B1 + empty-reply filter", checker=checker,
+                              mode="score", score_field="retrieval", confidence=conf_cos,
+                              abstention={**NO_THRESHOLDS, "refuse_empty": True}, two_way=True,
+                              notes="Refuses drafts with no content besides citation markers; no threshold."))
     systems.append(SystemSpec("B2_grounding_only", "B2 grounding only (no thresholds)", checker=checker,
                               mode="weighted", confidence=conf_cos, abstention=NO_THRESHOLDS,
                               notes="Full confidence score reported, no abstention thresholds."))
@@ -92,12 +97,39 @@ def build_systems(checker: str, scale: dict, dev_drafts, has_verbalized: bool, h
     systems.append(SystemSpec("TriSafe_rrf", "TriSafe-RAG with raw RRF retrieval signal", checker=checker,
                               mode="weighted", confidence=conf_rrf, abstention=DEFAULT_THRESHOLDS,
                               notes="Legacy retrieval signal; shows the effect of the near-constant RRF scale."))
+    # --- gate isolation: the default policy with all but one gate switched off ----- #
+    # A threshold of 0 can never fire (every comparison is strict "<"), so each variant
+    # keeps exactly one of the three gates of Fig. policy; the generator's own
+    # abstention is respected by all of them, as by B1.
+    off = {"answer_threshold": 0.0, "refuse_threshold": 0.0, "min_support": 0.0, "min_citation_coverage": 0.0}
+    systems.append(SystemSpec("Gate_confidence", "Gate: confidence thresholds only", checker=checker,
+                              mode="weighted", confidence=conf_cos,
+                              abstention={**off, "answer_threshold": DEFAULT_THRESHOLDS["answer_threshold"],
+                                          "refuse_threshold": DEFAULT_THRESHOLDS["refuse_threshold"]},
+                              notes="tau_ans and tau_ref at default; grounding and citation gates off."))
+    systems.append(SystemSpec("Gate_grounding", "Gate: grounding support only", checker=checker,
+                              mode="weighted", confidence=conf_cos,
+                              abstention={**off, "min_support": DEFAULT_THRESHOLDS["min_support"]},
+                              notes="tau_g at default; confidence and citation gates off."))
+    systems.append(SystemSpec("Gate_citation", "Gate: citation coverage only", checker=checker,
+                              mode="weighted", confidence=conf_cos,
+                              abstention={**off, "min_citation_coverage": DEFAULT_THRESHOLDS["min_citation_coverage"]},
+                              notes="tau_c at default; confidence and grounding gates off."))
+    # --- language-signal ablation: w_lang = 0, remaining weights renormalised -------- #
+    rest = 1.0 - DEFAULT_WEIGHTS["w_language"]
+    nolang = {k: (0.0 if k == "w_language" else v / rest) for k, v in DEFAULT_WEIGHTS.items() if k.startswith("w_")}
+    systems.append(SystemSpec("TriSafe_nolang", "TriSafe-RAG without the language-match signal", checker=checker,
+                              mode="weighted", confidence={**conf_cos, **nolang}, abstention=DEFAULT_THRESHOLDS,
+                              notes="w_lang = 0; other weights renormalised to sum to 1."))
 
     # --- dev-tuned variants ----------------------------------------------- #
     base = SystemSpec("tmp", "", checker=checker, mode="weighted", confidence=conf_cos, abstention=DEFAULT_THRESHOLDS)
     th = tune_three_way_thresholds(dev_drafts, base)
     systems.append(SystemSpec("TriSafe_devtuned", "TriSafe-RAG (thresholds tuned on dev)", checker=checker,
                               mode="weighted", confidence=conf_cos, abstention=th, tuned_on="dev"))
+    systems.append(SystemSpec("TriSafe_empty", "TriSafe-RAG (dev-tuned) + empty-reply filter", checker=checker,
+                              mode="weighted", confidence=conf_cos, abstention={**th, "refuse_empty": True}, tuned_on="dev",
+                              notes="Dev-tuned thresholds plus the content check of B1_empty_filter."))
     per_lang = tune_per_language(dev_drafts, SystemSpec("tmp", "", checker=checker, mode="weighted",
                                                         confidence=conf_cos, abstention=th))
     systems.append(SystemSpec("TriSafe_perlang", "TriSafe-RAG + per-language thresholds (dev)", checker=checker,
@@ -174,6 +206,18 @@ def retrieval_stats(drafts):
             continue
         hit = sum(1 for d in sub if any(alias_match(h.get("text", ""), d["gold_answers"]) for h in d["hits"]))
         out[lang] = {"n": len(sub), "gold_in_topk": hit / len(sub) if sub else None}
+    # "show the passage" baseline: deliver the retrieved text instead of a generation.
+    # Counted once per query id (seed does not change retrieval).
+    seen, n_all, hit1, hitk = set(), 0, 0, 0
+    for d in drafts:
+        if d["gold_answerable"] != 1 or d["id"] in seen:
+            continue
+        seen.add(d["id"])
+        n_all += 1
+        hs = d["hits"]
+        hit1 += int(bool(hs) and alias_match(hs[0].get("text", ""), d["gold_answers"]))
+        hitk += int(any(alias_match(h.get("text", ""), d["gold_answers"]) for h in hs))
+    out["all"] = {"n": n_all, "gold_in_top1": hit1, "gold_in_topk": hitk}
     return out
 
 
@@ -233,18 +277,22 @@ def main() -> None:
     # back-fill chunk text on cached hits (needed by the evidence-availability statistic) and
     # recompute the self-consistency score from the cached samples, so that the agreement
     # definition in src.eval.metrics is the one in force when the tables are made
-    from src.eval.benchmark import chunk_text_lookup
+    from src.eval.benchmark import chunk_text_lookup, normalise_draft
     from src.eval.metrics import self_consistency_score
     _lookup = chunk_text_lookup(SOURCE_DIRS, spec.chunker)
+    n_redetected = 0
     for seed in seeds:
         for coll in (drafts_by_seed.get(seed, []), trans_by_seed.get(seed, [])):
             for d in coll:
+                n_redetected += int(normalise_draft(d))
                 for h in d["hits"]:
                     if not h.get("text"):
                         h["text"] = _lookup.get(h["chunk_id"], "")
                 if d.get("sc_samples"):
                     d["self_consistency"] = self_consistency_score(d["draft_text"], d["sc_samples"])
 
+    if n_redetected:
+        log.info("re-detected %d cached generator abstentions that explained themselves first", n_redetected)
     all_drafts = [d for s in seeds for d in drafts_by_seed[s]]
     dev_drafts = [d for d in all_drafts if d["id"] in dev_ids]
     test_drafts = [d for d in all_drafts if d["id"] in test_ids]
@@ -259,7 +307,8 @@ def main() -> None:
     results = {"backend": spec.name, "backend_info": backend_info, "seeds": seeds,
                "n_queries": len(queries), "n_dev": len(dev_ids), "n_test": len(test_ids),
                "checker": checker, "retrieval_scale": scale, "tuned_thresholds": tuned_th,
-               "per_language_thresholds": per_lang, "systems": {}, "generated_at": time.strftime("%Y-%m-%d %H:%M:%S")}
+               "per_language_thresholds": per_lang, "systems": {}, "generated_at": time.strftime("%Y-%m-%d %H:%M:%S"),
+               "n_redetected_abstentions": n_redetected}
 
     records_by_system = {}
     for s in systems:
@@ -319,6 +368,23 @@ def main() -> None:
     results["paired_tests_vs_default"] = paired_tests(
         {k: v for k, v in test_sets.items() if k != "B1_vanilla"}, reference="TriSafe_default")
     results["weight_sweep"] = weight_sweep(dev_drafts, test_drafts, checker, scale, DEFAULT_THRESHOLDS)
+    from src.eval.cost import cost_analysis, crossing_cost
+    results["cost_test"] = cost_analysis(test_sets, reference="B1_vanilla", n_boot=args.n_boot, seed=0)
+    ct = results["cost_test"]
+    results["cost_crossings"] = {
+        f"{a}_vs_{b}": crossing_cost(ct[a], ct[b]) for a in ("TriSafe_devtuned", "TriSafe_default")
+        for b in ("E1_verbalized", "E3_platt", "E7_self_consistency") if a in ct and b in ct}
+    log.info("group %d-fold cross-fitting of the tuned rules ...", 5)
+    from src.eval.benchmark import cross_validate
+    cv = cross_validate(all_drafts, checker, scale, DEFAULT_WEIGHTS, DEFAULT_THRESHOLDS, NO_THRESHOLDS, n_folds=5, seed=13)
+    cv_sets = cv["records"]
+    results["cv"] = {
+        "n_folds": cv["n_folds"], "seed": cv["seed"], "fold_thresholds": cv["fold_thresholds"],
+        "systems": {k: evaluate(v) for k, v in cv_sets.items()},
+        "bootstrap": paired_bootstrap(cv_sets, n_boot=args.n_boot, seed=0, reference="B1_vanilla"),
+        "paired_tests_vs_B1": paired_tests(cv_sets, reference="B1_vanilla"),
+        "cost": cost_analysis(cv_sets, reference="B1_vanilla", n_boot=args.n_boot, seed=0),
+    }
     results["retrieval_stats_test"] = retrieval_stats(test_drafts)
     results["model_abstention_rate"] = {
         lang: float(np.mean([d["model_abstained"] for d in test_drafts if d["language"] == lang]))

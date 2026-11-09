@@ -27,6 +27,8 @@
 %% Written by scripts/make_overleaf_zip.py: \providecommand fallbacks for any
 %% macro whose backend run has not finished yet (renders as "??").
 \InputIfFileExists{generated/fallbacks}{}{}
+%% Adjudication of B1's delivered answers (scripts/adjudicate.py stats): \LAdj... macros.
+\InputIfFileExists{generated/adjudication}{}{}
 
 \settopmatter{printacmref=false}
 \renewcommand\footnotetextcopyrightpermission[1]{}
