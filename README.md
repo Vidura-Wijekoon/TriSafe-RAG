@@ -4,7 +4,7 @@
 
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue)]()
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)]()
-[![Tests](https://img.shields.io/badge/tests-30%20passing-brightgreen)]()
+[![Tests](https://img.shields.io/badge/tests-32%20passing-brightgreen)]()
 [![Status](https://img.shields.io/badge/status-research--preview-orange)]()
 
 ---
@@ -56,12 +56,16 @@ TriSafe-RAG/
 ├── scripts/
 │   ├── build_benchmark.py   # items.json -> queries.json, split.json, per-case slices
 │   ├── run_benchmark.py     # run a backend end to end -> results/<backend>/results.json
-│   └── make_tables.py       # results.json -> paper tables (LaTeX) and figures
+│   ├── run_all_seeds.sh     # seeds 0,1,2 per neural backend; progress_ui.py shows live progress
+│   ├── native_review.py     # native-speaker review sheet -> provenance paragraph / corrections
+│   ├── make_tables.py       # results.json -> paper macros, tables (LaTeX) and figures
+│   ├── make_architecture.py # evaluation-architecture figure from repository counts
+│   └── check_paper.py, make_overleaf_zip.py   # consistency check; XeLaTeX zip for Overleaf
 ├── results/             # committed benchmark outputs (drafts, per-system records, results.json)
 ├── paper/trust2027/     # ACM sigconf source; tables are \input from generated/
 ├── configs/             # YAML configs (experiment_v1, ablations)
 ├── app/                 # FastAPI service + Streamlit demo
-└── tests/               # 30 unit and integration tests (offline)
+└── tests/               # 32 unit and integration tests (offline)
 ```
 
 ---
@@ -89,6 +93,7 @@ ollama pull qwen2.5:1.5b-instruct-fp16 && ollama pull qwen2.5:7b-instruct   # ge
 bash scripts/run_all_seeds.sh neural7b neural           # seeds 0,1,2 per backend; ~1.5 h/seed (7B) and ~1 h/seed (1.5B) on an 8 GB GPU
 python scripts/progress_ui.py --backend neural7b        # live progress at http://localhost:8765 while a run is going
 python scripts/make_tables.py                           # paper/trust2027/generated/*.tex + figures (all backends found)
+python scripts/make_architecture.py                     # paper/trust2027/figures/eval_harness.pdf
 python scripts/make_overleaf_zip.py                     # paper/TriSafe-RAG_TRUST2027_overleaf.zip (compile with XeLaTeX)
 PYTHONPATH=. python casestudies/civil_documents/run.py  # offline case-study drivers
 ```
@@ -109,7 +114,22 @@ bash scripts/run_all_seeds.sh neural7b neural   # regenerates only the purged dr
 
 ## Benchmark: SL-PubServ-QA
 
-`data/benchmark/items.json` holds 62 parallel items over 12 documents quoted from seven Sri Lankan government agencies (Immigration, DRP, DMT, Ministry of Health units, DMC, NBRO, Meteorology). Every item has an English question, a Sinhala and a Tamil translation, and for 22 items a code-switched (romanised Sinhala–English) version: 208 queries, 52 answerable and 10 unanswerable per single-language group. Gold answers are alias lists; numeric aliases match as whole numbers, textual aliases as normalised substrings. Twelve item groups (39 queries) form the development split used for every threshold, weight and calibrator choice; the remaining 169 queries are the test split. The Sinhala and Tamil queries were produced by translating the English questions and should be checked by native speakers before the benchmark is used beyond this paper.
+`data/benchmark/items.json` holds 62 parallel items over 12 documents quoted from seven Sri Lankan government agencies (Immigration, DRP, DMT, Ministry of Health units, DMC, NBRO, Meteorology). Every item has an English question, a Sinhala and a Tamil translation, and for 22 items a code-switched (romanised Sinhala–English) version: 208 queries, 52 answerable and 10 unanswerable per single-language group. Gold answers are alias lists; numeric aliases match as whole numbers, textual aliases as normalised substrings. Twelve item groups (39 queries) form the development split used for every threshold, weight and calibrator choice; the remaining 169 queries are the test split. The Sinhala, Tamil and code-switched queries were machine-drafted and then reviewed query by query by an author who is a native speaker of both languages (`data/benchmark/native_review_sheet.csv`; all 146 accepted unchanged on 2026-11-09). A second, independent reviewer can fill a copy of the sheet; `native_review.py stats --second` then reports Cohen's kappa.
+
+---
+
+## Status (2026-11-09)
+
+| Component | State |
+|---|---|
+| Benchmark (62 items, 208 queries, dev/test split) | final; native-speaker review complete |
+| Offline backend (`results/offline`) | final |
+| `neural7b` (Qwen2.5-7B Q4_K_M, 3 seeds) | seed 0 done (8.4 h); seeds 1-2 running |
+| `neural` (Qwen2.5-1.5B fp16, 3 seeds) | queued after `neural7b` |
+| `neural_hf_fp32` (1.5B, CPU, 1 seed) | archived reference run |
+| Paper (`paper/trust2027`) | text complete except `sec:scale`; `N*` macros fill when `neural` finishes |
+
+The evaluation architecture (benchmark artefacts, backends, per-seed draft cache, replay of 16 systems, statistics, paper generation) is drawn in `paper/trust2027/figures/eval_harness.pdf`.
 
 ---
 

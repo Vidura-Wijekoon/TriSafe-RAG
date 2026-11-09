@@ -20,6 +20,7 @@ from __future__ import annotations
 
 import gc
 import json
+import os
 import logging
 import time
 from pathlib import Path
@@ -62,7 +63,24 @@ class _Stage:
             self.flush()
 
     def flush(self) -> None:
-        self.path.write_text(json.dumps(self.data, ensure_ascii=False), encoding="utf-8")
+        """Atomic write (temp file + replace) with retries.
+
+        The caches live on a drive that occasionally refuses a write for a
+        moment (``OSError: [Errno 22]`` was observed once during the 7B run);
+        a failed flush must not lose hours of cached generations.
+        """
+        payload = json.dumps(self.data, ensure_ascii=False)
+        tmp = self.path.with_suffix(self.path.suffix + ".tmp")
+        for attempt in range(5):
+            try:
+                tmp.write_text(payload, encoding="utf-8")
+                os.replace(tmp, self.path)
+                break
+            except OSError as e:  # pragma: no cover - depends on the file system
+                if attempt == 4:
+                    raise
+                log.warning("flush of %s failed (%s); retrying in %ds", self.path.name, e, 2 ** attempt)
+                time.sleep(2 ** attempt)
         self._dirty = 0
 
 
