@@ -4,12 +4,14 @@ per-query records.
 The unit of resampling is the *item group*: every language version of one
 benchmark item (its English, Sinhala, Tamil and code-switched queries) is
 resampled together, because they ask the same fact and are not independent
-(a cluster bootstrap over items).  When several seeds are available, each
-query's outcome is first averaged over seeds, so seed noise is folded into the
-per-query estimate instead of being treated as independent samples.  All
-systems are resampled with the *same* group draws, which gives paired
-intervals for differences between systems.  Permutation tests flip the sign of
-all paired differences of a group together.
+(a cluster bootstrap over items).  When several seeds are available, a drawn
+item brings the records of *every* seed with it, so the bootstrap statistic is
+the pooled statistic the tables report (for count-type metrics the mean over
+seeds) and seed noise is folded into the per-item resample instead of being
+treated as independent samples.  All systems are resampled with the *same*
+group draws, which gives paired intervals for differences between systems.
+Permutation tests and the cost analysis first average each query's outcome
+over seeds and flip the sign of all paired differences of a group together.
 """
 
 from __future__ import annotations
@@ -83,33 +85,38 @@ def paired_bootstrap(
     """Percentile bootstrap CIs for every (system, metric) and, when
     ``reference`` is given, for the difference system - reference.
 
-    ``systems`` maps a system name to its per-query records.  All systems must
-    cover the same query ids (records are aligned by ``id``).  Every system is
-    resampled with the same index vectors, so the difference intervals are
-    paired.
+    ``systems`` maps a system name to its per-query records (several records per
+    id when several seeds were run).  All systems must cover the same query ids.
+    Every system is resampled with the same item draws, and a drawn item brings
+    all its seeds' records, so the difference intervals are paired and the point
+    estimates equal the pooled metrics of the result tables.
     """
     names = list(systems)
-    aligned: Dict[str, List[dict]] = {}
+    # aligned[name][j] = the records (one per seed) of query ids[j]
+    aligned: Dict[str, List[List[dict]]] = {}
     ids = None
     for name in names:
-        recs = [_rounded(r) for r in average_over_seeds(systems[name])]
-        recs.sort(key=lambda r: str(r["id"]))
-        these = [str(r["id"]) for r in recs]
+        by_id: Dict[str, List[dict]] = {}
+        for r in systems[name]:
+            by_id.setdefault(str(r["id"]), []).append(r)
+        these = sorted(by_id)
         if ids is None:
             ids = these
         elif these != ids:
             raise ValueError(f"system {name} does not cover the same query ids")
-        aligned[name] = recs
+        aligned[name] = [by_id[i] for i in these]
     rng = np.random.default_rng(seed)
-    idx_matrix = group_resamples(_groups_of(aligned[names[0]]), n_boot, rng)
+    groups = [str(recs[0].get("group") or recs[0].get("id")) for recs in aligned[names[0]]]
+    idx_matrix = group_resamples(groups, n_boot, rng)
 
-    points = {name: _all_metrics(aligned[name]) for name in names}
+    # the point estimate is the pooled statistic over all seeds' records, as the tables report it
+    points = {name: _all_metrics([r for recs in aligned[name] for r in recs]) for name in names}
     metric_names = list(metrics) if metrics else list(points[names[0]].keys())
     samples: Dict[str, Dict[str, List[float]]] = {name: {m: [] for m in metric_names} for name in names}
     for b in range(n_boot):
         idx = idx_matrix[b]
         for name in names:
-            vals = _all_metrics([aligned[name][i] for i in idx])
+            vals = _all_metrics([r for i in idx for r in aligned[name][i]])
             for m in metric_names:
                 samples[name][m].append(vals.get(m))
 

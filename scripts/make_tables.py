@@ -145,7 +145,9 @@ def table_fairness(R, name):
     body = "\n    ".join(rows)
     # counts
     any_sys = R["systems"]["TriSafe_default"]["test"]["per_language"]
-    counts = ", ".join(f"{LANG_LABEL[l]}: {any_sys[l]['n']} ({any_sys[l]['n_unanswerable']} unans.)" for l in LANGS if l in any_sys)
+    ns = max(len(R.get("seeds") or [0]), 1)
+    counts = ", ".join(f"{LANG_LABEL[l]}: {any_sys[l]['n'] // ns} ({any_sys[l]['n_unanswerable'] // ns} unans.)" for l in LANGS if l in any_sys)
+    counts += f"; {ns} generation seeds each" if ns > 1 else ""
     return rf"""\begin{{table*}}[t]
   \caption{{Per-language results on the test split ({name} backend). Each language cell is accuracy on answerable queries / answer rate, so a narrowing accuracy gap can be read against coverage. $\Delta A$: max--min accuracy gap over the three single-language groups and the code-switched group with at least five test queries; $\Delta R$: the same gap for answer rate; $\Delta EO$: max of the TPR and FPR gaps on the answer/abstain decision; CLC $= 1-\Delta A$. Test queries per language: {counts}.}}
   \label{{tab:fair-{name}}}
@@ -268,6 +270,10 @@ def macros(RN, RO, RL=None):
             m(f"{tag}{name}", val)
         for name, val in probe_macros(R).items():
             m(f"{tag}{name}", val)
+        for name, val in defer_macros(R).items():
+            m(f"{tag}{name}", val)
+        for name, val in empty_filter_macros(R).items():
+            m(f"{tag}{name}", val)
         for name, val in _split_macros().items():
             m(f"{tag}{name}", val)
         b1 = R["systems"]["B1_vanilla"]["test"]
@@ -284,8 +290,8 @@ def macros(RN, RO, RL=None):
         m(f"{tag}TunAns", f(tt["overall"]["answer_rate"], 2)); m(f"{tag}TunAcc", f(tt["overall"]["acc_answerable"], 3))
         m(f"{tag}TunSel", f(tt["overall"]["selective_accuracy"], 3)); m(f"{tag}TunEce", f(tt["overall"]["ece_draft"], 3))
         m(f"{tag}TunGap", f(tt["gaps"]["gap_acc_answerable"], 2)); m(f"{tag}TunUnans", f(tt["overall"]["unanswerable_abstention"], 2))
-        m(f"{tag}TunF1", f(tt["overall"]["abstention_f1"], 3)); m(f"{tag}TunEO", f(tt["gaps"]["equalized_odds_gap"], 2))
-        m(f"{tag}BoneF1", f(b1["overall"]["abstention_f1"], 3)); m(f"{tag}BoneEO", f(b1["gaps"]["equalized_odds_gap"], 2))
+        m(f"{tag}TunFoneAll", f(tt["overall"]["abstention_f1"], 3)); m(f"{tag}TunEO", f(tt["gaps"]["equalized_odds_gap"], 2))
+        m(f"{tag}BoneFoneAll", f(b1["overall"]["abstention_f1"], 3)); m(f"{tag}BoneEO", f(b1["gaps"]["equalized_odds_gap"], 2))
         m(f"{tag}BoneSel", f(b1["overall"]["selective_accuracy"], 3))
         if tp:
             m(f"{tag}PlAns", f(tp["overall"]["answer_rate"], 2)); m(f"{tag}PlGap", f(tp["gaps"]["gap_acc_answerable"], 2))
@@ -473,6 +479,7 @@ def main():
         (OUT / f"table_gates_{name}.tex").write_text(table_gates(R, name), encoding="utf-8")
         (OUT / f"table_cost_{name}.tex").write_text(table_cost(R, name), encoding="utf-8")
         (OUT / f"table_cv_{name}.tex").write_text(table_cv(R, name), encoding="utf-8")
+        (OUT / f"table_defer_{name}.tex").write_text(table_defer(R, name), encoding="utf-8")
         figures(R, name)
     (OUT / "table_cases.tex").write_text(table_cases(RN, RO, RL), encoding="utf-8")
     (OUT / "table_scaling.tex").write_text(table_scaling(RN, RL), encoding="utf-8")
@@ -712,8 +719,8 @@ SEED_KEYS = ("B1_vanilla", "TriSafe_default", "TriSafe_devtuned", "E1_verbalized
 SEED_METRICS = (("answer_rate", "Ans", 2), ("acc_answerable", "Acc", 3), ("selective_accuracy", "Sel", 3),
                 ("unanswerable_abstention", "Unans", 2), ("decision_accuracy", "Dec", 3), ("ece_draft", "Ece", 3),
                 ("auroc_draft", "Auroc", 3), ("auroc_answered", "AurocAns", 3))
-SHORT_KEY = {"B1_vanilla": "Bone", "TriSafe_default": "Def", "TriSafe_devtuned": "Tun", "E1_verbalized": "Eone",
-             "E3_platt": "Ethree", "E4_isotonic": "Efour", "E7_self_consistency": "Eseven"}
+SHORT_KEY = {"B1_vanilla": "Bone", "B2_grounding_only": "Btwo", "TriSafe_default": "Def", "TriSafe_devtuned": "Tun",
+             "E1_verbalized": "Eone", "E3_platt": "Ethree", "E4_isotonic": "Efour", "E7_self_consistency": "Eseven"}
 
 
 def _per_seed(R, system):
@@ -755,8 +762,10 @@ def seed_macros(R):
             if mean is not None:
                 out[f"{SHORT_KEY[sysname]}{short}Mean"] = f(mean, nd)
                 out[f"{SHORT_KEY[sysname]}{short}Sd"] = f(sd, nd)
-    for sysname in ("B1_vanilla", "TriSafe_devtuned", "TriSafe_default", "E3_platt", "E1_verbalized"):
+    for sysname in ("B1_vanilla", "B2_grounding_only", "TriSafe_devtuned", "TriSafe_default", "E3_platt", "E1_verbalized"):
         o = R["systems"].get(sysname, {}).get("test", {}).get("overall", {})
+        if o.get("ece_draft") is not None:
+            out[f"{SHORT_KEY[sysname]}EceAll"] = f(o["ece_draft"], 3)
         if o.get("auroc_answered") is not None:
             out[f"{SHORT_KEY[sysname]}AurocAns"] = f(o["auroc_answered"], 3)
         if o.get("ece_answered") is not None:
@@ -886,7 +895,7 @@ COST_LABEL = {"B1_vanilla": "B1 vanilla", "B1_empty_filter": "B1 + empty-reply f
               "TriSafe_perlang": "TriSafe-RAG (per-language)", "TriSafe_platt": "TriSafe-RAG (Platt conf.)",
               "Gate_confidence": "confidence thresholds only", "Gate_grounding": "grounding gate only",
               "Gate_citation": "citation gate only", "TriSafe_nolang": "TriSafe-RAG, $w_{\\mathrm{lang}}=0$",
-              "B3_abstention_only": "B3 abstention only", "E1_verbalized": "E1 verbalized confidence",
+              "B3_abstention_only": "B3 abstention only ($w_{\\mathrm{gr}}{=}w_{\\mathrm{cit}}{=}0$, gates kept)", "E1_verbalized": "E1 verbalized confidence",
               "E2_retrieval_gate": "E2 retrieval gate", "E3_platt": "E3 Platt gate", "E4_isotonic": "E4 isotonic gate",
               "E5_temperature": "E5 temperature gate", "E6_translate_retrieve": "E6 translate-then-retrieve",
               "E7_self_consistency": "E7 self-consistency gate"}
@@ -1130,6 +1139,115 @@ def probe_macros(R):
         out[f"Probe{c}Empty"] = sm.get("empty", 0); out[f"Probe{c}Abstain"] = sm.get("abstain", 0)
         out[f"Probe{c}Correct"] = sm.get("correct", 0); out[f"Probe{c}Wrong"] = sm.get("content_wrong", 0)
     return out
+
+
+def empty_filter_macros(R):
+    """How many delivered B1 test answers the empty-reply filter refuses, per seed (a string check)."""
+    p = ROOT / "results" / R["backend"] / "records" / "B1_empty_filter.jsonl"
+    if not p.exists():
+        return {}
+    test_ids = set(json.loads((ROOT / "data" / "benchmark" / "split.json").read_text(encoding="utf-8"))["test"])
+    per_seed = {}
+    for line in p.read_text(encoding="utf-8").splitlines():
+        r = json.loads(line)
+        if r["id"] in test_ids and r.get("reason") == "empty_reply":
+            per_seed[r["seed"]] = per_seed.get(r["seed"], 0) + 1
+    if not per_seed:
+        return {}
+    vals = [per_seed.get(sd, 0) for sd in sorted(set(R.get("seeds") or per_seed))]
+    out = {"BemptyFiresPerSeed": ", ".join(str(v) for v in vals), "BemptyFiresMean": _cnt(sum(vals) / len(vals)),
+           "BemptyFiresMin": min(vals), "BemptyFiresMax": max(vals)}
+    # B1's unsafe deliveries on each seed (the adjudication covers seed 0)
+    pb = ROOT / "results" / R["backend"] / "records" / "B1_vanilla.jsonl"
+    if pb.exists():
+        unsafe = {}
+        for line in pb.read_text(encoding="utf-8").splitlines():
+            r = json.loads(line)
+            if r["id"] in test_ids and not int(r["abstained"]) and not (int(r["gold_answerable"]) and int(r["correct"])):
+                unsafe[r["seed"]] = unsafe.get(r["seed"], 0) + 1
+        if unsafe:
+            seeds = sorted(unsafe)
+            out["BoneUnsafePerSeed"] = ", ".join(str(unsafe[sd]) for sd in seeds)
+            out["BoneUnsafeSeedZero"] = unsafe[seeds[0]]
+    return out
+
+
+DEFER_SYSTEMS = ("TriSafe_default", "TriSafe_devtuned", "TriSafe_empty", "B3_abstention_only")
+DEFER_LABEL = {"TriSafe_default": "TriSafe default", "TriSafe_devtuned": "TriSafe dev-tuned",
+               "TriSafe_empty": "TriSafe dev-tuned + filter", "B3_abstention_only": "B3 abstention only"}
+
+
+def _defer_data(R):
+    p = ROOT / "results" / R["backend"] / "defer_analysis.json"
+    return json.loads(p.read_text(encoding="utf-8")) if p.exists() else None
+
+
+def defer_macros(R):
+    """Macros from scripts/defer_analysis.py: what a deferred user is shown, and break-even costs when a
+    deferral with the answer visible costs d withheld correct answers instead of 1."""
+    d = _defer_data(R)
+    if not d:
+        return {}
+    out = {"DeferK": d["k"], "DeferDs": ", ".join(f"{x:g}" for x in d["d_values"])}
+    for sysname, key in (("TriSafe_devtuned", "Tun"), ("TriSafe_default", "Def"), ("TriSafe_empty", "Tempty"), ("B3_abstention_only", "Bthree")):
+        sd = d["systems"].get(sysname)
+        if not sd:
+            continue
+        a = sd["answerable"]
+        out[f"{key}DeferN"] = _cnt(a["n"]); out[f"{key}DeferCorrectDraft"] = _cnt(a["draft_correct"])
+        out[f"{key}DeferVisTopone"] = _cnt(a["gold_in_top1"]); out[f"{key}DeferVisTopk"] = _cnt(a["gold_in_topk"])
+        out[f"{key}DeferVisRead"] = _cnt(a["gold_readable"])
+        out[f"{key}DeferVisReadPct"] = f"{100 * a['gold_readable'] / a['n']:.0f}" if a["n"] else "--"
+        out[f"{key}DeferVisTopkPct"] = f"{100 * a['gold_in_topk'] / a['n']:.0f}" if a["n"] else "--"
+        out[f"{key}DeferUnansN"] = _cnt(sd["unanswerable"]["n"])
+        for l, v in a.get("per_language", {}).items():
+            out[f"{key}DeferN{l}"] = _cnt(v["n"]); out[f"{key}DeferVisRead{l}"] = _cnt(v["gold_readable"])
+            out[f"{key}DeferVisTopk{l}"] = _cnt(v["gold_in_topk"])
+            out[f"{key}DeferVisReadPct{l}"] = f"{100 * v['gold_readable'] / v['n']:.0f}" if v["n"] else "--"
+        for dval, be in sd.get("break_even", {}).items():
+            tag = {"1": "Dfull", "0.5": "Dhalf", "0.25": "Dquarter"}.get(dval, "D" + dval.replace(".", "p"))
+            for ref, refkey in (("B1_vanilla", "Bone"), ("B1_empty_filter", "Empty")):
+                v = be.get(ref)
+                out[f"{key}DeferBreakEven{refkey}{tag}"] = "--" if v is None else f"{v:.1f}"
+    return out
+
+
+def table_defer(R, name):
+    """Deferrals as an outcome: is the answer in the evidence a deferred user is shown?"""
+    d = _defer_data(R)
+    if not d:
+        return "% defer analysis not found (run scripts/defer_analysis.py)\n"
+    rows = []
+    for k in DEFER_SYSTEMS:
+        sd = d["systems"].get(k)
+        if not sd:
+            continue
+        a = sd["answerable"]
+        be = sd.get("break_even", {})
+
+        def _b(dv):
+            v = be.get(dv, {}).get("B1_empty_filter")
+            return "--" if v is None else f"{v:.1f}"
+        pct = f"{100 * a['gold_readable'] / a['n']:.0f}\\%" if a["n"] else "--"
+        rows.append(f"{DEFER_LABEL.get(k, k)} & {_cnt(a['n'])} & {_cnt(a['draft_correct'])} & {_cnt(a['gold_in_top1'])} & "
+                    f"{_cnt(a['gold_in_topk'])} & {_cnt(a['gold_readable'])} ({pct}) & {_b('1')} & {_b('0.5')} & {_b('0.25')} \\\\")
+    body = "\n    ".join(rows)
+    return rf"""\begin{{table}}[t]
+  \caption{{Deferral as an outcome ({name} backend, test split, counts are means per seed). Deferred: answerable queries the rule deferred (the evidence is shown, the draft withheld); of which correct drafts; gold alias in the top-1 passage, in the top-{d['k']} passages shown, and \emph{{readable}}: in the shown passages for English and code-switched queries, in the Sinhala or Tamil summary of a shown document for Sinhala and Tamil queries. Break-even against B1 + empty-reply filter when a deferral with a readable correct answer costs $d$ withheld correct answers instead of 1 ($d{{=}}1$ is the break-even of \CostRef).}}
+  \label{{tab:defer-{name}}}
+  \scriptsize
+  \setlength{{\tabcolsep}}{{2pt}}
+  \begin{{tabular}}{{@{{}}lcccccccc@{{}}}}
+    \toprule
+    & & & \multicolumn{{3}}{{c}}{{Gold visible}} & \multicolumn{{3}}{{c}}{{Break-even vs.\ filter}} \\
+    \cmidrule(lr){{4-6}} \cmidrule(lr){{7-9}}
+    Rule & Deferred & Correct & top-1 & top-{d['k']} & readable & $d{{=}}1$ & $d{{=}}0.5$ & $d{{=}}0.25$ \\
+    \midrule
+    {body}
+    \bottomrule
+  \end{{tabular}}
+\end{{table}}
+"""
 
 
 def cost_macros(R):

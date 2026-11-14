@@ -57,7 +57,8 @@ SPLIT = ROOT / "data" / "benchmark" / "split.json"
 DEFAULT_WEIGHTS = {"w_retrieval": 0.20, "w_margin": 0.20, "w_grounding": 0.40, "w_citation": 0.10, "w_language": 0.10}
 DEFAULT_THRESHOLDS = {"answer_threshold": 0.55, "refuse_threshold": 0.30, "min_support": 0.20, "min_citation_coverage": 0.40}
 NO_THRESHOLDS = {"answer_threshold": 0.0, "refuse_threshold": 0.0, "min_support": 0.0, "min_citation_coverage": 0.0}
-# B3: abstention without grounding-aware confidence; weights renormalised to sum to 1
+# B3: the default policy on a confidence score without the grounding and citation signals (weights
+# renormalised to sum to 1).  The policy's grounding gate (tau_g) and citation gate (tau_c) still apply.
 B3_WEIGHTS = {"w_retrieval": 0.40, "w_margin": 0.40, "w_grounding": 0.0, "w_citation": 0.0, "w_language": 0.20}
 
 
@@ -85,7 +86,7 @@ def build_systems(checker: str, scale: dict, dev_drafts, has_verbalized: bool, h
     systems.append(SystemSpec("B2_grounding_only", "B2 grounding only (no thresholds)", checker=checker,
                               mode="weighted", confidence=conf_cos, abstention=NO_THRESHOLDS,
                               notes="Full confidence score reported, no abstention thresholds."))
-    systems.append(SystemSpec("B3_abstention_only", "B3 abstention only (w_gr = w_cit = 0)", checker=checker,
+    systems.append(SystemSpec("B3_abstention_only", "B3 abstention only (w_gr = w_cit = 0; grounding and citation gates kept)", checker=checker,
                               mode="weighted", confidence={**conf_cos, **B3_WEIGHTS},
                               abstention=DEFAULT_THRESHOLDS))
     systems.append(SystemSpec("TriSafe_default", "TriSafe-RAG (default thresholds)", checker=checker,

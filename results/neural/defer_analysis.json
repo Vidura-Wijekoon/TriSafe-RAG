@@ -1,0 +1,8847 @@
+{
+ "backend": "neural",
+ "seeds": [
+  0,
+  1,
+  2
+ ],
+ "k": 4,
+ "d_values": [
+  1.0,
+  0.5,
+  0.25
+ ],
+ "systems": {
+  "TriSafe_default": {
+   "answerable": {
+    "n": 43.0,
+    "draft_correct": 31.0,
+    "gold_in_top1": 37.0,
+    "gold_in_topk": 41.333333333333336,
+    "gold_readable": 41.0,
+    "per_language": {
+     "en": {
+      "n": 18.333333333333332,
+      "draft_correct": 17.333333333333332,
+      "gold_in_top1": 16.666666666666668,
+      "gold_in_topk": 18.333333333333332,
+      "gold_readable": 18.333333333333332
+     },
+     "si": {
+      "n": 4.0,
+      "draft_correct": 3.3333333333333335,
+      "gold_in_top1": 3.6666666666666665,
+      "gold_in_topk": 3.6666666666666665,
+      "gold_readable": 3.6666666666666665
+     },
+     "ta": {
+      "n": 15.333333333333334,
+      "draft_correct": 5.333333333333333,
+      "gold_in_top1": 11.666666666666666,
+      "gold_in_topk": 14.0,
+      "gold_readable": 13.666666666666666
+     },
+     "mixed": {
+      "n": 5.333333333333333,
+      "draft_correct": 5.0,
+      "gold_in_top1": 5.0,
+      "gold_in_topk": 5.333333333333333,
+      "gold_readable": 5.333333333333333
+     }
+    }
+   },
+   "unanswerable": {
+    "n": 0.6666666666666666
+   },
+   "deferred_queries": [
+    {
+     "id": "cd001-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd002-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-mx",
+     "seed": 0,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd005-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd007-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd007-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd009-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd010-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd011-si",
+     "seed": 0,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd012-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd014-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd015-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd015-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 0,
+     "gold_readable": 0,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd019-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd019-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph001-mx",
+     "seed": 0,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph007-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-si",
+     "seed": 0,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph009-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-si",
+     "seed": 0,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph012-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph016-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph018-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr004-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr005-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr006-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr007-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr008-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr012-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr012-mx",
+     "seed": 0,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd001-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd001-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd002-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd002-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd005-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd006-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd007-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd007-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd008-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd008-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd009-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd011-si",
+     "seed": 1,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd011-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd012-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd012-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd014-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd014-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd015-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd015-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 0,
+     "gold_readable": 0,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd016-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd016-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd017-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd019-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd019-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph001-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-si",
+     "seed": 1,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph010-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 0,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-si",
+     "seed": 1,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph012-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph013-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph016-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph018-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph018-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr001-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr001-si",
+     "seed": 1,
+     "language": "si",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr004-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr008-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr008-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr009-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr009-si",
+     "seed": 1,
+     "language": "si",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 0,
+     "gold_readable": 0,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr009-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 0,
+     "gold_readable": 0,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr010-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr012-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr012-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd001-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd001-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-mx",
+     "seed": 2,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd005-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd006-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd007-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd007-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd009-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd011-si",
+     "seed": 2,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd012-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd014-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd014-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd015-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd015-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 0,
+     "gold_readable": 0,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd016-mx",
+     "seed": 2,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd019-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd019-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph001-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph001-mx",
+     "seed": 2,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph007-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-si",
+     "seed": 2,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph009-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-si",
+     "seed": 2,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph012-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph018-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr001-si",
+     "seed": 2,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr004-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr006-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr008-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr011-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr012-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr012-mx",
+     "seed": 2,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    }
+   ],
+   "break_even": {
+    "1": {
+     "B1_vanilla": 2.708333333333334,
+     "B1_empty_filter": 2.9090909090909083
+    },
+    "0.5": {
+     "B1_vanilla": 1.4270833333333335,
+     "B1_empty_filter": 1.5113636363636354
+    },
+    "0.25": {
+     "B1_vanilla": 0.7864583333333333,
+     "B1_empty_filter": 0.8124999999999989
+    }
+   },
+   "cost": {
+    "unsafe": 3.3333333333333344,
+    "correct": 17.333333333333336,
+    "lost_correct": 43.66666666666667
+   }
+  },
+  "TriSafe_devtuned": {
+   "answerable": {
+    "n": 38.0,
+    "draft_correct": 26.0,
+    "gold_in_top1": 32.333333333333336,
+    "gold_in_topk": 36.333333333333336,
+    "gold_readable": 36.0,
+    "per_language": {
+     "en": {
+      "n": 13.333333333333334,
+      "draft_correct": 12.333333333333334,
+      "gold_in_top1": 12.0,
+      "gold_in_topk": 13.333333333333334,
+      "gold_readable": 13.333333333333334
+     },
+     "si": {
+      "n": 4.0,
+      "draft_correct": 3.3333333333333335,
+      "gold_in_top1": 3.6666666666666665,
+      "gold_in_topk": 3.6666666666666665,
+      "gold_readable": 3.6666666666666665
+     },
+     "ta": {
+      "n": 16.0,
+      "draft_correct": 6.0,
+      "gold_in_top1": 12.333333333333334,
+      "gold_in_topk": 14.666666666666666,
+      "gold_readable": 14.333333333333334
+     },
+     "mixed": {
+      "n": 4.666666666666667,
+      "draft_correct": 4.333333333333333,
+      "gold_in_top1": 4.333333333333333,
+      "gold_in_topk": 4.666666666666667,
+      "gold_readable": 4.666666666666667
+     }
+    }
+   },
+   "unanswerable": {
+    "n": 0.6666666666666666
+   },
+   "deferred_queries": [
+    {
+     "id": "cd001-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd002-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-mx",
+     "seed": 0,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd005-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd007-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd009-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd010-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd011-si",
+     "seed": 0,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd012-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd015-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd015-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 0,
+     "gold_readable": 0,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd016-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd019-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph001-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph001-mx",
+     "seed": 0,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph007-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-si",
+     "seed": 0,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph009-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-si",
+     "seed": 0,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph016-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph018-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr004-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr005-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr006-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr007-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr012-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr012-mx",
+     "seed": 0,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd001-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd002-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd002-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd005-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd006-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd007-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd008-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd008-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd009-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd011-si",
+     "seed": 1,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd011-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd012-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd014-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd015-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd015-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 0,
+     "gold_readable": 0,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd016-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd016-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd019-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd019-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph001-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-si",
+     "seed": 1,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph009-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph010-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 0,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-si",
+     "seed": 1,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph013-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph016-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph018-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph018-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr001-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr001-si",
+     "seed": 1,
+     "language": "si",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr004-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr006-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr008-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr008-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr009-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr009-si",
+     "seed": 1,
+     "language": "si",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 0,
+     "gold_readable": 0,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr009-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 0,
+     "gold_readable": 0,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr010-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr012-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr012-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd001-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-mx",
+     "seed": 2,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd005-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd006-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd007-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd009-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd011-si",
+     "seed": 2,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd012-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd014-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd015-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd015-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 0,
+     "gold_readable": 0,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd016-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd016-mx",
+     "seed": 2,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd019-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd019-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph001-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph001-mx",
+     "seed": 2,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph007-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-si",
+     "seed": 2,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph009-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-si",
+     "seed": 2,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph018-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr001-si",
+     "seed": 2,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr004-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr006-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr011-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr012-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr012-mx",
+     "seed": 2,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    }
+   ],
+   "break_even": {
+    "1": {
+     "B1_vanilla": 2.1875000000000004,
+     "B1_empty_filter": 2.34090909090909
+    },
+    "0.5": {
+     "B1_vanilla": 1.0625,
+     "B1_empty_filter": 1.1136363636363624
+    },
+    "0.25": {
+     "B1_vanilla": 0.4999999999999998,
+     "B1_empty_filter": 0.4999999999999988
+    }
+   },
+   "cost": {
+    "unsafe": 3.3333333333333353,
+    "correct": 25.66666666666667,
+    "lost_correct": 35.33333333333333
+   }
+  },
+  "TriSafe_empty": {
+   "answerable": {
+    "n": 37.0,
+    "draft_correct": 25.666666666666668,
+    "gold_in_top1": 31.333333333333332,
+    "gold_in_topk": 35.333333333333336,
+    "gold_readable": 35.0,
+    "per_language": {
+     "en": {
+      "n": 13.0,
+      "draft_correct": 12.333333333333334,
+      "gold_in_top1": 11.666666666666666,
+      "gold_in_topk": 13.0,
+      "gold_readable": 13.0
+     },
+     "si": {
+      "n": 3.6666666666666665,
+      "draft_correct": 3.0,
+      "gold_in_top1": 3.3333333333333335,
+      "gold_in_topk": 3.3333333333333335,
+      "gold_readable": 3.3333333333333335
+     },
+     "ta": {
+      "n": 15.666666666666666,
+      "draft_correct": 6.0,
+      "gold_in_top1": 12.0,
+      "gold_in_topk": 14.333333333333334,
+      "gold_readable": 14.0
+     },
+     "mixed": {
+      "n": 4.666666666666667,
+      "draft_correct": 4.333333333333333,
+      "gold_in_top1": 4.333333333333333,
+      "gold_in_topk": 4.666666666666667,
+      "gold_readable": 4.666666666666667
+     }
+    }
+   },
+   "unanswerable": {
+    "n": 0.6666666666666666
+   },
+   "deferred_queries": [
+    {
+     "id": "cd001-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd002-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-mx",
+     "seed": 0,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd005-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd007-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd009-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd010-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd011-si",
+     "seed": 0,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd012-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd015-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd015-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 0,
+     "gold_readable": 0,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd016-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd019-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph001-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph001-mx",
+     "seed": 0,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph007-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-si",
+     "seed": 0,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph009-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-si",
+     "seed": 0,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph016-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph018-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr004-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr005-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr006-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr007-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr012-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr012-mx",
+     "seed": 0,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd001-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd002-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd005-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd006-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd007-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd008-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd008-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd009-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd011-si",
+     "seed": 1,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd011-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd012-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd014-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd015-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd015-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 0,
+     "gold_readable": 0,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd016-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd016-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd019-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd019-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph001-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-si",
+     "seed": 1,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph009-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph010-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 0,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-si",
+     "seed": 1,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph016-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph018-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph018-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr001-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr001-si",
+     "seed": 1,
+     "language": "si",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr004-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr006-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr008-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr008-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr009-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr009-si",
+     "seed": 1,
+     "language": "si",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 0,
+     "gold_readable": 0,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr009-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 0,
+     "gold_readable": 0,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr010-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr012-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr012-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd001-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-mx",
+     "seed": 2,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd005-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd006-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd007-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd009-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd011-si",
+     "seed": 2,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd012-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd014-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd015-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd015-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 0,
+     "gold_readable": 0,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd016-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd016-mx",
+     "seed": 2,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd019-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd019-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph001-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph001-mx",
+     "seed": 2,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph007-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-si",
+     "seed": 2,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph009-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-si",
+     "seed": 2,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph018-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr004-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr006-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr011-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr012-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr012-mx",
+     "seed": 2,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    }
+   ],
+   "break_even": {
+    "1": {
+     "B1_vanilla": 2.1875000000000004,
+     "B1_empty_filter": 2.34090909090909
+    },
+    "0.5": {
+     "B1_vanilla": 1.09375,
+     "B1_empty_filter": 1.1477272727272716
+    },
+    "0.25": {
+     "B1_vanilla": 0.5468749999999998,
+     "B1_empty_filter": 0.5511363636363624
+    }
+   },
+   "cost": {
+    "unsafe": 3.3333333333333353,
+    "correct": 25.66666666666667,
+    "lost_correct": 35.33333333333333
+   }
+  },
+  "B3_abstention_only": {
+   "answerable": {
+    "n": 40.666666666666664,
+    "draft_correct": 28.333333333333332,
+    "gold_in_top1": 35.0,
+    "gold_in_topk": 39.0,
+    "gold_readable": 38.666666666666664,
+    "per_language": {
+     "en": {
+      "n": 14.666666666666666,
+      "draft_correct": 13.666666666666666,
+      "gold_in_top1": 13.333333333333334,
+      "gold_in_topk": 14.666666666666666,
+      "gold_readable": 14.666666666666666
+     },
+     "si": {
+      "n": 4.333333333333333,
+      "draft_correct": 3.6666666666666665,
+      "gold_in_top1": 4.0,
+      "gold_in_topk": 4.0,
+      "gold_readable": 4.0
+     },
+     "ta": {
+      "n": 16.0,
+      "draft_correct": 5.666666666666667,
+      "gold_in_top1": 12.333333333333334,
+      "gold_in_topk": 14.666666666666666,
+      "gold_readable": 14.333333333333334
+     },
+     "mixed": {
+      "n": 5.666666666666667,
+      "draft_correct": 5.333333333333333,
+      "gold_in_top1": 5.333333333333333,
+      "gold_in_topk": 5.666666666666667,
+      "gold_readable": 5.666666666666667
+     }
+    }
+   },
+   "unanswerable": {
+    "n": 0.6666666666666666
+   },
+   "deferred_queries": [
+    {
+     "id": "cd001-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd001-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd002-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-mx",
+     "seed": 0,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd005-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd007-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd009-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd010-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd011-si",
+     "seed": 0,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd012-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd014-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd015-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd015-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 0,
+     "gold_readable": 0,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd019-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph001-mx",
+     "seed": 0,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph007-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-si",
+     "seed": 0,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-mx",
+     "seed": 0,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph009-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-si",
+     "seed": 0,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph012-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph016-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph018-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr001-si",
+     "seed": 0,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr004-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr005-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr006-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr007-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr008-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr012-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr012-mx",
+     "seed": 0,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd001-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd002-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd002-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd005-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd006-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd007-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd007-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd008-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd008-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd009-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd011-si",
+     "seed": 1,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd011-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd012-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd014-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd014-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd015-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd015-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 0,
+     "gold_readable": 0,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd016-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd016-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd019-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd019-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph001-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-si",
+     "seed": 1,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph010-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 0,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-si",
+     "seed": 1,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph012-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph013-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph016-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph018-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph018-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr001-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr001-si",
+     "seed": 1,
+     "language": "si",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr004-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr008-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr008-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr009-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr009-si",
+     "seed": 1,
+     "language": "si",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 0,
+     "gold_readable": 0,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr009-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 0,
+     "gold_readable": 0,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr010-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr012-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr012-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd001-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-mx",
+     "seed": 2,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd005-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd006-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd007-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd009-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd011-si",
+     "seed": 2,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd012-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd014-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd014-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd015-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd015-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 0,
+     "gold_readable": 0,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd016-mx",
+     "seed": 2,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd019-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd019-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph001-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph001-mx",
+     "seed": 2,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph007-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-si",
+     "seed": 2,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-mx",
+     "seed": 2,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph009-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-si",
+     "seed": 2,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph012-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph018-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr001-si",
+     "seed": 2,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr004-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr006-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr011-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr012-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr012-mx",
+     "seed": 2,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    }
+   ],
+   "break_even": {
+    "1": {
+     "B1_vanilla": 2.5102040816326534,
+     "B1_empty_filter": 2.6888888888888878
+    },
+    "0.5": {
+     "B1_vanilla": 1.3265306122448979,
+     "B1_empty_filter": 1.399999999999999
+    },
+    "0.25": {
+     "B1_vanilla": 0.7346938775510202,
+     "B1_empty_filter": 0.7555555555555544
+    }
+   },
+   "cost": {
+    "unsafe": 3.0000000000000013,
+    "correct": 19.66666666666667,
+    "lost_correct": 41.33333333333334
+   }
+  },
+  "TriSafe_perlang": {
+   "answerable": {
+    "n": 38.0,
+    "draft_correct": 26.0,
+    "gold_in_top1": 32.333333333333336,
+    "gold_in_topk": 36.333333333333336,
+    "gold_readable": 36.0,
+    "per_language": {
+     "en": {
+      "n": 13.333333333333334,
+      "draft_correct": 12.333333333333334,
+      "gold_in_top1": 12.0,
+      "gold_in_topk": 13.333333333333334,
+      "gold_readable": 13.333333333333334
+     },
+     "si": {
+      "n": 4.0,
+      "draft_correct": 3.3333333333333335,
+      "gold_in_top1": 3.6666666666666665,
+      "gold_in_topk": 3.6666666666666665,
+      "gold_readable": 3.6666666666666665
+     },
+     "ta": {
+      "n": 16.0,
+      "draft_correct": 6.0,
+      "gold_in_top1": 12.333333333333334,
+      "gold_in_topk": 14.666666666666666,
+      "gold_readable": 14.333333333333334
+     },
+     "mixed": {
+      "n": 4.666666666666667,
+      "draft_correct": 4.333333333333333,
+      "gold_in_top1": 4.333333333333333,
+      "gold_in_topk": 4.666666666666667,
+      "gold_readable": 4.666666666666667
+     }
+    }
+   },
+   "unanswerable": {
+    "n": 0.6666666666666666
+   },
+   "deferred_queries": [
+    {
+     "id": "cd001-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd002-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-mx",
+     "seed": 0,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd005-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd007-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd009-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd010-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd011-si",
+     "seed": 0,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd012-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd015-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd015-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 0,
+     "gold_readable": 0,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd016-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd019-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph001-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph001-mx",
+     "seed": 0,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph007-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-si",
+     "seed": 0,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph009-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-si",
+     "seed": 0,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph016-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph018-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr004-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr005-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr006-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr007-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr012-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr012-mx",
+     "seed": 0,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd001-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd002-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd002-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd005-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd006-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd007-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd008-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd008-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd009-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd011-si",
+     "seed": 1,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd011-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd012-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd014-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd015-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd015-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 0,
+     "gold_readable": 0,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd016-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd016-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd019-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd019-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph001-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-si",
+     "seed": 1,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph009-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph010-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 0,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-si",
+     "seed": 1,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph013-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph016-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph018-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph018-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr001-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr001-si",
+     "seed": 1,
+     "language": "si",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr004-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr006-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr008-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr008-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr009-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr009-si",
+     "seed": 1,
+     "language": "si",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 0,
+     "gold_readable": 0,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr009-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 0,
+     "gold_readable": 0,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr010-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr012-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr012-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd001-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-mx",
+     "seed": 2,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd005-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd006-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd007-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd009-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd011-si",
+     "seed": 2,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd012-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd014-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd015-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd015-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 0,
+     "gold_readable": 0,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd016-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd016-mx",
+     "seed": 2,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd019-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd019-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph001-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph001-mx",
+     "seed": 2,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph007-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-si",
+     "seed": 2,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph009-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-si",
+     "seed": 2,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph018-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr001-si",
+     "seed": 2,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr004-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr006-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr011-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr012-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr012-mx",
+     "seed": 2,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    }
+   ],
+   "break_even": {
+    "1": {
+     "B1_vanilla": 2.1875000000000004,
+     "B1_empty_filter": 2.34090909090909
+    },
+    "0.5": {
+     "B1_vanilla": 1.0625,
+     "B1_empty_filter": 1.1136363636363624
+    },
+    "0.25": {
+     "B1_vanilla": 0.4999999999999998,
+     "B1_empty_filter": 0.4999999999999988
+    }
+   },
+   "cost": {
+    "unsafe": 3.3333333333333353,
+    "correct": 25.66666666666667,
+    "lost_correct": 35.33333333333333
+   }
+  },
+  "TriSafe_platt": {
+   "answerable": {
+    "n": 37.333333333333336,
+    "draft_correct": 25.333333333333332,
+    "gold_in_top1": 31.666666666666668,
+    "gold_in_topk": 35.666666666666664,
+    "gold_readable": 35.333333333333336,
+    "per_language": {
+     "en": {
+      "n": 12.666666666666666,
+      "draft_correct": 11.666666666666666,
+      "gold_in_top1": 11.333333333333334,
+      "gold_in_topk": 12.666666666666666,
+      "gold_readable": 12.666666666666666
+     },
+     "si": {
+      "n": 4.0,
+      "draft_correct": 3.3333333333333335,
+      "gold_in_top1": 3.6666666666666665,
+      "gold_in_topk": 3.6666666666666665,
+      "gold_readable": 3.6666666666666665
+     },
+     "ta": {
+      "n": 16.0,
+      "draft_correct": 6.0,
+      "gold_in_top1": 12.333333333333334,
+      "gold_in_topk": 14.666666666666666,
+      "gold_readable": 14.333333333333334
+     },
+     "mixed": {
+      "n": 4.666666666666667,
+      "draft_correct": 4.333333333333333,
+      "gold_in_top1": 4.333333333333333,
+      "gold_in_topk": 4.666666666666667,
+      "gold_readable": 4.666666666666667
+     }
+    }
+   },
+   "unanswerable": {
+    "n": 0.6666666666666666
+   },
+   "deferred_queries": [
+    {
+     "id": "cd001-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd002-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-mx",
+     "seed": 0,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd005-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd007-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd009-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd010-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd011-si",
+     "seed": 0,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd012-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd015-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd015-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 0,
+     "gold_readable": 0,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd016-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd019-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph001-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph001-mx",
+     "seed": 0,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph007-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-si",
+     "seed": 0,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph009-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-si",
+     "seed": 0,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph016-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph018-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr004-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr005-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr006-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr007-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr012-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr012-mx",
+     "seed": 0,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd001-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd002-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd002-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd005-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd006-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd007-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd008-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd008-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd009-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd011-si",
+     "seed": 1,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd011-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd012-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd014-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd015-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd015-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 0,
+     "gold_readable": 0,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd016-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd016-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd019-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd019-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph001-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-si",
+     "seed": 1,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph009-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph010-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 0,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-si",
+     "seed": 1,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph013-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph016-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph018-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph018-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr001-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr001-si",
+     "seed": 1,
+     "language": "si",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr004-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr006-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr008-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr008-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr009-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr009-si",
+     "seed": 1,
+     "language": "si",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 0,
+     "gold_readable": 0,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr009-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 0,
+     "gold_readable": 0,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr010-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr012-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr012-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd001-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-mx",
+     "seed": 2,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd005-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd006-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd007-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd009-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd011-si",
+     "seed": 2,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd012-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd014-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd015-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd015-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 0,
+     "gold_readable": 0,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd016-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd016-mx",
+     "seed": 2,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd019-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd019-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph001-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph001-mx",
+     "seed": 2,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph007-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-si",
+     "seed": 2,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph009-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-si",
+     "seed": 2,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph018-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr001-si",
+     "seed": 2,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr004-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr006-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr011-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr012-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr012-mx",
+     "seed": 2,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    }
+   ],
+   "break_even": {
+    "1": {
+     "B1_vanilla": 2.145833333333334,
+     "B1_empty_filter": 2.295454545454544
+    },
+    "0.5": {
+     "B1_vanilla": 1.0416666666666667,
+     "B1_empty_filter": 1.0909090909090895
+    },
+    "0.25": {
+     "B1_vanilla": 0.48958333333333326,
+     "B1_empty_filter": 0.4886363636363621
+    }
+   },
+   "cost": {
+    "unsafe": 3.3333333333333353,
+    "correct": 26.33333333333334,
+    "lost_correct": 34.66666666666666
+   }
+  },
+  "TriSafe_nolang": {
+   "answerable": {
+    "n": 45.666666666666664,
+    "draft_correct": 33.666666666666664,
+    "gold_in_top1": 39.333333333333336,
+    "gold_in_topk": 44.0,
+    "gold_readable": 43.333333333333336,
+    "per_language": {
+     "en": {
+      "n": 20.0,
+      "draft_correct": 19.0,
+      "gold_in_top1": 18.333333333333332,
+      "gold_in_topk": 20.0,
+      "gold_readable": 20.0
+     },
+     "si": {
+      "n": 4.0,
+      "draft_correct": 3.3333333333333335,
+      "gold_in_top1": 3.6666666666666665,
+      "gold_in_topk": 3.6666666666666665,
+      "gold_readable": 3.6666666666666665
+     },
+     "ta": {
+      "n": 15.666666666666666,
+      "draft_correct": 5.666666666666667,
+      "gold_in_top1": 11.666666666666666,
+      "gold_in_topk": 14.333333333333334,
+      "gold_readable": 13.666666666666666
+     },
+     "mixed": {
+      "n": 6.0,
+      "draft_correct": 5.666666666666667,
+      "gold_in_top1": 5.666666666666667,
+      "gold_in_topk": 6.0,
+      "gold_readable": 6.0
+     }
+    }
+   },
+   "unanswerable": {
+    "n": 0.3333333333333333
+   },
+   "deferred_queries": [
+    {
+     "id": "cd001-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd002-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-mx",
+     "seed": 0,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd005-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd007-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd007-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd009-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd010-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd011-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd011-si",
+     "seed": 0,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd012-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd014-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd015-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd015-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 0,
+     "gold_readable": 0,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd017-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd019-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd019-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph001-mx",
+     "seed": 0,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph007-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-si",
+     "seed": 0,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph009-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-si",
+     "seed": 0,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-mx",
+     "seed": 0,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph012-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph016-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph018-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr004-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr005-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr006-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr007-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr008-en",
+     "seed": 0,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr012-ta",
+     "seed": 0,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr012-mx",
+     "seed": 0,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd001-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd001-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd002-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd002-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd005-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd006-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd007-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd007-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd008-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd008-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd009-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd011-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd011-si",
+     "seed": 1,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd011-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd012-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd012-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd014-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd014-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd015-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd015-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 0,
+     "gold_readable": 0,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd016-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd016-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd017-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd019-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd019-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph001-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-si",
+     "seed": 1,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph010-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 0,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-si",
+     "seed": 1,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph012-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph012-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 0,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph013-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph016-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph018-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph018-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr001-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr001-si",
+     "seed": 1,
+     "language": "si",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr004-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr008-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr008-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr009-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr009-si",
+     "seed": 1,
+     "language": "si",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 0,
+     "gold_readable": 0,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr009-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 0,
+     "gold_readable": 0,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr010-en",
+     "seed": 1,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr012-ta",
+     "seed": 1,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr012-mx",
+     "seed": 1,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd001-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd001-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd003-mx",
+     "seed": 2,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd005-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd006-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd007-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd007-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd009-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd011-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd011-si",
+     "seed": 2,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd012-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd013-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd014-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd014-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd015-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd015-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 0,
+     "gold_in_topk": 0,
+     "gold_readable": 0,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd016-mx",
+     "seed": 2,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd019-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "cd019-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph001-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph001-mx",
+     "seed": 2,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph007-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-si",
+     "seed": 2,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph008-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph009-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-si",
+     "seed": 2,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph011-mx",
+     "seed": 2,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph012-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "ph018-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr001-si",
+     "seed": 2,
+     "language": "si",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr004-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr006-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr006-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr008-en",
+     "seed": 2,
+     "language": "en",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr011-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 0,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr012-ta",
+     "seed": 2,
+     "language": "ta",
+     "draft_correct": 1,
+     "gold_in_top1": 0,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    },
+    {
+     "id": "dr012-mx",
+     "seed": 2,
+     "language": "mixed",
+     "draft_correct": 1,
+     "gold_in_top1": 1,
+     "gold_in_topk": 1,
+     "gold_readable": 1,
+     "reason": "borderline_evidence"
+    }
+   ],
+   "break_even": {
+    "1": {
+     "B1_vanilla": 2.895833333333334,
+     "B1_empty_filter": 3.1136363636363633
+    },
+    "0.5": {
+     "B1_vanilla": 1.5416666666666667,
+     "B1_empty_filter": 1.6363636363636358
+    },
+    "0.25": {
+     "B1_vanilla": 0.8645833333333334,
+     "B1_empty_filter": 0.8977272727272722
+    }
+   },
+   "cost": {
+    "unsafe": 3.3333333333333344,
+    "correct": 14.333333333333332,
+    "lost_correct": 46.66666666666667
+   }
+  }
+ }
+}

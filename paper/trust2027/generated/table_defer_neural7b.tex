@@ -1,0 +1,18 @@
+\begin{table}[t]
+  \caption{Deferral as an outcome (neural7b backend, test split, counts are means per seed). Deferred: answerable queries the rule deferred (the evidence is shown, the draft withheld); of which correct drafts; gold alias in the top-1 passage, in the top-4 passages shown, and \emph{readable}: in the shown passages for English and code-switched queries, in the Sinhala or Tamil summary of a shown document for Sinhala and Tamil queries. Break-even against B1 + empty-reply filter when a deferral with a readable correct answer costs $d$ withheld correct answers instead of 1 ($d{=}1$ is the break-even of \CostRef).}
+  \label{tab:defer-neural7b}
+  \scriptsize
+  \setlength{\tabcolsep}{2pt}
+  \begin{tabular}{@{}lcccccccc@{}}
+    \toprule
+    & & & \multicolumn{3}{c}{Gold visible} & \multicolumn{3}{c}{Break-even vs.\ filter} \\
+    \cmidrule(lr){4-6} \cmidrule(lr){7-9}
+    Rule & Deferred & Correct & top-1 & top-4 & readable & $d{=}1$ & $d{=}0.5$ & $d{=}0.25$ \\
+    \midrule
+    TriSafe default & 37 & 30 & 33.3 & 36.7 & 35.3 (95\%) & -- & -- & -- \\
+    TriSafe dev-tuned & 26.7 & 20.7 & 23.7 & 26.3 & 25 (94\%) & -- & -- & -- \\
+    TriSafe dev-tuned + filter & 26.3 & 20.7 & 23.3 & 26 & 24.7 (94\%) & 3.8 & 2.0 & 1.1 \\
+    B3 abstention only & 45.7 & 30 & 36.3 & 42.3 & 40.7 (89\%) & -- & -- & -- \\
+    \bottomrule
+  \end{tabular}
+\end{table}

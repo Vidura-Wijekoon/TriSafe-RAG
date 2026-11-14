@@ -5089,7 +5089,7 @@
    ]
   },
   "B3_abstention_only": {
-   "label": "B3 abstention only (w_gr = w_cit = 0)",
+   "label": "B3 abstention only (w_gr = w_cit = 0; grounding and citation gates kept)",
    "mode": "weighted",
    "two_way": false,
    "checker": "lexical",
@@ -31427,7 +31427,7 @@
    ]
   }
  },
- "generated_at": "2026-11-14 15:40:31",
+ "generated_at": "2026-11-15 01:08:06",
  "n_redetected_abstentions": 0,
  "bootstrap_test": {
   "B1_vanilla": {

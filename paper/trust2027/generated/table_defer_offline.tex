@@ -1,0 +1,18 @@
+\begin{table}[t]
+  \caption{Deferral as an outcome (offline backend, test split, counts are means per seed). Deferred: answerable queries the rule deferred (the evidence is shown, the draft withheld); of which correct drafts; gold alias in the top-1 passage, in the top-4 passages shown, and \emph{readable}: in the shown passages for English and code-switched queries, in the Sinhala or Tamil summary of a shown document for Sinhala and Tamil queries. Break-even against B1 + empty-reply filter when a deferral with a readable correct answer costs $d$ withheld correct answers instead of 1 ($d{=}1$ is the break-even of \CostRef).}
+  \label{tab:defer-offline}
+  \scriptsize
+  \setlength{\tabcolsep}{2pt}
+  \begin{tabular}{@{}lcccccccc@{}}
+    \toprule
+    & & & \multicolumn{3}{c}{Gold visible} & \multicolumn{3}{c}{Break-even vs.\ filter} \\
+    \cmidrule(lr){4-6} \cmidrule(lr){7-9}
+    Rule & Deferred & Correct & top-1 & top-4 & readable & $d{=}1$ & $d{=}0.5$ & $d{=}0.25$ \\
+    \midrule
+    TriSafe default & 31 & 20 & 20 & 30 & 30 (97\%) & 0.8 & 0.6 & 0.5 \\
+    TriSafe dev-tuned & 57 & 29 & 37 & 49 & 49 (86\%) & 0.6 & 0.1 & 0.0 \\
+    TriSafe dev-tuned + filter & 57 & 29 & 37 & 49 & 49 (86\%) & 0.6 & 0.1 & 0.0 \\
+    B3 abstention only & 22 & 12 & 15 & 21 & 21 (95\%) & 0.8 & 0.6 & 0.5 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
