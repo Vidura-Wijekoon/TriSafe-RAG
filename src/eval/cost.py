@@ -70,15 +70,18 @@ def break_even(ref: Dict[str, object], sys_: Dict[str, object]) -> Optional[floa
 
 
 def cost_analysis(systems: Dict[str, List[dict]], reference: str = "B1_vanilla",
-                  n_boot: int = 2000, seed: int = 0, alpha: float = 0.05) -> Dict[str, dict]:
-    """Unsafe / correct deliveries per system with paired bootstrap intervals,
-    and the break-even cost of every system against ``reference``.
+                  n_boot: int = 2000, seed: int = 0, alpha: float = 0.05,
+                  extra_references: Sequence[str] = ("B1_empty_filter",)) -> Dict[str, dict]:
+    """Unsafe / correct deliveries per system with paired cluster-bootstrap
+    intervals (item groups resampled together), the break-even cost of every
+    system against ``reference``, and against each of ``extra_references``
+    (stored as ``break_even_vs_<name>`` / ``break_even_vs_<name>_ci``).
 
     ``systems`` maps a name to per-query records that all cover the same ids
-    (seed-averaged records are fine).  The same resample indices are used for
-    every system, so the intervals of differences and break-even costs are paired.
+    (seed-averaged records are fine).  The same group draws are used for every
+    system, so the intervals of differences and break-even costs are paired.
     """
-    from src.eval.bootstrap import average_over_seeds
+    from src.eval.bootstrap import average_over_seeds, group_resamples, _groups_of
 
     aligned: Dict[str, List[dict]] = {}
     ids = None
@@ -92,35 +95,47 @@ def cost_analysis(systems: Dict[str, List[dict]], reference: str = "B1_vanilla",
         aligned[name] = rs
     n = len(ids or [])
     out: Dict[str, dict] = {}
+    extras = [x for x in extra_references if x in aligned]
     for name, rs in aligned.items():
         s = cost_summary(rs)
         s["break_even_vs_ref"] = break_even(cost_summary(aligned[reference]), s) if reference in aligned and name != reference else None
+        for x in extras:
+            s[f"break_even_vs_{x}"] = break_even(cost_summary(aligned[x]), s) if name != x else None
         out[name] = s
     if n == 0 or n_boot <= 0:
         return out
     rng = np.random.default_rng(seed)
-    idx = rng.integers(0, n, size=(n_boot, n))
+    draws = group_resamples(_groups_of(aligned[reference] if reference in aligned else next(iter(aligned.values()))), n_boot, rng)
     U = {name: np.array([_unsafe(r) for r in rs]) for name, rs in aligned.items()}
     K = {name: np.array([float(r["correct"]) for r in rs]) for name, rs in aligned.items()}
+    Ub = {name: np.array([U[name][d].sum() for d in draws]) for name in aligned}
+    Kb = {name: np.array([K[name][d].sum() for d in draws]) for name in aligned}
     lo, hi = 100 * alpha / 2, 100 * (1 - alpha / 2)
+
+    def _be_ci(ref_name: str, name: str):
+        du = Ub[ref_name] - Ub[name]
+        dk = Kb[ref_name] - Kb[name]
+        ok = du > 1e-9
+        if ok.sum() >= 0.5 * n_boot:
+            be = np.maximum(0.0, dk[ok] / du[ok])
+            return [float(np.percentile(be, lo)), float(np.percentile(be, hi))], float(ok.mean()), du, dk
+        return None, float(ok.mean()), du, dk
+
     for name in aligned:
-        u = U[name][idx].sum(axis=1)
-        k = K[name][idx].sum(axis=1)
+        u, k = Ub[name], Kb[name]
         out[name]["unsafe_ci"] = [float(np.percentile(u, lo)), float(np.percentile(u, hi))]
         out[name]["correct_ci"] = [float(np.percentile(k, lo)), float(np.percentile(k, hi))]
         if reference in aligned and name != reference:
-            du = U[reference][idx].sum(axis=1) - u
-            dk = K[reference][idx].sum(axis=1) - k
+            ci_, frac, du, dk = _be_ci(reference, name)
             out[name]["delta_unsafe_vs_ref_ci"] = [float(np.percentile(-du, lo)), float(np.percentile(-du, hi))]
             out[name]["delta_correct_vs_ref_ci"] = [float(np.percentile(-dk, lo)), float(np.percentile(-dk, hi))]
-            ok = du > 1e-9
-            if ok.sum() >= 0.5 * n_boot:
-                be = np.maximum(0.0, dk[ok] / du[ok])
-                out[name]["break_even_ci"] = [float(np.percentile(be, lo)), float(np.percentile(be, hi))]
-                out[name]["break_even_defined_frac"] = float(ok.mean())
-            else:
-                out[name]["break_even_ci"] = None
-                out[name]["break_even_defined_frac"] = float(ok.mean())
+            out[name]["break_even_ci"] = ci_
+            out[name]["break_even_defined_frac"] = frac
+        for x in extras:
+            if name != x:
+                ci_, frac, _, _ = _be_ci(x, name)
+                out[name][f"break_even_vs_{x}_ci"] = ci_
+                out[name][f"break_even_vs_{x}_defined_frac"] = frac
     return out
 
 

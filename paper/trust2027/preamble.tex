@@ -30,6 +30,11 @@
 %% Adjudication of B1's delivered answers (scripts/adjudicate.py stats): \LAdj... macros.
 \InputIfFileExists{generated/adjudication}{}{}
 
+%% Generated captions refer to the policy figure and the cost section through these macros, so the
+%% same generated table compiles in the main paper and in the supplement (which defines them first).
+\providecommand{\PolicyRef}{Fig.~\ref{fig:policy}}
+\providecommand{\CostRef}{Sec.~\ref{sec:cost}}
+
 \settopmatter{printacmref=false}
 \renewcommand\footnotetextcopyrightpermission[1]{}
 \pagestyle{plain}

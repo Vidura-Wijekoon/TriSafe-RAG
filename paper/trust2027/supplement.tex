@@ -1,0 +1,86 @@
+%% Supplementary material for the TRUST 2027 submission; compiled separately (main_supplement.tex).
+%% Section numbers are S1..S7 and are referred to by number from the main paper.
+\renewcommand{\thesection}{S\arabic{section}}
+\renewcommand{\thetable}{S\arabic{table}}
+\renewcommand{\thefigure}{S\arabic{figure}}
+
+\maketitle
+
+This document contains the material that the 9-page limit of the main paper excludes: the evaluation architecture (S1), benchmark examples, qualitative records, and adversarial probes (S2 and S4), the full external-baseline table with the calibration figures and the grounding-weight sweep (S3), the case-study slices (S4), every table for the 1.5B generator (S5), the offline backend (S6), and the cross-validation and per-seed tables (S7). Every table and number is generated from the released per-query records by the same script as the main paper.
+
+\section{Evaluation architecture}
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{figures/eval_harness.pdf}
+  \caption{Evaluation architecture around the pipeline. Benchmark items pass through a native-speaker review before being split into development and test queries; each backend fills a staged, per-seed draft cache (translate, retrieve, generate, ground), over which the \LNsystems{} trust-layer systems are replayed and tuned on the development split; per-query audit records feed the paired statistics and the fairness auditor; and one script turns the results into the macros, tables, and figures that the paper source inputs. Only the generate stage is stochastic.}
+  \Description{Six-column flow diagram: benchmark artefacts, backends, per-seed staged draft cache, replay of the systems, statistics and audit, and paper generation.}
+  \label{fig:harness}
+\end{figure*}
+Figure~\ref{fig:harness} shows what is built around the pipeline to produce every number in the paper. \textbf{Benchmark artefacts.} One source file holds every item with its four query forms and gold aliases. A review script exports the 146 non-English queries to a sheet, records a native speaker's verdict per query, writes the provenance statement from the verdict counts, and, when a query is corrected, writes the correction back and purges the cached drafts of that query only. A build script derives the query list, the item-level split, and the case-study slices. \textbf{Backends and the staged draft cache.} A backend is a declarative specification of embedder, generator, grounding checkers, and the auxiliary generator calls the external baselines need (query translation for E6, a verbalized confidence for E1, and re-samples for E7). For each backend and seed the harness runs four stages with a single model resident in memory and caches each: translation of non-English queries, retrieval for original and translated queries, generation (one draft at temperature 0.2, three samples at 0.7, the confidence call), and per-sentence grounding with both checkers. Retrieval and grounding are deterministic, so a seed changes only the generate stage. \textbf{Replay and tuning.} Every system is a trust-layer configuration replayed over the same cached drafts; thresholds and calibrators are fitted on the pooled development drafts with decision accuracy as the objective and applied once to the test drafts, so two systems differ on a query only through the decision rule. \textbf{Statistics and paper.} Each system writes one audit record per query and seed, from which the harness computes the metrics, the per-language report, the paired cluster bootstrap and permutation tests, the cost analysis, and the cross-fitting; a table script writes every macro, table, and figure; a check script verifies that every macro, input, and figure the paper references exists; a packaging script produces the XeLaTeX source with the bundled Sinhala and Tamil fonts. The pipeline itself is a Python package with one module per stage, selected by configuration, with 38 offline tests, a command-line tool, and a small HTTP service.
+
+\section{Benchmark examples and qualitative records}
+Table~\ref{tab:examples} shows three items in every query form, typeset from the benchmark file, so the Sinhala and Tamil questions the systems receive are visible rather than described.
+\input{generated/table_examples}
+
+\paragraph{Qualitative records}
+\input{generated/qualitative}
+The records are selected by rule (first matching query per category, Sinhala preferred) and not curated; alias matching rewards a correct value anywhere in the delivered text, so a draft that states the right number with a wrong explanation counts as correct, which is what the adjudication of the main paper (Sec.~6.3) quantifies.
+
+\section{External baselines, calibration, and the grounding-weight sweep}
+\input{generated/table_external_neural7b}
+Table~\ref{tab:external-neural7b} compares all decision rules under one tuning protocol on the 7B generator. Decision accuracy is \LBoneDec{} for B1, \LTunDec{} for dev-tuned TriSafe, \LEoneDec{} for the verbalized-confidence gate, \LEtwoDec{} for the retrieval-similarity gate, \LEthreeDec, \LEfourDec, \LEfiveDec{} for the Platt, isotonic, and temperature gates, and \LEsixDec{} for translate-then-retrieve. The verbalized confidence has the highest AUROC of the scores computed on the same drafts (\LEoneAuroc), ahead of the self-consistency score (\LEsevenAuroc) and the Platt-calibrated signals (\LEthreeAuroc), yet as a gate it changes no decision: the 7B model's self-reported confidence ranks drafts well, but the development split does not reward acting on it.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\columnwidth]{figures/reliability_neural7b.pdf}
+  \caption{Reliability diagrams on the test split (7B generator): B1's retrieval-similarity confidence, the five-signal TriSafe confidence, and the Platt-calibrated TriSafe confidence, each against draft correctness over all queries. Bar labels are bin counts; the dashed diagonal is perfect calibration.}
+  \Description{Three bar charts of empirical accuracy against predicted confidence with bin counts.}
+  \label{fig:reliability}
+\end{figure}
+Figure~\ref{fig:reliability} shows reliability diagrams over all queries. The retrieval-similarity score sits near the base rate, the five-signal sum rises with accuracy from about 0.4 upwards but has well-populated low bins with high accuracy, and the Platt-calibrated score compresses everything into a narrow band. The populated left-most bins of the five-signal sum follow from the metric definition: for an unanswerable query a draft counts as correct when the generator abstained, and an abstention draft receives zero grounding support and therefore low confidence, so correct abstentions appear as high accuracy at low confidence. This inflates the all-query ECE of every score that uses grounding; the answered-only ECE in the main table removes the effect, and the ranking of the five-signal sum against retrieval similarity is the same under both (\LTunEceAns{} against \LBoneEceAns{} on answered drafts).
+
+\input{generated/table_sweep_neural7b}
+Table~\ref{tab:sweep-neural7b} reports the grounding-weight sweep on both splits: the development column is what a practitioner would use to choose $w_{\mathrm{gr}}$ and the test column what they would then observe. The development objective is flat across the sweep, while test ECE grows with every step of $w_{\mathrm{gr}}$. The default $w_{\mathrm{gr}}=0.4$ was fixed before the sweep was run and not moved afterwards.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\columnwidth]{figures/lang_tradeoff_neural7b.pdf}
+  \caption{Per-language accuracy on answerable queries against answer rate (7B generator, test split). Each marker is one system (shape) in one language (colour). Points on the diagonal answer only correct drafts; moving a system down and left along the diagonal narrows the cross-language gap without serving any language better.}
+  \Description{Scatter plot of accuracy against answer rate, one marker per system and language.}
+  \label{fig:tradeoff}
+\end{figure}
+Figure~\ref{fig:tradeoff} plots accuracy against answer rate per language and makes the levelling-down of Sec.~6.4 of the main paper visible: every TriSafe variant sits below and to the left of B1 in English, while the Sinhala and Tamil markers barely move.
+
+\section{Case studies and adversarial probes}
+The three domains of the benchmark are also its three case studies, each stressing one facet of the trust layer: civil documents (fees, form codes, and addresses with exact checkable answers), public health (false-premise and misinformation prompts), and disaster response (a stale bulletin that contradicts the current one). Table~\ref{tab:cases} reports both backends on the test portion of each slice; the per-slice sizes are \LCsCivilN, \LCsHealthN, and \LCsDisasterN{} test queries with \LCsCivilU, \LCsHealthU, and \LCsDisasterU{} unanswerable ones, so a single query moves a slice accuracy by two to three points. On the 7B backend TriSafe answers fewer queries than B1 in every slice and its selective accuracy is lower than B1's in every slice; only on the offline backend, whose generator never abstains, is TriSafe's selective accuracy higher and the unanswerable-abstention gain large.
+\input{generated/table_cases}
+
+Table~\ref{tab:probes-neural7b} lists the decisions of B1 and dev-tuned TriSafe-RAG on the eight adversarial probes, per language, for the 7B generator (seed 0): the stale-helpline and stale-shelter probes, whose only ``evidence'' is the archived bulletin; the false-premise and misinformation prompts from the health slice; and the aspirin safety question. Each cell is a single query, so the table is evidence of behaviour, not of effect size. Most unanswerable probes are refused by B1 and TriSafe alike in every language, because the generator itself declines them. B1 fails four cells: it answers the stale shelter-hours question in English from the archived bulletin and the stale-helpline question in the code-switched form, and it gives wrong answers to the antibiotics-for-flu probe in Sinhala and the aspirin probe in Tamil. The policy catches exactly one of the four, the English shelter hours, which it defers on citation coverage; the other three pass every gate, because they cite a passage and the cross-lingual NLI checker scores them as supported. At the same time the policy defers two correct English answers (the current hotline number, whose evidence sits next to the stale bulletin, and the antibiotics question).
+\input{generated/case_probes}
+
+\section{Results with the 1.5B generator}
+Tables~\ref{tab:scaling}, \ref{tab:main-neural}, \ref{tab:external-neural}, \ref{tab:fair-neural}, \ref{tab:gates-neural}, \ref{tab:cost-neural}, and~\ref{tab:sweep-neural} repeat the comparison and every table of the main paper for Qwen2.5-1.5B-Instruct (fp16), with the same protocol and tuning, pooled over \Nseeds{} generation seeds (counts are means per seed). The smaller generator abstains on \NModelAbstsi{} of Sinhala and \NModelAbstta{} of Tamil test queries, and its draft accuracy on answerable Sinhala queries is \NDraftAccsi. B1's decision accuracy is \NBoneDec{} and the dev-tuned TriSafe rule's \NTunDec; the rule removes most unsafe deliveries (\NBoneUnsafe{} to \NTunUnsafe) and withholds \NTunLost{} correct answers, with a break-even of \NTunBreakEven{} (95\% CI \NTunBreakEvenCI). The citation-only replies are a 7B behaviour: the 1.5B model abstains instead, so the empty-reply filter leaves \NBemptyUnsafe{} of B1's \NBoneUnsafe{} unsafe deliveries and adds nothing to the dev-tuned rule. The calibration comparison reverses: the five-signal confidence has ECE \NTunEce{} against \NBoneEce{} for retrieval similarity. The self-consistency gate tunes to a working threshold here and removes \NEsevenRemoved{} unsafe deliveries at a break-even of \NEsevenBreakEven. Translate-then-retrieve reaches \NEsixUnsafe{} unsafe deliveries with \NEsixCorrect{} correct, a break-even of \NEsixBreakEvenEmpty{} against the filter.
+\input{generated/table_scaling}
+\input{generated/table_main_neural}
+\input{generated/table_external_neural}
+\input{generated/table_fairness_neural}
+\input{generated/table_tests_neural}
+\input{generated/table_gates_neural}
+\input{generated/table_cost_neural}
+\input{generated/table_sweep_neural}
+
+\section{Offline backend}
+The same protocol on the offline backend (hash embedder, extractive generator, Jaccard grounding) is a smoke test of the trust layer rather than a measurement of generation quality: the extractive generator cannot hallucinate and the hash embedder cannot represent Sinhala or Tamil script. B1 answers \OBoneAns{} of test queries with accuracy \OBoneAcc; dev-tuned TriSafe answers \OTunAns{} with accuracy \OTunAcc{} and abstains on \OTunUnans{} of unanswerable queries against \OBoneUnans. With the default thresholds the offline system answers only \ODefAns{} of queries, because Jaccard support between a copied sentence and an 80-word chunk is low; this is why thresholds must be tuned per backend. The regime is the opposite of the neural one: the generator never abstains, and the policy supplies the missing caution at a break-even of \OTunBreakEven{} against B1.
+\input{generated/table_main_offline}
+\input{generated/table_external_offline}
+\input{generated/table_fairness_offline}
+\input{generated/table_gates_offline}
+\input{generated/table_cost_offline}
+\input{generated/table_tests_neural7b}
+
+\section{Cross-validated tuning and per-seed results}
+Tables~\ref{tab:cv-neural7b} and~\ref{tab:cv-neural} repeat the tuning as a group 5-fold cross-fitting over all \Lnq{} queries; Tables~\ref{tab:seeds-neural7b} and~\ref{tab:seeds-neural} give the per-seed test results of the headline systems, which show how much of the variation is seed noise.
+\input{generated/table_cv_neural7b}
+\input{generated/table_cv_neural}
+\input{generated/table_seeds_neural7b}
+\input{generated/table_seeds_neural}

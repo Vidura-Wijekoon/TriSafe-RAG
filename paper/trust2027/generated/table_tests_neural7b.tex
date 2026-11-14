@@ -8,7 +8,7 @@
     \midrule
     B1 + empty-reply filter & 1.000 & $<$0.001 \\
     B2 grounding only (no thresholds) & 1.000 & 1.000 \\
-    B3 abstention only (w\_gr = 0) & $<$0.001 & $<$0.001 \\
+    B3 abstention only (w\_gr = w\_cit = 0) & $<$0.001 & $<$0.001 \\
     TriSafe-RAG (default thresholds) & $<$0.001 & $<$0.001 \\
     TriSafe-RAG with lexical (Jaccard) grounding & $<$0.001 & $<$0.001 \\
     TriSafe-RAG with raw RRF retrieval signal & $<$0.001 & $<$0.001 \\
@@ -20,7 +20,7 @@
     TriSafe-RAG (dev-tuned) + empty-reply filter & $<$0.001 & $<$0.001 \\
     TriSafe-RAG + per-language thresholds (dev) & $<$0.001 & $<$0.001 \\
     E1 LLM verbalized confidence & 1.000 & 1.000 \\
-    E2 retrieval-similarity gate (CRAG-style evaluator proxy) & 1.000 & 1.000 \\
+    E2 retrieval-similarity gate & 1.000 & 1.000 \\
     E7 self-consistency gate (agreement of k = 3 re-samples) & 1.000 & 1.000 \\
     E3 Platt (logistic) on the five signals & 1.000 & 1.000 \\
     E4 isotonic on the TriSafe sum & 1.000 & 1.000 \\

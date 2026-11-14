@@ -1,22 +1,23 @@
 \begin{table*}[t]
-  \caption{Delivered answers on the 169-query test split (offline backend), expected counts over seeds with paired bootstrap intervals. Correct: delivered answers matching the gold. Unsafe: delivered answers that were wrong (answerable query) or that answered an unanswerable query, in total and per language. Lost: correct drafts the decision rule withheld. Break-even: the cost of one unsafe delivery, measured in withheld correct answers, at which the system's loss $c\cdot U-K$ equals B1's; the system is the better choice for any cost above it. E6 produces different drafts and is listed for completeness.}
+  \caption{Delivered answers on the 169-query test split (offline backend), expected counts over seeds with paired cluster-bootstrap intervals. Correct: delivered answers matching the gold. Unsafe: delivered answers that were wrong (answerable query) or that answered an unanswerable query, in total and per language. Lost: correct drafts the decision rule withheld. Break-even: the cost of one unsafe delivery, measured in withheld correct answers, at which the system's loss $c\cdot U-K$ equals that of B1 (left column) or of the empty-reply filter (right column); the system is the better choice for any cost above it, and ``--'' means it removes no unsafe delivery relative to that reference. Intervals: paired cluster bootstrap over test items. E6 produces its own drafts, so ``lost'' is undefined for it.}
   \label{tab:cost-offline}
   \footnotesize
-  \setlength{\tabcolsep}{3.5pt}
-  \begin{tabular}{lcccccccc}
+  \setlength{\tabcolsep}{3pt}
+  \begin{tabular}{lccccccccc}
     \toprule
-    System & Correct $\uparrow$ [95\% CI] & Unsafe $\downarrow$ [95\% CI] & en & si & ta & mixed & Lost $\downarrow$ & Break-even vs.\ B1 [95\% CI] \\
+    System & Correct $\uparrow$ [95\% CI] & Unsafe $\downarrow$ [95\% CI] & en & si & ta & mixed & Lost $\downarrow$ & Break-even vs.\ B1 [95\% CI] & vs.\ filter [95\% CI] \\
     \midrule
-    B1 vanilla & 74 [62, 87] & 81 [68, 94] & 21 & 31 & 23 & 6 & 0 & -- \\
-    B1 + empty-reply filter & 74 [62, 87] & 81 [68, 94] & 21 & 31 & 23 & 6 & 0 & -- \\
-    TriSafe-RAG (default) & 11 [5, 17] & 3 [0, 7] & 3 & 0 & 0 & 0 & 63 & 0.8 [0.6, 1.1] \\
-    TriSafe-RAG (dev-tuned) & 42 [31, 53] & 27 [18, 37] & 13 & 4 & 8 & 2 & 32 & 0.6 [0.4, 0.9] \\
-    TriSafe-RAG (per-language) & 50 [39, 62] & 33 [23, 44] & 13 & 6 & 12 & 2 & 24 & 0.5 [0.3, 0.8] \\
-    TriSafe-RAG (Platt conf.) & 66 [54, 79] & 65 [53, 77] & 17 & 25 & 18 & 5 & 8 & 0.5 [0.2, 1.1] \\
-    E2 retrieval gate & 74 [62, 87] & 81 [68, 94] & 21 & 31 & 23 & 6 & 0 & -- \\
-    E3 Platt gate & 68 [56, 81] & 80 [67, 93] & 21 & 31 & 23 & 5 & 6 & 6.0 [1.0, 10.0] \\
-    E4 isotonic gate & 72 [60, 85] & 77 [64, 90] & 21 & 28 & 22 & 6 & 2 & 0.5 [0.0, 3.0] \\
-    E5 temperature gate & 74 [62, 87] & 81 [68, 94] & 21 & 31 & 23 & 6 & 0 & -- \\
+    B1 vanilla & 74 [56, 93] & 81 [66, 97] & 21 & 31 & 23 & 6 & 0 & -- & -- \\
+    B1 + empty-reply filter & 74 [56, 93] & 81 [66, 97] & 21 & 31 & 23 & 6 & 0 & -- & -- \\
+    TriSafe-RAG (default) & 11 [5, 18] & 3 [0, 7] & 3 & 0 & 0 & 0 & 63 & 0.8 [0.5, 1.3] & 0.8 [0.5, 1.3] \\
+    TriSafe-RAG (dev-tuned) & 42 [29, 57] & 27 [18, 37] & 13 & 4 & 8 & 2 & 32 & 0.6 [0.3, 1.0] & 0.6 [0.3, 1.0] \\
+    TriSafe-RAG (dev-tuned) + empty-reply filter & 42 [29, 57] & 27 [18, 37] & 13 & 4 & 8 & 2 & 32 & 0.6 [0.3, 1.0] & 0.6 [0.3, 1.0] \\
+    TriSafe-RAG (per-language) & 50 [36, 66] & 33 [24, 43] & 13 & 6 & 12 & 2 & 24 & 0.5 [0.3, 0.9] & 0.5 [0.3, 0.9] \\
+    TriSafe-RAG (Platt conf.) & 66 [48, 84] & 65 [52, 80] & 17 & 25 & 18 & 5 & 8 & 0.5 [0.2, 1.2] & 0.5 [0.2, 1.2] \\
+    E2 retrieval gate & 74 [56, 93] & 81 [66, 97] & 21 & 31 & 23 & 6 & 0 & -- & -- \\
+    E3 Platt gate & 68 [50, 85] & 80 [65, 95] & 21 & 31 & 23 & 5 & 6 & 6.0 [1.0, 10.0] & 6.0 [1.0, 10.0] \\
+    E4 isotonic gate & 72 [54, 90] & 77 [62, 93] & 21 & 28 & 22 & 6 & 2 & 0.5 [0.0, 2.0] & 0.5 [0.0, 2.0] \\
+    E5 temperature gate & 74 [56, 93] & 81 [66, 97] & 21 & 31 & 23 & 6 & 0 & -- & -- \\
     \bottomrule
   \end{tabular}
 \end{table*}

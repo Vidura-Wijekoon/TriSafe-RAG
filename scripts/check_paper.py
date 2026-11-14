@@ -18,6 +18,9 @@ PAPER = ROOT / "paper" / "trust2027"
 
 def main() -> int:
     body = (PAPER / "body.tex").read_text(encoding="utf-8")
+    supp = PAPER / "supplement.tex"
+    if supp.exists():  # the supplement shares macros, inputs and figures with the main paper
+        body += "\n" + supp.read_text(encoding="utf-8")
     macros = (PAPER / "generated" / "macros.tex").read_text(encoding="utf-8")
     for extra in ("provenance.tex", "adjudication.tex"):
         if (PAPER / "generated" / extra).exists():
@@ -29,7 +32,7 @@ def main() -> int:
     if missing:
         problems += 1
         print("Missing macros:", ", ".join(missing))
-    for inc in re.findall(r"\\input\{([^}]+)\}", body + (PAPER / "main.tex").read_text(encoding="utf-8")):
+    for inc in re.findall(r"\\input\{([^}]+)\}", body + (PAPER / "main.tex").read_text(encoding="utf-8") + (PAPER / "main_supplement.tex").read_text(encoding="utf-8")):
         p = PAPER / (inc if inc.endswith(".tex") else inc + ".tex")
         if not p.exists():
             problems += 1

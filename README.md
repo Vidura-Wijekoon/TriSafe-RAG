@@ -94,7 +94,8 @@ bash scripts/run_all_seeds.sh neural7b neural           # seeds 0,1,2 per backen
 python scripts/progress_ui.py --backend neural7b        # live progress at http://localhost:8765 while a run is going
 python scripts/make_tables.py                           # paper/trust2027/generated/*.tex + figures (all backends found)
 python scripts/make_architecture.py                     # paper/trust2027/figures/eval_harness.pdf
-python scripts/make_overleaf_zip.py                     # paper/TriSafe-RAG_TRUST2027_overleaf.zip (compile with XeLaTeX)
+python scripts/make_overleaf_zip.py                     # paper/TriSafe-RAG_TRUST2027_overleaf.zip (XeLaTeX; main.tex = paper, main_supplement.tex = supplement)
+python scripts/probe_empty_replies.py --backend neural7b --seed 0   # regenerate the citation-only replies under 4 prompt/token conditions (Ollama)
 PYTHONPATH=. python casestudies/civil_documents/run.py  # offline case-study drivers
 ```
 
@@ -135,9 +136,9 @@ bash scripts/run_all_seeds.sh neural7b neural   # regenerates only the purged dr
 | Benchmark (62 items, 208 queries, dev/test split) | final; native-speaker review complete |
 | Offline backend (`results/offline`) | final |
 | `neural7b` (Qwen2.5-7B Q4_K_M) | three seeds done and evaluated with every system (2,000-resample bootstrap): **headline backend of the paper** |
-| `neural` (Qwen2.5-1.5B fp16) | three seeds done and evaluated (`results/neural`); fills the scale section and appendix |
+| `neural` (Qwen2.5-1.5B fp16) | three seeds done and evaluated (`results/neural`); fills the scale section and the supplement |
 | `neural_hf_fp32` (1.5B, CPU, 1 seed) | archived reference run |
-| Paper (`paper/trust2027`) | complete: three seeds per generator, 7B headline, 1.5B scale comparison; `check_paper.py` reports 0 problems |
+| Paper (`paper/trust2027`) | review-v5 revision (2026-11-14): 9-page main paper + separate supplement (`main_supplement.tex`); cluster-bootstrap statistics; three seeds per generator; `check_paper.py` reports 0 problems; page count to be confirmed on Overleaf |
 | Adjudication (`data/benchmark/adjudication_B1_delivered.csv`) | 116 delivered 7B seed-0 answers labelled |
 | Corpus-summary review (`data/benchmark/native_review_corpus.csv`) | sheet generated, not yet reviewed |
 

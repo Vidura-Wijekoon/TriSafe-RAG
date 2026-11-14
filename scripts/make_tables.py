@@ -69,18 +69,18 @@ def table_main(R, name, caption_extra=""):
         rows.append(
             f"{tex_escape(S['label'])} & {f(o['answer_rate'],2)} & {f(o['acc_answerable'],3)} {ci(b.get('acc_answerable'))} & "
             f"{f(o['selective_accuracy'],3)} & {f(o['unanswerable_abstention'],2)} & {catch} & {f(o['abstention_f1'],3)} & "
-            f"{f(o['ece_draft'],3)} {ci(b.get('ece_draft'))} & {f(o['auroc_draft'],3)} \\\\"
+            f"{f(o['ece_draft'],3)} {ci(b.get('ece_draft'))} & {f(o.get('ece_answered'),3)} & {f(o['auroc_draft'],3)} \\\\"
         )
     body = "\n    ".join(rows)
     n = R["n_test"]
     return rf"""\begin{{table*}}[t]
-  \caption{{Main results on the {n}-query test split ({name} backend{caption_extra}). Ans.\ rate: fraction of queries answered. Acc.: accuracy on gold-answerable queries (abstention counts as an error). Sel.\ acc.: accuracy among answered answerable queries. Unans.\ abst.: fraction of unanswerable queries abstained on. Catch/Retain: share of wrong drafts on answerable queries that the policy abstained on, and share of correct drafts it delivered. ECE and AUROC are computed from the confidence score against draft correctness over all test queries (policy-independent). Brackets: 95\% paired bootstrap intervals over queries (2{{,}}000 resamples).}}
+  \caption{{Main results on the {n}-query test split ({name} backend{caption_extra}). Ans.\ rate: fraction of queries answered. Acc.: accuracy on gold-answerable queries (abstention counts as an error). Sel.\ acc.: accuracy among answered answerable queries. Unans.\ abst.: fraction of unanswerable queries abstained on. Catch/Retain: share of wrong drafts on answerable queries that the policy abstained on, and share of correct drafts it delivered. ECE and AUROC are computed from the confidence score against draft correctness over all test queries (policy-independent); ECE (ans.): the same over the queries the system answered, which excludes the generator's own abstentions. Brackets: 95\% paired cluster-bootstrap intervals that resample the test items with all their language versions (2{{,}}000 resamples).}}
   \label{{tab:main-{name}}}
   \footnotesize
-  \setlength{{\tabcolsep}}{{3.5pt}}
-  \begin{{tabular}}{{lcccccccc}}
+  \setlength{{\tabcolsep}}{{3pt}}
+  \begin{{tabular}}{{lccccccccc}}
     \toprule
-    System & Ans.\ rate & Acc.\ $\uparrow$ [95\% CI] & Sel.\ acc.\ $\uparrow$ & Unans.\ abst.\ $\uparrow$ & Catch/Retain & Abst.\ F1 $\uparrow$ & ECE $\downarrow$ [95\% CI] & AUROC $\uparrow$ \\
+    System & Ans.\ rate & Acc.\ $\uparrow$ [95\% CI] & Sel.\ acc.\ $\uparrow$ & Unans.\ abst.\ $\uparrow$ & Catch/Retain & Abst.\ F1 $\uparrow$ & ECE $\downarrow$ [95\% CI] & ECE (ans.) $\downarrow$ & AUROC $\uparrow$ \\
     \midrule
     {body}
     \bottomrule
@@ -209,7 +209,7 @@ def table_cases(RN, RO, RL=None):
         rows.append("\\addlinespace")
     body = "\n    ".join(rows)
     return rf"""\begin{{table*}}[t]
-  \caption{{Case studies as domain slices of the test split, for the offline reproduction backend (hash embedder, extractive EchoLLM, lexical grounding) and the neural backend (multilingual-e5-base, Qwen2.5-1.5B-Instruct, mDeBERTa NLI grounding). $n$ (unans.): test queries in the slice and how many are gold-unanswerable. TriSafe uses the thresholds tuned on the development split.}}
+  \caption{{Case studies as domain slices of the test split, for the offline reproduction backend (hash embedder, extractive EchoLLM, lexical grounding) and the neural backends (multilingual-e5-base, mDeBERTa NLI grounding; Qwen2.5-7B-Instruct for ``neural7b'' and Qwen2.5-1.5B-Instruct for ``neural''). $n$ (unans.): test queries in the slice and how many are gold-unanswerable. TriSafe uses the thresholds tuned on the development split.}}
   \label{{tab:cases}}
   \footnotesize
   \setlength{{\tabcolsep}}{{4pt}}
@@ -266,6 +266,10 @@ def macros(RN, RO, RL=None):
             m(f"{tag}{name}", val)
         for name, val in e7_fixed_macros(R).items():
             m(f"{tag}{name}", val)
+        for name, val in probe_macros(R).items():
+            m(f"{tag}{name}", val)
+        for name, val in _split_macros().items():
+            m(f"{tag}{name}", val)
         b1 = R["systems"]["B1_vanilla"]["test"]
         td = R["systems"]["TriSafe_default"]["test"]
         tt = R["systems"]["TriSafe_devtuned"]["test"]
@@ -291,6 +295,8 @@ def macros(RN, RO, RL=None):
         sc = R["retrieval_scale"]
         m(f"{tag}RetLo", f(sc["ret_lo"], 3)); m(f"{tag}RetHi", f(sc["ret_hi"], 3)); m(f"{tag}MarScale", f(sc["margin_scale"], 1))
         bi = R.get("backend_info", {})
+        if "n_docs" not in bi or "n_chunks" not in bi:
+            bi = {**bi, **_corpus_size(bi.get("chunker") or {"chunk_size": 80, "overlap": 0})}
         m(f"{tag}nchunks", bi.get("n_chunks", "--")); m(f"{tag}ndocs", bi.get("n_docs", "--"))
         ma = R.get("model_abstention_rate", {})
         for l in LANGS:
@@ -661,7 +667,7 @@ def qualitative(backend: str):
          lambda r, b, d: r["gold_answerable"] and r["decision"] != "answer" and not d["model_abstained"] and not r["draft_correct"] and b["decision"] == "answer", ("si", "ta", "mixed", "en")),
         ("Wrong draft caught (draft written in the query language)",
          lambda r, b, d: r["gold_answerable"] and r["decision"] != "answer" and not d["model_abstained"] and not r["draft_correct"] and b["decision"] == "answer" and _SI_RUN.search(d["draft_text"] or "") is not None, ("si",)),
-        ("Unanswerable query refused by the policy",
+        ("Unanswerable query withheld by the policy",
          lambda r, b, d: not r["gold_answerable"] and r["decision"] != "answer" and b["decision"] == "answer", ("si", "ta", "mixed", "en")),
         ("Correct draft lost",
          lambda r, b, d: r["gold_answerable"] and r["decision"] != "answer" and r["draft_correct"] and b["correct"], ("si", "ta", "mixed", "en")),
@@ -749,10 +755,30 @@ def seed_macros(R):
             if mean is not None:
                 out[f"{SHORT_KEY[sysname]}{short}Mean"] = f(mean, nd)
                 out[f"{SHORT_KEY[sysname]}{short}Sd"] = f(sd, nd)
-    for sysname in ("B1_vanilla", "TriSafe_devtuned"):
+    for sysname in ("B1_vanilla", "TriSafe_devtuned", "TriSafe_default", "E3_platt", "E1_verbalized"):
         o = R["systems"].get(sysname, {}).get("test", {}).get("overall", {})
         if o.get("auroc_answered") is not None:
             out[f"{SHORT_KEY[sysname]}AurocAns"] = f(o["auroc_answered"], 3)
+        if o.get("ece_answered") is not None:
+            out[f"{SHORT_KEY[sysname]}EceAns"] = f(o["ece_answered"], 3)
+    tp = R["systems"].get("TriSafe_platt", {}).get("test", {}).get("overall", {})
+    if tp.get("ece_answered") is not None:
+        out["TPlattEceAns"] = f(tp["ece_answered"], 3)
+    # the empty-reply filter on the development split (it was found on the test split, so this is
+    # the held-out check): unsafe / correct deliveries of B1 and B1 + filter over the dev queries
+    split = json.loads((ROOT / "data" / "benchmark" / "split.json").read_text(encoding="utf-8"))
+    dev_ids = set(split["dev"])
+    for sysname, key in (("B1_vanilla", "Bone"), ("B1_empty_filter", "Bempty")):
+        rp = ROOT / "results" / R["backend"] / "records" / f"{sysname}.jsonl"
+        if not rp.exists():
+            continue
+        rs = [json.loads(l) for l in rp.read_text(encoding="utf-8").splitlines() if l.strip()]
+        rs = [r for r in rs if r["id"] in dev_ids]
+        n_seeds = max(1, len({r.get("seed", 0) for r in rs}))
+        if rs:
+            unsafe = sum((1 - r["abstained"]) - (r["correct"] if r["gold_answerable"] else 0) for r in rs) / n_seeds
+            correct = sum(r["correct"] for r in rs) / n_seeds
+            out[f"{key}DevUnsafe"] = _cnt(unsafe); out[f"{key}DevCorrect"] = _cnt(correct)
     return out
 
 
@@ -879,16 +905,14 @@ def _cnt_ci(c):
     return f"[{_cnt(c[0])}, {_cnt(c[1])}]"
 
 
-def _be(v):
-    """Break-even cost with its interval; '--' when the system removes no unsafe deliveries,
-    '0' when it removes some at no cost in correct answers."""
-    if v.get("break_even_vs_ref") is None:
+def _be(c, ref=None):
+    """Break-even text with CI; ``ref`` selects the stored break-even against another system."""
+    key = "break_even_vs_ref" if ref is None else f"break_even_vs_{ref}"
+    be = c.get(key)
+    if be is None:
         return "--"
-    s = f"{v['break_even_vs_ref']:.1f}"
-    ci = v.get("break_even_ci")
-    if ci:
-        s += f" [{ci[0]:.1f}, {ci[1]:.1f}]"
-    return s
+    ci_ = c.get("break_even_ci" if ref is None else f"{key}_ci")
+    return f"{be:.1f} " + (f"[{ci_[0]:.1f}, {ci_[1]:.1f}]" if ci_ else "")
 
 
 def table_gates(R, name):
@@ -907,7 +931,7 @@ def table_gates(R, name):
                     f"{_cnt(c.get('lost_correct'))} & {_be(c)} \\\\")
     body = "\n    ".join(rows)
     return rf"""\begin{{table*}}[t]
-  \caption{{Which gate does the work ({name} backend, test split). ``B1 + empty-reply filter'' refuses replies that contain nothing but citation markers. Each ``only'' row keeps one gate of the policy in Fig.~\ref{{fig:policy}} at its default threshold and switches the other two off (a threshold of 0 never fires); all rows respect the generator's own abstention, as B1 does. Unsafe: delivered answers that were wrong or answered an unanswerable query. Lost: correct drafts the policy withheld. Break-even: the cost of one unsafe delivery, in withheld correct answers, above which the row beats B1 (Sec.~\ref{{sec:cost}}); ``--'' when the row removes no unsafe deliveries.}}
+  \caption{{Which gate does the work ({name} backend, test split). ``B1 + empty-reply filter'' refuses replies that contain nothing but citation markers. Each ``only'' row keeps one gate of the policy (\PolicyRef) at its default threshold and switches the other two off (a threshold of 0 never fires); all rows respect the generator's own abstention, as B1 does. Unsafe: delivered answers that were wrong or answered an unanswerable query. Lost: correct drafts the policy withheld. Break-even: the cost of one unsafe delivery, in withheld correct answers, above which the row beats B1 (\CostRef); ``--'' when the row removes no unsafe deliveries.}}
   \label{{tab:gates-{name}}}
   \footnotesize
   \setlength{{\tabcolsep}}{{4pt}}
@@ -935,18 +959,19 @@ def table_cost(R, name):
         c = ct[k]
         pl = c.get("per_language", {})
         langs = " & ".join(_cnt(pl.get(l, {}).get("unsafe")) for l in LANGS)
+        lost = "--" if k == "E6_translate_retrieve" else _cnt(c['lost_correct'])
         rows.append(f"{COST_LABEL.get(k, k)} & {_cnt(c['correct'])} {_cnt_ci(c.get('correct_ci'))} & {_cnt(c['unsafe'])} {_cnt_ci(c.get('unsafe_ci'))} & "
-                    f"{langs} & {_cnt(c['lost_correct'])} & {_be(c)} \\\\")
+                    f"{langs} & {lost} & {_be(c)} & {_be(c, 'B1_empty_filter')} \\\\")
     body = "\n    ".join(rows)
     n_test = R["n_test"]
     return rf"""\begin{{table*}}[t]
-  \caption{{Delivered answers on the {n_test}-query test split ({name} backend), expected counts over seeds with paired bootstrap intervals. Correct: delivered answers matching the gold. Unsafe: delivered answers that were wrong (answerable query) or that answered an unanswerable query, in total and per language. Lost: correct drafts the decision rule withheld. Break-even: the cost of one unsafe delivery, measured in withheld correct answers, at which the system's loss $c\cdot U-K$ equals B1's; the system is the better choice for any cost above it. E6 produces different drafts and is listed for completeness.}}
+  \caption{{Delivered answers on the {n_test}-query test split ({name} backend), expected counts over seeds with paired cluster-bootstrap intervals. Correct: delivered answers matching the gold. Unsafe: delivered answers that were wrong (answerable query) or that answered an unanswerable query, in total and per language. Lost: correct drafts the decision rule withheld. Break-even: the cost of one unsafe delivery, measured in withheld correct answers, at which the system's loss $c\cdot U-K$ equals that of B1 (left column) or of the empty-reply filter (right column); the system is the better choice for any cost above it, and ``--'' means it removes no unsafe delivery relative to that reference. Intervals: paired cluster bootstrap over test items. E6 produces its own drafts, so ``lost'' is undefined for it.}}
   \label{{tab:cost-{name}}}
   \footnotesize
-  \setlength{{\tabcolsep}}{{3.5pt}}
-  \begin{{tabular}}{{lcccccccc}}
+  \setlength{{\tabcolsep}}{{3pt}}
+  \begin{{tabular}}{{lccccccccc}}
     \toprule
-    System & Correct $\uparrow$ [95\% CI] & Unsafe $\downarrow$ [95\% CI] & en & si & ta & mixed & Lost $\downarrow$ & Break-even vs.\ B1 [95\% CI] \\
+    System & Correct $\uparrow$ [95\% CI] & Unsafe $\downarrow$ [95\% CI] & en & si & ta & mixed & Lost $\downarrow$ & Break-even vs.\ B1 [95\% CI] & vs.\ filter [95\% CI] \\
     \midrule
     {body}
     \bottomrule
@@ -975,7 +1000,7 @@ def table_cv(R, name):
     taus = sorted({t["trisafe"]["answer_threshold"] for t in cv["fold_thresholds"]})
     tau_txt = f"{taus[0]:.2f}" if len(taus) == 1 else f"{taus[0]:.2f}--{taus[-1]:.2f}"
     return rf"""\begin{{table*}}[t]
-  \caption{{Group {cv['n_folds']}-fold cross-fitting of the tuned decision rules over all {R['n_queries']} queries ({name} backend). In every fold the TriSafe thresholds and the E1/E7 gates are tuned on the other folds and applied to the held-out fold, so each query receives one out-of-fold decision; intervals are paired bootstraps over queries. Across folds the TriSafe answer threshold was chosen as {tau_txt}. This checks that the development/test result does not depend on the particular split; the main tables use that split.}}
+  \caption{{Group {cv['n_folds']}-fold cross-fitting of the tuned decision rules over all {R['n_queries']} queries ({name} backend). In every fold the TriSafe thresholds and the E1/E7 gates are tuned on the other folds and applied to the held-out fold, so each query receives one out-of-fold decision; intervals are paired cluster bootstraps over item groups. Across folds the TriSafe answer threshold was chosen as {tau_txt}. This checks that the development/test result does not depend on the particular split; the main tables use that split.}}
   \label{{tab:cv-{name}}}
   \footnotesize
   \setlength{{\tabcolsep}}{{4pt}}
@@ -1057,6 +1082,56 @@ def e7_fixed_macros(R):
     return out
 
 
+_SOURCE_DIRS = [ROOT / "casestudies" / d / "data" / "raw" for d in ("civil_documents", "public_health", "disaster_response")]
+
+
+def _corpus_size(chunker_cfg):
+    """Documents and chunks of the corpus, computed the way the backends index it (superseded
+    documents excluded).  Used when a replayed results.json carries no backend counts."""
+    import sys
+    sys.path.insert(0, str(ROOT))
+    try:
+        from src.eval.benchmark import chunk_text_lookup
+        from src.ingestion.loaders import load_directory
+        docs = [doc for d in _SOURCE_DIRS for doc in load_directory(d) if "status: superseded" not in doc.text[:200]]
+        return {"n_docs": len(docs), "n_chunks": len(chunk_text_lookup(_SOURCE_DIRS, chunker_cfg))}
+    except Exception as exc:  # pragma: no cover
+        print("corpus size unavailable:", exc)
+        return {}
+
+
+def _split_macros():
+    """Benchmark split counts quoted in the text (test items, unanswerable per language, code-switched)."""
+    split = json.loads((ROOT / "data" / "benchmark" / "split.json").read_text(encoding="utf-8"))
+    qs = {q["id"]: q for q in json.loads((ROOT / "data" / "benchmark" / "queries.json").read_text(encoding="utf-8"))}
+    out = {}
+    for name, ids in (("Test", split["test"]), ("Dev", split["dev"])):
+        rows = [qs[i] for i in ids if i in qs]
+        out[f"{name}N"] = len(rows)
+        out[f"{name}Groups"] = len({r["group"] for r in rows})
+        for l in LANGS:
+            sub = [r for r in rows if r["language"] == l]
+            out[f"{name}N{l}"] = len(sub)
+            out[f"{name}Unans{l}"] = sum(1 for r in sub if not r["gold_answerable"])
+    return out
+
+
+def probe_macros(R):
+    """Macros from scripts/probe_empty_replies.py (regeneration of the citation-only replies)."""
+    p = ROOT / "results" / R["backend"] / "probe_empty_replies.json"
+    if not p.exists():
+        return {}
+    d = json.loads(p.read_text(encoding="utf-8"))
+    out = {"ProbeN": d["n"]}
+    for l, n in d.get("by_language", {}).items():
+        out[f"ProbeN{l}"] = n
+    for cond, sm in d["summary"].items():
+        c = cond.capitalize()
+        out[f"Probe{c}Empty"] = sm.get("empty", 0); out[f"Probe{c}Abstain"] = sm.get("abstain", 0)
+        out[f"Probe{c}Correct"] = sm.get("correct", 0); out[f"Probe{c}Wrong"] = sm.get("content_wrong", 0)
+    return out
+
+
 def cost_macros(R):
     """Macros for the cost analysis, show-the-passage baseline, gate isolation and cross-validation."""
     out = {}
@@ -1072,6 +1147,10 @@ def cost_macros(R):
         out[f"{key}UnsafeUnans"] = _cnt(c["unsafe_unanswerable"]); out[f"{key}UnsafeWrong"] = _cnt(c["unsafe_wrong_answer"])
         be = c.get("break_even_vs_ref")
         out[f"{key}BreakEven"] = "--" if be is None else f"{be:.1f}"
+        be_e = c.get("break_even_vs_B1_empty_filter")
+        out[f"{key}BreakEvenEmpty"] = "--" if be_e is None else f"{be_e:.1f}"
+        bci_e = c.get("break_even_vs_B1_empty_filter_ci")
+        out[f"{key}BreakEvenEmptyCI"] = "--" if not bci_e else f"[{bci_e[0]:.1f}, {bci_e[1]:.1f}]"
         bci = c.get("break_even_ci")
         out[f"{key}BreakEvenCI"] = f"[{bci[0]:.1f}, {bci[1]:.1f}]" if bci else "--"
         for l in LANGS:

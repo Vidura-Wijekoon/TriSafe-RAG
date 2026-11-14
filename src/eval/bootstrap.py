@@ -1,11 +1,15 @@
 """Paired bootstrap confidence intervals and paired permutation tests over
 per-query records.
 
-The unit of resampling is the *query*.  When several seeds are available,
-each query's outcome is first averaged over seeds, so seed noise is folded
-into the per-query estimate instead of being treated as independent samples.
-All systems are resampled with the *same* index vector, which gives paired
-intervals for differences between systems.
+The unit of resampling is the *item group*: every language version of one
+benchmark item (its English, Sinhala, Tamil and code-switched queries) is
+resampled together, because they ask the same fact and are not independent
+(a cluster bootstrap over items).  When several seeds are available, each
+query's outcome is first averaged over seeds, so seed noise is folded into the
+per-query estimate instead of being treated as independent samples.  All
+systems are resampled with the *same* group draws, which gives paired
+intervals for differences between systems.  Permutation tests flip the sign of
+all paired differences of a group together.
 """
 
 from __future__ import annotations
@@ -35,6 +39,28 @@ def average_over_seeds(records: List[dict]) -> List[dict]:
         base["n_seeds"] = len(rs)
         out.append(base)
     return out
+
+
+def group_resamples(groups: Sequence[str], n_boot: int, rng: np.random.Generator) -> List[np.ndarray]:
+    """``n_boot`` index vectors that resample whole groups with replacement.
+
+    ``groups[i]`` is the group id of record ``i``.  Each draw picks as many groups
+    as there are distinct groups and concatenates their record indices, so a
+    resample has roughly, not exactly, the original number of records."""
+    members: Dict[str, List[int]] = {}
+    for i, g in enumerate(groups):
+        members.setdefault(str(g), []).append(i)
+    keys = sorted(members)
+    arrays = [np.asarray(members[k], dtype=np.int64) for k in keys]
+    G = len(keys)
+    draws = rng.integers(0, G, size=(n_boot, G))
+    return [np.concatenate([arrays[j] for j in row]) for row in draws]
+
+
+def _groups_of(records: Sequence[dict]) -> List[str]:
+    """Group id per record; falls back to the query id (plain query bootstrap)
+    when records carry no ``group``."""
+    return [str(r.get("group") or r.get("id")) for r in records]
 
 
 def _all_metrics(records: List[dict]) -> Dict[str, Optional[float]]:
@@ -74,9 +100,8 @@ def paired_bootstrap(
         elif these != ids:
             raise ValueError(f"system {name} does not cover the same query ids")
         aligned[name] = recs
-    n = len(ids)
     rng = np.random.default_rng(seed)
-    idx_matrix = rng.integers(0, n, size=(n_boot, n))
+    idx_matrix = group_resamples(_groups_of(aligned[names[0]]), n_boot, rng)
 
     points = {name: _all_metrics(aligned[name]) for name in names}
     metric_names = list(metrics) if metrics else list(points[names[0]].keys())
@@ -121,9 +146,12 @@ def _rounded(r: dict) -> dict:
 
 
 def paired_permutation_test(
-    a: Sequence[float], b: Sequence[float], n_perm: int = 10000, seed: int = 0
+    a: Sequence[float], b: Sequence[float], n_perm: int = 10000, seed: int = 0,
+    groups: Optional[Sequence[str]] = None,
 ) -> float:
-    """Two-sided sign-flip permutation test on paired differences."""
+    """Two-sided sign-flip permutation test on paired differences.  With
+    ``groups`` (one id per pair) the sign is flipped per group, so the language
+    versions of one item move together."""
     a = np.asarray(a, dtype=np.float64)
     b = np.asarray(b, dtype=np.float64)
     if a.shape != b.shape:
@@ -133,7 +161,14 @@ def paired_permutation_test(
     if obs == 0.0 or len(d) == 0:
         return 1.0
     rng = np.random.default_rng(seed)
-    signs = rng.choice([-1.0, 1.0], size=(n_perm, len(d)))
+    if groups is None:
+        signs = rng.choice([-1.0, 1.0], size=(n_perm, len(d)))
+    else:
+        keys = sorted({str(g) for g in groups})
+        pos = {k: j for j, k in enumerate(keys)}
+        gidx = np.asarray([pos[str(g)] for g in groups])
+        gsigns = rng.choice([-1.0, 1.0], size=(n_perm, len(keys)))
+        signs = gsigns[:, gidx]
     perm_means = np.abs((signs * d).mean(axis=1))
     return float((np.sum(perm_means >= obs - 1e-12) + 1) / (n_perm + 1))
 
@@ -154,5 +189,5 @@ def paired_tests(systems: Dict[str, List[dict]], reference: str, fields: Sequenc
                 ids = [i for i in ids if int(ref[i]["gold_answerable"]) == 1]
             a = [float(sysr[i][f]) for i in ids]
             b = [float(ref[i][f]) for i in ids]
-            out[name][f] = paired_permutation_test(a, b)
+            out[name][f] = paired_permutation_test(a, b, groups=[str(ref[i].get("group") or i) for i in ids])
     return out

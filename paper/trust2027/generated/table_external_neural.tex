@@ -7,15 +7,15 @@
     \toprule
     System & Ans.\ rate & Acc.\ $\uparrow$ & Sel.\ acc.\ $\uparrow$ & Unans.\ abst.\ $\uparrow$ & Decision acc.\ $\uparrow$ [95\% CI] & ECE $\downarrow$ & AURC $\downarrow$ \\
     \midrule
-    TriSafe-RAG (default thresholds) & 0.12 & 0.121 & 0.839 & 1.00 & 0.256 [0.18, 0.31] & 0.161 & 0.397 \\
-    TriSafe-RAG (thresholds tuned on dev) & 0.17 & 0.179 & 0.885 & 1.00 & 0.306 [0.24, 0.37] & 0.161 & 0.397 \\
-    E1 LLM verbalized confidence & 0.37 & 0.375 & 0.861 & 0.96 & 0.465 [0.38, 0.53] & 0.191 & 0.265 \\
-    E2 retrieval-similarity gate (CRAG-style evaluator proxy) & 0.44 & 0.410 & 0.786 & 0.99 & 0.499 [0.41, 0.56] & 0.316 & 0.507 \\
-    E3 Platt (logistic) on the five signals & 0.47 & 0.424 & 0.771 & 0.95 & 0.505 [0.42, 0.57] & 0.150 & 0.338 \\
-    E4 isotonic on the TriSafe sum & 0.47 & 0.424 & 0.771 & 0.95 & 0.505 [0.42, 0.57] & 0.030 & 0.360 \\
-    E5 temperature scaling on the TriSafe sum & 0.47 & 0.424 & 0.771 & 0.95 & 0.505 [0.42, 0.57] & 0.129 & 0.397 \\
-    E6 translate-then-retrieve + TriSafe policy & 0.08 & 0.089 & 0.950 & 1.00 & 0.229 [0.15, 0.27] & 0.213 & 0.306 \\
-    E7 self-consistency gate (agreement of k = 3 re-samples) & 0.40 & 0.396 & 0.854 & 0.97 & 0.485 [0.41, 0.56] & 0.388 & 0.554 \\
+    TriSafe-RAG (default thresholds) & 0.12 & 0.121 & 0.839 & 1.00 & 0.256 [0.15, 0.34] & 0.161 & 0.397 \\
+    TriSafe-RAG (thresholds tuned on dev) & 0.17 & 0.179 & 0.885 & 1.00 & 0.306 [0.21, 0.40] & 0.161 & 0.397 \\
+    E1 LLM verbalized confidence & 0.37 & 0.375 & 0.861 & 0.96 & 0.465 [0.37, 0.54] & 0.191 & 0.265 \\
+    E2 retrieval-similarity gate & 0.44 & 0.410 & 0.786 & 0.99 & 0.499 [0.40, 0.57] & 0.316 & 0.507 \\
+    E3 Platt (logistic) on the five signals & 0.47 & 0.424 & 0.771 & 0.95 & 0.505 [0.40, 0.57] & 0.150 & 0.338 \\
+    E4 isotonic on the TriSafe sum & 0.47 & 0.424 & 0.771 & 0.95 & 0.505 [0.40, 0.57] & 0.030 & 0.360 \\
+    E5 temperature scaling on the TriSafe sum & 0.47 & 0.424 & 0.771 & 0.95 & 0.505 [0.40, 0.57] & 0.129 & 0.397 \\
+    E6 translate-then-retrieve + TriSafe policy & 0.08 & 0.089 & 0.950 & 1.00 & 0.229 [0.12, 0.31] & 0.213 & 0.306 \\
+    E7 self-consistency gate (agreement of k = 3 re-samples) & 0.40 & 0.396 & 0.854 & 0.97 & 0.485 [0.40, 0.57] & 0.388 & 0.554 \\
     \bottomrule
   \end{tabular}
 \end{table*}

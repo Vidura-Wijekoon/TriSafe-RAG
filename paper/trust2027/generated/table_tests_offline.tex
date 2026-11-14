@@ -8,7 +8,7 @@
     \midrule
     B1 + empty-reply filter & 1.000 & 1.000 \\
     B2 grounding only (no thresholds) & 1.000 & 1.000 \\
-    B3 abstention only (w\_gr = 0) & $<$0.001 & $<$0.001 \\
+    B3 abstention only (w\_gr = w\_cit = 0) & $<$0.001 & $<$0.001 \\
     TriSafe-RAG (default thresholds) & $<$0.001 & $<$0.001 \\
     TriSafe-RAG with raw RRF retrieval signal & $<$0.001 & $<$0.001 \\
     Gate: confidence thresholds only & $<$0.001 & $<$0.001 \\
@@ -16,12 +16,13 @@
     Gate: citation coverage only & 1.000 & 1.000 \\
     TriSafe-RAG without the language-match signal & $<$0.001 & $<$0.001 \\
     TriSafe-RAG (thresholds tuned on dev) & $<$0.001 & $<$0.001 \\
+    TriSafe-RAG (dev-tuned) + empty-reply filter & $<$0.001 & $<$0.001 \\
     TriSafe-RAG + per-language thresholds (dev) & $<$0.001 & $<$0.001 \\
-    E2 retrieval-similarity gate (CRAG-style evaluator proxy) & 1.000 & 1.000 \\
-    E3 Platt (logistic) on the five signals & 0.032 & 0.013 \\
-    E4 isotonic on the TriSafe sum & 0.493 & 0.033 \\
+    E2 retrieval-similarity gate & 1.000 & 1.000 \\
+    E3 Platt (logistic) on the five signals & 0.033 & 0.015 \\
+    E4 isotonic on the TriSafe sum & 0.497 & 0.059 \\
     E5 temperature scaling on the TriSafe sum & 1.000 & 1.000 \\
-    TriSafe-RAG with Platt-calibrated confidence & 0.008 & $<$0.001 \\
+    TriSafe-RAG with Platt-calibrated confidence & 0.017 & $<$0.001 \\
     \bottomrule
   \end{tabular}
 \end{table}

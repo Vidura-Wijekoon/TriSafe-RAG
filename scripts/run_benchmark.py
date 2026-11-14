@@ -85,7 +85,7 @@ def build_systems(checker: str, scale: dict, dev_drafts, has_verbalized: bool, h
     systems.append(SystemSpec("B2_grounding_only", "B2 grounding only (no thresholds)", checker=checker,
                               mode="weighted", confidence=conf_cos, abstention=NO_THRESHOLDS,
                               notes="Full confidence score reported, no abstention thresholds."))
-    systems.append(SystemSpec("B3_abstention_only", "B3 abstention only (w_gr = 0)", checker=checker,
+    systems.append(SystemSpec("B3_abstention_only", "B3 abstention only (w_gr = w_cit = 0)", checker=checker,
                               mode="weighted", confidence={**conf_cos, **B3_WEIGHTS},
                               abstention=DEFAULT_THRESHOLDS))
     systems.append(SystemSpec("TriSafe_default", "TriSafe-RAG (default thresholds)", checker=checker,
@@ -144,7 +144,7 @@ def build_systems(checker: str, scale: dict, dev_drafts, has_verbalized: bool, h
         e1.abstention["answer_threshold"] = tune_two_way_threshold(dev_drafts, e1)
         e1.tuned_on = "dev"
         systems.append(e1)
-    e2 = SystemSpec("E2_retrieval_gate", "E2 retrieval-similarity gate (CRAG-style evaluator proxy)", checker=checker,
+    e2 = SystemSpec("E2_retrieval_gate", "E2 retrieval-similarity gate", checker=checker,
                     mode="score", score_field="retrieval", confidence=conf_cos, abstention=dict(NO_THRESHOLDS), two_way=True)
     e2.abstention["answer_threshold"] = tune_two_way_threshold(dev_drafts, e2)
     e2.tuned_on = "dev"
@@ -372,8 +372,9 @@ def main() -> None:
     results["cost_test"] = cost_analysis(test_sets, reference="B1_vanilla", n_boot=args.n_boot, seed=0)
     ct = results["cost_test"]
     results["cost_crossings"] = {
-        f"{a}_vs_{b}": crossing_cost(ct[a], ct[b]) for a in ("TriSafe_devtuned", "TriSafe_default")
-        for b in ("E1_verbalized", "E3_platt", "E7_self_consistency") if a in ct and b in ct}
+        f"{a}_vs_{b}": crossing_cost(ct[a], ct[b]) for a in ("TriSafe_devtuned", "TriSafe_default", "TriSafe_empty", "E6_translate_retrieve")
+        for b in ("E1_verbalized", "E3_platt", "E7_self_consistency", "B3_abstention_only", "B1_empty_filter", "TriSafe_empty")
+        if a in ct and b in ct and a != b}
     log.info("group %d-fold cross-fitting of the tuned rules ...", 5)
     from src.eval.benchmark import cross_validate
     cv = cross_validate(all_drafts, checker, scale, DEFAULT_WEIGHTS, DEFAULT_THRESHOLDS, NO_THRESHOLDS, n_folds=5, seed=13)

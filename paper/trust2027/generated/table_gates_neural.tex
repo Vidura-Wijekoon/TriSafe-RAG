@@ -1,5 +1,5 @@
 \begin{table*}[t]
-  \caption{Which gate does the work (neural backend, test split). ``B1 + empty-reply filter'' refuses replies that contain nothing but citation markers. Each ``only'' row keeps one gate of the policy in Fig.~\ref{fig:policy} at its default threshold and switches the other two off (a threshold of 0 never fires); all rows respect the generator's own abstention, as B1 does. Unsafe: delivered answers that were wrong or answered an unanswerable query. Lost: correct drafts the policy withheld. Break-even: the cost of one unsafe delivery, in withheld correct answers, above which the row beats B1 (Sec.~\ref{sec:cost}); ``--'' when the row removes no unsafe deliveries.}
+  \caption{Which gate does the work (neural backend, test split). ``B1 + empty-reply filter'' refuses replies that contain nothing but citation markers. Each ``only'' row keeps one gate of the policy (\PolicyRef) at its default threshold and switches the other two off (a threshold of 0 never fires); all rows respect the generator's own abstention, as B1 does. Unsafe: delivered answers that were wrong or answered an unanswerable query. Lost: correct drafts the policy withheld. Break-even: the cost of one unsafe delivery, in withheld correct answers, above which the row beats B1 (\CostRef); ``--'' when the row removes no unsafe deliveries.}
   \label{tab:gates-neural}
   \footnotesize
   \setlength{\tabcolsep}{4pt}
@@ -8,15 +8,15 @@
     Policy & Ans.\ rate & Acc.\ $\uparrow$ & Sel.\ acc.\ $\uparrow$ & Unans.\ abst.\ $\uparrow$ & Decision acc.\ $\uparrow$ & Unsafe $\downarrow$ & Lost $\downarrow$ & Break-even [95\% CI] \\
     \midrule
     B1 vanilla & 0.47 & 0.424 & 0.771 & 0.95 & 0.505 & 19.3 & 0.3 & -- \\
-    B1 + empty-reply filter & 0.46 & 0.420 & 0.783 & 0.95 & 0.501 & 18 & 1 & 0.5 [0.0, 3.0] \\
-    confidence thresholds only & 0.29 & 0.254 & 0.736 & 0.99 & 0.367 & 13.3 & 24.7 & 4.1 [2.2, 8.9] \\
-    grounding gate only & 0.38 & 0.338 & 0.759 & 0.97 & 0.436 & 16 & 12.7 & 3.7 [1.7, 10.8] \\
-    citation gate only & 0.21 & 0.224 & 0.889 & 1.00 & 0.343 & 4 & 29 & 1.9 [1.2, 3.3] \\
-    TriSafe-RAG (default) & 0.12 & 0.121 & 0.839 & 1.00 & 0.256 & 3.3 & 43.7 & 2.7 [1.7, 4.7] \\
-    TriSafe-RAG (dev-tuned) & 0.17 & 0.179 & 0.885 & 1.00 & 0.306 & 3.3 & 35.3 & 2.2 [1.4, 3.7] \\
-    TriSafe-RAG (dev-tuned) + empty-reply filter & 0.17 & 0.179 & 0.885 & 1.00 & 0.306 & 3.3 & 35.3 & 2.2 [1.4, 3.7] \\
-    TriSafe-RAG, $w_{\mathrm{lang}}=0$ & 0.10 & 0.100 & 0.811 & 1.00 & 0.239 & 3.3 & 46.7 & 2.9 [1.8, 4.9] \\
-    B3 abstention only & 0.13 & 0.138 & 0.868 & 1.00 & 0.270 & 3 & 41.3 & 2.5 [1.6, 4.2] \\
+    B1 + empty-reply filter & 0.46 & 0.420 & 0.783 & 0.95 & 0.501 & 18 & 1 & 0.5 [0.0, 2.0] \\
+    confidence thresholds only & 0.29 & 0.254 & 0.736 & 0.99 & 0.367 & 13.3 & 24.7 & 4.1 [2.3, 8.4] \\
+    grounding gate only & 0.38 & 0.338 & 0.759 & 0.97 & 0.436 & 16 & 12.7 & 3.7 [1.8, 9.5] \\
+    citation gate only & 0.21 & 0.224 & 0.889 & 1.00 & 0.343 & 4 & 29 & 1.9 [1.2, 3.0] \\
+    TriSafe-RAG (default) & 0.12 & 0.121 & 0.839 & 1.00 & 0.256 & 3.3 & 43.7 & 2.7 [1.9, 4.2] \\
+    TriSafe-RAG (dev-tuned) & 0.17 & 0.179 & 0.885 & 1.00 & 0.306 & 3.3 & 35.3 & 2.2 [1.5, 3.4] \\
+    TriSafe-RAG (dev-tuned) + empty-reply filter & 0.17 & 0.179 & 0.885 & 1.00 & 0.306 & 3.3 & 35.3 & 2.2 [1.5, 3.4] \\
+    TriSafe-RAG, $w_{\mathrm{lang}}=0$ & 0.10 & 0.100 & 0.811 & 1.00 & 0.239 & 3.3 & 46.7 & 2.9 [2.0, 4.5] \\
+    B3 abstention only & 0.13 & 0.138 & 0.868 & 1.00 & 0.270 & 3 & 41.3 & 2.5 [1.7, 3.9] \\
     \bottomrule
   \end{tabular}
 \end{table*}

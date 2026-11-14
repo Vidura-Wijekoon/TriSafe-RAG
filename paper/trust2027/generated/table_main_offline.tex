@@ -1,20 +1,20 @@
 \begin{table*}[t]
-  \caption{Main results on the 169-query test split (offline backend). Ans.\ rate: fraction of queries answered. Acc.: accuracy on gold-answerable queries (abstention counts as an error). Sel.\ acc.: accuracy among answered answerable queries. Unans.\ abst.: fraction of unanswerable queries abstained on. Catch/Retain: share of wrong drafts on answerable queries that the policy abstained on, and share of correct drafts it delivered. ECE and AUROC are computed from the confidence score against draft correctness over all test queries (policy-independent). Brackets: 95\% paired bootstrap intervals over queries (2{,}000 resamples).}
+  \caption{Main results on the 169-query test split (offline backend). Ans.\ rate: fraction of queries answered. Acc.: accuracy on gold-answerable queries (abstention counts as an error). Sel.\ acc.: accuracy among answered answerable queries. Unans.\ abst.: fraction of unanswerable queries abstained on. Catch/Retain: share of wrong drafts on answerable queries that the policy abstained on, and share of correct drafts it delivered. ECE and AUROC are computed from the confidence score against draft correctness over all test queries (policy-independent); ECE (ans.): the same over the queries the system answered, which excludes the generator's own abstentions. Brackets: 95\% paired cluster-bootstrap intervals that resample the test items with all their language versions (2{,}000 resamples).}
   \label{tab:main-offline}
   \footnotesize
-  \setlength{\tabcolsep}{3.5pt}
-  \begin{tabular}{lcccccccc}
+  \setlength{\tabcolsep}{3pt}
+  \begin{tabular}{lccccccccc}
     \toprule
-    System & Ans.\ rate & Acc.\ $\uparrow$ [95\% CI] & Sel.\ acc.\ $\uparrow$ & Unans.\ abst.\ $\uparrow$ & Catch/Retain & Abst.\ F1 $\uparrow$ & ECE $\downarrow$ [95\% CI] & AUROC $\uparrow$ \\
+    System & Ans.\ rate & Acc.\ $\uparrow$ [95\% CI] & Sel.\ acc.\ $\uparrow$ & Unans.\ abst.\ $\uparrow$ & Catch/Retain & Abst.\ F1 $\uparrow$ & ECE $\downarrow$ [95\% CI] & ECE (ans.) $\downarrow$ & AUROC $\uparrow$ \\
     \midrule
-    B1 vanilla (LLM self-abstention only) & 0.92 & 0.517 [0.44, 0.60] & 0.556 & 0.15 & 0.14/1.00 & 0.200 & 0.184 [0.13, 0.26] & 0.632 \\
-    B2 grounding only (no thresholds) & 0.92 & 0.517 [0.44, 0.60] & 0.556 & 0.15 & 0.14/1.00 & 0.200 & 0.114 [0.08, 0.20] & 0.636 \\
-    B3 abstention only (w\_gr = 0) & 0.13 & 0.119 [0.07, 0.18] & 0.810 & 0.96 & 0.94/0.23 & 0.289 & 0.120 [0.09, 0.21] & 0.606 \\
-    TriSafe-RAG (default thresholds) & 0.08 & 0.077 [0.04, 0.12] & 0.786 & 1.00 & 0.96/0.15 & 0.287 & 0.114 [0.08, 0.20] & 0.636 \\
-    TriSafe-RAG with raw RRF retrieval signal & 0.00 & 0.000 [0.00, 0.00] & -- & 1.00 & 1.00/0.00 & 0.267 & 0.146 [0.08, 0.22] & 0.612 \\
-    TriSafe-RAG (thresholds tuned on dev) & 0.41 & 0.294 [0.22, 0.37] & 0.656 & 0.81 & 0.68/0.57 & 0.333 & 0.114 [0.08, 0.20] & 0.636 \\
-    TriSafe-RAG + per-language thresholds (dev) & 0.49 & 0.350 [0.27, 0.43] & 0.649 & 0.77 & 0.61/0.68 & 0.357 & 0.114 [0.08, 0.20] & 0.636 \\
-    TriSafe-RAG with Platt-calibrated confidence & 0.78 & 0.462 [0.38, 0.55] & 0.574 & 0.38 & 0.29/0.89 & 0.312 & 0.061 [0.04, 0.14] & 0.599 \\
+    B1 vanilla (LLM self-abstention only) & 0.92 & 0.517 [0.41, 0.62] & 0.556 & 0.15 & 0.14/1.00 & 0.200 & 0.184 [0.12, 0.27] & 0.191 & 0.632 \\
+    B2 grounding only (no thresholds) & 0.92 & 0.517 [0.41, 0.62] & 0.556 & 0.15 & 0.14/1.00 & 0.200 & 0.114 [0.07, 0.21] & 0.114 & 0.636 \\
+    B3 abstention only (w\_gr = w\_cit = 0) & 0.13 & 0.119 [0.07, 0.17] & 0.810 & 0.96 & 0.94/0.23 & 0.289 & 0.120 [0.09, 0.20] & 0.150 & 0.606 \\
+    TriSafe-RAG (default thresholds) & 0.08 & 0.077 [0.04, 0.12] & 0.786 & 1.00 & 0.96/0.15 & 0.287 & 0.114 [0.07, 0.21] & 0.157 & 0.636 \\
+    TriSafe-RAG with raw RRF retrieval signal & 0.00 & 0.000 [0.00, 0.00] & -- & 1.00 & 1.00/0.00 & 0.267 & 0.146 [0.06, 0.24] & -- & 0.612 \\
+    TriSafe-RAG (thresholds tuned on dev) & 0.41 & 0.294 [0.22, 0.38] & 0.656 & 0.81 & 0.68/0.57 & 0.333 & 0.114 [0.07, 0.21] & 0.136 & 0.636 \\
+    TriSafe-RAG + per-language thresholds (dev) & 0.49 & 0.350 [0.26, 0.45] & 0.649 & 0.77 & 0.61/0.68 & 0.357 & 0.114 [0.07, 0.21] & 0.155 & 0.636 \\
+    TriSafe-RAG with Platt-calibrated confidence & 0.78 & 0.462 [0.35, 0.58] & 0.574 & 0.38 & 0.29/0.89 & 0.312 & 0.061 [0.04, 0.15] & 0.086 & 0.599 \\
     \bottomrule
   \end{tabular}
 \end{table*}

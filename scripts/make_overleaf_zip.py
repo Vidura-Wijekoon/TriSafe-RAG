@@ -23,7 +23,7 @@ ZIP = ROOT / "paper" / "TriSafe-RAG_TRUST2027_overleaf.zip"
 
 
 def write_fallbacks() -> list[str]:
-    body = (PAPER / "body.tex").read_text(encoding="utf-8")
+    body = (PAPER / "body.tex").read_text(encoding="utf-8") + (PAPER / "supplement.tex").read_text(encoding="utf-8")
     macros_path = PAPER / "generated" / "macros.tex"
     macros = macros_path.read_text(encoding="utf-8") if macros_path.exists() else ""
     defined = set(re.findall(r"\\newcommand\{\\([A-Za-z]+)\}", macros))
@@ -43,8 +43,8 @@ def write_fallbacks() -> list[str]:
 
 def main() -> None:
     pending = write_fallbacks()
-    files = ["main.tex", "main_named.tex", "preamble.tex", "body.tex", "refs.bib", "acmart.cls",
-             "ACM-Reference-Format.bst"]
+    files = ["main.tex", "main_named.tex", "main_supplement.tex", "preamble.tex", "body.tex", "supplement.tex",
+             "refs.bib", "acmart.cls", "ACM-Reference-Format.bst"]
     with zipfile.ZipFile(ZIP, "w", zipfile.ZIP_DEFLATED) as z:
         for f in files:
             z.write(PAPER / f, f)
@@ -57,7 +57,8 @@ def main() -> None:
             "Upload this zip as a new Overleaf project.\n"
             "Menu -> Compiler: XeLaTeX (required to typeset the Sinhala and Tamil queries from fonts/;\n"
             "pdfLaTeX also compiles but prints [Sinhala text]/[Tamil text] markers instead).\n"
-            "Main document: main.tex (anonymous review build) or main_named.tex (camera-ready with author block).\n"
+            "Main document: main.tex (anonymous review build, 9 pages + references) or main_named.tex (camera-ready).\n"
+            "Supplementary material: compile main_supplement.tex as a second document (not counted in the page limit).\n"
             "Tables and numbers are generated from results/*/results.json by scripts/make_tables.py;\n"
             "do not edit generated/*.tex by hand.\n"
             + ("\nPENDING (placeholders rendered as ?? until the neural run finishes):\n  " + "\n  ".join(pending) + "\n" if pending else "\nAll generated inputs present.\n"),

@@ -1,0 +1,773 @@
+{
+ "backend": "neural7b",
+ "seed": 0,
+ "model": "qwen2.5:7b-instruct",
+ "n": 30,
+ "by_language": {
+  "ta": 15,
+  "si": 12,
+  "en": 2,
+  "mixed": 1
+ },
+ "extra_instruction": "State the answer in words in the user's language before the citation; a reply that consists only of citation markers is not an answer.",
+ "summary": {
+  "base": {
+   "empty": 14,
+   "abstain": 4,
+   "correct": 9,
+   "content_wrong": 3,
+   "n": 30,
+   "max_new_tokens": 128,
+   "extra_instruction": false
+  },
+  "tokens": {
+   "empty": 14,
+   "abstain": 6,
+   "correct": 8,
+   "content_wrong": 2,
+   "n": 30,
+   "max_new_tokens": 512,
+   "extra_instruction": false
+  },
+  "instruct": {
+   "empty": 2,
+   "abstain": 0,
+   "correct": 15,
+   "content_wrong": 13,
+   "n": 30,
+   "max_new_tokens": 128,
+   "extra_instruction": true
+  },
+  "both": {
+   "empty": 1,
+   "abstain": 1,
+   "correct": 18,
+   "content_wrong": 10,
+   "n": 30,
+   "max_new_tokens": 512,
+   "extra_instruction": true
+  }
+ },
+ "rows": [
+  {
+   "id": "cd005-ta",
+   "language": "ta",
+   "gold_answerable": 1,
+   "original": "[1] #2",
+   "conditions": {
+    "base": {
+     "text": "[2] ஒரு நாள் சேவை ரூ. 20,000 அதிகரணமாக தந்துவாகும். இது பத்தரமுல்லை தலைமைச் செயலகத்தில் மட்டுமே கிடைக்கும். [2]#",
+     "class": "correct"
+    },
+    "tokens": {
+     "text": "[2] ஒரு நாள் சேவை ரூ. 20,000 அதிகரித்து தற்காலிக சேவைக்கான கட்டணமாக வழங்கப்படும். [2]",
+     "class": "content_wrong"
+    },
+    "instruct": {
+     "text": "ஒரு நாள் கடவுச்சீட்டு சேவை தங்கள் துவக்கத்தில் அல்லது அதன் நேரத்தில் வழங்கப்படுகிறது [4] [2]",
+     "class": "content_wrong"
+    },
+    "both": {
+     "text": "ஒரு நாள் கடவுச்சீட்டு சேவை தங்கள் தடையில் அல்லது தங்கள் தடையில் உள்ள சேவை கடவுச்சீட்டு பத்தியில் வழங்கப்படுகிறது. [4] [2]",
+     "class": "content_wrong"
+    }
+   }
+  },
+  {
+   "id": "cd007-si",
+   "language": "si",
+   "gold_answerable": 1,
+   "original": "[1] #1",
+   "conditions": {
+    "base": {
+     "text": "[1] #2",
+     "class": "empty"
+    },
+    "tokens": {
+     "text": "[1] #2",
+     "class": "empty"
+    },
+    "instruct": {
+     "text": "ජාතික හැඳුනුම්පතේ එක්දින සේවාවේ අතිරේක ගාස්තුව රු. 2000 විය.[1]",
+     "class": "correct"
+    },
+    "both": {
+     "text": "ජාතික හැඳුනුම්පතේ එක්දින සේවාවේ අතිරේක ගාස්තුව රු. 2000 විය. [1]",
+     "class": "correct"
+    }
+   }
+  },
+  {
+   "id": "cd015-ta",
+   "language": "ta",
+   "gold_answerable": 1,
+   "original": "[1] #1",
+   "conditions": {
+    "base": {
+     "text": "[1] #2500 සහ එක්දින සේවය රු. 3500. බල කාලය දීර්ඝ කිරීම සහ අලුත් කිරීම සාමාන්ය රු. 2800 සහ එක්දින",
+     "class": "content_wrong"
+    },
+    "tokens": {
+     "text": "[1] #2500 සහ එක්දින සේවය රු. 3500. බල කාලය දීර්ඝ කිරීම සහ අලුත් කිරීම සාමාන්ය රු. 2800 සහ එක්දින රු. 4000. \n\n[4] #தேசிய அடையாள அட்டை சேவைகளுக்கான திருத்தப்பட்ட கட்டணங்கள் 2022 நவம்பர் 1 முதல் நடைமுறையில் உள்ளன. முதன் முதலில் பதிவு செய்து வழங்குதல் ரூ. 200, இழந்த அட்டையின் நகல் ரூ. 1000, ஒரு நாள் சேவைக் கட்டணம் (விண்ணப்பக் கட்டணத்துக்கு மேலதிகமாக) ரூ. 2000.\n\nINSUFFICIENT_EVIDENCE",
+     "class": "abstain"
+    },
+    "instruct": {
+     "text": "ஓட்டுநர் உரிமம் தொலைந்தால் நகலுக்கான கட்டணம் ரூ. 1000. [3] #",
+     "class": "content_wrong"
+    },
+    "both": {
+     "text": "ஓட்டுநர் உரிமம் தொலைந்தால் நகலுக்கான கட்டணம் ரூ. 1000. [3] #",
+     "class": "content_wrong"
+    }
+   }
+  },
+  {
+   "id": "cd016-si",
+   "language": "si",
+   "gold_answerable": 1,
+   "original": "[1] #1",
+   "conditions": {
+    "base": {
+     "text": "[2] #2",
+     "class": "empty"
+    },
+    "tokens": {
+     "text": "[2] #2",
+     "class": "empty"
+    },
+    "instruct": {
+     "text": "තාවකාලික මුද්‍රණය කළ හැකි ආදායම් බලපත්‍රය වලංගු වන්නේ දින 14 සඳහා [2].",
+     "class": "correct"
+    },
+    "both": {
+     "text": "තාවකාලික මුද්‍රණය කළ හැකි ආදායම් බලපත්‍රය වලංගු වන්නේ දින 14 සඳහා [2].",
+     "class": "correct"
+    }
+   }
+  },
+  {
+   "id": "cd016-ta",
+   "language": "ta",
+   "gold_answerable": 1,
+   "original": "[1] #1",
+   "conditions": {
+    "base": {
+     "text": "[1] தற்காலிக உரிமம் மின்னஞ்சல் மூலம் அனுப்பப்படும் 14 நாட்களுக்கு செல்லுபடியாகும். [1]",
+     "class": "correct"
+    },
+    "tokens": {
+     "text": "[1] தற்காலிக உரிமம் மின்னஞ்சல் மூலம் அனுப்பப்படும் 14 நாட்களுக்கு செல்லுபடியாகும். [1]",
+     "class": "correct"
+    },
+    "instruct": {
+     "text": "[1] தற்காலிக உரிமம் மின்னஞ்சல் மூலம் அனுப்பப்படும் 14 நாட்களுக்கு செல்லுபடியாகும். #1",
+     "class": "correct"
+    },
+    "both": {
+     "text": "14 நாட்களுக்கு செல்லுபடியாகும். [1]",
+     "class": "correct"
+    }
+   }
+  },
+  {
+   "id": "cd017-en",
+   "language": "en",
+   "gold_answerable": 1,
+   "original": "[1] #1",
+   "conditions": {
+    "base": {
+     "text": "[1] #1",
+     "class": "empty"
+    },
+    "tokens": {
+     "text": "[1] #1",
+     "class": "empty"
+    },
+    "instruct": {
+     "text": "7 ඇතුළත් කරන්න. [1]",
+     "class": "correct"
+    },
+    "both": {
+     "text": "7 ඇතුළත් කරන්න. [1]",
+     "class": "correct"
+    }
+   }
+  },
+  {
+   "id": "cd017-si",
+   "language": "si",
+   "gold_answerable": 1,
+   "original": "[1] #1",
+   "conditions": {
+    "base": {
+     "text": "INSUFFICIENT_EVIDENCE",
+     "class": "abstain"
+    },
+    "tokens": {
+     "text": "INSUFFICIENT_EVIDENCE",
+     "class": "abstain"
+    },
+    "instruct": {
+     "text": "7 ඇතුළත් කිරීමේ සඳහා සංඛ්‍යාත ප්‍රකාශයක් ඇත [1]. එසේන් තහවුරු කළ ආදායම් බලපත්‍රය තැපැල් කර",
+     "class": "correct"
+    },
+    "both": {
+     "text": "7 ඇතුළත් කිරීමේ සඳහා සංඛ්‍යාත ප්‍රකාශයක් ඇත [1]. එසේන් තහවුරු කළ ආදායම් බලපත්‍රය තැපැල් කරන්නේ දින 7 ඇතුළත් කිරීමේ. [1]",
+     "class": "correct"
+    }
+   }
+  },
+  {
+   "id": "cd017-ta",
+   "language": "ta",
+   "gold_answerable": 1,
+   "original": "[1] #1",
+   "conditions": {
+    "base": {
+     "text": "[1] #1",
+     "class": "empty"
+    },
+    "tokens": {
+     "text": "[1] உறுதிப்படுத்தப்பட்ட வருவாய் உரிமம் 14 நாட்களுக்கு செல்லுபடியாகும் தற்காலிக உரிமம் மின்னஞ்சல் மூலம் அனுப்பப்படும். #1",
+     "class": "content_wrong"
+    },
+    "instruct": {
+     "text": "14 நாட்களுக்கு செல்லுபடியாகும் தற்காலிக உரிமம் மின்னஞ்சல் மூலம் அனுப்பப்படும். [1]",
+     "class": "content_wrong"
+    },
+    "both": {
+     "text": "14 நாட்களுக்கு செல்லுபடியாகும் தற்காலிக உரிமம் மின்னஞ்சல் மூலம் அனுப்பப்படும். [1]",
+     "class": "content_wrong"
+    }
+   }
+  },
+  {
+   "id": "ph001-ta",
+   "language": "ta",
+   "gold_answerable": 1,
+   "original": "[1] #1",
+   "conditions": {
+    "base": {
+     "text": "[1] #1",
+     "class": "empty"
+    },
+    "tokens": {
+     "text": "[1] #1",
+     "class": "empty"
+    },
+    "instruct": {
+     "text": "டெங்கு காய்ச்சலுக்கு இபுபுரோஃபன், அஸ்பிரின், டிக்லோஃபெனாக் போன்ற NSAID மருந்துகளைப் பயன்படுத்த வேண்டும். [1]",
+     "class": "content_wrong"
+    },
+    "both": {
+     "text": "டெங்கு காய்ச்சலுக்கு இபுபுரோஃபன், அஸ்பிரின், டிக்லோஃபெனாக் போன்ற NSAID மருந்துகளைப் பயன்படுத்த வேண்டும். [1]",
+     "class": "content_wrong"
+    }
+   }
+  },
+  {
+   "id": "ph003-ta",
+   "language": "ta",
+   "gold_answerable": 1,
+   "original": "[1] #1",
+   "conditions": {
+    "base": {
+     "text": "[1] #1",
+     "class": "empty"
+    },
+    "tokens": {
+     "text": "[1] #1",
+     "class": "empty"
+    },
+    "instruct": {
+     "text": "உடனடியாக அஸ்பிரின் எடுக்க வேண்டும். [1]",
+     "class": "content_wrong"
+    },
+    "both": {
+     "text": "உடனடியாக அஸ்பிரின் எடுக்க வேண்டும். [1] [4]",
+     "class": "content_wrong"
+    }
+   }
+  },
+  {
+   "id": "ph009-si",
+   "language": "si",
+   "gold_answerable": 1,
+   "original": "[1] #1",
+   "conditions": {
+    "base": {
+     "text": "[1] #1",
+     "class": "empty"
+    },
+    "tokens": {
+     "text": "[1] #1",
+     "class": "empty"
+    },
+    "instruct": {
+     "text": "සිංහල [1] #1",
+     "class": "content_wrong"
+    },
+    "both": {
+     "text": "සවමාන්තයෙන් ශ්‍රී ලංකාවේ EPI එන්නත් වැඩසටහන ආරම්භ කළේ 1978 මිස් දිනය සිටිය ඇත.[1]",
+     "class": "correct"
+    }
+   }
+  },
+  {
+   "id": "ph009-ta",
+   "language": "ta",
+   "gold_answerable": 1,
+   "original": "[1] #1",
+   "conditions": {
+    "base": {
+     "text": "Answer: இலங்கையில் EPI நோய்த்தடுப்பூசி திட்டம் 1978 இல் தொடங்கப்பட்டது. [3]",
+     "class": "correct"
+    },
+    "tokens": {
+     "text": "Answer: இலங்கையில் EPI நோய்த்தடுப்பூசி திட்டம் 1978 இல் தொடங்கப்பட்டது. [3]",
+     "class": "correct"
+    },
+    "instruct": {
+     "text": "இலங்கையில் EPI நோய்த்தடுப்பூசி திட்டம் 1978 இல் தொடங்கப்பட்டது. [2] [3]",
+     "class": "correct"
+    },
+    "both": {
+     "text": "இலங்கையில் EPI நோய்த்தடுப்பூசி திட்டம் 1978 இல் தொடங்கப்பட்டது. [3]",
+     "class": "correct"
+    }
+   }
+  },
+  {
+   "id": "ph014-si",
+   "language": "si",
+   "gold_answerable": 1,
+   "original": "[1] #1",
+   "conditions": {
+    "base": {
+     "text": "INSUFFICIENT_EVIDENCE",
+     "class": "abstain"
+    },
+    "tokens": {
+     "text": "INSUFFICIENT_EVIDENCE",
+     "class": "abstain"
+    },
+    "instruct": {
+     "text": "ගර්භණී සමයේ පළමු වෛද්ය පරීක්ෂාව සති 12 කට පෙර ආරම්භ කිරීම සුදුසු වේ. [1]",
+     "class": "correct"
+    },
+    "both": {
+     "text": "ගර්භණී සමයේ පළමු වෛද්ය පරීක්ෂාව සති 12 කට පෙර ආරම්භ කිරීම සුදුසු වේ. [1]",
+     "class": "correct"
+    }
+   }
+  },
+  {
+   "id": "ph014-ta",
+   "language": "ta",
+   "gold_answerable": 1,
+   "original": "[1] #1",
+   "conditions": {
+    "base": {
+     "text": "[1] #1",
+     "class": "empty"
+    },
+    "tokens": {
+     "text": "[1] #1",
+     "class": "empty"
+    },
+    "instruct": {
+     "text": "கர்ப்பக் கால பராமரிப்பு 12 வாரங்களுக்கு முன் தொடங்க வேண்டும். [2] [3]",
+     "class": "correct"
+    },
+    "both": {
+     "text": "INSUFFICIENT_EVIDENCE",
+     "class": "abstain"
+    }
+   }
+  },
+  {
+   "id": "ph015-ta",
+   "language": "ta",
+   "gold_answerable": 1,
+   "original": "[1] #1",
+   "conditions": {
+    "base": {
+     "text": "[1] #1",
+     "class": "empty"
+    },
+    "tokens": {
+     "text": "[1] #1",
+     "class": "empty"
+    },
+    "instruct": {
+     "text": "8 ## [1]",
+     "class": "empty"
+    },
+    "both": {
+     "text": "8 ## [1] அதற்கு மேற்பட்ட வீட்டு சந்திப்புகள் அவசியம்.",
+     "class": "correct"
+    }
+   }
+  },
+  {
+   "id": "ph016-si",
+   "language": "si",
+   "gold_answerable": 1,
+   "original": "[1] #1",
+   "conditions": {
+    "base": {
+     "text": "[1] ගර්භණී සමයේ පලමු වෛද්ය පරීක්ෂාව සති 12 කට පෙර ආරම්භ කිරීම සුදුසු වේ. [1]",
+     "class": "content_wrong"
+    },
+    "tokens": {
+     "text": "[1] #1",
+     "class": "empty"
+    },
+    "instruct": {
+     "text": "ගර්භණී සමයේ පලමු වෛද්ය පරීක්ෂාව සති 12 කට පෙර ආරම්භ කිරීම සුදුසු වේ. [1]",
+     "class": "content_wrong"
+    },
+    "both": {
+     "text": "ගර්භණී සමයේ පලමු වෛද්ය පරීක්ෂාව සති 12 කට පෙර ආරම්භ කිරීම සුදුසු වේ. [1]",
+     "class": "content_wrong"
+    }
+   }
+  },
+  {
+   "id": "ph018-si",
+   "language": "si",
+   "gold_answerable": 1,
+   "original": "[1] #1",
+   "conditions": {
+    "base": {
+     "text": "[1] #1",
+     "class": "empty"
+    },
+    "tokens": {
+     "text": "[1] #1",
+     "class": "empty"
+    },
+    "instruct": {
+     "text": "වෛද්‍ය උපදෙස් ලබා දී ඇත නම් ඉන්ෆ්ලුවෙන්සා රෝගයක් ලෙස අඩංගු වේ. [1]",
+     "class": "content_wrong"
+    },
+    "both": {
+     "text": "වෛද්‍ය උපදෙස් ලබා දී ඇත නම් ඉන්ෆ්ලුවෙන්සා රෝග ලක්ෂණ දින 7 කට වඩා පවතී නම් හෝ හුස්ම ගැනීමේ අපහසුතා ඇත්නම් වෛද්ය උපදෙස් ලබාගන්න. [1]",
+     "class": "correct"
+    }
+   }
+  },
+  {
+   "id": "ph018-ta",
+   "language": "ta",
+   "gold_answerable": 1,
+   "original": "[1] #1",
+   "conditions": {
+    "base": {
+     "text": "[1] இன்ஃப்ளுயன்சா அறிகுறிகள் 7 நாட்களுக்கு மேல் நீடித்தால் அல்லது சுவாசிக்கக் கடினமாக இருந்தால் மருத்துவ உதவியை நாடவு",
+     "class": "correct"
+    },
+    "tokens": {
+     "text": "[1] இன்ஃப்ளுயன்சா அறிகுறிகள் 7 நாட்களுக்கு மேல் நீடித்தால் அல்லது சுவாசிக்கக் கடினமாக இருந்தால் மருத்துவ உதவியை நாடவும். [1]",
+     "class": "correct"
+    },
+    "instruct": {
+     "text": "இன்ஃப்ளுயன்சா அறிகுறிகள் 7 நாட்களுக்கு மேல் நீடித்தால் அல்லது சுவாசிக்கக் கடினமாக இருந்தால் மருத்துவ உதவியை நாடவும். [",
+     "class": "correct"
+    },
+    "both": {
+     "text": "இன்ஃப்ளுயன்சா அறிகுறிகள் 7 நாட்களுக்கு மேல் நீடித்தால் அல்லது சுவாசிக்கக் கடினமாக இருந்தால் மருத்துவ உதவியை நாடவும். [2]",
+     "class": "correct"
+    }
+   }
+  },
+  {
+   "id": "dr001-ta",
+   "language": "ta",
+   "gold_answerable": 1,
+   "original": "[1] #1",
+   "conditions": {
+    "base": {
+     "text": "[1] பேரிடர் முகாமைத்துவ மையத்தின் (DMC) அவசர தொலைபேசி எண் 117. [1]",
+     "class": "correct"
+    },
+    "tokens": {
+     "text": "[1] பேரிடர் முகாமைத்துவ மையத்தின் (DMC) அவசர தொலைபேசி எண் 117. [1]",
+     "class": "correct"
+    },
+    "instruct": {
+     "text": "[1] பேரிடர் முகாமைத்துவ மையத்தின் அவசர தொலைபேசி எண் 117. [1]",
+     "class": "correct"
+    },
+    "both": {
+     "text": "[1] பேரிடர் முகாமைத்துவ மையத்தின் அவசர தொலைபேசி எண் 117. [1]",
+     "class": "correct"
+    }
+   }
+  },
+  {
+   "id": "dr006-si",
+   "language": "si",
+   "gold_answerable": 1,
+   "original": "[1] #",
+   "conditions": {
+    "base": {
+     "text": "[1] # NBRO සංවිධානය ජාතික ගොඩනැගිලි පර්යේෂණ සංවිධානය (NBRO) පසුගිය පැය 24 ක වර්ෂාපතනය 75 mm ඉක්මවන විට",
+     "class": "correct"
+    },
+    "tokens": {
+     "text": "[1] # NBRO සංවිධානය ජාතික ගොඩනැගිලි පර්යේෂණ සංවිධානය (NBRO) පසුගිය පැය 24 ක වර්ෂාපතනය 75 mm ඉක්මවන විට කහ (මට්ටම 1) භූමි කඩාවැටීම් අනතුරු ඇඟවීම නිකුත් කරයි.",
+     "class": "correct"
+    },
+    "instruct": {
+     "text": "NBRO ජාතික ගොඩනැගිලි පර්යේෂණ සංවිධානය (NBRO) පසුගිය පැය 24 ක වර්ෂාපතනය 75 mm ඉක්මවන විට කහ (මට්ටම 1) භූ",
+     "class": "correct"
+    },
+    "both": {
+     "text": "NBRO ජාතික ගොඩනැගිලි පර්යේෂණ සංවිධානය (NBRO) පසුගිය පැය 24 ක වර්ෂාපතනය 75 mm ඉක්මවන විට කහ (මට්ටම 1) භූමි කඩාවැටීම් අනතුරු ඇඟවීම නිකුත් කරයි. [1]",
+     "class": "correct"
+    }
+   }
+  },
+  {
+   "id": "dr007-si",
+   "language": "si",
+   "gold_answerable": 1,
+   "original": "[1] #1",
+   "conditions": {
+    "base": {
+     "text": "[1] ජාතික ගොඩනැගිලි පර්යේෂණ සංවිධානය (NBRO) පසුගිය පැය 24 ක වර්ෂාපතනය 75 mm ඉක්මවන විට කහ (මට්ටම 1) භ",
+     "class": "correct"
+    },
+    "tokens": {
+     "text": "[1] ජාතික ගොඩනැගිලි පර්යේෂණ සංවිධානය (NBRO) පසුගිය පැය 24 ක වර්ෂාපතනය 75 mm ඉක්මවන විට කහ (මට්ටම 1) භූමි කඩාවැටීම් අනතුරු ඇඟවීම නිකුත් කරයි. Therefore, the common threshold is 24 hours. [1]",
+     "class": "correct"
+    },
+    "instruct": {
+     "text": "NBRO කහ භූමි කඩාවැටීම් අනතුරු ඇඟවීම නම් වහා ආරක්ෂිත ස්ථානයකට ඉවත් වන්න යුතු වේ [1].",
+     "class": "content_wrong"
+    },
+    "both": {
+     "text": "NBRO සඳහා භූමි කඩාවැටීම් අනතුරු ඇඟවීම නම් වහා ආරක්ෂිත ස්ථානයකට ඉවත් වන්න යන මට්ටමක් ඇත. [1]",
+     "class": "content_wrong"
+    }
+   }
+  },
+  {
+   "id": "dr007-ta",
+   "language": "ta",
+   "gold_answerable": 1,
+   "original": "[1] #1",
+   "conditions": {
+    "base": {
+     "text": "[1] #1",
+     "class": "empty"
+    },
+    "tokens": {
+     "text": "[1] #1",
+     "class": "empty"
+    },
+    "instruct": {
+     "text": "NBRO மஞ்சள் நிலச்சரிவு எச்சரிக்கை நிலை 1 சேர்ந்தது. [1]",
+     "class": "correct"
+    },
+    "both": {
+     "text": "NBRO மஞ்சள் நிலச்சரிவு எச்சரிக்கை நிலை 1 சேர்ந்தது. [1]",
+     "class": "correct"
+    }
+   }
+  },
+  {
+   "id": "dr008-si",
+   "language": "si",
+   "gold_answerable": 1,
+   "original": "[1] #1",
+   "conditions": {
+    "base": {
+     "text": "[1] #1",
+     "class": "empty"
+    },
+    "tokens": {
+     "text": "[1] #1",
+     "class": "empty"
+    },
+    "instruct": {
+     "text": "නො. [1] එකයි [1]",
+     "class": "content_wrong"
+    },
+    "both": {
+     "text": "සිංහල විකිපීඩියාවේ ජාතික ගොඩනැගිලි පර්යේෂණ සංවිධානය (NBRO) පසුගිය පැය 24 ක වර්ෂාපතනය 75 mm ඉක්මවන විට කහ (මට්ටම 1) භූමි කඩාවැටීම් අනතුරු ඇඟවීම නිකුත් කරයි. [1]",
+     "class": "correct"
+    }
+   }
+  },
+  {
+   "id": "dr008-ta",
+   "language": "ta",
+   "gold_answerable": 1,
+   "original": "[1] #1",
+   "conditions": {
+    "base": {
+     "text": "INSUFFICIENT_EVIDENCE",
+     "class": "abstain"
+    },
+    "tokens": {
+     "text": "INSUFFICIENT_EVIDENCE",
+     "class": "abstain"
+    },
+    "instruct": {
+     "text": "தேசிய கட்டிட ஆராய்ச்சி ஸ்தாபனம் (NBRO) [2]",
+     "class": "correct"
+    },
+    "both": {
+     "text": "தேசிய கட்டிட ஆராய்ச்சி ஸ்தாபனம் (NBRO) [2]",
+     "class": "correct"
+    }
+   }
+  },
+  {
+   "id": "dr009-si",
+   "language": "si",
+   "gold_answerable": 1,
+   "original": "[1] #1",
+   "conditions": {
+    "base": {
+     "text": "[1] ජාතික ගොඩනැගිලි පර්යේෂණ සංවිධානය (NBRO) පසුගිය පැය 24 ක වර්ෂාපතනය 75 mm ඉක්මවන විට කහ (මට්ටම 1) භ",
+     "class": "content_wrong"
+    },
+    "tokens": {
+     "text": "INSUFFICIENT_EVIDENCE",
+     "class": "abstain"
+    },
+    "instruct": {
+     "text": "නාය යාමක පූර්ව ලක්ෂණ නාය යාම් රෝග ලක්ෂණ දකින්නේ නම් වහා ආරක්ෂිත ස්ථානයකට ඉවත් වන්න ලැබේ",
+     "class": "content_wrong"
+    },
+    "both": {
+     "text": "නාය යාමක පූර්ව ලක්ෂණ නාය යාම් රෝග ලක්ෂණ දකින්නේ නම් වහා ආරක්ෂිත ස්ථානයකට ඉවත් වන්න ලැබේ [1].",
+     "class": "content_wrong"
+    }
+   }
+  },
+  {
+   "id": "dr009-ta",
+   "language": "ta",
+   "gold_answerable": 1,
+   "original": "[2] #",
+   "conditions": {
+    "base": {
+     "text": "INSUFFICIENT_EVIDENCE",
+     "class": "abstain"
+    },
+    "tokens": {
+     "text": "INSUFFICIENT_EVIDENCE",
+     "class": "abstain"
+    },
+    "instruct": {
+     "text": "நிலச்சரிவின் முன்னெச்சரிக்கை அறிகுறிகள் இந்த பொதுவான கேள்வியில் உள்ள பொது அவசியத்துடன் இணைந்து, முன்னெச்சரிக்கை அறிக",
+     "class": "content_wrong"
+    },
+    "both": {
+     "text": "உடனடியாக பாதுகாப்பான இடத்திற்கு வெளியேறுவது மற்றும் கடுமையான நிலச்சரிவு அறிகுறிகள் தென்பட்டால், உடனடியாக பாதுகாப்பான இடத்திற்கு வெளியேறவும். [2]",
+     "class": "content_wrong"
+    }
+   }
+  },
+  {
+   "id": "dr010-en",
+   "language": "en",
+   "gold_answerable": 1,
+   "original": "[1] #",
+   "conditions": {
+    "base": {
+     "text": "According to evidence [1], you should store at least three days of drinking water per family member before a cyclone. [1]",
+     "class": "correct"
+    },
+    "tokens": {
+     "text": "According to evidence [1], you should store at least three days of drinking water per family member before a cyclone. [1]",
+     "class": "correct"
+    },
+    "instruct": {
+     "text": "Store at least three days of drinking water per family member before a cyclone. [1]",
+     "class": "correct"
+    },
+    "both": {
+     "text": "Store at least three days of drinking water per family member before a cyclone. [1]",
+     "class": "correct"
+    }
+   }
+  },
+  {
+   "id": "dr010-mx",
+   "language": "mixed",
+   "gold_answerable": 1,
+   "original": "[1] #1",
+   "conditions": {
+    "base": {
+     "text": "[1] # Evidence passage 1 states that households should store at least three days of drinking water per family member. [1]",
+     "class": "correct"
+    },
+    "tokens": {
+     "text": "[1] # Evidence passage 1 states that families should store at least three days of drinking water per family member. [1]",
+     "class": "correct"
+    },
+    "instruct": {
+     "text": "3 [#3]",
+     "class": "empty"
+    },
+    "both": {
+     "text": "3 [#]",
+     "class": "empty"
+    }
+   }
+  },
+  {
+   "id": "dr011-si",
+   "language": "si",
+   "gold_answerable": 1,
+   "original": "[1] #1",
+   "conditions": {
+    "base": {
+     "text": "[1] #1",
+     "class": "empty"
+    },
+    "tokens": {
+     "text": "[1] #1",
+     "class": "empty"
+    },
+    "instruct": {
+     "text": "2 #2 mentions that the eye of the cyclone passing overhead can create a deceptive calm of about 20 to 33 minutes before high winds resume from the opposite direction.",
+     "class": "content_wrong"
+    },
+    "both": {
+     "text": "2 #2 mentions that the eye of the cyclone passing overhead can create a deceptive calm of about 20 to 33 minutes before high winds resume from the opposite direction.",
+     "class": "content_wrong"
+    }
+   }
+  },
+  {
+   "id": "dr011-ta",
+   "language": "ta",
+   "gold_answerable": 1,
+   "original": "[1] #1",
+   "conditions": {
+    "base": {
+     "text": "[1] #1",
+     "class": "empty"
+    },
+    "tokens": {
+     "text": "[1] #1",
+     "class": "empty"
+    },
+    "instruct": {
+     "text": "2 [2] புயலின் கண் கடக்கும் போது 20–30 நிமிட அமைதியான நேரம் நீடிக்கும்.",
+     "class": "correct"
+    },
+    "both": {
+     "text": "2 [2] புயலின் கண் கடக்கும் போது 20–30 நிமிட அமைதியான நேரம் நீடிக்கும்.",
+     "class": "correct"
+    }
+   }
+  }
+ ]
+}

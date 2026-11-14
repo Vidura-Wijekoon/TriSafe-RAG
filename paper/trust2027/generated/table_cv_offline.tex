@@ -1,5 +1,5 @@
 \begin{table*}[t]
-  \caption{Group 5-fold cross-fitting of the tuned decision rules over all 208 queries (offline backend). In every fold the TriSafe thresholds and the E1/E7 gates are tuned on the other folds and applied to the held-out fold, so each query receives one out-of-fold decision; intervals are paired bootstraps over queries. Across folds the TriSafe answer threshold was chosen as 0.30. This checks that the development/test result does not depend on the particular split; the main tables use that split.}
+  \caption{Group 5-fold cross-fitting of the tuned decision rules over all 208 queries (offline backend). In every fold the TriSafe thresholds and the E1/E7 gates are tuned on the other folds and applied to the held-out fold, so each query receives one out-of-fold decision; intervals are paired cluster bootstraps over item groups. Across folds the TriSafe answer threshold was chosen as 0.30. This checks that the development/test result does not depend on the particular split; the main tables use that split.}
   \label{tab:cv-offline}
   \footnotesize
   \setlength{\tabcolsep}{4pt}
@@ -7,8 +7,8 @@
     \toprule
     System & Ans.\ rate & Sel.\ acc.\ $\uparrow$ & Unans.\ abst.\ $\uparrow$ & Decision acc.\ [95\% CI] & $\Delta$ vs.\ B1 [95\% CI] & Unsafe & Correct & Break-even \\
     \midrule
-    B1 vanilla & 0.92 & 0.562 & 0.12 & 0.457 [0.39, 0.52] & -- & 101 & 91 & -- \\
-    TriSafe-RAG (dev-tuned) & 0.52 & 0.646 & 0.65 & 0.404 [0.34, 0.47] & -0.053 [-0.115, +0.014] & 46 & 62 & 0.5 [0.3, 0.8] \\
+    B1 vanilla & 0.92 & 0.562 & 0.12 & 0.457 [0.37, 0.54] & -- & 101 & 91 & -- \\
+    TriSafe-RAG (dev-tuned) & 0.52 & 0.646 & 0.65 & 0.404 [0.32, 0.48] & -0.053 [-0.137, +0.033] & 46 & 62 & 0.5 [0.3, 0.9] \\
     \bottomrule
   \end{tabular}
 \end{table*}
