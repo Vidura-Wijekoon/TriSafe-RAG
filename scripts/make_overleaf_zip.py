@@ -1,10 +1,13 @@
 """Package paper/trust2027 as an Overleaf-ready zip.
 
-    python scripts/make_overleaf_zip.py   -> paper/TriSafe-RAG_TRUST2027_overleaf.zip
+    python scripts/make_overleaf_zip.py   -> paper/TriSafe-RAG_TRUST2027_overleaf.zip      (double-blind submission)
+                                             paper/TriSafe-RAG_TRUST2027_camera_ready.zip  (author block, ACM front matter)
 
-The zip contains the ACM class and bibliography style, main.tex (anonymous),
-main_named.tex, preamble/body, refs.bib, the generated tables/macros and the
-figures. If a backend run has not finished yet, the script writes
+Each zip contains the ACM class and bibliography style, a main.tex and a
+main_supplement.tex, preamble/body, refs.bib, the generated tables/macros and the
+figures.  In the submission zip main.tex is the anonymous review build and the
+camera-ready drivers ship alongside as main_named.tex / main_supplement_named.tex;
+in the camera-ready zip the named drivers ARE main.tex / main_supplement.tex. If a backend run has not finished yet, the script writes
 ``generated/fallbacks.tex`` (\\providecommand stubs rendering "??") and stub
 files for missing \\input targets so that the project still compiles.
 Overleaf settings: compiler pdfLaTeX, main document main.tex.
@@ -20,6 +23,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PAPER = ROOT / "paper" / "trust2027"
 ZIP = ROOT / "paper" / "TriSafe-RAG_TRUST2027_overleaf.zip"
+ZIP_CR = ROOT / "paper" / "TriSafe-RAG_TRUST2027_camera_ready.zip"
+COMMON = ["preamble.tex", "body.tex", "supplement.tex", "refs.bib", "acmart.cls", "ACM-Reference-Format.bst"]
 
 
 def write_fallbacks() -> list[str]:
@@ -41,12 +46,12 @@ def write_fallbacks() -> list[str]:
     return missing + stubs
 
 
-def main() -> None:
-    pending = write_fallbacks()
-    files = ["main.tex", "main_named.tex", "main_supplement.tex", "preamble.tex", "body.tex", "supplement.tex",
-             "refs.bib", "acmart.cls", "ACM-Reference-Format.bst"]
-    with zipfile.ZipFile(ZIP, "w", zipfile.ZIP_DEFLATED) as z:
-        for f in files:
+def build(zip_path: Path, drivers: dict, readme: str, pending: list[str]) -> None:
+    """drivers: {name in zip: source file in paper/trust2027}."""
+    with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as z:
+        for name, src in drivers.items():
+            z.write(PAPER / src, name)
+        for f in COMMON:
             z.write(PAPER / f, f)
         for sub in ("generated", "figures", "fonts"):
             for p in sorted((PAPER / sub).iterdir()):
@@ -57,13 +62,29 @@ def main() -> None:
             "Upload this zip as a new Overleaf project.\n"
             "Menu -> Compiler: XeLaTeX (required to typeset the Sinhala and Tamil queries from fonts/;\n"
             "pdfLaTeX also compiles but prints [Sinhala text]/[Tamil text] markers instead).\n"
-            "Main document: main.tex (anonymous review build, 9 pages + references) or main_named.tex (camera-ready).\n"
-            "Supplementary material: compile main_supplement.tex as a second document (not counted in the page limit).\n"
+            + readme
+            + "Supplementary material: compile main_supplement.tex as a second document (not counted in the page limit).\n"
             "Tables and numbers are generated from results/*/results.json by scripts/make_tables.py;\n"
             "do not edit generated/*.tex by hand.\n"
             + ("\nPENDING (placeholders rendered as ?? until the neural run finishes):\n  " + "\n  ".join(pending) + "\n" if pending else "\nAll generated inputs present.\n"),
         )
-    print(f"wrote {ZIP.relative_to(ROOT)} ({ZIP.stat().st_size // 1024} KB); pending items: {len(pending)}")
+    print(f"wrote {zip_path.relative_to(ROOT)} ({zip_path.stat().st_size // 1024} KB); pending items: {len(pending)}")
+
+
+def main() -> None:
+    pending = write_fallbacks()
+    build(ZIP,
+          {"main.tex": "main.tex", "main_supplement.tex": "main_supplement.tex",
+           "main_named.tex": "main_named.tex", "main_supplement_named.tex": "main_supplement_named.tex"},
+          "Main document: main.tex (DOUBLE-BLIND review build: anonymous, line numbers; 9 pages + references).\n"
+          "Do not submit main_named.tex for review; it is the camera-ready driver with the author block.\n",
+          pending)
+    build(ZIP_CR,
+          {"main.tex": "main_named.tex", "main_supplement.tex": "main_supplement_named.tex"},
+          "Main document: main.tex (CAMERA-READY build: author block, ACM reference block, rights footnote, no line numbers).\n"
+          "Before the final upload replace the placeholders in main.tex (\\setcopyright, \\acmDOI, \\acmISBN)\n"
+          "with the values from the ACM rights-form e-mail.\n",
+          pending)
 
 
 if __name__ == "__main__":

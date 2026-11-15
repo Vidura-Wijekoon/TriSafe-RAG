@@ -94,7 +94,8 @@ bash scripts/run_all_seeds.sh neural7b neural           # seeds 0,1,2 per backen
 python scripts/progress_ui.py --backend neural7b        # live progress at http://localhost:8765 while a run is going
 python scripts/make_tables.py                           # paper/trust2027/generated/*.tex + figures (all backends found)
 python scripts/make_architecture.py                     # paper/trust2027/figures/eval_harness.pdf
-python scripts/make_overleaf_zip.py                     # paper/TriSafe-RAG_TRUST2027_overleaf.zip (XeLaTeX; main.tex = paper, main_supplement.tex = supplement)
+python scripts/make_overleaf_zip.py                     # paper/TriSafe-RAG_TRUST2027_overleaf.zip (double-blind; main.tex = paper, main_supplement.tex = supplement)
+                                                        # and paper/TriSafe-RAG_TRUST2027_camera_ready.zip (author block, ACM front matter)
 python scripts/probe_empty_replies.py --backend neural7b --seed 0   # regenerate the citation-only replies under 4 prompt/token conditions (Ollama)
 python scripts/defer_analysis.py --backend neural7b                 # deferral as an outcome: is the answer in the evidence shown? (replay only)
 PYTHONPATH=. python casestudies/civil_documents/run.py  # offline case-study drivers

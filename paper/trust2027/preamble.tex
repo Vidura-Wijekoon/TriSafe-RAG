@@ -35,9 +35,19 @@
 \providecommand{\PolicyRef}{Fig.~\ref{fig:policy}}
 \providecommand{\CostRef}{Sec.~\ref{sec:cost}}
 
-\settopmatter{printacmref=false}
-\renewcommand\footnotetextcopyrightpermission[1]{}
-\pagestyle{plain}
+%% Review build (main.tex, main_supplement.tex): no ACM reference block, no rights footnote, page
+%% numbers.  The camera-ready drivers (main_named.tex, main_supplement_named.tex) set
+%% \camerareadytrue before \input{preamble} and keep the ACM front matter.
+\unless\ifdefined\ifcameraready \expandafter\newif\csname ifcameraready\endcsname \fi
+\ifcameraready\else
+  \settopmatter{printacmref=false}
+  \renewcommand\footnotetextcopyrightpermission[1]{}
+  \pagestyle{plain}
+\fi
+
+%% How the body refers to the released artifacts: anonymised for review; the camera-ready
+%% drivers define \RepoStatement with the public repository before \input{preamble}.
+\providecommand{\RepoStatement}{provided as anonymised supplementary material and will be released publicly}
 
 \copyrightyear{2027}
 \acmYear{2027}

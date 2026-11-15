@@ -2,7 +2,7 @@
 
 - `trust2027/` — **canonical** ACM sigconf source for the TRUST 2027 submission.
   - `main.tex`: anonymous, review-mode build (line numbers).
-  - `main_named.tex`: camera-ready variant with author block (same body via `\input{body}`).
+  - `main_named.tex`, `main_supplement_named.tex`: camera-ready drivers with the author block and ACM front matter (same body via `\input{body}` / `\input{supplement}`; `\setcopyright`, `\acmDOI`, `\acmISBN` placeholders to be filled from the rights form).
   - `main_supplement.tex` + `supplement.tex`: supplementary material compiled as a second PDF (evaluation architecture, benchmark examples, qualitative records, probes, full external-baseline table, calibration figures, case studies, 1.5B and offline tables, cross-validation, per-seed tables). TRUST 2027 counts appendices toward the 9-page limit, so nothing beyond the limit is in `body.tex`.
   - `generated/`: tables and macros written by `scripts/make_tables.py` from `results/*/results.json`. **Do not edit by hand**; rerun the script.
   - `figures/`: `architecture.png` (pipeline), `eval_harness.pdf` (evaluation architecture, drawn by `scripts/make_architecture.py` from repository counts), and the reliability and language trade-off plots written by `make_tables.py`.
@@ -19,7 +19,7 @@ xelatex main_supplement && xelatex main_supplement   # supplementary PDF
 # or: latexmk -xelatex main      (pdflatex also compiles; Sinhala/Tamil then print as markers)
 ```
 
-Or build `paper/TriSafe-RAG_TRUST2027_overleaf.zip` with `python scripts/make_overleaf_zip.py` and upload it to Overleaf with the compiler set to XeLaTeX.
+Or run `python scripts/make_overleaf_zip.py`, which builds `paper/TriSafe-RAG_TRUST2027_overleaf.zip` (double-blind submission) and `paper/TriSafe-RAG_TRUST2027_camera_ready.zip` (named), and upload one to Overleaf with the compiler set to XeLaTeX.
 
 Before building, make sure the generated tables match the results you intend to report:
 

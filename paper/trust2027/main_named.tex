@@ -1,7 +1,19 @@
-%% Camera-ready variant with the author block. Same body as main.tex.
+%% ACM TRUST 2027 camera-ready driver: author block, ACM reference block and rights footnote.
+%% Same body as the double-blind submission build.  Build: xelatex <this file> && bibtex <this file> && xelatex <this file> && xelatex <this file>
+%%
+%% After acceptance, replace the three placeholders below with the values from the ACM rights-form
+%% e-mail: \setcopyright (acmlicensed / rightsretained / ...), \acmDOI and \acmISBN.
 \documentclass[sigconf]{acmart}
 
+\newif\ifcameraready
+\camerareadytrue
+\newcommand{\RepoStatement}{available at \url{https://github.com/Vidura-Wijekoon/TriSafe-RAG}}
+
 \input{preamble}
+
+\setcopyright{acmlicensed}
+\acmDOI{10.1145/nnnnnnn.nnnnnnn}
+\acmISBN{978-x-xxxx-xxxx-x/YY/MM}
 
 \begin{document}
 

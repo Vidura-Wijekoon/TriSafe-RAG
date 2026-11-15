@@ -51,3 +51,4 @@ results/**/*.log
 pytest-cache-files-*/
 casestudies/**/results/drafts_offline.jsonl
 !paper/TriSafe-RAG_TRUST2027_overleaf.zip
+!paper/TriSafe-RAG_TRUST2027_camera_ready.zip
