@@ -5,9 +5,9 @@
 
 Each zip contains the ACM class and bibliography style, a main.tex and a
 main_supplement.tex, preamble/body, refs.bib, the generated tables/macros and the
-figures.  In the submission zip main.tex is the anonymous review build and the
-camera-ready drivers ship alongside as main_named.tex / main_supplement_named.tex;
-in the camera-ready zip the named drivers ARE main.tex / main_supplement.tex. If a backend run has not finished yet, the script writes
+figures.  The submission zip holds only the anonymous drivers (nothing in it
+names the author); in the camera-ready zip the named drivers
+main_named.tex / main_supplement_named.tex ARE main.tex / main_supplement.tex. If a backend run has not finished yet, the script writes
 ``generated/fallbacks.tex`` (\\providecommand stubs rendering "??") and stub
 files for missing \\input targets so that the project still compiles.
 Overleaf settings: compiler pdfLaTeX, main document main.tex.
@@ -74,10 +74,9 @@ def build(zip_path: Path, drivers: dict, readme: str, pending: list[str]) -> Non
 def main() -> None:
     pending = write_fallbacks()
     build(ZIP,
-          {"main.tex": "main.tex", "main_supplement.tex": "main_supplement.tex",
-           "main_named.tex": "main_named.tex", "main_supplement_named.tex": "main_supplement_named.tex"},
+          {"main.tex": "main.tex", "main_supplement.tex": "main_supplement.tex"},
           "Main document: main.tex (DOUBLE-BLIND review build: anonymous, line numbers; 9 pages + references).\n"
-          "Do not submit main_named.tex for review; it is the camera-ready driver with the author block.\n",
+          "This zip contains no author name or affiliation; the camera-ready drivers are in the separate camera-ready zip.\n",
           pending)
     build(ZIP_CR,
           {"main.tex": "main_named.tex", "main_supplement.tex": "main_supplement_named.tex"},
