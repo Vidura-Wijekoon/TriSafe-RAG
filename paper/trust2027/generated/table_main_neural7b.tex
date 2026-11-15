@@ -1,21 +1,21 @@
 \begin{table*}[t]
-  \caption{Main results on the 169-query test split (neural7b backend). Ans.\ rate: fraction of queries answered. Acc.: accuracy on gold-answerable queries (abstention counts as an error). Sel.\ acc.: accuracy among answered answerable queries. Unans.\ abst.: fraction of unanswerable queries abstained on. Catch/Retain: share of wrong drafts on answerable queries that the policy abstained on, and share of correct drafts it delivered. ECE and AUROC are computed from the confidence score against draft correctness over all test queries (policy-independent); ECE (ans.): the same over the queries the system answered, which excludes the generator's own abstentions. Brackets: 95\% paired cluster-bootstrap intervals that resample the test items with all their language versions (2{,}000 resamples).}
+  \caption{Main results on the 169-query test split (neural7b backend). Ans.\ rate: fraction of queries answered. Acc.: accuracy on gold-answerable queries (abstention counts as an error). Sel.\ acc.: accuracy among answered answerable queries. Unans.\ abst.: fraction of unanswerable queries abstained on. Catch/Retain: share of wrong drafts on answerable queries that the policy abstained on, and share of correct drafts it delivered. ECE and AUROC are computed from the confidence score against draft correctness over all test queries (policy-independent); ECE (ans.): the same over the queries the system answered, which excludes the generator's own abstentions. Brackets: 95\% paired cluster-bootstrap intervals that resample the test items with all their language versions (2{,}000 resamples). B3: the default policy with $w_{\mathrm{gr}}{=}w_{\mathrm{cit}}{=}0$, grounding and citation gates kept.}
   \label{tab:main-neural7b}
   \footnotesize
-  \setlength{\tabcolsep}{3pt}
-  \begin{tabular}{lccccccccc}
+  \setlength{\tabcolsep}{2.5pt}
+  \begin{tabular}{@{}lccccccccc@{}}
     \toprule
     System & Ans.\ rate & Acc.\ $\uparrow$ [95\% CI] & Sel.\ acc.\ $\uparrow$ & Unans.\ abst.\ $\uparrow$ & Catch/Retain & Abst.\ F1 $\uparrow$ & ECE $\downarrow$ [95\% CI] & ECE (ans.) $\downarrow$ & AUROC $\uparrow$ \\
     \midrule
-    B1 vanilla (LLM self-abstention only) & 0.69 & 0.527 [0.46, 0.60] & 0.649 & 0.96 & 0.39/0.99 & 0.641 & 0.242 [0.18, 0.34] & 0.164 & 0.541 \\
+    B1 vanilla (generator self-abstention) & 0.69 & 0.527 [0.46, 0.60] & 0.649 & 0.96 & 0.39/0.99 & 0.641 & 0.242 [0.18, 0.34] & 0.164 & 0.541 \\
     B2 grounding only (no thresholds) & 0.69 & 0.527 [0.46, 0.60] & 0.649 & 0.96 & 0.39/0.99 & 0.641 & 0.311 [0.24, 0.40] & 0.321 & 0.438 \\
-    B3 abstention only (w\_gr = w\_cit = 0; grounding and citation gates kept) & 0.35 & 0.254 [0.20, 0.31] & 0.619 & 1.00 & 0.67/0.48 & 0.381 & 0.181 [0.13, 0.27] & 0.168 & 0.504 \\
+    B3 abstention only (gates kept) & 0.35 & 0.254 [0.20, 0.31] & 0.619 & 1.00 & 0.67/0.48 & 0.381 & 0.181 [0.13, 0.27] & 0.168 & 0.504 \\
     TriSafe-RAG (default thresholds) & 0.41 & 0.261 [0.20, 0.33] & 0.544 & 1.00 & 0.53/0.49 & 0.412 & 0.311 [0.24, 0.40] & 0.344 & 0.438 \\
-    TriSafe-RAG with lexical (Jaccard) grounding & 0.02 & 0.014 [0.00, 0.03] & 0.750 & 1.00 & 0.99/0.03 & 0.270 & 0.232 [0.15, 0.32] & 0.130 & 0.539 \\
-    TriSafe-RAG with raw RRF retrieval signal & 0.29 & 0.135 [0.08, 0.21] & 0.389 & 1.00 & 0.55/0.25 & 0.358 & 0.349 [0.28, 0.42] & 0.357 & 0.425 \\
-    TriSafe-RAG (thresholds tuned on dev) & 0.48 & 0.343 [0.27, 0.42] & 0.600 & 1.00 & 0.51/0.64 & 0.459 & 0.311 [0.24, 0.40] & 0.356 & 0.438 \\
-    TriSafe-RAG + per-language thresholds (dev) & 0.48 & 0.343 [0.27, 0.42] & 0.600 & 1.00 & 0.51/0.64 & 0.459 & 0.311 [0.24, 0.40] & 0.356 & 0.438 \\
-    TriSafe-RAG with Platt-calibrated confidence & 0.49 & 0.345 [0.27, 0.42] & 0.602 & 1.00 & 0.51/0.65 & 0.460 & 0.083 [0.04, 0.15] & 0.097 & 0.550 \\
+    TriSafe-RAG, lexical (Jaccard) grounding & 0.02 & 0.014 [0.00, 0.03] & 0.750 & 1.00 & 0.99/0.03 & 0.270 & 0.232 [0.15, 0.32] & 0.130 & 0.539 \\
+    TriSafe-RAG, raw RRF retrieval signal & 0.29 & 0.135 [0.08, 0.21] & 0.389 & 1.00 & 0.55/0.25 & 0.358 & 0.349 [0.28, 0.42] & 0.357 & 0.425 \\
+    TriSafe-RAG (dev-tuned thresholds) & 0.48 & 0.343 [0.27, 0.42] & 0.600 & 1.00 & 0.51/0.64 & 0.459 & 0.311 [0.24, 0.40] & 0.356 & 0.438 \\
+    TriSafe-RAG + per-language thresholds & 0.48 & 0.343 [0.27, 0.42] & 0.600 & 1.00 & 0.51/0.64 & 0.459 & 0.311 [0.24, 0.40] & 0.356 & 0.438 \\
+    TriSafe-RAG, Platt-calibrated confidence & 0.49 & 0.345 [0.27, 0.42] & 0.602 & 1.00 & 0.51/0.65 & 0.460 & 0.083 [0.04, 0.15] & 0.097 & 0.550 \\
     \bottomrule
   \end{tabular}
 \end{table*}

@@ -51,6 +51,28 @@ def tex_escape(s: str) -> str:
     return s.replace("_", "\\_").replace("%", "\\%").replace("&", "\\&")
 
 
+# Row labels for the tables that print one row per system.  The labels stored in
+# results.json (scripts/run_benchmark.py) describe each system in full and are too
+# wide for a ten-column table*; the B3 definition is stated in the captions instead.
+TABLE_LABEL = {
+    "B1_vanilla": "B1 vanilla (generator self-abstention)",
+    "B2_grounding_only": "B2 grounding only (no thresholds)",
+    "B3_abstention_only": "B3 abstention only (gates kept)",
+    "TriSafe_default": "TriSafe-RAG (default thresholds)",
+    "TriSafe_lexical": "TriSafe-RAG, lexical (Jaccard) grounding",
+    "TriSafe_rrf": "TriSafe-RAG, raw RRF retrieval signal",
+    "TriSafe_devtuned": "TriSafe-RAG (dev-tuned thresholds)",
+    "TriSafe_perlang": "TriSafe-RAG + per-language thresholds",
+    "TriSafe_platt": "TriSafe-RAG, Platt-calibrated confidence",
+}
+B3_NOTE = r"B3: the default policy with $w_{\mathrm{gr}}{=}w_{\mathrm{cit}}{=}0$, grounding and citation gates kept."
+
+
+def label(R, k):
+    """LaTeX-ready row label for system k."""
+    return TABLE_LABEL.get(k) or tex_escape(R["systems"][k]["label"])
+
+
 # --------------------------------------------------------------------------- #
 def table_main(R, name, caption_extra=""):
     """Headline table: answer rate, answerable accuracy, selective accuracy,
@@ -67,18 +89,18 @@ def table_main(R, name, caption_extra=""):
         b = boot.get(k, {})
         catch = f"{f(o.get('catch_rate_wrong'),2)}/{f(o.get('retain_rate_correct'),2)}"
         rows.append(
-            f"{tex_escape(S['label'])} & {f(o['answer_rate'],2)} & {f(o['acc_answerable'],3)} {ci(b.get('acc_answerable'))} & "
+            f"{label(R, k)} & {f(o['answer_rate'],2)} & {f(o['acc_answerable'],3)} {ci(b.get('acc_answerable'))} & "
             f"{f(o['selective_accuracy'],3)} & {f(o['unanswerable_abstention'],2)} & {catch} & {f(o['abstention_f1'],3)} & "
             f"{f(o['ece_draft'],3)} {ci(b.get('ece_draft'))} & {f(o.get('ece_answered'),3)} & {f(o['auroc_draft'],3)} \\\\"
         )
     body = "\n    ".join(rows)
     n = R["n_test"]
     return rf"""\begin{{table*}}[t]
-  \caption{{Main results on the {n}-query test split ({name} backend{caption_extra}). Ans.\ rate: fraction of queries answered. Acc.: accuracy on gold-answerable queries (abstention counts as an error). Sel.\ acc.: accuracy among answered answerable queries. Unans.\ abst.: fraction of unanswerable queries abstained on. Catch/Retain: share of wrong drafts on answerable queries that the policy abstained on, and share of correct drafts it delivered. ECE and AUROC are computed from the confidence score against draft correctness over all test queries (policy-independent); ECE (ans.): the same over the queries the system answered, which excludes the generator's own abstentions. Brackets: 95\% paired cluster-bootstrap intervals that resample the test items with all their language versions (2{{,}}000 resamples).}}
+  \caption{{Main results on the {n}-query test split ({name} backend{caption_extra}). Ans.\ rate: fraction of queries answered. Acc.: accuracy on gold-answerable queries (abstention counts as an error). Sel.\ acc.: accuracy among answered answerable queries. Unans.\ abst.: fraction of unanswerable queries abstained on. Catch/Retain: share of wrong drafts on answerable queries that the policy abstained on, and share of correct drafts it delivered. ECE and AUROC are computed from the confidence score against draft correctness over all test queries (policy-independent); ECE (ans.): the same over the queries the system answered, which excludes the generator's own abstentions. Brackets: 95\% paired cluster-bootstrap intervals that resample the test items with all their language versions (2{{,}}000 resamples). {B3_NOTE}}}
   \label{{tab:main-{name}}}
   \footnotesize
-  \setlength{{\tabcolsep}}{{3pt}}
-  \begin{{tabular}}{{lccccccccc}}
+  \setlength{{\tabcolsep}}{{2.5pt}}
+  \begin{{tabular}}{{@{{}}lccccccccc@{{}}}}
     \toprule
     System & Ans.\ rate & Acc.\ $\uparrow$ [95\% CI] & Sel.\ acc.\ $\uparrow$ & Unans.\ abst.\ $\uparrow$ & Catch/Retain & Abst.\ F1 $\uparrow$ & ECE $\downarrow$ [95\% CI] & ECE (ans.) $\downarrow$ & AUROC $\uparrow$ \\
     \midrule
@@ -102,7 +124,7 @@ def table_external(R, name):
         b = boot.get(k, {})
         d = b.get("decision_accuracy", {}).get("delta_vs_ref", {}) if k != "B1_vanilla" else {}
         rows.append(
-            f"{tex_escape(S['label'])} & {f(o['answer_rate'],2)} & {f(o['acc_answerable'],3)} & {f(o['selective_accuracy'],3)} & "
+            f"{label(R, k)} & {f(o['answer_rate'],2)} & {f(o['acc_answerable'],3)} & {f(o['selective_accuracy'],3)} & "
             f"{f(o['unanswerable_abstention'],2)} & {f(o['decision_accuracy'],3)} {ci(b.get('decision_accuracy'))} & "
             f"{f(o['ece_draft'],3)} & {f(o['aurc'],3)} \\\\"
         )
@@ -139,7 +161,7 @@ def table_fairness(R, name):
             cells.append(f"{f(v['acc_answerable'],2)}/{f(v['answer_rate'],2)}" if v else "--")
         b = boot.get(k, {})
         rows.append(
-            f"{tex_escape(S['label'])} & " + " & ".join(cells)
+            f"{label(R, k)} & " + " & ".join(cells)
             + f" & {f(g['gap_acc_answerable'],2)} {ci(b.get('gap_acc_answerable'))} & {f(g['gap_answer_rate'],2)} & {f(g['equalized_odds_gap'],2)} & {f(g['cross_lingual_consistency'],2)} \\\\"
         )
     body = "\n    ".join(rows)
@@ -149,7 +171,7 @@ def table_fairness(R, name):
     counts = ", ".join(f"{LANG_LABEL[l]}: {any_sys[l]['n'] // ns} ({any_sys[l]['n_unanswerable'] // ns} unans.)" for l in LANGS if l in any_sys)
     counts += f"; {ns} generation seeds each" if ns > 1 else ""
     return rf"""\begin{{table*}}[t]
-  \caption{{Per-language results on the test split ({name} backend). Each language cell is accuracy on answerable queries / answer rate, so a narrowing accuracy gap can be read against coverage. $\Delta A$: max--min accuracy gap over the three single-language groups and the code-switched group with at least five test queries; $\Delta R$: the same gap for answer rate; $\Delta EO$: max of the TPR and FPR gaps on the answer/abstain decision; CLC $= 1-\Delta A$. Test queries per language: {counts}.}}
+  \caption{{Per-language results on the test split ({name} backend). Each language cell is accuracy on answerable queries / answer rate, so a narrowing accuracy gap can be read against coverage. $\Delta A$: max--min accuracy gap over the three single-language groups and the code-switched group with at least five test queries; $\Delta R$: the same gap for answer rate; $\Delta EO$: max of the TPR and FPR gaps on the answer/abstain decision; CLC $= 1-\Delta A$. Test queries per language: {counts}. {B3_NOTE}}}
   \label{{tab:fair-{name}}}
   \footnotesize
   \setlength{{\tabcolsep}}{{3.5pt}}
@@ -232,7 +254,7 @@ def table_tests(R, name):
     for k, v in pt.items():
         if k not in R["systems"]:
             continue
-        rows.append(f"{tex_escape(R['systems'][k]['label'])} & {pval(v.get('correct'))} & {pval(v.get('abstained'))} \\\\")
+        rows.append(f"{label(R, k)} & {pval(v.get('correct'))} & {pval(v.get('abstained'))} \\\\")
     body = "\n    ".join(rows)
     return rf"""\begin{{table}}[t]
   \caption{{Paired sign-flip permutation tests against B1 on the test split ({name} backend): two-sided $p$-values for the per-query difference in correctness (answerable queries) and in abstention (all queries).}}
